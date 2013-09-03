@@ -38,7 +38,8 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # My gems
-gem 'sass'    # stylesheet processor
-gem 'mongoid' # database
-gem 'devise'  # authentication
-gem 'cancan'  # authorization
+gem 'bson_ext' # needed by rake
+gem 'sass'     # stylesheet processor
+gem 'mongoid'  # database
+gem 'devise'   # authentication
+gem 'cancan'   # authorization
