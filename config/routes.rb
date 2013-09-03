@@ -5,6 +5,8 @@ Recruiter::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
+  root :to => 'high_voltage/pages#show', id: 'home'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -39,7 +41,7 @@ Recruiter::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
-  
+
   # Example resource route with concerns:
   #   concern :toggleable do
   #     post 'toggle'

@@ -38,8 +38,20 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # My gems
-gem 'bson_ext' # needed by rake
-gem 'sass'     # stylesheet processor
-gem 'mongoid'  # database
-gem 'devise'   # authentication
-gem 'cancan'   # authorization
+
+gem 'bson_ext'     # needed by rake
+gem 'sass'         # stylesheet processor
+gem 'devise'       # authentication
+gem 'cancan'       # authorization
+gem 'high_voltage' # static pages
+
+# Edge gems, needed for rails 4
+gem 'mongoid', github: 'mongoid/mongoid' # database
+# caching
+gem 'actionpack-action_caching'
+gem 'actionpack-page_caching'
+
+# dev
+group :development do
+  gem 'powder'
+end
