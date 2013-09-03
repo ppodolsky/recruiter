@@ -12,3 +12,4 @@
 //
 //= require_tree .
 //= require jquery/jquery
+//= require modernizr/modernizr
