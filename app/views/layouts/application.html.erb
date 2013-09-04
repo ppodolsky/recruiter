@@ -24,16 +24,16 @@
         </a> or <a href="http://www.google.com/chromeframe/?redirect=true"
         activate Google Chrome Frame</a> to improve your experience.</p>
     <![endif]-->
-    <%= render 'navbar' %>
-    <%= render 'jumbotron' %>
+    <%= render 'shared/navbar' %>
+    <%= yield :jumbotron %>
 
-  <div class="container">
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
 
-    <hr>
-    <%= render 'footer' %>
-    <%= debug(params) if Rails.env.development? %>
-  </div>
-  <!-- /container -->
+      <hr>
+
+      <%= render 'shared/footer' %>
+      <%= debug(params) if Rails.env.development? %>
+    </div><!--/container -->
   </body>
 </html>

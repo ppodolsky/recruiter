@@ -5,7 +5,7 @@ Recruiter::Application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-  root :to => 'high_voltage/pages#show', id: 'home'
+  root :to => 'pages#show', :id => 'welcome'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
