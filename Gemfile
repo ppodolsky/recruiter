@@ -54,4 +54,5 @@ gem 'actionpack-page_caching'
 # dev
 group :development do
   gem 'powder'
+  gem 'git-up'
 end

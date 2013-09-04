@@ -54,13 +54,22 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    colored (1.2)
     devise (3.0.3)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
+    diff-lcs (1.2.4)
     erubis (2.7.0)
     execjs (2.0.1)
+    git-up (0.5.12)
+      colored (>= 1.2)
+      grit
+    grit (2.5.0)
+      diff-lcs (~> 1.1)
+      mime-types (~> 1.15)
+      posix-spawn (~> 0.3.6)
     high_voltage (1.2.4)
     hike (1.2.3)
     i18n (0.6.5)
@@ -78,6 +87,7 @@ GEM
     origin (1.1.0)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
+    posix-spawn (0.3.6)
     powder (0.2.0)
       thor (>= 0.11.5)
     rack (1.5.2)
@@ -140,6 +150,7 @@ DEPENDENCIES
   cancan
   coffee-rails (~> 4.0.0)
   devise
+  git-up
   high_voltage
   jbuilder (~> 1.2)
   mongoid!
