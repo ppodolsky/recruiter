@@ -42,7 +42,8 @@ gem 'sass'         # stylesheet processor
 gem 'devise'       # authentication
 gem 'cancan'       # authorization
 gem 'high_voltage' # static pages
-gem 'mongoid', github: 'mongoid/mongoid' # database
+gem 'mongoid',          github: 'mongoid/mongoid' # database
+gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia' # before first release
 gem 'actionpack-action_caching'
 gem 'actionpack-page_caching'
 

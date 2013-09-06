@@ -8,6 +8,14 @@ GIT
       origin (~> 1.0)
       tzinfo (~> 0.3.37)
 
+GIT
+  remote: git://github.com/simi/mongoid-paranoia.git
+  revision: 02de92ffb5921e5fb51101133998db264335e576
+  specs:
+    mongoid-paranoia (0.1)
+      activemodel (~> 4.0.0)
+      mongoid (~> 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -154,6 +162,7 @@ DEPENDENCIES
   high_voltage
   minitest-rails
   mongoid!
+  mongoid-paranoia!
   powder
   rails (= 4.0.0)
   sass
