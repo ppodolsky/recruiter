@@ -73,15 +73,15 @@ GEM
     high_voltage (1.2.4)
     hike (1.2.3)
     i18n (0.6.5)
-    jbuilder (1.5.1)
-      activesupport (>= 3.0.0)
-      multi_json (>= 1.2.0)
     json (1.8.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.25)
     minitest (4.7.5)
+    minitest-rails (0.9.2)
+      minitest (~> 4.7)
+      rails (>= 3.0)
     moped (1.5.1)
     multi_json (1.7.9)
     origin (1.1.0)
@@ -152,7 +152,7 @@ DEPENDENCIES
   devise
   git-up
   high_voltage
-  jbuilder (~> 1.2)
+  minitest-rails
   mongoid!
   powder
   rails (= 4.0.0)
