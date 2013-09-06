@@ -1,0 +1,13 @@
+  ☐ Setup devise @next
+    Be sure to use paranoia and timestamps
+  ☐ Sign up form
+  ☐ Log in form
+  ☐ Log out
+  ☐ Setup indexing
+
+Later:
+  ☐ Add IP logging
+
+＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
+Archive:
+  ✔ Review mongoid options in docs @done (2013-09-06 02:42)
