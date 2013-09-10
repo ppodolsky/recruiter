@@ -1,6 +1,10 @@
 5minbootstrap
 =============
 
+Shameless ripped off from others. This ansible playbook copied from
+[phred/5minbootstrap.git](https://github.com/phred/5minbootstrap.git) for ease
+of customization and deployment.
+
 Bootstrap and secure your server in 5 minutes flat.  A riff on this excellent post:
 
 http://plusbryan.com/my-first-5-minutes-on-a-server-or-essential-security-for-linux-servers
