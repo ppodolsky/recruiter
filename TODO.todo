@@ -1,13 +1,38 @@
-  ☐ Setup devise @next
-    Be sure to use paranoia and timestamps
-  ☐ Sign up form
-  ☐ Log in form
-  ☐ Log out
-  ☐ Setup indexing
+ ☐ Finish copy on Help page @next
+ ☐ Deploy! Sheezus.
+    OK, first it might be a good idea to rewrite my working tree history.
+ ☐ First steps with security.
+    See: http://strandcode.com/2013/08/11/security-is-a-feature-9-newb-friendly-steps-to-secure-your-rails-apps/
+ ☐ Flesh out rest of domain with generators
+    Experiments, sessions, etc. Check out smarcia's Manager for more domain suggestions. Experiments should have tags. Tags should eventually be curated and have type-ahead.
+ ☐ Use cancan to setup roles for experimenters and administrators
+    Authorization in the model?
 
 Later:
-  ☐ Add IP logging
+ ☐ Setup indexing
+ ☐ Add omniauth support
+ ☐ Add ability to post on facebook/tweet/like page
+ ☐ Add nice titles to pages
+    Use [flutie](https://github.com/thoughtbot/flutie) to provide helpers.
+ ☐ Add auditing and versioning to models
+    Use [paper_trail](https://github.com/airblade/paper_trail).
+ ☐ File upload facilities
+ ☐ Switch to CMS for admin editing of copy on pages
+ ☐ Look into mustache templates (or slim in logicless mode)
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
-  ✔ Review mongoid options in docs @done (2013-09-06 02:42)
+ ✔ Make login form modal @done (2013-09-09 20:24)
+ ✔ Rebrand to generic @next @done (2013-09-09 17:32)
+  Use branches for brands
+ ✔ Figure out livereload @done (2013-09-09 17:26)
+ ✔ Switch to a better app server @done (2013-09-09 15:37) @project(Later)
+ ✔ Sign up form @done (2013-09-09 15:36)
+ ✔ Log in form @done (2013-09-09 15:36)
+ ✔ Log out @done (2013-09-09 15:36)
+ ✔ Switch forms to simple_form @done (2013-09-08 19:24) @project(Later)
+ ✔ Setup devise @next @done (2013-09-06 05:56)
+  Be sure to use paranoia and timestamps with mongoid
+ ✔ Switch to strong_parameters @done (2013-09-06 05:55) @project(Later)
+  Devise takes care of this.
+ ✔ Review mongoid options in docs @done (2013-09-06 02:42)
