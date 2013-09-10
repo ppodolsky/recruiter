@@ -22,7 +22,7 @@
     action: user name=deploy password=$deploy_password
 
   - name: Add authorized deploy key for Fred
-    action: authorized_key user=deploy key='$FILE(jrhorn424.pub)'
+    action: authorized_key user=deploy key='$FILE(whoami.pub)'
 
   - name: Remove sudo group rights
     action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent
