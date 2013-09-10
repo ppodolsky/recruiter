@@ -1,0 +1,3 @@
+[submodule "vendor/deploy/5minbootstrap"]
+	path = vendor/deploy/5minbootstrap
+	url = git@github.com:phred/5minbootstrap.git
