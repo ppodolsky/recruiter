@@ -15,15 +15,6 @@
 /log/*.log
 /tmp
 
-# My ignore
-/vendor/assets/components
-/vendor/assets/initializr
-/scratch
-# symlink for pow
-/recruiter
-/.powrc
-/.powenv
-
 ### /Users/jrhorn424/.gitignore-boilerplates/Global/SublimeText.gitignore
 
 # SublimeText project files
@@ -113,4 +104,12 @@ pickle-email-*.html
 .project
 config/initializers/secret_token.rb
 
-
+# My ignore
+/vendor/assets/components
+/vendor/assets/initializr
+/scratch
+# symlink for pow
+/recruiter
+/.powrc
+/.powenv
+TODO.todo
