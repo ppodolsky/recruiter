@@ -10,9 +10,6 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use Capistrano for deployment
-gem 'capistrano', group: :development
-
 # My gems
 gem 'passenger'                                         # server
 
@@ -35,6 +32,7 @@ gem 'authority'           #authorization
 
 # dev
 group :development do
+  gem 'capistrano'
   gem 'guard'
   gem 'guard-livereload'
 end
