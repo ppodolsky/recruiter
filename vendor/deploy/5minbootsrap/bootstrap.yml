@@ -2,8 +2,8 @@
 - hosts: newservers
   vars:
   - ubuntu_release: lucid
-  - logwatch_email: ops@practicalops.com
-  - deploy_password: '$6$AC3bdCF7!$rVroC3j8Ue5M2sEsJeXOzfztBNaBzKEiOzfkOSpqDHjcDDLP65dSRlUeHSir9JiC1k6AAWS2lYHJzmuxbojz0/'
+  - logwatch_email: user@example.com
+  - deploy_password: ''
     # crypted password, generated on a Linux box using: echo 'import crypt,getpass; print crypt.crypt(getpass.getpass(), "$6$AC3bdCF7!")' | python -
 
   tasks:
@@ -38,7 +38,7 @@
 
   - name: Install unattended-upgrades
     action: apt pkg=unattended-upgrades state=present
-  
+
   - name: Adjust APT update intervals
     action: copy src=config/apt_periodic dest=/etc/apt/apt.conf.d/10periodic
 
