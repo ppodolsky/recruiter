@@ -1,9 +1,9 @@
 ---
 - hosts: newservers
   vars:
-  - ubuntu_release: lucid
-  - logwatch_email: user@example.com
-  - deploy_password: ''
+  - ubuntu_release: precise
+  - logwatch_email: jrhorn424@gmail.com
+  - deploy_password: '67/1b36hhggO2'
     # crypted password, generated on a Linux box using: echo 'import crypt,getpass; print crypt.crypt(getpass.getpass(), "$6$AC3bdCF7!")' | python -
 
   tasks:
@@ -20,7 +20,7 @@
     action: user name=deploy password=$deploy_password
 
   - name: Add authorized deploy key for Fred
-    action: authorized_key user=deploy key='$FILE(fred.pub)'
+    action: authorized_key user=deploy key='$FILE(jrhorn424.pub)'
 
   - name: Remove sudo group rights
     action: lineinfile dest=/etc/sudoers regexp="^%sudo" state=absent

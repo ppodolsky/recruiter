@@ -1,2 +1,2 @@
-postfix/mailname string your.hostname.com
+postfix/mailname string ices-experiments.com
 postfix/main_mailer_type string 'Internet Site'
