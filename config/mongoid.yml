@@ -40,6 +40,6 @@ production:
     default:
       database: recruiter
       hosts:
-        - localhost:27017
+        - localhost:27072
       options:
         consistency: :strong
