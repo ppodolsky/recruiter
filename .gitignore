@@ -116,3 +116,5 @@ TODO.todo
 *.zip
 lib/deploy/ices
 lib/deploy/weber
+lib/deploy/5minbootsrap
+lib/deploy/5minbootstrap
