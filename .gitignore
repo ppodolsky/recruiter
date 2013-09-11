@@ -123,4 +123,5 @@ lib/deploy/weber
 lib/deploy/5minbootsrap
 lib/deploy/5minbootstrap
 
-
+# Ignore application configuration
+/config/application.yml
