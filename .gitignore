@@ -113,3 +113,6 @@ config/initializers/secret_token.rb
 /.powrc
 /.powenv
 TODO.todo
+*.zip
+lib/deploy/ices
+lib/deploy/weber
