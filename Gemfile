@@ -30,12 +30,15 @@ gem 'devise',  '~> 3.1.0' # authentication
 gem 'rolify'              # authorization
 gem 'authority'           #authorization
 
+gem 'figaro'  # manage ENV variables
+
 # dev
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'guard'
   gem 'guard-livereload'
+  gem 'mailcatcher'   # swanky app for checking mail sent by your app in dev
 end
 
 # test

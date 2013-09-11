@@ -18,15 +18,14 @@ Recruiter::Application.configure do
 
   # ActionMailer Config
   config.action_mailer.default_url_options = { :host => 'recruiter.dev' }
-  # A dummy setup for development - no deliveries, but logged
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.perform_deliveries = false
+  config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
-
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
