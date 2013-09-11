@@ -33,6 +33,7 @@ gem 'authority'           #authorization
 # dev
 group :development do
   gem 'capistrano'
+  gem 'capistrano-rails'
   gem 'guard'
   gem 'guard-livereload'
 end

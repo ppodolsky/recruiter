@@ -59,6 +59,8 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
+    capistrano-rails (0.0.7)
+      capistrano
     coderay (1.0.9)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
@@ -207,6 +209,7 @@ DEPENDENCIES
   authority
   bson_ext
   capistrano
+  capistrano-rails
   coffee-rails (~> 4.0.0)
   devise (~> 3.1.0)
   guard
