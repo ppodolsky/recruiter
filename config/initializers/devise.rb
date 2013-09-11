@@ -10,7 +10,7 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
-  config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.mailer_sender = 'noreply@ices-experiments.org'
 
   # Configure the class responsible to send e-mails.
   config.mailer = 'Devise::Mailer'
@@ -52,7 +52,7 @@ Devise.setup do |config|
   # It can be set to an array that will enable params authentication only for the
   # given strategies, for example, `config.params_authenticatable = [:database]` will
   # enable it only for database (email + password) authentication.
-  # config.params_authenticatable = true
+  config.params_authenticatable = [:database]
 
   # Tell if authentication through HTTP Auth is enabled. False by default.
   # It can be set to an array that will enable http authentication only for the
@@ -98,7 +98,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 20
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = "204d66aff7f41a00867c9b97f42f9bc2978b6732e76bb431bbe97139833c3b63aaefacfd04caf4093f3afb278e1c5cab69964a7f4ac278a5a061eb9cc2b972ee"
+  config.pepper = "df63dac35735929b7270c2548593bab94f187af6193b19e84a1a8e0abd339344d584030e23d50819956589fb858c720956d289975c91e4a3cf50d8ce60b2c6a6"
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -127,10 +127,10 @@ Devise.setup do |config|
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
-  # config.remember_for = 2.weeks
+  config.remember_for = 1.week
 
   # If true, extends the user's remember period when remembered via cookie.
-  # config.extend_remember_period = true
+  config.extend_remember_period = true
 
   # Options to be passed to the created cookie. For instance, you can set
   # :secure => true in order to force SSL only cookies.
@@ -143,7 +143,7 @@ Devise.setup do |config|
   # Email regex used to validate email formats. It simply asserts that
   # one (and only one) @ exists in the given string. This is mainly
   # to give user feedback and not to assert the e-mail validity.
-  config.email_regexp = /\A[^@]+@[^@]+\z/
+  config.email_regexp = /\A[^@]+@masonlive.gmu.edu\z/
 
   # ==> Configuration for :timeoutable
   # The time you want to timeout the user session without activity. After this
@@ -157,7 +157,7 @@ Devise.setup do |config|
   # Defines which strategy will be used to lock an account.
   # :failed_attempts = Locks an account after a number of failed attempts to sign in.
   # :none            = No lock strategy. You should handle locking by yourself.
-  # config.lock_strategy = :failed_attempts
+  config.lock_strategy = :failed_attempts
 
   # Defines which key will be used when locking and unlocking an account
   # config.unlock_keys = [ :email ]
@@ -167,14 +167,14 @@ Devise.setup do |config|
   # :time  = Re-enables login after a certain amount of time (see :unlock_in below)
   # :both  = Enables both strategies
   # :none  = No unlock strategy. You should handle unlocking by yourself.
-  # config.unlock_strategy = :both
+  config.unlock_strategy = :both
 
   # Number of authentication tries before locking an account if lock_strategy
   # is failed attempts.
-  # config.maximum_attempts = 20
+  config.maximum_attempts = 20
 
   # Time interval to unlock the account if :time is enabled as unlock_strategy.
-  # config.unlock_in = 1.hour
+  config.unlock_in = 1.hour
 
   # ==> Configuration for :recoverable
   #
