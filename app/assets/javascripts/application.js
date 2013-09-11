@@ -11,5 +11,7 @@
 // about supported directives.
 //
 //= require_tree .
-//= require jquery/jquery
 //= require modernizr/modernizr
+//= require jquery/jquery
+//= require jquery-ujs/src/rails
+//= require bootstrap/dist/js/bootstrap

@@ -28,6 +28,7 @@
     <%= yield :jumbotron %>
 
     <div class="container">
+      <%= render 'shared/flash' %>
       <%= yield %>
 
       <hr>
@@ -35,5 +36,12 @@
       <%= render 'shared/footer' %>
       <%= debug(params) if Rails.env.development? %>
     </div><!--/container -->
+
+    <%= render 'shared/sign_in_modal' %>
+    <%= render 'shared/sign_up_modal' %>
+
+    <% if Rails.env.development? %>
+      <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+    <% end %>
   </body>
 </html>

@@ -21,3 +21,14 @@
 
 en:
   hello: "Hello world"
+
+# responders gem
+flash:
+  actions:
+    create:
+      success: "%{resource_name} was successfully created."
+    update:
+      success: "%{resource_name} was successfully updated."
+    destroy:
+      success: "%{resource_name} was successfully destroyed."
+      danger: "%{resource_name} could not be destroyed."
