@@ -31,11 +31,11 @@ set(:bundle_cmd) {
 set :bower_cmd, "/usr/bin/bower"
 
 before 'deploy:assets:precompile', 'deploy:bower_install'
+before "deploy:assets:precompile", "db:push_config"
 after "deploy:restart", "deploy:cleanup"
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
-before 'unicorn:reload', 'db:upload_config'
 
 # Run rake tasks
 def run_rake(task, options={}, &block)
@@ -53,7 +53,8 @@ namespace :deploy do
 end
 
 namespace :db do
-  task :upload_config do
-    upload "config/database.yml", "/u/apps/recruiter/current/config/database.yml"
+  desc "Upload and symlink shared config files"
+  task :push_config do
+    upload "config/database.yml", "#{release_path}/config/database.yml"
   end
 end
