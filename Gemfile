@@ -21,10 +21,11 @@ gem 'simple_form', '~> 3.0.0.rc'
 gem 'interactor'
 gem 'interactor-rails'
 
-gem 'figaro' # env variables
+gem 'foreman'
 
 # dev
 group :development do
+  gem 'dotenv'
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-unicorn', :require => false
