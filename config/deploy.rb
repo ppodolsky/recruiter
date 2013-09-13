@@ -31,11 +31,11 @@ set(:bundle_cmd) {
 set :bower_cmd, "/usr/bin/bower"
 
 before 'deploy:assets:precompile', 'deploy:bower_install'
-
 after "deploy:restart", "deploy:cleanup"
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
 after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
+before 'unicorn:reload', 'db:upload_config'
 
 # Run rake tasks
 def run_rake(task, options={}, &block)
@@ -44,15 +44,16 @@ def run_rake(task, options={}, &block)
 end
 
 namespace :deploy do
-  task :start do ; end
-  task :stop do ; end
-  task :restart, :roles => :app, :except => { :no_release => true } do
-    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
-  end
   task :bower_install do
     run "cd #{latest_release} && #{bower_cmd} install"
   end
   task :symlink_attachments do
     run "ln -nfs #{shared_path}/attachments #{release_path}/public/attachments"
+  end
+end
+
+namespace :db do
+  task :upload_config do
+    upload "config/database.yml", "/u/apps/recruiter/current/config/database.yml"
   end
 end
