@@ -1,4 +1,5 @@
 require 'bundler/capistrano'
+require 'capistrano-unicorn'
 
 default_run_options[:shell] = '/bin/bash' # important!
 
@@ -18,10 +19,23 @@ set :ssh_options, { :forward_agent => true } # use local keys instead of the one
 default_run_options[:pty] = true  # Must be set for the password prompt
                                   # from git to work
 
-# if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+# chruby
+set :ruby_version, "2.0.0"
+set :chruby_config, "/etc/profile.d/chruby.sh"
+set :set_ruby_cmd, "source #{chruby_config} && chruby #{ruby_version}"
+set(:bundle_cmd) {
+  "#{set_ruby_cmd} && exec bundle"
+}
 
-# after 'deploy:update', 'deploy:symlink_attachments'
+# bower
+set :bower_cmd, "/usr/bin/bower"
+
+before 'deploy:assets:precompile', 'deploy:bower_install'
+
+after "deploy:restart", "deploy:cleanup"
+after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
+after 'deploy:restart', 'unicorn:restart'   # app preloaded
+after 'deploy:restart', 'unicorn:duplicate' # before_fork hook implemented (zero downtime deployments)
 
 # Run rake tasks
 def run_rake(task, options={}, &block)
@@ -30,6 +44,14 @@ def run_rake(task, options={}, &block)
 end
 
 namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+  task :bower_install do
+    run "cd #{latest_release} && #{bower_cmd} install"
+  end
   task :symlink_attachments do
     run "ln -nfs #{shared_path}/attachments #{release_path}/public/attachments"
   end

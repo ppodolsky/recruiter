@@ -1,52 +1,41 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
 gem 'rails', '4.0.0'
 gem 'sass-rails', '~> 4.0.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 
-group :doc do
-  # bundle exec rake doc:rails generates the API under doc/api.
-  gem 'sdoc', require: false
-end
-
 # My gems
-gem 'passenger'                                         # server
-
-gem 'responders'                                        # flash messages
-gem 'high_voltage'                                      # static pages
-
-gem 'mongoid',          github: 'mongoid/mongoid'       # database
-gem 'bson_ext'                                          # needed by mongoid
-gem 'mongoid-paranoia', github: 'simi/mongoid-paranoia'
-
-gem 'simple_form', '~> 3.0.0.rc'
-gem 'kramdown'     # copy styling
-
-gem 'interactor'
-gem 'interactor-rails'
+gem 'pg'           # datastore
+gem 'unicorn'      # server
+gem 'responders'   # flash messages
+gem 'high_voltage' # static pages
 
 gem 'devise',  '~> 3.1.0' # authentication
 gem 'rolify'              # authorization
 gem 'authority'           #authorization
 
-gem 'figaro'  # manage ENV variables
+gem 'simple_form', '~> 3.0.0.rc'
+
+gem 'interactor'
+gem 'interactor-rails'
 
 # dev
 group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
+  gem 'capistrano-unicorn', :require => false
   gem 'guard'
   gem 'guard-livereload'
   gem 'mailcatcher'   # swanky app for checking mail sent by your app in dev
 end
 
-# test
 group :test do
   gem 'minitest-rails'
 end
 
-# production
-group :production do
-  gem 'rack-cache'
+group :doc do
+  # bundle exec rake doc:rails generates the API under doc/api.
+  gem 'sdoc', require: false
 end

@@ -104,6 +104,10 @@ pickle-email-*.html
 .project
 config/initializers/secret_token.rb
 
+# Ignore application configuration
+/config/application.yml
+.env
+
 # My ignore
 /vendor/assets/components
 /vendor/assets/initializr
@@ -119,5 +123,4 @@ lib/deploy/weber
 lib/deploy/5minbootsrap
 lib/deploy/5minbootstrap
 
-# Ignore application configuration
-/config/application.yml
+
