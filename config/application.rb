@@ -1,7 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 # Pick the frameworks you want:
-# require "active_record/railtie"
+require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
 require "sprockets/railtie"
@@ -26,13 +26,6 @@ module Recruiter
     # config.i18n.default_locale = :de
 
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components') # bower components
-
-    # Simple HTTP cache
-    require 'rack/cache'
-    config.middleware.use Rack::Cache,
-        :verbose => true,
-        :metastore   => 'file:/var/cache/rack/meta',
-        :entitystore => 'file:/var/cache/rack/body'
 
     # responders gem
     config.responders.flash_keys = [ :success, :danger ]
