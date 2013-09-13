@@ -21,6 +21,8 @@ gem 'simple_form', '~> 3.0.0.rc'
 gem 'interactor'
 gem 'interactor-rails'
 
+gem 'figaro' # env variables
+
 # dev
 group :development do
   gem 'capistrano'

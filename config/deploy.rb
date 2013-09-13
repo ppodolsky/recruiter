@@ -32,6 +32,7 @@ set :bower_cmd, "/usr/bin/bower"
 
 before 'deploy:assets:precompile', 'deploy:bower_install'
 before "deploy:assets:precompile", "db:push_config"
+before "deploy:assets:precompile", "env:set_vars"
 after "deploy:restart", "deploy:cleanup"
 after 'deploy:restart', 'unicorn:reload'    # app IS NOT preloaded
 after 'deploy:restart', 'unicorn:restart'   # app preloaded
@@ -56,5 +57,12 @@ namespace :db do
   desc "Upload and symlink shared config files"
   task :push_config do
     upload "config/database.yml", "#{release_path}/config/database.yml"
+  end
+end
+
+namespace :env do
+  desc "Push environment variables"
+  task :set_vars do
+    upload "config/application.yml", "#{release_path}/config/application.yml"
   end
 end
