@@ -43,12 +43,12 @@ before deploying. So the workflow looks like:
     |             +                                                   | origin/slave-brand |
     |             |                                                   +--------------------+
     |             v                                                              ^
-    |    +---------------+                                                       |
-    |    | pull request  |                           +----------------+          +
-    |    |---------------|+-> review +-> accepted +->|     rebase     |+-> if deploying
-    |    | origin/master |      +                    |----------------|
-    |    +---------------+      |                    | origin/staging |
-    |                           v                    +----------------+
+    |    +---------------+                           +----------------+          |
+    |    | pull request  |                           |     rebase     |          +
+    |    |---------------|+-> review +-> accepted +->|----------------|+-> if deploying
+    |    | origin/master |      +                    | origin/staging |
+    |    +---------------+      |                    +----------------+
+    |                           v
     |                         reject
     |                           +
     |                           |
