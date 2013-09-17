@@ -8,7 +8,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # My gems
 gem 'pg'           # datastore
-gem 'unicorn'      # server
+gem 'unicorn'      # production server
 gem 'responders'   # flash messages
 gem 'high_voltage' # static pages
 
@@ -25,6 +25,7 @@ gem 'foreman'
 
 # dev
 group :development do
+  gem 'passenger'
   gem 'dotenv'
   gem 'capistrano'
   gem 'capistrano-rails'
