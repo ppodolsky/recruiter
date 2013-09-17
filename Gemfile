@@ -30,6 +30,7 @@ group :development do
   gem 'capistrano'
   gem 'capistrano-rails'
   gem 'capistrano-unicorn', :require => false
+  gem 'capistrano-recipes'
   gem 'guard'
   gem 'guard-livereload'
   gem 'mailcatcher'   # swanky app for checking mail sent by your app in dev
