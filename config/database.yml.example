@@ -1,0 +1,23 @@
+common: &common
+  username: jrhorn424
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 16
+  timeout: 5000
+
+development:
+  <<: *common
+  database: recruiter_development
+
+test:
+  <<: *common
+  database: recruiter_test
+
+# Heroku overwrites this file when starting the app, so this isn't strictly
+# necessary, but included here for completeness.
+production:
+  <<: *common
+  username: deploy
+  database: recruiter
+  password: changeme
