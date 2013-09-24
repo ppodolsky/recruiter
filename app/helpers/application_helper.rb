@@ -34,8 +34,4 @@ module ApplicationHelper
   def get_user_from_email(email)
     email.split(/@/)[0]
   end
-
-  def kramdown(text)
-    return sanitize Kramdown::Document.new(text, :auto_ids => false).to_html
-  end
 end
