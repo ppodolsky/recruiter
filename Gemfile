@@ -20,19 +20,25 @@ gem 'simple_form', '~> 3.0.0.rc'
 gem 'interactor'
 gem 'interactor-rails'
 
+gem 'settingslogic' # manage application configuration
+gem 'whenever'      # manage cron jobs
+
 group :production do
   gem 'unicorn' # production server
 end
 
 group :development do
+  gem 'mina', github: "nadarei/mina" # deployment
+  gem 'mina-scp' #, github: "adie/mina-scp"
+
   gem 'passenger' # development server
-  gem 'dotenv'
-  gem 'capistrano'
-  gem 'capistrano-rails'
-  gem 'capistrano-unicorn', :require => false
-  gem 'capistrano-recipes'
+
+  gem 'spring'    # don't use with `bundle exec`
+  gem 'listen'    # needed for spring to watch for fsevents
+
   gem 'guard'
   gem 'guard-livereload'
+
   gem 'mailcatcher'   # swanky app for checking mail sent by your app in dev
 end
 
