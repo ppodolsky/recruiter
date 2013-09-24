@@ -28,26 +28,25 @@ review. That is, rebase with `master` branch and use `git mergetool` to resolve
 conflicts before issuing a pull request or submitting a patch.
 
 Finally, there are several slave branches used for publishing. These branches
-contain customizations for several deployments. These should be sent to staging
-before deploying. So the workflow looks like:
+contain customizations for several deployments. So the workflow looks like:
 
     +-> make some local changes
     |             +
     |             |
     |             v
-    |    +---------------+
-    |    |     rebase    |
-    |    |---------------|                                            +--------------------+
-    |    | origin/master |                                            |       rebase       |
-    |    +---------------+                                PUSH IT! <-+|--------------------|
-    |             +                                                   | origin/slave-brand |
-    |             |                                                   +--------------------+
-    |             v                                                              ^
-    |    +---------------+                           +----------------+          |
-    |    | pull request  |                           |     rebase     |          +
-    |    |---------------|+-> review +-> accepted +->|----------------|+-> if deploying
-    |    | origin/master |      +                    | origin/staging |
-    |    +---------------+      |                    +----------------+
+    |  +----------------------+
+    |  |       on local       |
+    |  |----------------------|                  +----------------------+
+    |  | rebase origin/master |                  |    on slave-brand    |
+    |  +----------------------+      PUSH IT! <-+|----------------------|
+    |             +                              | rebase origin/master |
+    |             |                              +----------------------+
+    |             v                                         ^
+    |    +---------------+                                  |
+    |    | pull request  |                                  +
+    |    |---------------|+-> review +-> accepted +-> if deploying
+    |    | origin/master |      +
+    |    +---------------+      |
     |                           v
     |                         reject
     |                           +
