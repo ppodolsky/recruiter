@@ -43,29 +43,6 @@ _yardoc
 doc/
 
 
-### /Users/jrhorn424/.gitignore-boilerplates/Rails.gitignore
-
-*.rbc
-*.sassc
-.sass-cache
-capybara-*.html
-.rspec
-.rvmrc
-/.bundle
-/vendor/bundle
-/log/*
-/tmp/*
-/db/*.sqlite3
-/public/system/*
-/coverage/
-/spec/tmp/*
-**.orig
-rerun.txt
-pickle-email-*.html
-.project
-config/initializers/secret_token.rb
-
-
 ### /Users/jrhorn424/.gitignore-boilerplates/Global/OSX.gitignore
 
 .DS_Store
@@ -106,23 +83,21 @@ config/initializers/secret_token.rb
 
 # Ignore application configuration
 /config/application.yml
+/config/database.yml
 .env
+.envrc
 
 # My ignore
 /vendor/assets/components
 /vendor/assets/initializr
 /scratch
-# symlink for pow
-/recruiter
-/.powrc
-/.powenv
 TODO.todo
 *.zip
 lib/deploy/ices
 lib/deploy/weber
 lib/deploy/5minbootsrap
 lib/deploy/5minbootstrap
-
-# Ignore application configuration
-/config/application.yml
-config/database.yml
+config/application.yml.ices
+config/database.yml.ices
+config/application.yml.weber
+config/database.yml.weber
