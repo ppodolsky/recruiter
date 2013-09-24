@@ -30,8 +30,5 @@ module Recruiter
 
     # responders gem
     config.responders.flash_keys = [ :success, :danger ]
-
-    # don't log passwords
-    config.filter_parameters += [ :password, :password_confirmation ]
   end
 end

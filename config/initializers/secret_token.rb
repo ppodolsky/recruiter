@@ -9,4 +9,9 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Recruiter::Application.config.secret_key_base = '0f9e2aa3f3145a0bdc47d5881f5e5490a76917651f22dea5cd78a47a3ca5aa876105dabeffba3e842d7fa86a165a9bd8a748332acdb5b67f2b4018018b59e9c7'
+
+Recruiter::Application.config.secret_key_base = Settings.secret_token || '4178db188c4156a5fcca19ee8f6f915e34e8da45e36f2e2daa5250676a6084e8299157be7ef13befa0e1e8fffeb06fe1b992189bf2212515ab8d543cc17a1e64'
+
+if Rails.env.production? && Recruiter::Application.config.secret_key_base.blank?
+  raise 'SECRET_TOKEN environment variable must be set!'
+end

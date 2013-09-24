@@ -79,8 +79,8 @@ Recruiter::Application.configure do
     domain: "ices-experiments.org",
     authentication: "plain",
     enable_starttls_auto: true,
-    user_name: ENV["MAIL_USERNAME"],
-    password: ENV["MAIL_PASSWORD"]
+    user_name: Settings.mandrill_user,
+    password: Settings.mandrill_password
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
