@@ -30,7 +30,7 @@ set :forward_agent, true
 task :environment do
   # Ensure that a server has been set
   unless server
-    print_error "A server needs to be specified."
+    print_error "A server needs to be specified. (to=production or to=staging)"
     exit
   end
 
