@@ -29,7 +29,7 @@ end
 
 group :development do
   gem 'mina', github: "nadarei/mina" # deployment
-  gem 'mina-scp' #, github: "adie/mina-scp"
+  gem 'mina-scp', github: "adie/mina-scp"
 
   gem 'passenger' # development server
 

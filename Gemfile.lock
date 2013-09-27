@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/adie/mina-scp.git
+  revision: d9607c7d0b5de64d66e0aafcd286a8188c1349bb
+  specs:
+    mina-scp (0.1.1)
+
+GIT
   remote: git://github.com/nadarei/mina.git
   revision: d6d68624cb57aa8378e86a31dedc104418b868b5
   specs:
@@ -8,7 +14,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: acd83a7e20f9d477dd738f515866c46edf01b542
+  revision: 777b72ba1a89a7f100f528494f0b4e533cc0b20f
   specs:
     actionmailer (4.1.0.beta)
       actionpack (= 4.1.0.beta)
@@ -128,12 +134,11 @@ GEM
       thin
     method_source (0.8.2)
     mime-types (1.25)
-    mina-scp (0.1.0)
-    minitest (5.0.7)
+    minitest (5.0.8)
     multi_json (1.8.0)
     open4 (1.3.0)
     orm_adapter (0.4.0)
-    passenger (4.0.18)
+    passenger (4.0.19)
       daemon_controller (>= 1.1.0)
       rack
       rake (>= 0.8.1)
@@ -157,7 +162,8 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
-    responders (0.6.5)
+    responders (1.0.0)
+      railties (>= 3.2, < 5)
     rolify (3.2.0)
     sass (3.2.10)
     sass-rails (4.0.0)
@@ -232,7 +238,7 @@ DEPENDENCIES
   listen
   mailcatcher
   mina!
-  mina-scp
+  mina-scp!
   passenger
   pg
   rails!
