@@ -14,7 +14,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 777b72ba1a89a7f100f528494f0b4e533cc0b20f
+  revision: f399538f99f9ae3311b694d7e579104ec98b899d
   specs:
     actionmailer (4.1.0.beta)
       actionpack (= 4.1.0.beta)
@@ -89,7 +89,7 @@ GEM
       http_parser.rb (~> 0.5.3)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    execjs (2.0.1)
+    execjs (2.0.2)
     ffi (1.9.0)
     formatador (0.2.4)
     guard (1.8.3)
