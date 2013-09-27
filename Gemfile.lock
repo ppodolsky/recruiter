@@ -185,7 +185,6 @@ GEM
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
     slop (3.4.6)
-    spring (0.0.10)
     sprockets (2.10.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -235,7 +234,6 @@ DEPENDENCIES
   high_voltage
   interactor
   interactor-rails
-  listen
   mailcatcher
   mina!
   mina-scp!
@@ -248,7 +246,6 @@ DEPENDENCIES
   sdoc
   settingslogic
   simple_form (~> 3.0.0.rc)
-  spring
   uglifier (>= 1.3.0)
   unicorn
   whenever

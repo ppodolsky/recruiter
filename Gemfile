@@ -33,9 +33,6 @@ group :development do
 
   gem 'passenger' # development server
 
-  gem 'spring'    # don't use with `bundle exec`
-  gem 'listen'    # needed for spring to watch for fsevents
-
   gem 'guard'
   gem 'guard-livereload'
 
