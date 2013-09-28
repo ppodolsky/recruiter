@@ -21,6 +21,14 @@ textarea {
   resize: vertical;
 }
 
+
+/* fix modal body shift bug */
+
+.modal-open, .modal-open .navbar-fixed-top {
+  margin-right: auto !important;
+}
+
+
 /* debug */
 
 .debug_dump {
