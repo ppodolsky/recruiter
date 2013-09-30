@@ -1,0 +1,11 @@
+defaults: &defaults
+  mandrill_user: mail@example.com
+  mandrill_password: secret
+  secret_token: ab4f80dd7c40e7e4283351e5bf662a457d21747551ac1b14844eca6985500821f0a152356dad7ddff491cb9445e40a943503cf3c5b15dc977f144ce39ae92aef
+
+development:
+  <<: *defaults
+
+
+test:
+  <<: *defaults

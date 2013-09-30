@@ -32,6 +32,8 @@ group :production do
 end
 
 group :development do
+  gem 'sqlite3' # database for general development branch
+
   gem 'mina', github: "nadarei/mina", :require => false  # deployment
   gem 'mina-scp', github: "adie/mina-scp", :require => false
 
