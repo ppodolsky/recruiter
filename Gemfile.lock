@@ -174,9 +174,6 @@ GEM
       json (>= 1.1.3)
       rdoc (~> 3.10)
     settingslogic (2.0.9)
-    simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0.rc1, < 4.1)
-      activemodel (>= 4.0.0.rc1, < 4.1)
     sinatra (1.4.3)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -184,6 +181,9 @@ GEM
     skinny (0.2.3)
       eventmachine (~> 1.0.0)
       thin (~> 1.5.0)
+    slim (2.0.1)
+      temple (~> 0.6.6)
+      tilt (>= 1.3.3, < 2.1)
     slop (3.4.6)
     sprockets (2.10.0)
       hike (~> 1.2)
@@ -197,6 +197,7 @@ GEM
     sqlite3 (1.3.8)
     sqlite3-ruby (1.3.3)
       sqlite3 (>= 1.3.3)
+    temple (0.6.7)
     thin (1.5.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -245,7 +246,7 @@ DEPENDENCIES
   sass-rails (~> 4.0.0)
   sdoc
   settingslogic
-  simple_form (~> 3.0.0.rc)
+  slim
   uglifier (>= 1.3.0)
   unicorn
   whenever
