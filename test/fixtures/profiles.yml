@@ -1,0 +1,35 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  secondary_email: MyString
+  first_name: MyString
+  last_name: MyString
+  phone: MyString
+  gender: MyString
+  ethnicity: MyString
+  age: 1
+  class_year: MyString
+  total_years: 1
+  year_started: 1
+  current_gpa: 
+  current_gpa: 
+  years_resident: 1
+  profession: MyString
+
+two:
+  user_id: 
+  secondary_email: MyString
+  first_name: MyString
+  last_name: MyString
+  phone: MyString
+  gender: MyString
+  ethnicity: MyString
+  age: 1
+  class_year: MyString
+  total_years: 1
+  year_started: 1
+  current_gpa: 
+  current_gpa: 
+  years_resident: 1
+  profession: MyString

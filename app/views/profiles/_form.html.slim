@@ -66,7 +66,7 @@
         = f.label :class_year, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :class_year,
-            options_for_select(%w[freshman sophomore junior senior] << 'graduate student'),
+            options_for_select(%w[Freshman Sophomore Junior Senior] << 'Graduate Student'),
             prompt: 'Choose...',
             class: 'form-control'
           span.help-block Your class year, according to your transcript.

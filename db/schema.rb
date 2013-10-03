@@ -11,10 +11,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130913104933) do
+ActiveRecord::Schema.define(version: 20131003190250) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
+    t.string   "secondary_email"
+    t.string   "first_name",      limit: 30
+    t.string   "last_name",       limit: 30
+    t.string   "phone",           limit: 14
+    t.string   "gender",          limit: 1
+    t.string   "ethnicity",       limit: 8
+    t.integer  "age",             limit: 2
+    t.string   "class_year"
+    t.integer  "total_years",     limit: 2
+    t.integer  "year_started"
+    t.decimal  "current_gpa",                precision: 3, scale: 2
+    t.integer  "years_resident",  limit: 2
+    t.string   "profession"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "profiles", ["secondary_email"], name: "index_profiles_on_secondary_email", unique: true
+  add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -38,9 +57,9 @@ ActiveRecord::Schema.define(version: 20130913104933) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true
 
 end
