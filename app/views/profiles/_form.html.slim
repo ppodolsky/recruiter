@@ -1,0 +1,102 @@
+= form_for(resource, url: user_profile_path) do |f|
+  / TODO error handling
+  div.form-horizontal role='form'
+    fieldset
+      legend Personal information
+      div.form-group
+        = f.label :first_name, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.text_field :first_name,
+            class: 'form-control',
+            maxlength: 30
+            autofocus: true
+      div.form-group
+        = f.label :last_name, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.text_field :last_name,
+            class: 'form-control',
+            maxlength: 30
+      div.form-group
+        = f.label :gender, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :gender,
+            options_for_select(['M','F']),
+            prompt: '-',
+            class: 'form-control'
+      div.form-group
+        = f.label :age, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :age,
+            options_for_select((18..80).to_a),
+            prompt: '--',
+            class: 'form-control'
+      div.form-group
+        = f.label :ethnicity, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :ethnicity,
+            options_for_select(%w[White Black Asian Hispanic Other]),
+            prompt: 'Choose...',
+            class: 'form-control'
+      div.form-group
+        = f.label :profession, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.text_field :profession,
+            class: 'form-control'
+          span.help-block
+            | How do you usually answer the question, "What do you do for a
+            |  living?"
+      div.form-group
+        = f.label :years_resident, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :years_resident,
+            options_for_select((1..10).to_a)
+          span.help-block
+            | How many years have you lived in the area? Please select "1" for
+            |  one or less, and "10" for ten or more.
+    fieldset
+      legend Education information
+      div.form-group
+        = f.label :class_year, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :class_year,
+            options_for_select(%w[freshman sophomore junior senior] << 'graduate student'),
+            prompt: 'Choose...',
+            class: 'form-control'
+          span.help-block Your class year, according to your transcript.
+      div.form-group
+        = f.label :total_years, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :total_years,
+            options_for_select((1..10).to_a),
+            prompt: '--',
+            class: 'form-control'
+          span.help-block Total years of study at ACME.
+      div.form-group
+        = f.label :year_started, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.select :year_started,
+            options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse),
+            prompt: '----',
+            class: 'form-control'
+      div.form-group
+        = f.label :current_gpa, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.text_field :current_gpa,
+            class: 'form-control',
+            value: number_with_precision(f.object.current_gpa, :precision => 2) || 0
+    fieldset
+      legend Contact information
+      div.form-group
+        = f.label :secondary_email, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.email_field :secondary_email,
+            class: 'form-control',
+            placeholder: 'user@example.com'
+      div.form-group
+        = f.label :phone, class: 'control-label col-md-2'
+        div.col-md-8
+          = f.phone_field :phone,
+            class: 'form-control',
+            maxlength: 14,
+            data: { mask: '(999) 999-9999' }
+    div= f.button 'Save', :type => 'submit', :class => 'btn btn-small btn-primary'

@@ -1,0 +1,7 @@
+h2 Your profile
+= link_to 'Update', edit_user_profile_path, class: 'btn btn-small btn-primary pull-right'
+
+- if @profile.blank?
+  div.alert.alert-error
+    p Your profile is blank! Please #{link_to('create one', new_user_profile_path)}.
+= render 'profile'
