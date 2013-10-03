@@ -15,3 +15,4 @@
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
 //= require bootstrap/dist/js/bootstrap
+//= require bootstrap-inputmask
