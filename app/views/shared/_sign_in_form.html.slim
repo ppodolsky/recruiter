@@ -1,18 +1,19 @@
-= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  = devise_error_messages!
+= form_tag user_session_path do
+  / TODO error message handling
   div role='form'
     div.form-group
-      = f.email_field    :email,
-                         :placeholder => 'Email',
-                         :class => 'form-control',
-                         :autofocus => true
+      = email_field_tag 'user[email]', nil,
+                        :placeholder => 'Email',
+                        :class => 'form-control',
+                        :autofocus => true
     div.form-group
-      = f.password_field :password,
-                         :placeholder => 'Password',
-                         :class => 'form-control'
+      = password_field_tag 'user[password]', nil,
+                           :placeholder => 'Password',
+                           :class => 'form-control'
     div.checkbox
       label
-        = f.check_box      :remember_me
+        = check_box_tag 'user[remember_me]'
         | Remember password?
 
-    div= f.button 'Sign in', :type => 'submit', :class => 'btn btn-small btn-primary'
+    div
+      button type='submit' class='btn btn-small btn-primary' Sign in
