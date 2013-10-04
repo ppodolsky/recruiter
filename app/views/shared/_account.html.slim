@@ -6,8 +6,8 @@ ul.nav.navbar-nav.navbar-right
           b.caret
         ul.dropdown-menu
           li
-            a href="#"
-              | Profile
+            = link_to 'Profile', user_profile_path(current_user)
+            = link_to 'Profile', user_profile_path(current_user) unless current_user.profile.blank?
           li
             a href="#"
               | View schedule
