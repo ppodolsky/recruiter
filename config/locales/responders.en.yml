@@ -2,11 +2,11 @@ en:
   flash:
     actions:
       create:
-        notice: '%{resource_name} was successfully created.'
-        danger: '%{resource_name} could not be created.'
+        success: '%{resource_name} was successfully created.'
+        error: '%{resource_name} could not be created.'
       update:
-        notice: '%{resource_name} was successfully updated.'
-        danger: '%{resource_name} could not be updated.'
+        success: '%{resource_name} was successfully updated.'
+        error: '%{resource_name} could not be updated.'
       destroy:
-        notice: '%{resource_name} was successfully destroyed.'
-        danger: '%{resource_name} could not be destroyed.'
+        success: '%{resource_name} was successfully destroyed.'
+        error: '%{resource_name} could not be destroyed.'

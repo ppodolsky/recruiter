@@ -29,6 +29,6 @@ module Recruiter
     config.assets.paths << Rails.root.join('vendor', 'assets', 'components') # bower components
 
     # responders gem
-    config.responders.flash_keys = [ :success, :danger ]
+    config.responders.flash_keys = [ :success, :error ]
   end
 end
