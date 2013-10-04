@@ -1,5 +1,12 @@
 = form_for(resource, url: user_profile_path) do |f|
-  / TODO error handling
+  - if resource.errors.any?
+    div.alert.alert-danger
+      h4
+        = pluralize(resource.errors.count, "error")
+        |  prohibited this post from being saved:
+      ul
+        - resource.errors.full_messages.each do |msg|
+          li= msg
   div.form-horizontal role='form'
     fieldset
       legend Personal information
