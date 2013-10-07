@@ -67,12 +67,12 @@ ActiveRecord::Schema.define(version: 20131004204202) do
     t.string   "phone",           limit: 14
     t.string   "gender",          limit: 1
     t.string   "ethnicity",       limit: 8
-    t.integer  "age",             limit: 1
-    t.date     "class_year"
-    t.integer  "total_years",     limit: 1
-    t.date     "year_started"
-    t.decimal  "current_gpa",                precision: 3, scale: 0
-    t.integer  "years_resident",  limit: 1
+    t.integer  "age",             limit: 2
+    t.string   "class_year"
+    t.integer  "total_years",     limit: 2
+    t.integer  "year_started"
+    t.decimal  "current_gpa",                precision: 3, scale: 2
+    t.integer  "years_resident",  limit: 2
     t.string   "profession"
     t.datetime "created_at"
     t.datetime "updated_at"
