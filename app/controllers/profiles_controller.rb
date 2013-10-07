@@ -4,6 +4,11 @@ class ProfilesController < InheritedResources::Base
   belongs_to :user
   actions :all, :except => [:index, :destory]
 
+  def show
+    redirect_to new_user_profile_path if current_user.profile.blank?
+    show! unless current_user.profile.blank?
+  end
+
   private
     def permitted_params
       params.permit(:profile => [
