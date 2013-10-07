@@ -6,8 +6,8 @@ class Experiment < ActiveRecord::Base
   has_many :sessions, inverse_of: :experiment
   
 # many to many with experimenters, join table: CreateExperimentsExperimentersJoinTable 
-  has_and_belongs_to_many :experimenters, inverse_of: :experimenters
+  has_and_belongs_to_many :experimenters, :join_table => :experiments_experimenters
 
 #  many to many with categories (tags), join table: 
-  has_and_belongs_to_many :categories
+  has_and_belongs_to_many :categories, :join_table => :categories_experiments
 end

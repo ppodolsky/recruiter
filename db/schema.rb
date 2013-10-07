@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131003190250) do
+ActiveRecord::Schema.define(version: 20131003233531) do
+
+  create_table "categories", force: true do |t|
+    t.string   "tag"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "categories_experiments", id: false, force: true do |t|
+    t.integer "experiment_id"
+    t.integer "category_id"
+  end
+
+  create_table "experimenters", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experiments", force: true do |t|
+    t.string   "name"
+    t.text     "decription", default: ""
+    t.boolean  "active",     default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "experiments_experimenters", id: false, force: true do |t|
+    t.integer "experiment_id"
+    t.integer "experimenter_id"
+  end
 
   create_table "profiles", force: true do |t|
     t.integer  "user_id"
@@ -21,12 +51,12 @@ ActiveRecord::Schema.define(version: 20131003190250) do
     t.string   "phone",           limit: 14
     t.string   "gender",          limit: 1
     t.string   "ethnicity",       limit: 8
-    t.integer  "age",             limit: 2
-    t.string   "class_year"
-    t.integer  "total_years",     limit: 2
-    t.integer  "year_started"
-    t.decimal  "current_gpa",                precision: 3, scale: 2
-    t.integer  "years_resident",  limit: 2
+    t.integer  "age",             limit: 1
+    t.date     "class_year"
+    t.integer  "total_years",     limit: 1
+    t.date     "year_started"
+    t.decimal  "current_gpa",                precision: 3, scale: 0
+    t.integer  "years_resident",  limit: 1
     t.string   "profession"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -34,6 +64,21 @@ ActiveRecord::Schema.define(version: 20131003190250) do
 
   add_index "profiles", ["secondary_email"], name: "index_profiles_on_secondary_email", unique: true
   add_index "profiles", ["user_id"], name: "index_profiles_on_user_id"
+
+  create_table "sessions", force: true do |t|
+    t.integer  "experiment_id"
+    t.datetime "date_start"
+    t.datetime "date_stop"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "sessions_users", id: false, force: true do |t|
+    t.integer "session_id"
+    t.integer "user_id"
+    t.boolean "inveted",      default: false
+    t.boolean "participated", default: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
