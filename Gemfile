@@ -8,7 +8,8 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # My gems
 gem 'pg'           # datastore
-gem 'slim'         # templating
+gem 'slim-rails'   # slim templating, generate templates
+gem 'kramdown'     # markdown
 gem 'responders'   # flash messages, among other things
 gem 'high_voltage' # static pages
 
