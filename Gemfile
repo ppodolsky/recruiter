@@ -15,7 +15,7 @@ gem 'devise',  '~> 3.1.0' # authentication
 gem 'rolify'              # authorization
 gem 'authority'           #authorization
 
-gem 'simple_form', '~> 3.0.0.rc'
+gem 'inherited_resources'
 
 gem 'interactor'
 gem 'interactor-rails'
@@ -23,20 +23,25 @@ gem 'interactor-rails'
 gem 'settingslogic' # manage application configuration
 gem 'whenever'      # manage cron jobs
 
+gem 'attribute_normalizer' # various utilities to clean data
+
 group :production do
-  gem 'unicorn' # production server
+  gem 'unicorn', :require => false # production server
 end
 
 group :development do
-  gem 'mina', github: "nadarei/mina" # deployment
-  gem 'mina-scp', github: "adie/mina-scp"
+  gem 'mina', github: "nadarei/mina", :require => false  # deployment
+  gem 'mina-scp', github: "adie/mina-scp", :require => false
 
   gem 'passenger' # development server
 
-  gem 'guard'
-  gem 'guard-livereload'
+  gem 'mailcatcher', :require => false    # swanky app for checking mail sent by your app in dev
+  gem 'quiet_assets' # make logs a little more readable
 
-  gem 'mailcatcher'   # swanky app for checking mail sent by your app in dev
+  gem 'better_errors'       # nice debug pages
+  gem 'binding_of_caller'   # optional dependency for better_errors
+
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git', :require => false
 end
 
 group :doc do
