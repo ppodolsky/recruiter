@@ -4,7 +4,7 @@ class Session < ActiveRecord::Base
 
 #associations:
 # one experiment has many sessions  
-  belongs_to :experiment, inverse_of :sessions
+  belongs_to :experiment, inverse_of: :sessions
 # many users participate in many sessions => experiments. may be reasonable make many-to-many through
   has_and_belongs_to_many :users
 end

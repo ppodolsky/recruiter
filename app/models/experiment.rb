@@ -3,7 +3,7 @@ class Experiment < ActiveRecord::Base
   validates_presence_of :name
   
 # parent of sessions (one-to-many) 
-  has_many :sessions, inverse_of :experiment
+  has_many :sessions, inverse_of: :experiment
   
 # many to many with experimenters, join table: CreateExperimentsExperimentersJoinTable 
   has_and_belongs_to_many :experimenters, inverse_of: :experimenters

@@ -9,5 +9,5 @@ class Experimenter < ActiveRecord::Base
 # experimenters provide experiments
   has_and_belongs_to_many :experiments, inverse_of: :experiments
 # association with users & think on migration!!!
-  belongs_to :user inverse_of :experimenter
+  belongs_to :user inverse_of: :experimenter
 end
