@@ -1,7 +1,7 @@
 class CreateSessions < ActiveRecord::Migration
   def change
 
-    
+#creation of parent's table    
     create_table :experiments do |t|
       t.string :name
       t.text :decription
@@ -12,7 +12,7 @@ class CreateSessions < ActiveRecord::Migration
     
     
     create_table :sessions do |t|
-      t.belongs_to :experiment
+      t.belongs_to :experiment #foreign key (belongs_to :experimenter) 
       t.datetime :date_start
       t.datetime :date_stop
 
