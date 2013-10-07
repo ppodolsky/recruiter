@@ -1,0 +1,15 @@
+nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
+  .container
+    .navbar-header
+      button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+      = link_to 'ACME Recruiter', page_path('welcome'), class: "navbar-brand"
+    .navbar-collapse.collapse
+      ul.nav.navbar-nav
+        / TODO: make link change class to active on certain pages
+        li= link_to 'Home', page_path('welcome')
+        li= link_to 'About', page_path('about')
+        li= link_to 'Contact', page_path('contact')
+      = render 'shared/account'
