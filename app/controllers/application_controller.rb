@@ -1,7 +1,7 @@
 require "application_responder"
 
 class ApplicationController < ActionController::Base
-  self.responder = ApplicationResponder
+  self.responder = ActionController::Responder
   respond_to :html
 
   # Prevent CSRF attacks by raising an exception.
