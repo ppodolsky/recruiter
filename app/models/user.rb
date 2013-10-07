@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  rolify
+# roles for user:
+  rolify :role_cname => 'Admin'
+  rolify :role_cname => 'Subject'
+  rolify :role_cname => 'Experimenter'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -10,10 +13,6 @@ class User < ActiveRecord::Base
   validates_presence_of   :email
   validates_uniqueness_of :email, :case_sensitive => false
 
-# users participate in sessions (many-to-many)
-  has_and_belongs_to_many :sessions, :join_table => :sessions_users
-# connection to experimenter (one-to-one)
- has_one :experimenter, inverse_of: :experimenter
 # connection to profile
  has_one :profile, inverse_of: :user
 end
