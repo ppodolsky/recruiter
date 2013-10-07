@@ -27,21 +27,21 @@
         = f.label :gender, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :gender,
-            options_for_select(['M','F']),
+            options_for_select(['M','F'], resource.gender),
             prompt: '-',
             class: 'form-control'
       div.form-group
         = f.label :age, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :age,
-            options_for_select((18..80).to_a),
+            options_for_select((18..80).to_a, resource.age),
             prompt: '--',
             class: 'form-control'
       div.form-group
         = f.label :ethnicity, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :ethnicity,
-            options_for_select(%w[White Black Asian Hispanic Other]),
+            options_for_select(%w[White Black Asian Hispanic Other], resource.ethnicity),
             prompt: 'Choose...',
             class: 'form-control'
       div.form-group
@@ -56,7 +56,7 @@
         = f.label :years_resident, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :years_resident,
-            options_for_select((1..10).to_a)
+            options_for_select((1..10).to_a, resource.years_resident)
           span.help-block
             | How many years have you lived in the area? Please select "1" for
             |  one or less, and "10" for ten or more.
@@ -66,7 +66,7 @@
         = f.label :class_year, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :class_year,
-            options_for_select(%w[Freshman Sophomore Junior Senior] << 'Graduate Student'),
+            options_for_select(%w[Freshman Sophomore Junior Senior] << 'Graduate Student', resource.class_year),
             prompt: 'Choose...',
             class: 'form-control'
           span.help-block Your class year, according to your transcript.
@@ -74,7 +74,7 @@
         = f.label :total_years, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :total_years,
-            options_for_select((1..10).to_a),
+            options_for_select((1..10).to_a, resource.total_years),
             prompt: '--',
             class: 'form-control'
           span.help-block Total years of study at ACME.
@@ -82,7 +82,7 @@
         = f.label :year_started, class: 'control-label col-md-2'
         div.col-md-8
           = f.select :year_started,
-            options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse),
+            options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.year_started),
             prompt: '----',
             class: 'form-control'
       div.form-group
