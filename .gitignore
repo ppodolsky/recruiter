@@ -101,3 +101,10 @@ config/application.yml.ices
 config/database.yml.ices
 config/application.yml.weber
 config/database.yml.weber
+lib/deploy/ansible
+lib/deploy/ansible/roles/common/vars/main.yml.weber
+lib/deploy/ansible/roles/newbox/vars/main.yml.weber
+lib/deploy/ansible/roles/common/vars/main.yml.ices
+lib/deploy/ansible/roles/newbox/vars/main.yml.ices
+lib/deploy/ansible/roles/newbox/files/jrhorn424.pub
+.gitattributes
