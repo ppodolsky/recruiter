@@ -2,7 +2,7 @@ shared_path = "/u/apps/recruiter/shared"
 current_path = "/u/apps/recruiter/current"
 
 worker_processes 16
-timeout 30
+timeout 10
 
 pid "#{shared_path}/pids/unicorn.pid"
 
