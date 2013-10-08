@@ -127,11 +127,7 @@ task :deploy => :environment do
 
     to :launch do
       queue %{touch #{deploy_to}/shared/tmp/restart.txt}
-      # todo: figure out why restarting doesn't kill all workers. wrap this up
-      # so that only unicorn:start runs when unicorn isn't already running
-      # invoke :'unicorn:restart'
-      invoke :'unicorn:stop'
-      invoke :'unicorn:start'
+      invoke :'unicorn:restart'
       invoke :'nginx:restart'
     end
   end

@@ -25,6 +25,15 @@ GC.respond_to?(:copy_on_write_friendly=) and
 check_client_connection false
 
 before_fork do |server, worker|
+  old_pid = "#{shared_path}/pids/unicorn.pid.oldbin"
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
+  end
+
   Signal.trap 'TERM' do
     puts 'Unicorn master intercepting TERM and sending myself QUIT instead'
     Process.kill 'QUIT', Process.pid
