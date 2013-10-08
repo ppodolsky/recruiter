@@ -2,7 +2,7 @@ class ProfilesController < InheritedResources::Base
   # before_filter :authenticate_user!
   defaults singleton: true
   belongs_to :user
-  actions :all, :except => [:index, :destory]
+  actions :all, :except => [:index, :destroy]
 
   def show
     redirect_to new_user_profile_path if current_user.profile.blank?
