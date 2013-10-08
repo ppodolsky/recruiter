@@ -4,8 +4,11 @@
 - include: dotfiles.yml
   when: dotfiles is defined
 - include: node.yml
+  when: node is defined
 - include: bower.yml
+  when: node is defined
 - include: chruby.yml
+  when: ruby is defined
 - include: nginx.yml
 - include: postgres.yml
   when: db is defined
