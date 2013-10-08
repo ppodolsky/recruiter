@@ -1,0 +1,4 @@
+---
+
+- name: Install fail2ban
+  action: apt pkg=fail2ban state=installed

@@ -1,0 +1,11 @@
+---
+
+- include: aptitude.yml
+- include: dotfiles.yml
+  when: dotfiles is defined
+- include: node.yml
+- include: bower.yml
+- include: chruby.yml
+- include: nginx.yml
+- include: postgres.yml
+  when: db is defined

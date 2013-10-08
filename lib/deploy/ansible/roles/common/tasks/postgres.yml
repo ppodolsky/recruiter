@@ -1,0 +1,13 @@
+---
+
+- name: Enable db authentication over shell
+  lineinfile: dest=/etc/postgresql/9.2/main/pg_hba.conf regexp="^local.*all.*postgres" line="local   all             postgres                                 md5" state=present
+  notify: Restart postgresql
+
+- name: Create database
+  sudo_user: postgres
+  postgresql_db: name={{ dbname }} encoding='UTF-8'
+
+- name: Create database user and grant all privileges
+  sudo_user: postgres
+  postgresql_user: db={{ dbname }} user={{ dbuser }} password={{ dbpassword }} priv=ALL
