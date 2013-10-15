@@ -65,6 +65,12 @@ GIT
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
 
+GIT
+  remote: git://github.com/thoughtbot/high_voltage.git
+  revision: 11e38c643ff8b5ea1c6e04999034a8d5bcb4f711
+  specs:
+    high_voltage (2.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -107,7 +113,6 @@ GEM
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
-    high_voltage (1.2.4)
     hike (1.2.3)
     i18n (0.6.5)
     inherited_resources (1.4.1)
@@ -119,6 +124,7 @@ GEM
       rails (>= 3, < 5)
     json (1.8.0)
     kgio (2.8.1)
+    kramdown (1.2.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
@@ -230,10 +236,11 @@ DEPENDENCIES
   binding_of_caller
   coffee-rails (~> 4.0.0)
   devise (~> 3.1.0)
-  high_voltage
+  high_voltage!
   inherited_resources
   interactor
   interactor-rails
+  kramdown
   mailcatcher
   mina!
   mina-scp!

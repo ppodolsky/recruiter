@@ -9,8 +9,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # My gems
 gem 'pg'           # datastore
 gem 'slim-rails'   # slim templating, generate templates
+gem 'kramdown'     # for slim's markdown engine
 gem 'responders'   # flash messages, among other things
-gem 'high_voltage' # static pages
+gem 'high_voltage', github: "thoughtbot/high_voltage" # static pages
 
 gem 'devise',  '~> 3.1.0' # authentication
 gem 'rolify'              # authorization
