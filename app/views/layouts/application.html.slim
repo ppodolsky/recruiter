@@ -14,25 +14,27 @@ html
     title Recruiter
     meta content="Online recruitment software for economics experiments written with rails" name="description"
     meta content="width=(device-width,)initial-scale=1.0" name="viewport"
-    /! load css early to avoid unstyled content
+    / load css early to avoid unstyled content
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
   body
-    /![if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]
-    = render 'shared/navbar'
-    = yield :jumbotron
-    .container
-      = render 'shared/flash'
-      = yield
-      hr
-      = render 'shared/footer'
-      = render 'shared/sign_in_modal'
-      = render 'shared/sign_up_modal'
-      = debug(params) if Rails.env.development?
+    .wrapper
+      /![if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]
+      = render 'shared/sign_in_modal' unless current_user
+      = render 'shared/sign_up_modal' unless current_user
+      .header
+        = render 'shared/navbar'
+      .content
+        = yield :jumbotron
+        = render 'shared/flash'
+        = yield
+      .footer
+        = render 'shared/footer'
+        /= debug(params) if Rails.env.development?
     - if Rails.env.development?
       javascript:
         document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
-    /! load js at the end for speed
+    / load js at the end for speed
     = javascript_include_tag "application", "data-turbolinks-track" => true
     /[if lt IE 7]
       script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"
