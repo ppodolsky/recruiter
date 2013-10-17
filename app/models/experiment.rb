@@ -10,4 +10,6 @@ class Experiment < ActiveRecord::Base
 
 #  many to many with categories (tags), join table: 
   has_and_belongs_to_many :categories, :join_table => :categories_experiments
+  
+  normalize_attributes :name
 end
