@@ -14,4 +14,5 @@
 //= require modernizr/modernizr
 //= require jquery/jquery
 //= require jquery-ujs/src/rails
+//= require bootstrap
 //= require bootstrap-inputmask
