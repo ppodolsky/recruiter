@@ -2,7 +2,7 @@
 # These tasks update aptitude cache, upgrade packages, and configure aptitude
 
 - name: Update APT package cache and upgrade packages
-  apt: update_cache=yes upgrade=full
+  apt: update_cache=yes upgrade=safe
 
 - name: Install required packages
   apt: pkg={{ item }} state=present
