@@ -1,13 +1,11 @@
 nav.navbar.navbar-inverse.navbar-fixed-top role="navigation"
-  .container.logo
-    = link_to image_tag("logo.png", alt: "WSU Recruiter"), "http://www.weber.edu/sbe"
   .container
     .navbar-header
       button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
         span.icon-bar
         span.icon-bar
         span.icon-bar
-      = link_to "WSU Recruiter", page_path('welcome'), class: "navbar-brand"
+      = link_to "ACME Recruiter", page_path('welcome'), class: "navbar-brand"
     .navbar-collapse.collapse
       ul.nav.navbar-nav
         / TODO: make link change class to active on certain pages
