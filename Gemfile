@@ -12,6 +12,7 @@ gem 'slim-rails'   # slim templating, generate templates
 gem 'kramdown'     # for slim's markdown engine
 gem 'responders'   # flash messages, among other things
 gem 'high_voltage', github: "thoughtbot/high_voltage" # static pages
+gem 'bootstrap-sass', :github => 'thomas-mcdonald/bootstrap-sass' # style
 
 gem 'devise',  '~> 3.1.0' # authentication
 gem 'rolify'              # authorization
