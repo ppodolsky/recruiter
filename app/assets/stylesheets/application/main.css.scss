@@ -1,5 +1,5 @@
 @import "colors.css.scss";
 @import "typography.css.scss";
 @import "layout.css.scss";
-
-/* Shame - quick fixes go here, but should be cleaned up often */
+@import "fix-modal-bug.css.scss";
+@import "rails-debug.css.scss";

@@ -1,0 +1,5 @@
+/* fix modal body shift bug in bootstrap */
+
+.modal-open, .modal-open .navbar-fixed-top {
+  margin-right: auto !important;
+}
