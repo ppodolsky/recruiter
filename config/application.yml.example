@@ -1,19 +1,13 @@
 defaults: &defaults
   mandrill_user: mail@example.com
   mandrill_password: secret
-  db_name: mydb
-  db_user: myuser
-  db_password: mysupersecret
   secret_token: # run rake secret
 
 development:
   <<: *defaults
-
 
 test:
   <<: *defaults
 
 production:
   <<: *defaults
-  db_password: anothersecret
-  secret_token: # a different secret
