@@ -96,7 +96,7 @@ namespace :unicorn do
   task :start => :environment do
     queue %{
       echo "-----> "
-      #{echo_cmd %[cd #{deploy_to}/current ; bundle exec unicorn_rails -c config/unicorn.rb -D -E production]}
+      #{echo_cmd %[cd #{deploy_to}/current ; bundle exec unicorn -c config/unicorn.rb -D -E production]}
       }
   end
 
