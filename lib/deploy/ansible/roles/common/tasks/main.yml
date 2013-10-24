@@ -10,5 +10,8 @@
 - include: chruby.yml
   when: ruby is defined
 - include: nginx.yml
+  when: nginx is defined
 - include: postgres.yml
   when: db is defined
+- include: upstart.yml
+  when: upstart is defined
