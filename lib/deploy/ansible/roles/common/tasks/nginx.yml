@@ -13,9 +13,9 @@
 
 - name: Upload site config files
   copy: src={{ item }} dest=/etc/nginx/sites-available/{{ item }}
-  with_items: {{ nginx_conf }}
+  with_items: nginx_conf
 
 - name: Link site config files to sites-available
   file: src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
-  with_items: {{ nginx_conf }}
+  with_items: nginx_conf
   notify: Restart nginx
