@@ -1,6 +1,8 @@
 /* variables */
 
 $footer-height: 35px;
+$navbar-inverse-bg: #222;
+$navbar-inverse-color: $gray-light;
 
 
 /* globals */
@@ -34,7 +36,7 @@ body {
 
 .footer {
   background-color: $navbar-inverse-bg;
-  color: $gray-light;
+  color: $navbar-inverse-color;
   width: 100%;
   height: $footer-height;
   position: absolute;
