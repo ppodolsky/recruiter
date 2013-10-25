@@ -20,6 +20,8 @@ gem 'authority'           #authorization
 
 gem 'inherited_resources'
 
+gem 'simple_form', '~> 3.0.0.rc'
+
 gem 'interactor'
 gem 'interactor-rails'
 

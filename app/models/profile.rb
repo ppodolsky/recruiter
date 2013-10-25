@@ -1,8 +1,8 @@
 class Profile < ActiveRecord::Base
-  belongs_to :user
+  belongs_to :user, inverse_of: :profile
   validates :user, presence: true
 
-  validates :first_name, :last_name, :gender, :age, :ethnicity,
+validates :first_name, :last_name, :gender, :age, :ethnicity,
     :years_resident, :class_year, :total_years, :year_started, :current_gpa,
     :phone, presence: true
 

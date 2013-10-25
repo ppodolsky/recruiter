@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-  has_one :profile
+# roles for user:
+  rolify :role_cname => 'Admin'
+  rolify :role_cname => 'Subject'
+  rolify :role_cname => 'Experimenter'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -9,4 +12,7 @@ class User < ActiveRecord::Base
 
   validates_presence_of   :email
   validates_uniqueness_of :email, :case_sensitive => false
+
+# connection to profile
+ has_one :profile, inverse_of: :user
 end
