@@ -1,6 +1,7 @@
 ---
 
 - include: aptitude.yml
+  when: aptitude is defined
 - include: dotfiles.yml
   when: dotfiles is defined
 - include: node.yml
@@ -15,3 +16,5 @@
   when: db is defined
 - include: upstart.yml
   when: upstart is defined
+- include: maintenance.yml
+  when: maintenance is defined
