@@ -10,8 +10,19 @@
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
 
-Recruiter::Application.config.secret_key_base = Settings.secret_token || '4178db188c4156a5fcca19ee8f6f915e34e8da45e36f2e2daa5250676a6084e8299157be7ef13befa0e1e8fffeb06fe1b992189bf2212515ab8d543cc17a1e64'
+require 'securerandom'
 
-if Rails.env.production? && Recruiter::Application.config.secret_key_base.blank?
-  raise 'SECRET_TOKEN environment variable must be set!'
+def secure_token
+  token_file = Rails.root.join('.secret')
+  if File.exist?(token_file)
+    # Use the existing token.
+    File.read(token_file).chomp
+  else
+    # Generate a new token and store it in token_file.
+    token = SecureRandom.hex(64)
+    File.write(token_file, token)
+    token
+  end
 end
+
+Recruiter::Application.config.secret_token = secure_token
