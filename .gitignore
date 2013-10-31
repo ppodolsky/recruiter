@@ -27,6 +27,7 @@
 *.rbc
 .bundle
 .config
+.secret
 coverage
 InstalledFiles
 lib/bundler/man
