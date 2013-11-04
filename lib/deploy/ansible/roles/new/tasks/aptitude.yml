@@ -19,6 +19,7 @@
     - zsh
     - build-essential
     - mailutils
+    - htop
 
 - name: Adjust APT update intervals
   copy: src=apt_periodic dest=/etc/apt/apt.conf.d/10periodic

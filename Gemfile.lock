@@ -81,6 +81,8 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    actionview-encoded_mail_to (1.0.4)
+      rails
     arel (4.0.0)
     atomic (1.1.14)
     attribute_normalizer (1.1.0)
@@ -239,6 +241,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  actionview-encoded_mail_to
   annotate!
   attribute_normalizer
   authority
