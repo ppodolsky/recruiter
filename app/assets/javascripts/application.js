@@ -12,7 +12,8 @@
 //
 //= require_tree .
 //= require modernizr/modernizr
-//= require jquery/jquery
-//= require jquery-ujs/src/rails
+//= require jquery
+//= require jquery_ujs
+//= require jquery.ui.all
 //= require bootstrap
 //= require bootstrap-inputmask
