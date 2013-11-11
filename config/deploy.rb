@@ -83,6 +83,17 @@ namespace :nginx do
   end
 end
 
+namespace :delayed_job do
+  desc "Restart delayed_job daemon"
+  task :restart => :environment do
+    queue %{
+      echo "-----> Restarting delayed_job daemon"
+      #{echo_cmd %[cd #{deploy_to}/current; RAILS_ENV=production bin/delayed_job restart]}
+      echo "-----> delayed_job restarted"
+    }
+  end
+end
+
 namespace :unicorn do
   desc "Zero-downtime restart of Unicorn"
   task :restart => :environment do
@@ -129,6 +140,7 @@ task :deploy => :environment do
       queue %{touch #{deploy_to}/shared/tmp/restart.txt}
       invoke :'unicorn:restart'
       invoke :'nginx:restart'
+      invoke :'delayed_job:restart'
     end
   end
 end
