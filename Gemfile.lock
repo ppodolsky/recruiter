@@ -1,16 +1,15 @@
 GIT
   remote: git://github.com/adie/mina-scp.git
-  revision: d9607c7d0b5de64d66e0aafcd286a8188c1349bb
+  revision: b9ec2cb56a9495ab94308939f815d12e6a5c84eb
   specs:
     mina-scp (0.1.1)
 
 GIT
-  remote: git://github.com/ctran/annotate_models.git
-  revision: 54bdf7e2963b673a3c4f865d56dc5055dbff11cd
+  remote: git://github.com/justinfrench/formtastic.git
+  revision: cd6cb88f28ea7444267802ced8e5ec0f5cfd0f90
   specs:
-    annotate (2.6.0.beta2)
-      activerecord (>= 2.3.0)
-      rake (>= 0.8.7)
+    formtastic (2.3.0.rc2)
+      actionpack (>= 3.0)
 
 GIT
   remote: git://github.com/nadarei/mina.git
@@ -21,55 +20,17 @@ GIT
       rake
 
 GIT
-  remote: git://github.com/rails/rails.git
-  revision: f399538f99f9ae3311b694d7e579104ec98b899d
+  remote: git://github.com/nickl-/formtastic-bootstrap3.git
+  revision: 136c3bc0269014d28acd8da9b93d49ae4e1caf1e
   specs:
-    actionmailer (4.1.0.beta)
-      actionpack (= 4.1.0.beta)
-      actionview (= 4.1.0.beta)
-      mail (~> 2.5.4)
-    actionpack (4.1.0.beta)
-      activesupport (= 4.1.0.beta)
-      rack (~> 1.5.2)
-      rack-test (~> 0.6.2)
-    actionview (4.1.0.beta)
-      activemodel (= 4.1.0.beta)
-      activesupport (= 4.1.0.beta)
-      builder (~> 3.1.0)
-      erubis (~> 2.7.0)
-    activemodel (4.1.0.beta)
-      activesupport (= 4.1.0.beta)
-      builder (~> 3.1.0)
-    activerecord (4.1.0.beta)
-      activemodel (= 4.1.0.beta)
-      activesupport (= 4.1.0.beta)
-      arel (~> 4.0.0)
-    activesupport (4.1.0.beta)
-      i18n (~> 0.6, >= 0.6.4)
-      json (~> 1.7)
-      minitest (~> 5.0)
-      thread_safe (~> 0.1)
-      tzinfo (~> 0.3.37)
-    rails (4.1.0.beta)
-      actionmailer (= 4.1.0.beta)
-      actionpack (= 4.1.0.beta)
-      actionview (= 4.1.0.beta)
-      activerecord (= 4.1.0.beta)
-      activesupport (= 4.1.0.beta)
-      bundler (>= 1.3.0, < 2.0)
-      railties (= 4.1.0.beta)
-      sprockets-rails (~> 2.0.0)
-    railties (4.1.0.beta)
-      actionpack (= 4.1.0.beta)
-      activesupport (= 4.1.0.beta)
-      rake (>= 0.8.7)
-      thor (>= 0.18.1, < 2.0)
+    formtastic-bootstrap (2.1.3)
+      formtastic (~> 2.2)
 
 GIT
   remote: git://github.com/thomas-mcdonald/bootstrap-sass.git
-  revision: 6cc04bda62ed7ccf71d445fa82e706cb696b4fdb
+  revision: 46f0b7e37f4c3fd3f7f43a2b8ef471ea85056d3a
   specs:
-    bootstrap-sass (3.0.0.0)
+    bootstrap-sass (3.0.1.0.rc)
       sass (~> 3.2)
 
 GIT
@@ -81,44 +42,65 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    actionview-encoded_mail_to (1.0.4)
-      rails
-    arel (4.0.0)
+    actionmailer (4.0.0)
+      actionpack (= 4.0.0)
+      mail (~> 2.5.3)
+    actionpack (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
+      erubis (~> 2.7.0)
+      rack (~> 1.5.2)
+      rack-test (~> 0.6.2)
+    activemodel (4.0.0)
+      activesupport (= 4.0.0)
+      builder (~> 3.1.0)
+    activerecord (4.0.0)
+      activemodel (= 4.0.0)
+      activerecord-deprecated_finders (~> 1.0.2)
+      activesupport (= 4.0.0)
+      arel (~> 4.0.0)
+    activerecord-deprecated_finders (1.0.3)
+    activesupport (4.0.0)
+      i18n (~> 0.6, >= 0.6.4)
+      minitest (~> 4.2)
+      multi_json (~> 1.3)
+      thread_safe (~> 0.1)
+      tzinfo (~> 0.3.37)
+    addressable (2.3.5)
+    arel (4.0.1)
     atomic (1.1.14)
     attribute_normalizer (1.1.0)
-    authority (2.7.0)
+    authority (2.9.0)
       activesupport (>= 3.0.0)
       rake (>= 0.8.7)
     bcrypt-ruby (3.1.2)
-    better_errors (1.0.1)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-    binding_of_caller (0.7.2)
-      debug_inspector (>= 0.0.1)
     builder (3.1.4)
     chronic (0.10.2)
-    coderay (1.1.0)
-    coffee-rails (4.0.0)
+    coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
-      railties (>= 4.0.0.beta, < 5.0)
+      railties (>= 4.0.0, < 5.0)
     coffee-script (2.2.0)
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    daemon_controller (1.1.5)
+    css_parser (1.3.5)
+      addressable
     daemons (1.1.9)
-    debug_inspector (0.0.2)
-    devise (3.1.0)
+    delayed_job (4.0.0)
+      activesupport (>= 3.0, < 4.1)
+    delayed_job_active_record (4.0.0)
+      activerecord (>= 3.0, < 4.1)
+      delayed_job (>= 3.0, < 4.1)
+    devise (3.1.1)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.1)
       railties (>= 3.2.6, < 5)
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
+    devise-async (0.8.0)
+      devise (>= 2.2, < 3.2)
     erubis (2.7.0)
-    eventmachine (1.0.3)
     execjs (2.0.2)
-    haml (4.0.3)
-      tilt
     has_scope (0.6.0.rc)
       actionpack (>= 3.2, < 5)
       activesupport (>= 3.2, < 5)
@@ -131,67 +113,62 @@ GEM
     interactor-rails (1.0.1)
       interactor (< 3)
       rails (>= 3, < 5)
-    json (1.8.0)
+    jquery-rails (3.0.4)
+      railties (>= 3.0, < 5.0)
+      thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.1.0)
+      railties (>= 3.1.0)
+    json (1.8.1)
     kgio (2.8.1)
     kramdown (1.2.0)
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    mailcatcher (0.2.4)
-      eventmachine
-      haml
-      i18n
-      json
-      mail
-      sinatra
-      skinny (>= 0.1.2)
-      sqlite3-ruby
-      thin
     mime-types (1.25)
-    minitest (5.0.8)
-    multi_json (1.8.0)
+    mini_portile (0.5.2)
+    minitest (4.7.5)
+    multi_json (1.8.2)
+    nokogiri (1.6.0)
+      mini_portile (~> 0.5.0)
     open4 (1.3.0)
     orm_adapter (0.4.0)
-    passenger (4.0.19)
-      daemon_controller (>= 1.1.0)
-      rack
-      rake (>= 0.8.1)
     pg (0.17.0)
     polyglot (0.3.3)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
-    rack-protection (1.5.0)
-      rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    rails (4.0.0)
+      actionmailer (= 4.0.0)
+      actionpack (= 4.0.0)
+      activerecord (= 4.0.0)
+      activesupport (= 4.0.0)
+      bundler (>= 1.3.0, < 2.0)
+      railties (= 4.0.0)
+      sprockets-rails (~> 2.0.0)
+    railties (4.0.0)
+      actionpack (= 4.0.0)
+      activesupport (= 4.0.0)
+      rake (>= 0.8.7)
+      thor (>= 0.18.1, < 2.0)
     raindrops (0.12.0)
     rake (10.1.0)
-    rdoc (3.12.2)
-      json (~> 1.4)
     responders (1.0.0)
       railties (>= 3.2, < 5)
+    roadie (2.4.2)
+      actionmailer (> 3.0.0, < 5.0.0)
+      css_parser (~> 1.3.4)
+      nokogiri (> 1.5.0)
+      sprockets
     rolify (3.2.0)
-    sass (3.2.10)
-    sass-rails (4.0.0)
-      railties (>= 4.0.0.beta, < 5.0)
+    sass (3.2.12)
+    sass-rails (4.0.1)
+      railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
-    sdoc (0.3.20)
-      json (>= 1.1.3)
-      rdoc (~> 3.10)
     settingslogic (2.0.9)
-    simple_form (3.0.0.rc)
-      actionpack (>= 4.0.0.rc1, < 4.1)
-      activemodel (>= 4.0.0.rc1, < 4.1)
-    sinatra (1.4.3)
-      rack (~> 1.4)
-      rack-protection (~> 1.4)
-      tilt (~> 1.3, >= 1.3.4)
-    skinny (0.2.3)
-      eventmachine (~> 1.0.0)
-      thin (~> 1.5.0)
-    slim (2.0.1)
+    slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
     slim-rails (2.0.3)
@@ -204,18 +181,12 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
-    sprockets-rails (2.0.0)
+    sprockets-rails (2.0.1)
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (~> 2.8)
     sqlite3 (1.3.8)
-    sqlite3-ruby (1.3.3)
-      sqlite3 (>= 1.3.3)
     temple (0.6.7)
-    thin (1.5.1)
-      daemons (>= 1.0.9)
-      eventmachine (>= 0.12.6)
-      rack (>= 1.0.0)
     thor (0.18.1)
     thread_safe (0.1.3)
       atomic
@@ -223,11 +194,11 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.37)
-    uglifier (2.2.1)
+    tzinfo (0.3.38)
+    uglifier (2.3.0)
       execjs (>= 0.3.0)
-      multi_json (~> 1.0, >= 1.0.2)
-    unicorn (4.6.3)
+      json (>= 1.8.0)
+    unicorn (4.7.0)
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
@@ -241,33 +212,33 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  actionview-encoded_mail_to
-  annotate!
   attribute_normalizer
   authority
-  better_errors
-  binding_of_caller
   bootstrap-sass!
   coffee-rails (~> 4.0.0)
+  daemons
+  delayed_job_active_record
   devise (~> 3.1.0)
+  devise-async
+  formtastic!
+  formtastic-bootstrap!
   high_voltage!
   inherited_resources
   interactor
   interactor-rails
+  jquery-rails
+  jquery-ui-rails
   kramdown
-  mailcatcher
   mina!
   mina-scp!
-  passenger
   pg
   quiet_assets
-  rails!
+  rails (~> 4.0.0)
   responders
+  roadie
   rolify
   sass-rails (~> 4.0.0)
-  sdoc
   settingslogic
-  simple_form (~> 3.0.0.rc)
   slim-rails
   sqlite3
   uglifier (>= 1.3.0)
