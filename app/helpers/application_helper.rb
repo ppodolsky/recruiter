@@ -11,6 +11,16 @@ module ApplicationHelper
   end
   ###
 
+  # Highlight navigation link of current page
+  def nav_link(link_text, link_path)
+    class_name = current_page?(link_path) ? 'active' : nil
+
+    content_tag(:li, :class => class_name) do
+      link_to link_text, link_path
+    end
+  end
+  ###
+
   # Show login forms anywhere.
   # see: http://pupeno.com/2010/08/29/show-a-devise-log-in-form-in-another-page/
   def resource_name
