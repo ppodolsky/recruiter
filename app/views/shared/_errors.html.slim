@@ -1,0 +1,9 @@
+- if resource.errors.any?
+  div class=['alert', 'alert-danger', 'fade', 'in']
+    a.close aria-hidden="true" data-dismiss="alert" href="#"
+      | &times;
+    h4
+      | Please fix the following #{pluralize(resource.errors.count, "error")}:
+    ul
+      - resource.errors.full_messages.each do |msg|
+        li= msg

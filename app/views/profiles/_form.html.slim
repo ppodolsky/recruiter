@@ -1,12 +1,5 @@
 = form_for(resource, url: (params[:action] == :edit ? edit_user_profile_path : user_profile_path)) do |f|
-  - if resource.errors.any?
-    div.alert.alert-danger
-      h4
-        = pluralize(resource.errors.count, "error")
-        |  prohibited this post from being saved:
-      ul
-        - resource.errors.full_messages.each do |msg|
-          li= msg
+  = render "shared/errors"
   div.form-horizontal role='form'
     fieldset
       legend Personal information
