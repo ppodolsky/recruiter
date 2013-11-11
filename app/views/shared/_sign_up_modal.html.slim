@@ -6,5 +6,30 @@
           | &times;
         h4.modal-title Register
       .modal-body
-        = render 'shared/sign_up_form'
+        = form_tag user_registration_path do
+          div role='form'
+            div.form-group
+              div.input-group
+                span.input-group-addon.glyphicon.glyphicon-user
+                = email_field_tag 'user[email]', nil,
+                                  :placeholder => 'Email',
+                                  :class => 'form-control',
+                                  :autofocus => true
+            div.form-group
+              div.input-group
+                span.input-group-addon.glyphicon.glyphicon-lock
+                = password_field_tag 'user[password]', nil,
+                                     :placeholder => 'Password',
+                                     :class => 'form-control'
+              span.help-block Passwords must contain at least 8 characters.
+            div.form-group
+              div.input-group
+                span.input-group-addon.glyphicon.glyphicon-lock
+                = password_field_tag 'user[password_confirmation]', nil,
+                                     :placeholder => 'Password confirmation',
+                                     :class => 'form-control'
+            div.form-group
+              button type='submit' class='btn btn-small btn-primary' Sign up
+        hr
+        = render 'devise/shared/links'
       .modal-footer
