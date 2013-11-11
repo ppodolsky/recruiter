@@ -2,7 +2,7 @@ ul.nav.navbar-nav.navbar-right
   - if user_signed_in?
       li.dropdown
         a.dropdown-toggle data-toggle="dropdown" href="#"
-          | Account
+          = current_user.email
           b.caret
         ul.dropdown-menu
           li
@@ -11,10 +11,12 @@ ul.nav.navbar-nav.navbar-right
           li
             a href="#"
               | View schedule
+          li= link_to 'Manage account',edit_user_registration_path
           li.divider
           li= link_to 'Sign out', destroy_user_session_path, method: :delete
+          li.divider
+          li= link_to 'Help', page_path('help')
   - else
       li= link_to "Sign in", "#sign_in", "data-toggle" => "modal"
       li= link_to "Register", "#sign_up", "data-toggle" => "modal"
-      / Devise links go here
-      li= link_to "Help", "#"
+      li= nav_link 'Help', page_path('help')
