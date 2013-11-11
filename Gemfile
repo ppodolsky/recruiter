@@ -14,7 +14,6 @@ gem 'coffee-rails', '~> 4.0.0'
 # Backend
 ##
 gem 'unicorn', require: false, group: :production # server
-gem 'sqlite3', group: :development                # database for master branch
 gem 'pg'                                          # datastore
 gem 'inherited_resources'                         # DRY controllers
 gem 'interactor'                                  # thin models
