@@ -1,9 +1,4 @@
 class User < ActiveRecord::Base
-# roles for user:
-  rolify :role_cname => 'Admin'
-  rolify :role_cname => 'Subject'
-  rolify :role_cname => 'Experimenter'
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
