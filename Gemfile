@@ -69,7 +69,7 @@ gem 'formtastic-bootstrap', github: 'nickl-/formtastic-bootstrap3'
 gem 'devise',  '~> 3.1.0' # authentication
 
 # https://github.com/EppO/rolify
-gem 'rolify'
+gem 'rolify', github: 'EppO/rolify'
 
 # https://github.com/nathanl/authority
 gem 'authority'

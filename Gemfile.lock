@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/EppO/rolify.git
+  revision: 45de8cf4bf51e60accddee3385829a2266709cb0
+  specs:
+    rolify (3.3.0.rc5)
+
+GIT
   remote: git://github.com/adie/mina-scp.git
   revision: b9ec2cb56a9495ab94308939f815d12e6a5c84eb
   specs:
@@ -135,7 +141,6 @@ GEM
     rake (10.1.0)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    rolify (3.2.0)
     sass (3.2.12)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
@@ -202,7 +207,7 @@ DEPENDENCIES
   quiet_assets
   rails (~> 4.0.0)
   responders
-  rolify
+  rolify!
   sass-rails (~> 4.0.0)
   settingslogic
   slim-rails
