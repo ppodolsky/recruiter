@@ -13,7 +13,7 @@ html
     meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"
     title Recruiter
     meta content="Online recruitment software for economics experiments written with rails" name="description"
-    meta content="width=(device-width,)initial-scale=1.0" name="viewport"
+    meta content="width=device-width,initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport"
     / load css early to avoid unstyled content
     = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
@@ -39,7 +39,5 @@ html
         document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')
     / load js at the end for speed
     = javascript_include_tag "application", "data-turbolinks-track" => true
-    /[if lt IE 7]
-      script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"
-      javascript:
-        window.attachEvent("onload",function(){CFInstall.check({mode:"overlay"})})
+    /[if lt IE 9]
+      = javascript_include_tag "bootstrap-ie"
