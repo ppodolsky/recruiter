@@ -110,3 +110,5 @@ lib/deploy/ansible/roles/newbox/vars/main.yml.ices
 lib/deploy/ansible/roles/newbox/files/jrhorn424.pub
 .gitattributes
 db/schema.rb
+.tags
+.tags_sorted_by_file
