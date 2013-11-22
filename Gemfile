@@ -98,5 +98,8 @@ group :development do
 
   # https://github.com/adie/mina-scp
   gem 'mina-scp', github: "adie/mina-scp", :require => false
+
+  # https://github.com/paulelliott/fabrication
+  gem 'fabrication' # for generating test data
 end
 ##
