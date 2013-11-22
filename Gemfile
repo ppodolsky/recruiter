@@ -27,6 +27,9 @@ gem 'inherited_resources' # DRY controllers
 
 # https://github.com/mdeering/attribute_normalizer
 gem 'attribute_normalizer' # various utilities to clean data
+
+# https://github.com/mbleigh/seed-fu
+gem 'seed-fu', github: 'mbleigh/seed-fu' # for seed data
 ##
 
 ##
