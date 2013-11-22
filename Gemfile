@@ -25,12 +25,6 @@ gem 'pg' # datastore
 # https://github.com/josevalim/inherited_resources
 gem 'inherited_resources' # DRY controllers
 
-# https://github.com/collectiveidea/interactor
-gem 'interactor' # thin models
-
-# https://github.com/collectiveidea/interactor-rails
-gem 'interactor-rails'
-
 # https://github.com/mdeering/attribute_normalizer
 gem 'attribute_normalizer' # various utilities to clean data
 ##
@@ -69,7 +63,7 @@ gem 'bootstrap-generators', github: 'decioferreira/bootstrap-generators'
 ##
 
 # http://devise.plataformatec.com.br/
-gem 'devise',  '~> 3.1.0' # authentication
+gem 'devise', '~> 3.1.0' # authentication
 
 # https://github.com/EppO/rolify
 gem 'rolify', github: 'EppO/rolify'
