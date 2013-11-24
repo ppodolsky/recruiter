@@ -55,7 +55,7 @@ gem 'responders' # flash messages, among other things
 gem 'formtastic', github: 'justinfrench/formtastic'
 
 # https://github.com/nickl-/formtastic-bootstrap3
-gem 'formtastic-bootstrap', github: 'nickl-/formtastic-bootstrap3'
+gem 'formtastic-bootstrap', github: 'nickl-/formtastic-bootstrap3', branch: 'bootstrap3'
 
 # https://github.com/decioferreira/bootstrap-generators
 gem 'bootstrap-generators', github: 'decioferreira/bootstrap-generators'
