@@ -53,6 +53,9 @@ gem 'responders' # flash messages, among other things
 
 # https://github.com/decioferreira/bootstrap-generators
 gem 'bootstrap-generators', github: 'decioferreira/bootstrap-generators'
+
+# https://github.com/stouset/twitter_bootstrap_form_for
+gem 'twitter_bootstrap_form_for', github: 'schneikai/twitter_bootstrap_form_for'
 ##
 
 ##
