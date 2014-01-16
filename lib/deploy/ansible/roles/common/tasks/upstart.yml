@@ -1,4 +1,0 @@
----
-
-- name: Upload upstart config for rails app server
-  copy: dest=/etc/init/recruiter.conf src=upstart-unicorn.conf

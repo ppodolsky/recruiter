@@ -1,4 +1,0 @@
----
-
-- name: Install bower package manager
-  npm: name=bower global=yes production=yes state=present

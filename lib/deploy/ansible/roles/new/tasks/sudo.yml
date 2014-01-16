@@ -1,8 +1,0 @@
----
-# These tasks setup sudo and nopasswd
-
-- name: Remove sudo group rights
-  lineinfile: dest=/etc/sudoers regexp="^%sudo" state=absent
-
-- name: Add deploy user to sudoers
-  lineinfile: dest=/etc/sudoers regexp="deploy ALL" line="deploy ALL=(ALL) NOPASSWD:ALL" state=present
