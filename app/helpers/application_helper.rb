@@ -1,4 +1,10 @@
 module ApplicationHelper
+  # slim compiles markdown before the page is requested, so to store and render
+  # markdown content from the database, we need to write our own processor
+  def markdown_to_html(text)
+    Kramdown::Document.new(text).to_html.html_safe
+  end
+
   # Devise isn't quite ready for twitter bootstrap. Here we convert the flash
   # messages keys to the types expected by Bootstrap 3.0.
   def flash_class(level)

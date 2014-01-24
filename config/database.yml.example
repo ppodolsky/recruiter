@@ -19,9 +19,3 @@ development:
 test:
   <<: *common
   database: recruiter_test<%= suffix %>
-
-production:
-  <<: *common
-  username: deploy
-  database: recruiter
-  password: changeme

@@ -1,0 +1,18 @@
+class Page < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :name, use: :slugged
+
+  validates_presence_of :name, :slug, :content
+  validates_uniqueness_of :slug
+
+  def self.content_by_slug(slug)
+    # Used for including a page within another page. For example, including:
+    #    Page.content_by_slug('footer')
+    # in your template footer will pull the copy stored in 'footer' for
+    # rendering. This is needed since the page being rendered will have a
+    # different @page, if any.
+
+    p = Page.find_by_slug(slug)
+    p.nil? ? "" : p.content
+  end
+end

@@ -30,6 +30,9 @@ gem 'attribute_normalizer' # various utilities to clean data
 
 # https://github.com/mbleigh/seed-fu
 gem 'seed-fu', github: 'mbleigh/seed-fu' # for seed data
+
+# https://github.com/norman/friendly_id
+gem 'friendly_id', '~> 5.0.0' # slugs
 ##
 
 ##
@@ -53,9 +56,6 @@ gem 'responders' # flash messages, among other things
 
 # https://github.com/decioferreira/bootstrap-generators
 gem 'bootstrap-generators', github: 'decioferreira/bootstrap-generators'
-
-# https://github.com/stouset/twitter_bootstrap_form_for
-gem 'twitter_bootstrap_form_for', github: 'schneikai/twitter_bootstrap_form_for'
 ##
 
 ##

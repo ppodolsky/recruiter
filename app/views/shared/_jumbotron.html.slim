@@ -1,5 +1,4 @@
 .jumbotron
   .container
-    h1 Earn cash by playing games?
-    p Sign up now to be invited to the latest opportunities!
-    = link_to "Register &raquo;".html_safe, "#sign_up", "data-toggle" => "modal", class: "btn btn-primary btn-lg"
+    = markdown_to_html(Page.content_by_slug('jumbotron'))
+    = link_to "Register", "#sign_up", "data-toggle" => "modal", class: "btn btn-primary btn-lg"
