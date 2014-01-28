@@ -4,7 +4,7 @@ class Profile < ActiveRecord::Base
 
 validates :first_name, :last_name, :gender, :age, :ethnicity,
     :years_resident, :class_year, :total_years, :year_started, :current_gpa,
-    :phone, presence: true
+    :phone, :major, presence: true
 
   validates :secondary_email, format: { with: /\A[^@]+@[^@]+\z/, message: 'Not a valid e-mail address.' }
   validates :secondary_email, uniqueness: true

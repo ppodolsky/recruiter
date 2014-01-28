@@ -65,9 +65,6 @@ gem 'bootstrap-generators', github: 'decioferreira/bootstrap-generators'
 # http://devise.plataformatec.com.br/
 gem 'devise', '~> 3.1.0' # authentication
 
-# https://github.com/EppO/rolify
-gem 'rolify', github: 'EppO/rolify'
-
 # https://github.com/nathanl/authority
 gem 'authority'
 ##
@@ -77,6 +74,8 @@ gem 'authority'
 ##
 
 # https://github.com/collectiveidea/delayed_job
+gem 'delayed_job'
+
 # https://github.com/collectiveidea/delayed_job_active_record
 gem 'delayed_job_active_record'
 
@@ -87,9 +86,14 @@ gem 'devise-async' # send e-mails in background
 gem 'quiet_assets' # make logs a little more readable
 
 # https://github.com/binarylogic/settingslogic
-gem 'settingslogic' # manage application configuration
+gem 'settingslogic' # manage application configuration, useful for whitelabeling
+
+# https://github.com/bkeepers/dotenv
+gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development do
+  gem 'daemons' # run delayed_job as daemon locally
+
   # http://nadarei.co/mina/
   gem 'mina',     github: "nadarei/mina",  :require => false # deployment
 

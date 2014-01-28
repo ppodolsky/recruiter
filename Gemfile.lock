@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/EppO/rolify.git
-  revision: 45de8cf4bf51e60accddee3385829a2266709cb0
-  specs:
-    rolify (3.3.0.rc5)
-
-GIT
   remote: git://github.com/adie/mina-scp.git
   revision: b9ec2cb56a9495ab94308939f815d12e6a5c84eb
   specs:
@@ -75,6 +69,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    daemons (1.1.9)
     delayed_job (4.0.0)
       activesupport (>= 3.0, < 4.1)
     delayed_job_active_record (4.0.0)
@@ -88,6 +83,9 @@ GEM
       warden (~> 1.2.3)
     devise-async (0.8.0)
       devise (>= 2.2, < 3.2)
+    dotenv (0.9.0)
+    dotenv-rails (0.9.0)
+      dotenv (= 0.9.0)
     erubis (2.7.0)
     execjs (2.0.2)
     fabrication (2.9.6)
@@ -141,7 +139,7 @@ GEM
     rake (10.1.1)
     responders (1.0.0)
       railties (>= 3.2, < 5)
-    sass (3.2.13)
+    sass (3.2.14)
     sass-rails (4.0.1)
       railties (>= 4.0.0, < 5.0)
       sass (>= 3.1.10)
@@ -150,7 +148,7 @@ GEM
     slim (2.0.2)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (2.0.4)
+    slim-rails (2.1.0)
       actionpack (>= 3.0, < 4.1)
       activesupport (>= 3.0, < 4.1)
       railties (>= 3.0, < 4.1)
@@ -191,9 +189,12 @@ DEPENDENCIES
   authority
   bootstrap-generators!
   coffee-rails (~> 4.0.0)
+  daemons
+  delayed_job
   delayed_job_active_record
   devise (~> 3.1.0)
   devise-async
+  dotenv-rails
   fabrication
   friendly_id (~> 5.0.0)
   inherited_resources
@@ -206,7 +207,6 @@ DEPENDENCIES
   quiet_assets
   rails (~> 4.0.0)
   responders
-  rolify!
   sass-rails (~> 4.0.0)
   seed-fu!
   settingslogic

@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
 
   def after_sign_in_path_for(resource)
-    user_profile_path(resource) unless user.is_admin?
-    dashboard_path
+    return dashboard_path if resource.is_admin?
+    return user_profile_path(resource)
   end
 end

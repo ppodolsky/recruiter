@@ -1,7 +1,8 @@
 Recruiter::Application.routes.draw do
   # user accounts and profiles
   devise_for :users
-  scope :users do
+
+  resources :users, only: :none do
     resource :profile
   end
 

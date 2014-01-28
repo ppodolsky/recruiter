@@ -24,6 +24,7 @@ class ProfilesController < InheritedResources::Base
         :year_started,
         :current_gpa,
         :years_resident,
-        :profession])
+        :profession,
+        :major])
     end
 end

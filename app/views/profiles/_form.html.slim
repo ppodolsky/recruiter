@@ -84,6 +84,13 @@
           = f.text_field :current_gpa,
             class: 'form-control',
             value: number_with_precision(f.object.current_gpa, :precision => 2) || 0
+      div.form-group
+        = f.label :major, class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.select :major,
+            options_for_select(%w[Economics Psychology Science Math Other], resource.major),
+            prompt: 'Choose...',
+            class: 'form-control'
     fieldset
       legend Contact information
       div.form-group
