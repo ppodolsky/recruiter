@@ -18,7 +18,7 @@ set :shared_paths, [
 
 set :deploy_to, '/u/apps/recruiter'
 set :repository, 'git@github.com:jrhorn424/recruiter.git'
-set :branch, 'master'
+set :branch, 'master-ices'
 set :app_root, File.expand_path('../../', __FILE__)
 set :application, 'recruiter'
 set :rails_env, 'production'
@@ -62,7 +62,8 @@ end
 
 desc "Upload secret configuration files."
 task :config => :environment do
-  scp_upload "#{app_root}/config/{application,database}.yml", "#{deploy_to}/shared/config/", verbose: true
+  scp_upload "#{app_root}/config/application.yml.ices", "#{deploy_to}/shared/config/application.yml", verbose: true
+  scp_upload "#{app_root}/config/database.yml.ices", "#{deploy_to}/shared/config/database.yml", verbose: true
 end
 
 namespace :bower do
@@ -132,15 +133,16 @@ task :deploy => :environment do
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
     invoke :'bower:install'
-    invoke :'rails:db_migrate'
+
     invoke :'rails:assets_precompile'
-    invoke :'deploy:cleanup'
+    invoke :'rails:db_migrate'
+    invoke :'rake[db:seed_fu]'
 
     to :launch do
       queue %{touch #{deploy_to}/shared/tmp/restart.txt}
       invoke :'unicorn:restart'
-      invoke :'nginx:restart'
       invoke :'delayed_job:restart'
+      invoke :'nginx:restart'
     end
   end
 end
