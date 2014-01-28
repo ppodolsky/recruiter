@@ -75,6 +75,7 @@ gem 'authority'
 
 # https://github.com/collectiveidea/delayed_job
 gem 'delayed_job'
+gem 'daemons' # required
 
 # https://github.com/collectiveidea/delayed_job_active_record
 gem 'delayed_job_active_record'
@@ -92,8 +93,6 @@ gem 'settingslogic' # manage application configuration, useful for whitelabeling
 gem 'dotenv-rails', :groups => [:development, :test]
 
 group :development do
-  gem 'daemons' # run delayed_job as daemon locally
-
   # http://nadarei.co/mina/
   gem 'mina',     github: "nadarei/mina",  :require => false # deployment
 
