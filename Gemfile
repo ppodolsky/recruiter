@@ -91,6 +91,11 @@ gem 'settingslogic' # manage application configuration, useful for whitelabeling
 
 # https://github.com/schneems/maildown
 gem 'maildown'
+
+# https://github.com/37signals/mail_view
+# this shouldn't be outside development, but otherwise we get constant errors in
+# production
+gem 'mail_view'
 ##
 
 group :development do
@@ -128,9 +133,6 @@ group :development do
 
   # https://github.com/guard/guard-spork
   gem 'guard-spork'
-
-  # https://github.com/37signals/mail_view
-  gem 'mail_view'
 end
 
 group :development, :test do
