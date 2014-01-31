@@ -1,4 +1,8 @@
 Recruiter::Application.routes.draw do
+  if Rails.env.development?
+    mount MailPreview => 'mail_view'
+  end
+
   # user accounts and profiles
   devise_for :users
 

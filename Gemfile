@@ -85,6 +85,9 @@ gem 'devise-async' # send e-mails in background
 
 # https://github.com/binarylogic/settingslogic
 gem 'settingslogic' # manage application configuration, useful for whitelabeling
+
+# https://github.com/schneems/maildown
+gem 'maildown'
 ##
 
 group :development do
@@ -122,6 +125,9 @@ group :development do
 
   # https://github.com/guard/guard-spork
   gem 'guard-spork'
+
+  # https://github.com/37signals/mail_view
+  gem 'mail_view'
 end
 
 group :development, :test do
