@@ -83,14 +83,9 @@ gem 'delayed_job_active_record'
 # https://github.com/mhfs/devise-async
 gem 'devise-async' # send e-mails in background
 
-# https://github.com/evrone/quiet_assets
-gem 'quiet_assets' # make logs a little more readable
-
 # https://github.com/binarylogic/settingslogic
 gem 'settingslogic' # manage application configuration, useful for whitelabeling
-
-# https://github.com/bkeepers/dotenv
-gem 'dotenv-rails', :groups => [:development, :test]
+##
 
 group :development do
   # http://nadarei.co/mina/
@@ -99,7 +94,68 @@ group :development do
   # https://github.com/adie/mina-scp
   gem 'mina-scp', github: "adie/mina-scp", :require => false
 
+  # https://github.com/evrone/quiet_assets
+  gem 'quiet_assets' # make logs a little more readable
+
+  # https://github.com/charliesome/better_errors
+  gem "better_errors"
+  gem "binding_of_caller" # required
+
+  # https://github.com/presidentbeef/brakeman
+  gem 'brakeman', :require => false
+
+  # https://github.com/guard/guard-livereload
+  gem 'guard-livereload', require: false
+  gem "rack-livereload"
+
+  # https://github.com/ranmocy/guard-rails
+  gem 'guard-rails'
+
+    # https://github.com/guard/guard-bundler
+  gem 'guard-bundler'
+
+  # https://github.com/guard/guard-rspec
+  gem 'guard-rspec'
+
+  # https://github.com/sporkrb/spork-rails
+  gem 'spork-rails'
+
+  # https://github.com/guard/guard-spork
+  gem 'guard-spork'
+end
+
+group :development, :test do
+  # https://github.com/bkeepers/dotenv
+  gem 'dotenv-rails'
+
   # https://github.com/paulelliott/fabrication
   gem 'fabrication' # for generating test data
+
+  # https://github.com/rspec/rspec-rails
+  gem 'rspec-rails'
+
+  # https://github.com/jeffkreeftmeijer/fuubar
+  gem 'fuubar'
+
+  # https://github.com/jnicklas/capybara
+  gem 'capybara'
+
+  # https://github.com/colszowka/simplecov
+  gem 'simplecov', require: false
+
+  # https://github.com/bmabey/database_cleaner
+  gem 'database_cleaner'
+
+  # https://github.com/suranyami/guard-delayed
+  gem 'guard-delayed', github: 'jasl/guard-delayed'
 end
-##
+
+group :darwin do
+  gem 'terminal-notifier-guard'
+  gem 'rb-fsevent', require: false
+end
+
+group :linux do
+  gem 'rb-inotify'
+  gem 'libnotify'
+end

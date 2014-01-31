@@ -34,4 +34,7 @@ Recruiter::Application.configure do
 
   # Slim
   Slim::Engine.set_default_options :pretty => true, :sort_attrs => false
+
+  # livereload
+  config.middleware.use Rack::LiveReload
 end
