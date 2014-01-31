@@ -1,4 +1,6 @@
 class Profile < ActiveRecord::Base
+  has_paper_trail
+
   belongs_to :user, inverse_of: :profile
   validates :user, presence: true
 

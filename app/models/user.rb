@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  has_paper_trail
+
   before_validation :set_canonical_name
 
   has_one :profile, inverse_of: :user

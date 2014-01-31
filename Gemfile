@@ -33,6 +33,9 @@ gem 'seed-fu', github: 'mbleigh/seed-fu' # for seed data
 
 # https://github.com/norman/friendly_id
 gem 'friendly_id', '~> 5.0.0' # slugs
+
+# https://github.com/airblade/paper_trail
+gem 'paper_trail', '~> 3.0.0'
 ##
 
 ##
