@@ -20,7 +20,7 @@ class PagesController < InheritedResources::Base
   private
 
   def permitted_params
-  defaults :resource_class => User, :collection_name => 'users', :instance_name => 'user'
+    defaults :resource_class => User, :collection_name => 'users', :instance_name => 'user'
   end
 
   def load_user_resource
