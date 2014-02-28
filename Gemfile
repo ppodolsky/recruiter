@@ -26,7 +26,7 @@ gem 'pg' # datastore
 gem 'inherited_resources' # DRY controllers
 
 # https://github.com/mdeering/attribute_normalizer
-gem 'attribute_normalizer' # various utilities to clean data
+gem 'attribute_normalizer', github: 'mdeering/attribute_normalizer' # various utilities to clean data
 
 # https://github.com/mbleigh/seed-fu
 gem 'seed-fu', github: 'mbleigh/seed-fu' # for seed data
@@ -133,6 +133,9 @@ group :development do
 
   # https://github.com/guard/guard-spork
   gem 'guard-spork'
+
+  # https://github.com/preston/railroady
+  gem 'railroady' # erd generator
 end
 
 group :development, :test do

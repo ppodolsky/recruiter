@@ -29,6 +29,12 @@ GIT
       activesupport (>= 3.1, < 4.1)
 
 GIT
+  remote: git://github.com/mdeering/attribute_normalizer.git
+  revision: cf8af2476a065ccb9fdae76f34c08ca43cbf2c24
+  specs:
+    attribute_normalizer (1.2.0.b)
+
+GIT
   remote: git://github.com/nadarei/mina.git
   revision: d6d68624cb57aa8378e86a31dedc104418b868b5
   specs:
@@ -65,7 +71,6 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.1)
     atomic (1.1.14)
-    attribute_normalizer (1.1.0)
     authority (2.9.0)
       activesupport (>= 3.0.0)
       rake (>= 0.8.7)
@@ -223,6 +228,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    railroady (1.1.1)
     rails (4.0.2)
       actionmailer (= 4.0.2)
       actionpack (= 4.0.2)
@@ -327,7 +333,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  attribute_normalizer
+  attribute_normalizer!
   authority
   better_errors
   binding_of_caller
@@ -364,6 +370,7 @@ DEPENDENCIES
   pg
   quiet_assets
   rack-livereload
+  railroady
   rails (~> 4.0.0)
   rb-fsevent
   rb-inotify
