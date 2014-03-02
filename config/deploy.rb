@@ -66,14 +66,6 @@ task :config => :environment do
   scp_upload "#{app_root}/config/database.yml.ices", "#{deploy_to}/shared/config/database.yml", verbose: true
 end
 
-namespace :bower do
-  desc "Install dependencies with bower."
-  task :install => :environment do
-    queue %[echo "-----> Installing static assets with bower"]
-    queue %[bower install]
-  end
-end
-
 namespace :nginx do
   desc "Restart nginx."
   task :restart => :environment do
@@ -132,7 +124,6 @@ task :deploy => :environment do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'bower:install'
 
     invoke :'rails:assets_precompile'
     invoke :'rails:db_migrate'
