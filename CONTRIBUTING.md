@@ -1,20 +1,20 @@
 Contributing
 ================================================================================
 Development should be done on local branches only. Incoming patches come to
-`master`. Stable branches will be tagged as such. If working collaboratively on
+`develop`. Stable branches will be tagged as such. If working collaboratively on
 some changes, use feature branches. Create a feature branch and check it out to
 start working, like so:
 
-    git checkout -b f-my-new-feature # include prepended `f-`
+    git checkout -b feature/abc-new-feature # your initials instead of 'abc'
 
 Feature branches should be published to the remote, like so:
 
-    git push origin f-my-new-feature
+    git push origin feature/abc-new-feature
 
 To checkout a new remote, do this:
 
-    git checkout f-my-new-feature
-    git branch --set-upstream f-my-new-feature origin/f-my-new-feature
+    git checkout feature/abc-new-feature
+    git branch --set-upstream  origin/feature/abc-new-feature
 
 Rebase instead of merging on published branches to keep history clean and
 readable.
@@ -23,35 +23,10 @@ readable.
     git checkout my-branch
     git rebase my-branch
 
-Contributions should be rebased with `origin/master` before submitting for
-review. That is, rebase with `master` branch and use `git mergetool` to resolve
-conflicts before issuing a pull request or submitting a patch.
-
-Finally, there are several slave branches used for publishing. These branches
-contain customizations for several deployments. So the workflow looks like:
-
-    +-> make some local changes
-    |             +
-    |             |
-    |             v
-    |  +----------------------+
-    |  |       on local       |
-    |  |----------------------|                  +----------------------+
-    |  | rebase origin/master |                  |    on slave-brand    |
-    |  +----------------------+      PUSH IT! <-+|----------------------|
-    |             +                              | rebase origin/master |
-    |             |                              +----------------------+
-    |             v                                         ^
-    |    +---------------+                                  |
-    |    | pull request  |                                  +
-    |    |---------------|+-> review +-> accepted +-> if deploying
-    |    | origin/master |      +
-    |    +---------------+      |
-    |                           v
-    |                         reject
-    |                           +
-    |                           |
-    +---------------------------+
+Contributions should be rebased with `origin/develop` before submitting for
+review. That is, `git pull --rebase` on `develop`, then rebase with `develop`
+from your working branch and use `git mergetool` to resolve conflicts before
+issuing a pull request or submitting a patch.
 
 Here are some more tips for [working with remotes](http://www.gitguys.com/topics/adding-and-removing-remote-branches/).
 
