@@ -1,0 +1,2 @@
+class OnlineExperiment < Experiment
+end
