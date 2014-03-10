@@ -10,6 +10,10 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username, :case_sensitive => false
 
+  def name
+    "#{self.profile.first_name} #{self.profile.last_name}"
+  end
+
   %i[administrator experimenter subject].each do |method|
     define_method "is_#{method}?" do
       self.type == method.to_s.capitalize
