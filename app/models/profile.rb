@@ -2,11 +2,10 @@ class Profile < ActiveRecord::Base
   has_paper_trail
 
   belongs_to :user, inverse_of: :profile
-  validates :user, presence: true
 
-  validates :first_name, :last_name, :gender, :age, :ethnicity,
-    :years_resident, :class_year, :total_years, :year_started, :current_gpa,
-    :phone, :major, presence: true
+  validates_presence_of :user, :first_name, :last_name, :gender, :age,
+    :ethnicity, :years_resident, :class_year, :total_years, :year_started,
+    :current_gpa, :phone, :major, presence: true
 
   validates :secondary_email, format: { with: /\A[^@]+@[^@]+\z/, message: 'Not a valid e-mail address.' }
   validates :secondary_email, uniqueness: true, allow_blank: true

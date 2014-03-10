@@ -3,13 +3,7 @@ class User < ActiveRecord::Base
 
   before_validation :set_canonical_name
 
-  has_one :profile, inverse_of: :user
-
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :async
+  has_one :profile
 
   validates_presence_of   :email
   validates_uniqueness_of :email, :case_sensitive => false
@@ -20,14 +14,13 @@ class User < ActiveRecord::Base
     false
   end
 
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+         :confirmable, :lockable, :async
+
+private
+
   def set_canonical_name
-    self.username = get_canonical_name
-  end
-
-  private
-
-  def get_canonical_name
-    email = self.email.split(/@/)
-    email.first
+    self.username = self.email.split(/@/).first
   end
 end
