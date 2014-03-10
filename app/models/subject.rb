@@ -1,0 +1,2 @@
+class Subject < User
+end

@@ -1,0 +1,2 @@
+class Experimenter < User
+end
