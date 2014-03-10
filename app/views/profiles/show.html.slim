@@ -1,11 +1,2 @@
-h2.pull-left
-  | Your profile
-  span.h2-links
-    |  (#{link_to 'edit', edit_user_profile_path unless @profile.blank?})
-- if @profile.blank?
-  div.alert.alert-danger
-    p
-      | Your profile is blank! Please #{link_to('create one', new_user_profile_path)}.
-      |  You will be ineligible to receive invitations until it is complete.
-.row
-= render 'profile' unless @profile.blank?
+h2 Update your profile
+= render 'form'

@@ -1,13 +1,17 @@
 class ProfilesController < InheritedResources::Base
-  # before_filter :authenticate_user!
-  defaults singleton: true
-  belongs_to :user
-  actions :all, :except => [:index, :destroy]
+  before_action :authenticate_user!
+  before_action :set_current_profile
+  actions :show, :update
 
-  def show
-    redirect_to new_user_profile_path if current_user.profile.blank?
-    show! unless current_user.profile.blank?
+  def set_current_profile
+    @user = current_user
+    @profile = @user.profile
   end
+
+  def update
+    redirect_to :back
+  end
+
 
   private
     def permitted_params

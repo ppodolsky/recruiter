@@ -9,8 +9,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
-  def after_sign_in_path_for(resource)
-    return dashboard_path if resource.is_admin?
-    return user_profile_path(resource)
+  def after_sign_in_path_for(user)
+    return dashboard_path if user.admin?
+    return profile_path
   end
 end

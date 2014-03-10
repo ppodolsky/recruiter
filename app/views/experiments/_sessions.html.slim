@@ -1,0 +1,24 @@
+.table-responsive
+  table.table.table-condensed.table-borderless.table-hover
+    thead
+      tr
+        th
+          | Start date
+        th
+          | Lab
+        th
+        th
+        th
+    tbody
+      - @sessions.each do | session |
+        tr
+          td
+            = session.date_start
+          td
+            = session.lab
+          td
+            = link_to 'Show', session
+          td
+            = link_to 'Edit', 'edit_session_url(session)'
+          td
+            = link_to 'Destroy', session, method: :delete, data: { confirm: 'Are you sure?' }

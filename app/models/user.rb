@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   before_validation :set_canonical_name
 
   has_one :profile, inverse_of: :user
+  has_and_belongs_to_many :sessions
+  has_and_belongs_to_many :roles, join_table: 'users_roles'
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -16,8 +18,16 @@ class User < ActiveRecord::Base
 
   validates_uniqueness_of :username, :case_sensitive => false
 
-  def is_admin?
-    false
+
+  after_initialize do |user|
+    @roles_s = roles.map{|r| r.name}
+  end
+
+  def admin?
+    @roles_s.include?('admin')
+  end
+  def experimenter?
+    @roles_s.include?('experimenter')
   end
 
   def set_canonical_name

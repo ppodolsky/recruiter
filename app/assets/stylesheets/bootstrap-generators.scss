@@ -4,6 +4,9 @@
 body {
   padding-top: $navbar-height + 10px;
 }
+legend{
+  border: none;
+}
 
 .page-header {
   a.btn {

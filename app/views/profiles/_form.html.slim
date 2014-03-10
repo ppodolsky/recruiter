@@ -1,4 +1,4 @@
-= form_for(resource, url: (params[:action] == :edit ? edit_user_profile_path : user_profile_path)) do |f|
+= form_for(@profile, url: profile_path) do |f|
   = render "shared/errors"
   div.form-horizontal role='form'
     fieldset
@@ -19,22 +19,19 @@
       div.form-group
         = f.label :gender, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :gender,
-            options_for_select(['M','F'], resource.gender),
+          = f.select :gender, options_for_select(['M','F'], @profile.gender),
             prompt: '-',
             class: 'form-control'
       div.form-group
         = f.label :age, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :age,
-            options_for_select((18..80).to_a, resource.age),
+          = f.select :age, options_for_select((18..80).to_a, @profile.age),
             prompt: '--',
             class: 'form-control'
       div.form-group
         = f.label :ethnicity, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :ethnicity,
-            options_for_select(%w[White Black Asian Hispanic Other], resource.ethnicity),
+          = f.select :ethnicity, options_for_select(%w[White Black Asian Hispanic Other], @profile.ethnicity),
             prompt: 'Choose...',
             class: 'form-control'
       div.form-group
@@ -48,8 +45,7 @@
       div.form-group
         = f.label :years_resident, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :years_resident,
-            options_for_select((1..10).to_a, resource.years_resident)
+          = f.select :years_resident, options_for_select((1..10).to_a, @profile.years_resident)
           span.help-block
             | How many years have you lived in the area? Please select "1" for
             |  one or less, and "10" for ten or more.
@@ -58,24 +54,21 @@
       div.form-group
         = f.label :class_year, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :class_year,
-            options_for_select(%w[Freshman Sophomore Junior Senior] << 'Graduate Student', resource.class_year),
+          = f.select :class_year, options_for_select(%w[Freshman Sophomore Junior Senior] << 'Graduate Student', @profile.class_year),
             prompt: 'Choose...',
             class: 'form-control'
           span.help-block Your class year, according to your transcript.
       div.form-group
         = f.label :total_years, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :total_years,
-            options_for_select((1..10).to_a, resource.total_years),
+          = f.select :total_years, options_for_select((1..10).to_a, @profile.total_years),
             prompt: '--',
             class: 'form-control'
           span.help-block Total years of study at ACME.
       div.form-group
         = f.label :year_started, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :year_started,
-            options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.year_started),
+          = f.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, @profile.year_started),
             prompt: '----',
             class: 'form-control'
       div.form-group
@@ -87,8 +80,7 @@
       div.form-group
         = f.label :major, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :major,
-            options_for_select(%w[Economics Psychology Science/Engineering Math Other], resource.major),
+          = f.select :major, options_for_select(%w[Economics Psychology Science/Engineering Math Other], @profile.major),
             prompt: 'Choose...',
             class: 'form-control'
     fieldset

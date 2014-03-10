@@ -20,8 +20,7 @@
             div.form-group
               div.input-group
                 span.input-group-addon.glyphicon.glyphicon-lock
-                = password_field_tag 'user[password]', nil,
-                                     :placeholder => 'Password',
+                = password_field_tag 'user[password]', nil,:placeholder => 'Password',
                                      :class => 'form-control'
               span.help-block Passwords must contain at least 8 characters.
             div.form-group
