@@ -142,20 +142,11 @@ group :development, :test do
   # https://github.com/bkeepers/dotenv
   gem 'dotenv-rails'
 
-  # https://github.com/paulelliott/fabrication
-  gem 'fabrication' # for generating test data
-
   # https://github.com/rspec/rspec-rails
   gem 'rspec-rails'
 
-  # https://github.com/jeffkreeftmeijer/fuubar
-  gem 'fuubar'
-
   # https://github.com/jnicklas/capybara
   gem 'capybara'
-
-  # https://github.com/colszowka/simplecov
-  gem 'simplecov', require: false
 
   # https://github.com/bmabey/database_cleaner
   gem 'database_cleaner'
