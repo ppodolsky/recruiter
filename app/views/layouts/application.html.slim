@@ -18,6 +18,14 @@ html
     = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
   body
+    #modal-window.modal.fade
+      .modal-dialog
+        .modal-content
+          .modal-header
+            button.close aria-hidden="true" data-dismiss="modal" type="button"
+              | &times;
+            h4.modal-title
+          .modal-body
     .wrapper
       /![if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]
       = render 'shared/sign_in_modal' unless current_user

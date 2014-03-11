@@ -1,6 +1,4 @@
 Recruiter::Application.routes.draw do
-  resources :experiments
-  resources :sessions
 
   if Rails.env.development?
     mount MailPreview => 'mail_view'
@@ -8,6 +6,11 @@ Recruiter::Application.routes.draw do
 
   # user accounts and profiles
   devise_for :users
+
+  resources :experiments do
+    resources :sessions
+  end
+  resources :sessions
 
   resource :profile
 

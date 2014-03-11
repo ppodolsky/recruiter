@@ -3,11 +3,9 @@
     thead
       tr
         th
-          | Start date
+          | Start at
         th
-          | Lab
-        th
-        th
+          | Registred subjects
         th
     tbody
       - @sessions.each do | session |
@@ -15,10 +13,8 @@
           td
             = session.date_start
           td
-            = session.lab
+            = '<n/a>'
           td
-            = link_to 'Show', session
-          td
-            = link_to 'Edit', 'edit_session_url(session)'
-          td
-            = link_to 'Destroy', session, method: :delete, data: { confirm: 'Are you sure?' }
+            .btn-group.pull-right
+              = link_to 'Edit', edit_session_path(session),  {:class => 'btn btn-xs btn-primary', :remote => true, 'data-toggle' =>  'modal', 'data-target' => '#modal-window'}
+              = link_to 'Remove', experiment_session_path(@experiment, session), method: :delete, :class => 'btn btn-xs btn-danger', data: { confirm: 'Are you sure?' }
