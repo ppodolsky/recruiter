@@ -1,0 +1,32 @@
+.page-header
+  = link_to new_experiment_path, :class => 'btn btn-primary' do 
+    span.glyphicon.glyphicon-plus
+    |  New Experiment
+  h1
+    | Listing experiments
+
+.table-responsive
+  table.table.table-striped.table-bordered.table-hover
+    thead
+      tr
+        th
+          | Name
+        th
+          | Description
+        th
+          | Context
+        th
+        th
+    tbody
+      - @experiments.each do | experiment |
+        tr
+          td
+            = experiment.name
+          td
+            = experiment.description
+          td
+            = experiment.context
+          td
+            = link_to 'Show', experiment
+          td
+            = link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } 
