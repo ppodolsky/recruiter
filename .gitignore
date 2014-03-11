@@ -28,6 +28,7 @@
 .bundle
 .config
 .secret
+.idea
 coverage
 InstalledFiles
 lib/bundler/man
