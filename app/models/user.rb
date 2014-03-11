@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :async
 
-  private
+private
 
   def set_canonical_name
     self.username = self.email.split(/@/).first
