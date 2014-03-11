@@ -10,12 +10,6 @@ Spork.prefork do
   # if you change any configuration or code from libraries loaded here, you'll
   # need to restart spork for it take effect.
 
-  # simplecov
-  require 'simplecov' unless ENV['DRB']
-
-  # factories
-  Fabrication::Support.find_definitions
-
   # rspec
   require File.expand_path('../../config/environment', __FILE__)
   require 'rspec/rails'
@@ -80,12 +74,6 @@ Spork.prefork do
       DeferredGarbageCollection.reconsider
     end
   end
-end
-
-Spork.each_run do
-  # This code will be run each time you run your specs.
-
-  require 'simplecov' if ENV['DRB']
 end
 
 # --- Instructions ---

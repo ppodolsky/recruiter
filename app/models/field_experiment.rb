@@ -1,0 +1,2 @@
+class FieldExperiment < Experiment
+end
