@@ -11,7 +11,6 @@ Recruiter::Application.routes.draw do
     resources :sessions
   end
   resources :sessions
-
   resource :profile
 
   # static page overrides for CMS

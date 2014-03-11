@@ -10,10 +10,11 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require_tree .
 //= require modernizr/modernizr
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require bootstrap
 //= require bootstrap-inputmask
+//= require_tree .
+
