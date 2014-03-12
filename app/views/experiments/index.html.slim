@@ -6,27 +6,25 @@
     | Listing experiments
 
 .table-responsive
-  table.table.table-striped.table-bordered.table-hover
+  table.table.table-condensed.table-borderless.table-hover
     thead
       tr
         th
           | Name
         th
-          | Description
-        th
           | Type
         th
+          | Assigned
         th
     tbody
       - @experiments.each do | experiment |
-        tr
-          td
+        tr id="experiment_#{experiment.id}"
+          td data-href = "#{experiment_path(experiment)}"
             = experiment.name
-          td
-            = experiment.description
-          td
+          td data-href = "#{experiment_path(experiment)}"
             = experiment.type
+          td data-href = "#{experiment_path(experiment)}"
+            = experiment.subjects.count
           td
-            = link_to 'Show', experiment_path(experiment)
-          td
-            = link_to 'Destroy', experiment_path(experiment), method: :delete, data: { confirm: 'Are you sure?' }
+            .btn-group.pull-right
+              = link_to 'Remove', experiment.becomes(Experiment), remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }

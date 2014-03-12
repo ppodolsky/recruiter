@@ -1,5 +1,5 @@
 class ExperimentsController < InheritedResources::Base
-  actions :new,:create,:index,:show,:update
+  actions :new,:create,:index,:show,:update,:destroy
 
   def index
     @experiments = Experiment.all
@@ -20,6 +20,16 @@ class ExperimentsController < InheritedResources::Base
     @experiment.update_attributes!(experiment_params)
     flash[:notice] = 'Changes has been saved'
     redirect_to experiment_path @experiment
+  end
+  def destroy
+    @experiment_id = params[:id]
+    @experiment = Experiment.find(params[:id])
+    @experiment.destroy
+    respond_to do |format|
+      format.html { redirect_to experiments_path }
+      format.js   { render :layout=>false }
+    end
+    @experiments = Experiment.all
   end
   private
   def experiment_params
