@@ -13,7 +13,7 @@
           td data-href = "#{session_path(session)}"
             = l session.start_time.to_date
           td data-href = "#{session_path(session)}"
-            = '<n/a>'
+            = session.subjects.count
           td
             .btn-group.pull-right
               = link_to 'Remove', session, remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }

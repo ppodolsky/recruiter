@@ -23,9 +23,9 @@
             prompt: '-',
             class: 'form-control'
       div.form-group
-        = f.label :age, class: 'control-label col-sm-2'
+        = f.label :birth_year, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :age, options_for_select((18..80).to_a, @profile.age),
+          = f.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, @profile.birth_year),
             prompt: '--',
             class: 'form-control'
       div.form-group

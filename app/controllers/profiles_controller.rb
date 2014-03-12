@@ -13,12 +13,14 @@ class ProfilesController < InheritedResources::Base
     @profile = current_user.profile
     @profile.update(profile_params)
     @profile.save
+    flash[:notice] = 'Profile has been saved'
     redirect_to :back
   end
   def create
     @profile = Profile.new(profile_params)
     @profile.update(user_id: current_user.id)
     @profile.save
+    flash[:notice] = 'Profile has been saved'
     redirect_to :back
   end
 
@@ -31,7 +33,7 @@ class ProfilesController < InheritedResources::Base
         :phone,
         :gender,
         :ethnicity,
-        :age,
+        :birth_year,
         :class_year,
         :total_years,
         :year_started,
