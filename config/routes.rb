@@ -7,10 +7,10 @@ Recruiter::Application.routes.draw do
   # user accounts and profiles
   devise_for :users
 
+  resources :sessions
   resources :experiments do
     resources :sessions
   end
-  resources :sessions
   resource :profile
 
   # static page overrides for CMS

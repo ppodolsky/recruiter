@@ -1,6 +1,6 @@
 div.row
   h2 Sign in
-  = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  = form_tag user_session_path do |f|
     = render "shared/errors"
     div.form-horizontal role='form'
       div.form-group

@@ -14,14 +14,14 @@ class User < ActiveRecord::Base
     "#{self.profile.first_name} #{self.profile.last_name}"
   end
 
-  %i[administrator experimenter subject].each do |method|
-    define_method "is_#{method}?" do
-      self.type == method.to_s.capitalize
-    end
+  def is_experimenter?
+    self.type == "Administrator" or self.type == "Experimenter"
   end
-
-  def is_admin?
-    false
+  def is_administrator?
+    self.type == "Administrator"
+  end
+  def is_subject
+    self.type == "Subject"
   end
 
   devise :database_authenticatable, :registerable,

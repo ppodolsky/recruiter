@@ -11,7 +11,7 @@
       - @sessions.each do | session |
         tr id="session_#{session.id}"
           td data-href = "#{session_path(session)}"
-            = session.date_start
+            = l session.start_time.to_date
           td data-href = "#{session_path(session)}"
             = '<n/a>'
           td

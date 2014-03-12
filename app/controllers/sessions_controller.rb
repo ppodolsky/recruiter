@@ -38,13 +38,12 @@ class SessionsController < InheritedResources::Base
   private
   def session_params
     params.require(:session).permit(
-        :date_start,
-        :date_finish,
-        :registration_start,
-        :registration_finish,
-        :session_length,
+        :start_time,
+        :end_time,
+        :duration,
+        :required_subjects,
+        :registration_deadline,
         :lab,
-        :required_subjects
     )
   end
 

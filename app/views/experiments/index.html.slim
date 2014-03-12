@@ -1,5 +1,5 @@
 .page-header
-  = link_to new_experiment_path, :class => 'btn btn-primary' do 
+  = link_to new_experiment_path, :class => 'btn btn-primary' do
     span.glyphicon.glyphicon-plus
     |  New Experiment
   h1
@@ -14,7 +14,7 @@
         th
           | Description
         th
-          | Context
+          | Type
         th
         th
     tbody
@@ -25,8 +25,8 @@
           td
             = experiment.description
           td
-            = experiment.context
+            = experiment.type
           td
-            = link_to 'Show', experiment
+            = link_to 'Show', experiment_path(experiment)
           td
-            = link_to 'Destroy', experiment, method: :delete, data: { confirm: 'Are you sure?' } 
+            = link_to 'Destroy', experiment_path(experiment), method: :delete, data: { confirm: 'Are you sure?' }

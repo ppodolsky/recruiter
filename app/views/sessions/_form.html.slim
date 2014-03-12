@@ -4,35 +4,32 @@
     .form-group
       = f.label 'From', :class => "control-label"
       div
-        = f.date_select :date_start, :class => "form-control"
+        = f.date_select :start_time, :class => "form-control"
     .form-group
       = f.label 'To', :class => "control-label"
       div
-        = f.date_select :date_finish, :class => "form-control"
+        = f.date_select :end_time, :class => "form-control"
     .form-group
-      = f.label 'Duration', :class => "control-label"
-       div
-        = f.select :session_length, options_for_select(['1 Hour','2 Hour'], @session.session_length),
+      = f.label :duration, :class => "control-label"
+      div
+        = f.select :duration, options_for_select(['1 Hour','2 Hour'], @session.duration),
           prompt: '-',
           class: 'form-control'
-  fieldset
-    legend Registration dates
     .form-group
-      = f.label 'From', :class => "control-label"
+      = f.label :registration_deadline, :class => "control-label"
       div
-        = f.date_select :registration_start, :class => "form-control"
-    .form-group
-      = f.label 'To', :class => "control-label"
-      div
-        = f.date_select :registration_finish, :class => "form-control"
+         = f.date_select :registration_deadline, :class => "form-control"
   fieldset
     legend Details
     .form-group
-      = f.label 'Required number of subjects', :class => "control-label"
+      = f.label :required_subjects, :class => "control-label"
       = f.text_field :required_subjects, :class => "form-control"
     .form-group
       = f.label 'Laboratory', :class => "control-label"
-      = f.text_field :lab, :class => "form-control"
+      div
+        = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id),
+          prompt: '-',
+          class: 'form-control'
   .form-group
     .col-lg-offset-9.col-lg-3
       = f.submit :class => "btn btn-primary"

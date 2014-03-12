@@ -1,21 +1,30 @@
 class ProfilesController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action :set_current_profile
-  actions :show, :update
+  actions :show, :update, :create
 
-  def set_current_profile
-    @user = current_user
-    @profile = @user.profile
+  def show
+    if(current_user.profile.nil?)
+      @profile = Profile.new
+    else
+      @profile = current_user.profile
+    end
   end
-
   def update
+    @profile = current_user.profile
+    @profile.update(profile_params)
+    @profile.save
+    redirect_to :back
+  end
+  def create
+    @profile = Profile.new(profile_params)
+    @profile.update(user_id: current_user.id)
+    @profile.save
     redirect_to :back
   end
 
-
   private
-    def permitted_params
-      params.permit(profile: [
+    def profile_params
+      params.require(:profile).permit(
         :secondary_email,
         :first_name,
         :last_name,
@@ -29,6 +38,7 @@ class ProfilesController < InheritedResources::Base
         :current_gpa,
         :years_resident,
         :profession,
-        :major])
+        :major
+      )
     end
 end

@@ -26,3 +26,9 @@ en:
       profile:
         secondary_email: 'Alternate e-mail'
         total_years: 'Total years of study'
+  date:
+    formats:
+      default: "%m/%d/%Y"
+  time:
+    formats:
+      default: "%m/%d/%Y %H:%M"
