@@ -3,7 +3,7 @@
   div.form-horizontal role='form'
     fieldset
       legend Personal information
-      div.form-group
+      div.form-group class=field_class(@profile, :first_name)
         = f.label :first_name, class: 'control-label col-sm-2'
         div.col-sm-8
           = f.text_field :first_name,
@@ -58,13 +58,6 @@
             prompt: 'Choose...',
             class: 'form-control'
           span.help-block Your class year, according to your transcript.
-      div.form-group
-        = f.label :total_years, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.select :total_years, options_for_select((1..10).to_a, @profile.total_years),
-            prompt: '--',
-            class: 'form-control'
-          span.help-block Total years of study at ACME.
       div.form-group
         = f.label :year_started, class: 'control-label col-sm-2'
         div.col-sm-8

@@ -68,9 +68,6 @@ gem 'bootstrap-generators', github: 'decioferreira/bootstrap-generators'
 # http://devise.plataformatec.com.br/
 gem 'devise', '~> 3.1.0' # authentication
 
-#https://github.com/CanCanCommunity/cancancan
-gem 'cancancan', '~> 1.7'
-
 # https://github.com/nathanl/authority
 gem 'authority'
 ##

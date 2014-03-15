@@ -5,6 +5,14 @@ module ApplicationHelper
     Kramdown::Document.new(text).to_html.html_safe
   end
 
+  def field_class(resource, field_name)
+    if resource.errors[field_name]
+      return "error".html_safe
+    else
+      return "".html_safe
+    end
+  end
+
   # Devise isn't quite ready for twitter bootstrap. Here we convert the flash
   # messages keys to the types expected by Bootstrap 3.0.
   def flash_class(level)

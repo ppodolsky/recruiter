@@ -1,43 +1,17 @@
 class ExperimentsController < InheritedResources::Base
-  actions :new,:create,:index,:show,:update,:destroy
-
-  def index
-    @experiments = Experiment.all
-  end
-  def new
-    @experiment = Experiment.new
-  end
-  def show
-    @experiment = Experiment.find(params[:id])
-    @sessions = @experiment.sessions
-  end
-  def create
-    @experiment = Experiment.create(experiment_params)
-    redirect_to experiment_path @experiment
-  end
-  def update
-    @experiment = Experiment.find(params[:id])
-    @experiment.update_attributes!(experiment_params)
-    flash[:notice] = 'Changes has been saved'
-    redirect_to experiment_path @experiment
-  end
+  actions :new, :create, :index, :show, :update, :destroy
+  respond_to :js, :only => :destroy
   def destroy
     @experiment_id = params[:id]
-    @experiment = Experiment.find(params[:id])
-    @experiment.destroy
-    respond_to do |format|
-      format.html { redirect_to experiments_path }
-      format.js   { render :layout=>false }
-    end
-    @experiments = Experiment.all
+    destroy!
   end
   private
-  def experiment_params
-    params.require(:experiment).permit(
+  def permitted_params
+    params.permit(experiment: [
         :name,
         :description,
         :type,
         :finished
-    )
+    ])
   end
 end

@@ -24,5 +24,8 @@ module Recruiter
 
     # responders gem
     config.responders.flash_keys = [ :success, :error ]
+    config.action_view.field_error_proc = Proc.new { |html_tag, instance|
+      "<div class=\"has-error\">#{html_tag}</div>".html_safe
+    }
   end
 end

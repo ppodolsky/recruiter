@@ -1,6 +1,5 @@
-class ProfilesController < InheritedResources::Base
+class ProfilesController < ApplicationController
   before_action :authenticate_user!
-  actions :show, :update, :create
 
   def show
     if(current_user.profile.nil?)
@@ -11,21 +10,23 @@ class ProfilesController < InheritedResources::Base
   end
   def update
     @profile = current_user.profile
-    @profile.update(profile_params)
-    @profile.save
-    flash[:notice] = 'Profile has been saved'
-    redirect_to :back
+    @profile.update! permitted_params
+    render 'profiles/show'
+    flash[:notice] = 'Please, correct fields marked by red color'
+  rescue
+    render 'profiles/show'
   end
   def create
-    @profile = Profile.new(profile_params)
-    @profile.update(user_id: current_user.id)
-    @profile.save
-    flash[:notice] = 'Profile has been saved'
-    redirect_to :back
+    @profile = Profile.create(user_id: current_user.id)
+    @profile.update! permitted_params
+    render 'profiles/show'
+  rescue
+    flash[:notice] = 'Please, correct fields marked by red color'
+    render 'profiles/show'
   end
 
   private
-    def profile_params
+    def permitted_params
       params.require(:profile).permit(
         :secondary_email,
         :first_name,
@@ -35,7 +36,6 @@ class ProfilesController < InheritedResources::Base
         :ethnicity,
         :birth_year,
         :class_year,
-        :total_years,
         :year_started,
         :current_gpa,
         :years_resident,
