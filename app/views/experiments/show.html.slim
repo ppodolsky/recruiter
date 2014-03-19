@@ -1,42 +1,25 @@
 .page-header
   h1
-    | Editing 
-    | experiment
-= form_for(@experiment.becomes(Experiment), :html => { :class => "form-horizontal" }) do |f|
-  - if @experiment.errors.any?
-    .alert.alert-danger.alert-dismissable
-      button.close type="button" data-dismiss="alert" aria-hidden="true"
-        | &times;
-      h4= "#{pluralize(@experiment.errors.count,"error")} prohibited this experiment from being saved:"
-      ul
-        - @experiment.errors.full_messages.each do |msg|
-          li= msg
-  fieldset
-    legend Common information
-    .form-group
-      = f.label :name, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.text_field :name, :class => "form-control"
-    .form-group
-      = f.label :description, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.text_area :description,
-        rows: '5',
-        class: 'form-control'
-    .form-group
-      = f.label :type, class: 'control-label col-sm-2'
-      .col-sm-8
-        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
-          prompt: '-',
-          class: 'form-control'
-
-  fieldset
-    div
-      legend Sessions
-      .pull-right
-        = link_to 'New session', new_experiment_session_path(@experiment)
-    #sessions-box
-      = render 'experiments/sessions'
-  .form-group.pull-right
-    = link_to 'Send invitations', '#void', :class => "btn"
-    = f.button 'Save', :type => "submit", :class => "btn btn-primary"
+    | Experiment
+  .tabbable
+    ul.nav.nav-tabs
+      li.active
+        a href="#s1" data-toggle="tab"
+          |  General
+      li
+        a href="#s2" data-toggle="tab"
+          |  Sessions
+      li
+        a href="#s3" data-toggle="tab"
+          |  Subject pool
+    .tab-content
+      #s1.tab-pane.active
+        = render 'general'
+      #s2.tab-pane
+        #sessions-box
+          = render 'sessions'
+        .pull-right
+          = link_to 'New session', new_experiment_session_path(@experiment), class: 'btn btn-default btn-xs btn-success'
+        .clearfix
+      #s3.tab-pane
+        = render 'subject_pool'

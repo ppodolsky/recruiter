@@ -1,6 +1,13 @@
 class ProfilesController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    nonempty_params = search_params.reject{|a| search_params[a] == ''}
+    @profiles = Profile.where(nonempty_params)
+    respond_to do |format|
+      format.js
+    end
+  end
   def show
     if(current_user.profile.nil?)
       @profile = Profile.new
@@ -27,7 +34,7 @@ class ProfilesController < ApplicationController
 
   private
     def permitted_params
-      params.require(:profile).permit(
+      params.permit(profile: [
         :secondary_email,
         :first_name,
         :last_name,
@@ -41,6 +48,20 @@ class ProfilesController < ApplicationController
         :years_resident,
         :profession,
         :major
-      )
+      ])
     end
+  private
+  def search_params
+    params.permit(
+        :gender,
+        :birth_year,
+        :class_year,
+        :year_started,
+        :current_gpa,
+        :years_resident,
+        :profession,
+        :major,
+        :ethnicity => []
+    )
+  end
 end

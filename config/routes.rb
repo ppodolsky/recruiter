@@ -11,7 +11,9 @@ Recruiter::Application.routes.draw do
   resources :experiments do
     resources :sessions
   end
-  resource :profile
+  resource :profile, only: [:show, :create, :update]
+  resources :profiles, only: [:index]
+
 
   # static page overrides for CMS
   get 'help',      to: 'pages#help'

@@ -1,0 +1,31 @@
+= form_for(@experiment.becomes(Experiment), :html => { :class => "form-horizontal" }) do |f|
+  - if @experiment.errors.any?
+    .alert.alert-danger.alert-dismissable
+      button.close type="button" data-dismiss="alert" aria-hidden="true"
+        | &times;
+      h4= "#{pluralize(@experiment.errors.count,"error")} prohibited this experiment from being saved:"
+      ul
+        - @experiment.errors.full_messages.each do |msg|
+          li= msg
+  fieldset
+    legend Common information
+    .form-group
+      = f.label :name, :class => "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_field :name, :class => "form-control"
+    .form-group
+      = f.label :description, :class => "col-lg-2 control-label"
+      .col-lg-10
+        = f.text_area :description,
+        rows: '5',
+        class: 'form-control'
+    .form-group
+      = f.label :type, class: 'control-label col-sm-2'
+      .col-sm-8
+        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
+          prompt: '-',
+          class: 'form-control'
+  .clearfix
+    .form-group.pull-right
+      = link_to 'Send invitations', '#void', :class => "btn"
+      = f.button 'Save', :type => "submit", :class => "btn btn-primary"

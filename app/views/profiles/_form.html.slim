@@ -1,6 +1,6 @@
-= form_for(@profile, url: profile_path) do |f|
+= form_for(@profile, url: profile_path, html: { :class => "form-horizontal" }) do |f|
   = render "shared/errors"
-  div.form-horizontal role='form'
+  div
     fieldset
       legend Personal information
       div.form-group class=field_class(@profile, :first_name)

@@ -1,6 +1,7 @@
 class ExperimentsController < InheritedResources::Base
   actions :new, :create, :index, :show, :update, :destroy
   respond_to :js, :only => :destroy
+
   def destroy
     @experiment_id = params[:id]
     destroy!
