@@ -25,7 +25,15 @@
         = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
           prompt: '-',
           class: 'form-control'
+    .form-group
+      = f.label 'Number of assignments', class: 'control-label col-sm-2'
+      .col-sm-8
+        = @experiment.assignments.count
+    .form-group
+      = f.label 'Number of participated', class: 'control-label col-sm-2'
+      .col-sm-8
+        | not implemented yet
   .clearfix
     .form-group.pull-right
-      = link_to 'Send invitations', '#void', :class => "btn"
+      = f.button 'Send invitations', :type => "hz", :class => "btn btn-default"
       = f.button 'Save', :type => "submit", :class => "btn btn-primary"

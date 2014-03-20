@@ -23,8 +23,10 @@
     .form-group
       = profile.label :profession, class: 'control-label col-sm-2'
       .col-sm-8
-        = profile.text_field :profession,
-          class: 'form-control'
+        - (['Part-time student', 'Full time student', 'University staff', 'Faculty', 'Visiting student', 'Other']).each do |feature|
+          = profile.check_box(:profession, {:multiple => true}, feature, nil)
+          = feature
+          br
     .form-group
       = profile.label :years_resident, class: 'control-label col-sm-2'
       .col-sm-8
@@ -54,12 +56,16 @@
           = profile.check_box(:major, {:multiple => true}, feature, nil)
           = feature
           br
-    .form-groups
+    .form-group
       = f.label :attendance, class: 'control-label col-sm-2'
-      .col-sm-8
+      .col-sm-10
         = f.select :attendance, options_for_select((0..100).step(5).to_a),
           prompt: '--',
           class: 'form-control'
+    .form-group
+      = f.label 'Never been', class: 'control-label col-sm-2'
+      .col-sm-8
+        = profile.check_box(:never_been, {}, true, false)
     .clearfix
       .pull-right
         = f.button 'Check pool', :type => 'submit', :class => 'btn btn-small btn-primary'

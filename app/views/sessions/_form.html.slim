@@ -1,14 +1,14 @@
-= form_for(@session, :url => (params[:action] == :edit ? experiment_session_path(@session.experiment_id, @session) : experiment_sessions_path(@session.experiment_id))) do |f|
+= form_for(@session, :url => (params[:action] == 'show' ? experiment_session_path(@session.experiment_id, @session) : experiment_sessions_path(@session.experiment_id))) do |f|
   fieldset
     legend Session dates
     .form-group
       = f.label 'From', :class => "control-label"
       div
-        = f.date_select :start_time, :class => "form-control"
+        = f.datetime_select :start_time, :class => "form-control"
     .form-group
       = f.label 'To', :class => "control-label"
       div
-        = f.date_select :end_time, :class => "form-control"
+        = f.datetime_select :end_time, :class => "form-control"
     .form-group
       = f.label :duration, :class => "control-label"
       div
@@ -18,7 +18,7 @@
     .form-group
       = f.label :registration_deadline, :class => "control-label"
       div
-         = f.date_select :registration_deadline, :class => "form-control"
+         = f.datetime_select :registration_deadline, :class => "form-control"
   fieldset
     legend Details
     .form-group

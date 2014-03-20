@@ -37,11 +37,9 @@
       div.form-group
         = f.label :profession, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.text_field :profession,
+          = f.select :profession, options_for_select(['Part-time student', 'Full time student', 'University staff', 'Faculty', 'Visiting student', 'Other'], @profile.profession),
+            prompt: 'Choose...',
             class: 'form-control'
-          span.help-block
-            | How do you usually answer the question, "What do you do for a
-            |  living?"
       div.form-group
         = f.label :years_resident, class: 'control-label col-sm-2'
         div.col-sm-8

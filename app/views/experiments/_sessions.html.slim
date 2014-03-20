@@ -13,7 +13,7 @@
           tr id="session_#{session.id}"
             td data-href = "#{experiment_session_path(@experiment, session)}"
               = l session.start_time
-            td data-href = "#{session_path(session)}"
+            td data-href = "#{experiment_session_path(@experiment, session)}"
               = "#{session.subjects.count} / #{session.required_subjects}"
             td
               .btn-group.pull-right
