@@ -16,10 +16,6 @@
       #s1.tab-pane.active
         = render 'general'
       #s2.tab-pane
-        #sessions-box
-          = render 'sessions'
-        .pull-right
-          = link_to 'New session', new_experiment_session_path(@experiment), class: 'btn btn-default btn-xs btn-success'
-        .clearfix
+        = render 'sessions'
       #s3.tab-pane
         = render 'subject_pool'

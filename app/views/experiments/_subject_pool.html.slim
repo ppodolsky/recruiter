@@ -1,66 +1,65 @@
-= form_for(Profile.new, html: {method: "get", class: "form-horizontal" }, remote: true) do |f|
-  .form-group
-    = f.label :gender, class: 'control-label col-sm-2'
-    .col-sm-8
-      - %w[M F].each do |feature|
-        = f.check_box(:gender, {:multiple => true}, feature, nil)
-        = feature
-        br
-  .form-group
-    = f.label :ethnicity, class: 'control-label col-sm-2'
-    .col-sm-8
-      - %w[White Black Asian Hispanic Other].each do |feature|
-        = f.check_box(:ethnicity, {:multiple => true}, feature, nil)
-        = feature
-        br
-  .form-group
-    = f.label :birth_year, class: 'control-label col-sm-2'
-    .col-sm-8
-      = f.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a),
-        prompt: '--',
-        class: 'form-control'
-  .form-group
-    = f.label :profession, class: 'control-label col-sm-2'
-    .col-sm-8
-      = f.text_field :profession,
-        class: 'form-control'
-  .form-group
-    = f.label :years_resident, class: 'control-label col-sm-2'
-    .col-sm-8
-      = f.select :years_resident, options_for_select((1..10).to_a)
-  .form-group
-    = f.label :class_year, class: 'control-label col-sm-2'
-    .col-sm-8
-      - (%w[Freshman Sophomore Junior Senior] << 'Graduate Student').each do |feature|
-        = f.check_box(:class_year, {:multiple => true}, feature, nil)
-        = feature
-        br
-  .form-group
-    = f.label :year_started, class: 'control-label col-sm-2'
-    .col-sm-8
-      = f.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse),
-        prompt: '----',
-        class: 'form-control'
-  .form-group
-    = f.label :current_gpa, class: 'control-label col-sm-2'
-    .col-sm-8
-      = f.text_field :current_gpa,
-        class: 'form-control',
-        value: number_with_precision(f.object.current_gpa, :precision => 2) || 0
-  .form-group
-    = f.label :major, class: 'control-label col-sm-2'
-    .col-sm-8
-      - %w[Economics Psychology Science/Engineering Math Other].each do |feature|
-        = f.check_box(:major, {:multiple => true}, feature, nil)
-        = feature
-        br
-  .form-groups
-    = f.label :major, class: 'control-label col-sm-2'
-    .col-sm-8
-      = f.select :major, options_for_select((0..100).step(5).to_a),
-        prompt: '--',
-        class: 'form-control'
-  .clearfix
-    .pull-right
-      = f.button 'Check pool', :type => 'submit', :class => 'btn btn-small btn-primary'
-#subjects-count
+= form_for(Subject.new, html: {method: "get", class: "form-horizontal" }, remote: true) do |f|
+  = f.fields_for :people do |profile|
+    .form-group
+      = profile.label :gender, class: 'control-label col-sm-2'
+      .col-sm-8
+        - %w[M F].each do |feature|
+          = profile.check_box(:gender, {:multiple => true}, feature, nil)
+          = feature
+          br
+    .form-group
+      = profile.label :ethnicity, class: 'control-label col-sm-2'
+      .col-sm-8
+        - %w[White Black Asian Hispanic Other].each do |feature|
+          = profile.check_box(:ethnicity, {:multiple => true}, feature, nil)
+          = feature
+          br
+    .form-group
+      = profile.label :birth_year, class: 'control-label col-sm-2'
+      .col-sm-8
+        = profile.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a),
+          prompt: '--',
+          class: 'form-control'
+    .form-group
+      = profile.label :profession, class: 'control-label col-sm-2'
+      .col-sm-8
+        = profile.text_field :profession,
+          class: 'form-control'
+    .form-group
+      = profile.label :years_resident, class: 'control-label col-sm-2'
+      .col-sm-8
+        = profile.select :years_resident, options_for_select((1..10).to_a)
+    .form-group
+      = profile.label :class_year, class: 'control-label col-sm-2'
+      .col-sm-8
+        - (%w[Freshman Sophomore Junior Senior] << 'Graduate Student').each do |feature|
+          = profile.check_box(:class_year, {:multiple => true}, feature, nil)
+          = feature
+          br
+    .form-group
+      = profile.label :year_started, class: 'control-label col-sm-2'
+      .col-sm-8
+        = profile.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse),
+          prompt: '----',
+          class: 'form-control'
+    .form-group
+      = profile.label :current_gpa, class: 'control-label col-sm-2'
+      .col-sm-8
+        = profile.text_field :current_gpa,
+          class: 'form-control'
+    .form-group
+      = profile.label :major, class: 'control-label col-sm-2'
+      .col-sm-8
+        - %w[Economics Psychology Science/Engineering Math Other].each do |feature|
+          = profile.check_box(:major, {:multiple => true}, feature, nil)
+          = feature
+          br
+    .form-groups
+      = f.label :attendance, class: 'control-label col-sm-2'
+      .col-sm-8
+        = f.select :attendance, options_for_select((0..100).step(5).to_a),
+          prompt: '--',
+          class: 'form-control'
+    .clearfix
+      .pull-right
+        = f.button 'Check pool', :type => 'submit', :class => 'btn btn-small btn-primary'

@@ -1,19 +1,23 @@
-.table-responsive
-  table.table.table-condensed.table-borderless.table-hover
-    thead
-      tr
-        th
-          | Start at
-        th
-          | Registred subjects
-        th
-    tbody
-      - @experiment.sessions.each do | session |
-        tr id="session_#{session.id}"
-          td data-href = "#{experiment_session_path(@experiment, session)}"
-            = l session.start_time
-          td data-href = "#{session_path(session)}"
-            = "#{session.subjects.count} / #{session.required_subjects}"
-          td
-            .btn-group.pull-right
-              = link_to 'Remove', session, remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+#sessions-box
+  .table-responsive
+    table.table.table-condensed.table-borderless.table-hover
+      thead
+        tr
+          th
+            | Start at
+          th
+            | Registred subjects
+          th
+      tbody
+        - @experiment.sessions.each do | session |
+          tr id="session_#{session.id}"
+            td data-href = "#{experiment_session_path(@experiment, session)}"
+              = l session.start_time
+            td data-href = "#{session_path(session)}"
+              = "#{session.subjects.count} / #{session.required_subjects}"
+            td
+              .btn-group.pull-right
+                = link_to 'Remove', session, remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+.pull-right
+  = link_to 'New session', new_experiment_session_path(@experiment), class: 'btn btn-default btn-xs btn-success'
+.clearfix

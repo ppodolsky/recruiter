@@ -29,7 +29,6 @@ class User < ActiveRecord::Base
          :confirmable, :lockable, :async
 
 private
-
   def set_canonical_name
     self.username = self.email.split(/@/).first
   end
