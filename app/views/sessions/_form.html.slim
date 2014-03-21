@@ -1,24 +1,23 @@
 = form_for(@session, :url => (params[:action] == 'show' ? experiment_session_path(@session.experiment_id, @session) : experiment_sessions_path(@session.experiment_id))) do |f|
+  = render "shared/errors"
   fieldset
     legend Session dates
     .form-group
       = f.label 'From', :class => "control-label"
       div
-        = f.datetime_select :start_time, :class => "form-control"
+        = f.datetime_select :start_time,  :minute_step => 15, :class => "form-control"
     .form-group
       = f.label 'To', :class => "control-label"
       div
-        = f.datetime_select :end_time, :class => "form-control"
+        = f.datetime_select :end_time,  :minute_step => 15,:class => "form-control"
     .form-group
       = f.label :duration, :class => "control-label"
       div
-        = f.select :duration, options_for_select(['1 Hour','2 Hour'], @session.duration),
-          prompt: '-',
-          class: 'form-control'
+        = f.time_select :duration, :minute_step => 15, :ignore_date => true, :class => "form-control"
     .form-group
       = f.label :registration_deadline, :class => "control-label"
       div
-         = f.datetime_select :registration_deadline, :class => "form-control"
+         = f.datetime_select :registration_deadline, :minute_step => 15, :class => "form-control"
   fieldset
     legend Details
     .form-group
