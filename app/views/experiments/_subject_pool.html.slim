@@ -63,9 +63,9 @@
           prompt: '--',
           class: 'form-control'
     .form-group
-      = f.label 'Never been', class: 'control-label col-sm-2'
+      = f.label 'Did not participated before', class: 'control-label col-sm-2'
       .col-sm-8
         = profile.check_box(:never_been, {}, true, false)
     .clearfix
       .pull-right
-        = f.button 'Check pool', :type => 'submit', :class => 'btn btn-small btn-primary'
+        = f.button 'Assign subjects', :type => 'submit', :class => 'btn btn-small btn-primary'

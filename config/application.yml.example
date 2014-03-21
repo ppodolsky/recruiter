@@ -11,3 +11,25 @@ test:
 
 production:
   <<: *defaults
+
+
+<%
+  # http://mislav.uniqpath.com/rails/branching-the-database-along-with-your-code/
+  branch = `git symbolic-ref HEAD 2>/dev/null`.chomp.sub('refs/heads/', '')
+  suffix = `git config --bool branch.#{branch}.database`.chomp == 'true' ? "_#{branch}" : ""
+%>
+ 
+common: &common
+  username: mfreer
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 16
+  timeout: 5000
+  password: 311337
+ 
+development:
+  <<: *common
+  database: recruiter
+
+  
