@@ -52,7 +52,7 @@
     .form-group
       = profile.label :major, class: 'control-label col-sm-2'
       .col-sm-8
-        - %w[Economics Psychology Science/Engineering Math Other].each do |feature|
+        - %w[Economics Psychology Sociology Science/Engineering Math Other].each do |feature|
           = profile.check_box(:major, {:multiple => true}, feature, nil)
           = feature
           br

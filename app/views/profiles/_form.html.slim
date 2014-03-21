@@ -71,7 +71,7 @@
       div.form-group
         = f.label :major, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.select :major, options_for_select(%w[Economics Psychology Science/Engineering Math Other], @profile.major),
+          = f.select :major, options_for_select(%w[Economics Psychology Sociology Science/Engineering Math Other], @profile.major),
             prompt: 'Choose...',
             class: 'form-control'
     fieldset
