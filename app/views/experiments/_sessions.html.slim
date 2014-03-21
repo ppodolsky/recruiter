@@ -17,7 +17,7 @@
               = "#{session.subjects.count} / #{session.required_subjects}"
             td
               .btn-group.pull-right
-                = link_to 'Remove', session, remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+                = link_to 'Remove', experiment_session_path(@experiment, session), remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
 .pull-right
   = link_to 'New session', new_experiment_session_path(@experiment), class: 'btn btn-default btn-xs btn-success'
 .clearfix

@@ -22,7 +22,7 @@
     .form-group
       = f.label :type, class: 'control-label col-sm-2'
       .col-sm-8
-        = f.select :type, options_for_select([['Lab','Lab Experiment'],['Field','Field Experiment'],['Online','Online Experiment']], @experiment.type),
+        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
           prompt: '-',
           class: 'form-control'
     .form-group
