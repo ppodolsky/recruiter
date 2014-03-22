@@ -1,40 +1,33 @@
-class ProfilesController < ApplicationController
+require 'exceptions'
+class ProfilesController < InheritedResources::Base
   before_action :authenticate_user!
+  before_action :check_permissions
+  defaults :singleton => true
+  actions :show, :update
 
-  def index
-    nonempty_params = search_params.reject{|a| search_params[a] == ''}
-    @profiles = Profile.where(nonempty_params)
-    respond_to do |format|
-      format.js
-    end
-  end
   def show
     if(current_user.profile.nil?)
-      @profile = Profile.new
+      @profile = Profile.new(user: current_user)
     else
       @profile = current_user.profile
     end
+    show!
   end
   def update
-    @profile = current_user.profile
-    @profile.update! permitted_params
-    render 'profiles/show'
-    flash[:notice] = 'Please, correct fields marked by red color'
-  rescue
-    render 'profiles/show'
-  end
-  def create
-    @profile = Profile.create(user_id: current_user.id)
-    @profile.update! permitted_params
-    render 'profiles/show'
-  rescue
-    flash[:notice] = 'Please, correct fields marked by red color'
-    render 'profiles/show'
+    if(current_user.profile.nil?)
+      @profile = Profile.new(user: current_user)
+    else
+      @profile = current_user.profile
+    end
+    update!
   end
 
   private
+    def check_permissions
+      raise Exceptions::Permission.new "Only subjects can have profile" if not current_user.is_subject?
+    end
     def permitted_params
-      params.permit(profile: [
+      params.permit(:profile => [
         :secondary_email,
         :first_name,
         :last_name,

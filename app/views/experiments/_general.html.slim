@@ -21,19 +21,16 @@
         class: 'form-control'
     .form-group
       = f.label :type, class: 'control-label col-sm-2'
-      .col-sm-8
-        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
-          prompt: '-',
-          class: 'form-control'
+      .col-sm-2
+        = select_tag :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), prompt: '-', class: 'selectpicker form-control'
     .form-group
       = f.label 'Subjects Assigned', class: 'control-label col-sm-2'
-      .col-sm-8
-        br
+      .col-sm-8.spacer5
         = @experiment.assignments.count
     .form-group
       = f.label 'Subjects Participated', class: 'control-label col-sm-2'
-      .col-sm-8
-        | not implemented yet
+      .col-sm-8.spacer5
+        = Registration.where({session_id: @experiment.sessions, participated: true}).count
   .clearfix
     .form-group.pull-right
       = f.button 'Send invitations', :type => "hz", :class => "btn btn-default"

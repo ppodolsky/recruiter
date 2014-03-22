@@ -1,9 +1,10 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :rangize!
 
   def index
-    nonempty_params = search_params.reject{|a| search_params[a] == ''}
-    @profiles = Profile.where(nonempty_params)
+    puts processed_params
+    @subjects = Subject.all
     respond_to do |format|
       format.js
     end
@@ -11,15 +12,26 @@ class SubjectsController < ApplicationController
   private
   def search_params
     params.permit(
-        :gender => [],
-        :birth_year => (),
-        :class_year => (),
-        :year_started => (),
-        :current_gpa => (),
-        :years_resident => (),
-        :profession => [],
-        :major => [],
-        :ethnicity => []
+      subject: [
+        profile: [
+          :birth_year_from => (),
+          :birth_year_to => (),
+          :year_started_from => (),
+          :year_started_to => (),
+          :years_resident_from => (),
+          :years_resident_to => (),
+          :current_gpa_from => (),
+          :current_gpa_to => (),
+          :gender => [],
+          :class_year => [],
+          :profession => [],
+          :major => [],
+          :ethnicity => []
+        ],
+        :attendance_gpa_from => (),
+        :attendance_gpa_to => (),
+        :never_been => ()
+      ]
     )
   end
 end

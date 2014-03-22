@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(user)
     return dashboard_path if user.is_administrator?
+    return experiments_path if user.is_experimenter?
     return profile_path
   end
 end

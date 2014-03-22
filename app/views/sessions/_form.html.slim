@@ -1,4 +1,4 @@
-= form_for(@session, :url => (params[:action] == 'show' ? experiment_session_path(@session.experiment_id, @session) : experiment_sessions_path(@session.experiment_id))) do |f|
+= form_for(@session, :url => url ) do |f|
   = render "shared/errors"
   fieldset
     legend Session dates
@@ -26,9 +26,7 @@
     .form-group
       = f.label 'Laboratory', :class => "control-label"
       div
-        = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id),
-          prompt: '-',
-          class: 'form-control'
+        = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id), prompt: '-', class: 'form-control'
   .form-group.pull-right
     = link_to 'Back without save', experiment_path(@session.experiment_id), :class => "btn", data: { confirm: 'Are you sure?' }
     = f.submit 'Save', :class => "btn btn-primary"

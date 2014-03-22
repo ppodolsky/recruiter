@@ -1,5 +1,4 @@
 .page-header
   h1
     | New session
-
-= render 'form'
+= render :partial => 'form', :locals => {:url => new_experiment_session_path(@experiment)}

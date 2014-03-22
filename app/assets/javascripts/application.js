@@ -18,3 +18,5 @@
 //= require bootstrap-inputmask
 //= require_tree .
 
+$('.checkbox').checkbox();
+$('.selectpicker').selectpicker();

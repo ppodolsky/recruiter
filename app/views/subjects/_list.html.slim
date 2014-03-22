@@ -8,9 +8,9 @@
           | Last name
         th
     tbody
-      - @subjects.profile.each do | profile |
+      - @subjects.each do | subject |
         tr
           td
-            = profile.first_name
+            = subject.profile.first_name
           td
-            = profile.last_name
+            = subject.profile.last_name

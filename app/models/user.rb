@@ -3,8 +3,6 @@ class User < ActiveRecord::Base
 
   before_validation :set_canonical_name
 
-  has_one :profile
-
   validates_presence_of   :email
   validates_uniqueness_of :email, :case_sensitive => false
 
@@ -20,7 +18,7 @@ class User < ActiveRecord::Base
   def is_administrator?
     self.type == "Administrator"
   end
-  def is_subject
+  def is_subject?
     self.type == "Subject"
   end
 

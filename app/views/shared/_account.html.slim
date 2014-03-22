@@ -5,8 +5,8 @@ ul.nav.navbar-nav.navbar-right
           = current_user.email
           b.caret
         ul.dropdown-menu
-          li
-            = link_to 'Profile', profile_path
+          - if current_user.is_subject?
+            li= link_to 'Profile', profile_path
           li
             a href="#"
               | View schedule
