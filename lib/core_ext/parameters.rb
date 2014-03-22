@@ -1,4 +1,4 @@
-class Array
+class ActionController::Parameters
   def rangize
     @temp = self.copy
     @res = Array.new

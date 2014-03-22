@@ -1,9 +1,8 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :rangize!
 
   def index
-    puts processed_params
+    puts search_params[:subject][:profile].to_a
     @subjects = Subject.all
     respond_to do |format|
       format.js
