@@ -1,64 +1,68 @@
-= form_tag('/subjects', method: "get", class: "form-horizontal" , remote: true) do
+= form_tag(experiment_path(@experiment) + '/subjects', method: "post", class: "form-horizontal" , remote: true) do
   .well
     .form-group
       = label_tag :ethnicity, 'Ethnicity', class: 'control-label col-sm-2'
       .col-sm-4
         - Ethnicity.all.pluck(:name).each do |feature|
-          = check_box_tag('subject[profile][ethnicity][]', feature, true, class: 'checkbox')
+          = check_box_tag('ethnicity[]', feature, true, class: 'checkbox')
           = feature
           br
       = label_tag :class_year, 'Class year', class: 'control-label col-sm-2'
       .col-sm-4
-        - ClassYear.all.pluck(:name).each do |feature|
-          = check_box_tag('subject[profile][class_year][]', feature, true, class: 'checkbox')
-          = feature
+        - ClassYear.all.each do |feature|
+          = check_box_tag('class_year[]', feature.year, true, class: 'checkbox')
+          = feature.name
           br
     .form-group
       = label_tag :profession, 'Profession', class: 'control-label col-sm-2'
       .col-sm-4
         - Profession.all.pluck(:name).each do |feature|
-          = check_box_tag('subject[profile][profession][]', feature, true, class: 'checkbox')
+          = check_box_tag('profession[]', feature, true, class: 'checkbox')
           = feature
           br
       = label_tag :major, 'Major', class: 'control-label col-sm-2'
       .col-sm-4
         - Major.all.pluck(:name).each do |feature|
-          = check_box_tag('subject[profile][major][]', feature, true, class: 'checkbox')
+          = check_box_tag('major[]', feature, true, class: 'checkbox')
           = feature
           br
     .form-group
       = label_tag :gender, 'Gender', class: 'control-label col-sm-2'
-      .col-sm-8
+      .col-sm-4
         - %w[M F].each do |feature|
-          = check_box_tag('subject[profile][gender][]', feature, true, class: 'checkbox')
+          = check_box_tag('gender[]', feature, true, class: 'checkbox')
           = feature
           br
+      = label_tag :never_been, 'Did not participated before', class: 'control-label col-sm-2'
+      .col-sm-4
+        = check_box_tag 'never_been', :never_been, false, class: 'checkbox'
   .well
     .form-group
       = label_tag :birth_year, 'Birth year', class: 'control-label col-sm-2'
       .col-sm-2
-        = select_tag 'subject[profile][birth_year_from]', options_for_select((Time.now.year - 80..Time.now.year - 14).to_a), prompt: 'from', class: 'form-control selectpicker'
-        = select_tag 'subject[profile][birth_year_to]', options_for_select((Time.now.year - 80..Time.now.year - 14).to_a), prompt: 'to', class: 'form-control selectpicker'
+        = select_tag 'birth_year_from', options_for_select(custom_range["birth_year"].to_a), prompt: 'from', class: 'form-control selectpicker'
+        = select_tag 'birth_year_to', options_for_select(custom_range["birth_year"].to_a), prompt: 'to', class: 'form-control selectpicker'
       = label_tag :years_resident, 'Years resident', class: 'control-label col-sm-2'
       .col-sm-2
-        = select_tag 'subject[profile][years_resident_from]', options_for_select((1..10).to_a), prompt: 'from', class: 'form-control selectpicker'
-        = select_tag 'subject[profile][years_resident_to]', options_for_select((1..10).to_a), prompt: 'to', class: 'form-control selectpicker'
+        = select_tag 'years_resident_from', options_for_select(custom_range["years_resident"].to_a), prompt: 'from', class: 'form-control selectpicker'
+        = select_tag 'years_resident_to', options_for_select(custom_range["years_resident"].to_a), prompt: 'to', class: 'form-control selectpicker'
       = label_tag :year_started, 'Year started', class: 'control-label col-sm-2'
       .col-sm-2
-        = select_tag 'subject[profile][year_started_from]', options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse), prompt: 'from', class: 'form-control selectpicker'
-        = select_tag 'subject[profile][year_started_to]', options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse), prompt: 'to', class: 'form-control selectpicker'
+        = select_tag 'year_started_from', options_for_select(custom_range["year_started"].to_a), prompt: 'from', class: 'form-control selectpicker'
+        = select_tag 'year_started_to', options_for_select(custom_range["year_started"].to_a), prompt: 'to', class: 'form-control selectpicker'
     .form-group
       = label_tag :current_gpa, 'GPA', class: 'control-label col-sm-2'
       .col-sm-2
-        = number_field_tag 'subject[profile][current_gpa_from]', nil, in: 0...4, step: 0.01, class: 'form-control', placeholder: 'from'
-        = number_field_tag 'subject[profile][current_gpa_to]', nil, in: 0...4, step: 0.01, class: 'form-control', placeholder: 'to'
+        = number_field_tag 'current_gpa_from', nil, in: custom_range["current_gpa"], step: 0.01, class: 'form-control', placeholder: 'from'
+        = number_field_tag 'current_gpa_to', nil, in: custom_range["current_gpa"], step: 0.01, class: 'form-control', placeholder: 'to'
       = label_tag :attendance, 'Attendance', class: 'control-label col-sm-2'
       .col-sm-2
-        = number_field_tag 'subject[attendance_from]', nil, in: 0...100, step: 5, class: 'form-control', placeholder: 'from'
-        = number_field_tag 'subject[attendance_to]', nil, in: 0...100, step: 5, class: 'form-control', placeholder: 'to'
-      = label_tag :never_been, 'Did not participated before', class: 'control-label col-sm-2'
+        = number_field_tag 'attendance_from', nil, in: custom_range["attendance"], step: 5, class: 'form-control', placeholder: 'from'
+        = number_field_tag 'attendance_to', nil, in: custom_range["attendance"], step: 5, class: 'form-control', placeholder: 'to'
+      = label_tag :required_number, 'Required', class: 'control-label col-sm-2'
       .col-sm-2
-        = check_box_tag 'subject[never_been]', :never_been, false, class: 'checkbox'
+        = number_field_tag 'required_subjects', nil, step: 5, class: 'form-control', placeholder: 'subjects'
+
   .clearfix
     .pull-right
-      = button_tag 'Assign subjects', :type => 'submit', :class => 'btn btn-small btn-primary'
+      = button_tag 'Assign subjects', :type => 'submit', :class => 'btn btn-small btn-primary', :id => 'subjects-button'

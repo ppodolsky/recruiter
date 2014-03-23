@@ -10,9 +10,9 @@ Recruiter::Application.routes.draw do
   resources :sessions
   resources :experiments do
     resources :sessions
+    post 'subjects', to: 'subjects#assign'
   end
   resource :profile, only: [:show, :create, :update]
-  resources :subjects, only: [:index]
 
 
   # static page overrides for CMS

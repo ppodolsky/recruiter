@@ -13,7 +13,7 @@ class Profile < ActiveRecord::Base
 
   normalize_attributes :secondary_email
 
-  [:first_name, :last_name, :profession, :ethnicity, :class_year].each do |attribute|
+  [:first_name, :last_name].each do |attribute|
     normalize_attribute attribute do |value|
       value.is_a?(String) ? value.titleize.strip : value
     end

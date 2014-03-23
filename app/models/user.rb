@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_paper_trail
 
   before_validation :set_canonical_name
+  before_save :default_values
 
   validates_presence_of   :email
   validates_uniqueness_of :email, :case_sensitive => false
@@ -29,5 +30,8 @@ class User < ActiveRecord::Base
 private
   def set_canonical_name
     self.username = self.email.split(/@/).first
+  end
+  def default_values
+    self.type ||= 'Subject'
   end
 end

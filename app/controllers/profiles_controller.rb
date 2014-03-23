@@ -2,27 +2,18 @@ require 'exceptions'
 class ProfilesController < InheritedResources::Base
   before_action :authenticate_user!
   before_action :check_permissions
+  before_action :create_if_nil
   defaults :singleton => true
   actions :show, :update
 
-  def show
-    if(current_user.profile.nil?)
-      @profile = Profile.new(user: current_user)
-    else
-      @profile = current_user.profile
-    end
-    show!
-  end
-  def update
-    if(current_user.profile.nil?)
-      @profile = Profile.new(user: current_user)
-    else
-      @profile = current_user.profile
-    end
-    update!
-  end
-
   private
+    def create_if_nil
+      if(current_user.profile.nil?)
+        @profile = Profile.new(user: current_user)
+      else
+        @profile = current_user.profile
+      end
+    end
     def check_permissions
       raise Exceptions::Permission.new "Only subjects can have profile" if not current_user.is_subject?
     end

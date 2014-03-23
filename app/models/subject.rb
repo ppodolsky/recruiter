@@ -9,12 +9,15 @@ class Subject < User
 
   attr_reader :attendance, :never_been
   def attendance
-    registrations.where(shown_up: true).count / registrations.count if registrations.count != 0 else "Hasn't reigistred yet"
+    registrations.count != 0 ? registrations.where(shown_up: true).count / registrations.count : "Hasn't reigistred yet"
   end
   def never_been
     registrations.where(shown_up: true).count == 0
   end
-  def self.full
-    Subject.new(profile: Profile.new(major: %w[M F]))
+  def registrations_count
+    attributes['registrations_count']
+  end
+  def shown_up_count
+    attributes['shown_up_count']
   end
 end

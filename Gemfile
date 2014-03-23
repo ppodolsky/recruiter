@@ -22,6 +22,9 @@ gem 'unicorn', require: false, group: :production # server
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
 gem 'pg' # datastore
 
+# https://github.com/drnic/composite_primary_keys
+gem 'composite_primary_keys'
+
 # https://github.com/josevalim/inherited_resources
 gem 'inherited_resources' # DRY controllers
 
@@ -85,6 +88,9 @@ gem 'delayed_job_active_record'
 
 # https://github.com/mhfs/devise-async
 gem 'devise-async' # send e-mails in background
+
+# https://github.com/matthuhiggins/foreigner
+gem 'foreigner'
 
 # https://github.com/binarylogic/settingslogic
 gem 'settingslogic' # manage application configuration, useful for whitelabeling
