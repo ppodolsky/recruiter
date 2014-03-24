@@ -1,4 +1,4 @@
-= form_tag(experiment_path(@experiment) + '/subjects', method: "post", class: "form-horizontal" , remote: true) do
+= form_tag(experiment_path(@experiment) + '/subjects', method: "post", class: "form-horizontal") do
   .well
     .form-group
       = label_tag :ethnicity, 'Ethnicity', class: 'control-label col-sm-2'

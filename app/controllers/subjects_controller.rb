@@ -23,19 +23,22 @@ class SubjectsController < ApplicationController
                                      attendance.max,
                                      search_params[:never_been].nil?]
     if @subjects.count >= search_params[:required_subjects].to_i
-      Experiment.find(search_params[:experiment_id]).subjects << @subjects
-      respond_to do |format|
-        format.js {
-          render 'assigned'
-        }
-      end
+      @subjects.shuffle!(random: Random.new(1))
+      @assigned_count = search_params[:required_subjects].to_i
+      @experiment = Experiment.find(search_params[:experiment_id])
+      @experiment.subjects << @subjects[1..@assigned_count]
+      Rails.cache.write('left_subjects', @subjects[@assigned_count..-1])
+      render 'assigned'
     else
-      respond_to do |format|
-        format.js {
-          render 'fault'
-        }
-      end
+      render 'fault'
     end
+  end
+  def left
+    @subjects = Rails.cache.read('left_subjects')
+    @assigned_count = @subjects.count
+    @experiment = Experiment.find(search_params[:experiment_id])
+    @experiment.subjects << @subjects
+    render 'assigned'
   end
   private
   def search_params

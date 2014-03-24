@@ -8,9 +8,12 @@ Recruiter::Application.routes.draw do
   devise_for :users
 
   resources :sessions
+
+  get 'experiments/all', to: 'experiments#all'
   resources :experiments do
-    resources :sessions
     post 'subjects', to: 'subjects#assign'
+    post 'left', to: 'subjects#left'
+    resources :sessions
   end
   resource :profile, only: [:show, :create, :update]
 

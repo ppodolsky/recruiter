@@ -16,6 +16,8 @@
         th
           | Assigned
         th
+          small.pull-right
+            = link_to @filter_title, @filter_url
     tbody
       - @experiments.each do | experiment |
         tr id="experiment_#{experiment.id}"
