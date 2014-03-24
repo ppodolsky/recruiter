@@ -4,4 +4,5 @@ class Assignment < ActiveRecord::Base
   self.primary_keys = :subject_id, :experiment_id
   belongs_to :subject
   belongs_to :experiment
+
 end

@@ -3,6 +3,9 @@ class ExperimentsController < InheritedResources::Base
   custom_actions :collection => :all
   respond_to :js, :only => :destroy
 
+  def create
+    @experiment
+  end
   def index
     @experiments = Experiment.where(creator_id: current_user.id)
     @filter_title = 'show all'
