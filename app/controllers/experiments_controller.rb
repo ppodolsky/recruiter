@@ -4,7 +4,8 @@ class ExperimentsController < InheritedResources::Base
   respond_to :js, :only => :destroy
 
   def create
-    @experiment
+    @experiment = Experiment.new(creator_id: current_user.id)
+    create!
   end
   def index
     @experiments = Experiment.where(creator_id: current_user.id)

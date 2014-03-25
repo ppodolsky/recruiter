@@ -26,11 +26,11 @@
     .form-group
       = f.label 'Subjects Assigned', class: 'control-label col-sm-2'
       .col-sm-8.spacer5
-        = @experiment.assignments.count
+        = link_to @experiment.assignments.count, experiment_path(@experiment) + '/subjects', :class => 'lead'
     .form-group
       = f.label 'Subjects Participated', class: 'control-label col-sm-2'
       .col-sm-8.spacer5
-        = Registration.where({session_id: @experiment.sessions, participated: true}).count
+        = link_to Registration.where({session_id: @experiment.sessions, participated: true}).count, experiment_path(@experiment) + '/none', :class => 'lead'
   .clearfix
     .form-group.pull-right
       = f.button 'Send invitations', :type => "hz", :class => "btn btn-default"

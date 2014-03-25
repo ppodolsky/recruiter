@@ -12,6 +12,8 @@ Recruiter::Application.routes.draw do
   get 'experiments/all', to: 'experiments#all'
   resources :experiments do
     post 'subjects', to: 'subjects#assign'
+    get 'subjects', to: 'subjects#index'
+    delete 'subjects', to: 'subjects#delete'
     post 'left', to: 'subjects#left'
     resources :sessions
   end

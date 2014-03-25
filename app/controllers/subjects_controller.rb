@@ -1,6 +1,16 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
 
+  def index
+    @experiment = Experiment.find(params[:experiment_id])
+    @subjects = @experiment.subjects
+    render 'index'
+  end
+  def delete
+    @experiment = Experiment.find(params[:experiment_id])
+    @experiment.subjects.delete_all
+    redirect_to experiment_path @experiment
+  end
   def assign
     processed_params = Hash.new
     %w[gender class_year profession major ethnicity].each do |f|

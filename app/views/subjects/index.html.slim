@@ -1,0 +1,28 @@
+.page-header
+  h1
+    | Assigned
+    |  subjects
+.table-responsive
+  table.table.table-condensed.table-borderless.table-hover
+    thead
+      tr
+        th
+          | First name
+        th
+          | Last name
+        th
+          | Age
+        th
+          | Email
+    tbody
+      - @subjects.each do | subject |
+        tr class = (@experiment.sessions.any? { |o| o.registrations.where(subject: subject, shown_up: true).count > 0 } ? 'success' : '')
+          td
+            = subject.profile.first_name
+          td
+            = subject.profile.last_name
+          td
+            = Time.now.year - subject.profile.birth_year
+          td
+            = subject.email
+= link_to 'Remove all', experiment_path(@experiment) + '/subjects', method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
