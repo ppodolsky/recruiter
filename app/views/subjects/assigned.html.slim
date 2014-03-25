@@ -4,8 +4,8 @@
 .alert.alert-success
   | Successfully assigned #{pluralize(@assigned_count, 'subject')}.
   - if @subjects.count - @assigned_count > 0
-    |  You can #{link_to 'assign ' + pluralize(@subjects.count - @assigned_count, 'subject') + ' left', experiment_path(@experiment) + '/left', :method => 'post', :class=>'alert-link'}
+    |  You can #{link_to 'assign ' + pluralize(@assigned_left, 'subject') + ' left', experiment_path(@experiment) + '/left', :method => 'post', :class=>'alert-link'}
     |  or #{link_to 'go back', experiment_path(@experiment), :class=>'alert-link'}
-- if @subjects.count - @assigned_count = 0
+- if @assigned_left = 0
   .pull-left
     = link_to '< Back', experiment_path(@experiment), :class=>'btn btn-default'

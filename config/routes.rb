@@ -14,8 +14,11 @@ Recruiter::Application.routes.draw do
     post 'subjects', to: 'subjects#assign'
     get 'subjects', to: 'subjects#index'
     delete 'subjects', to: 'subjects#delete'
+    delete 'subjects/:subject_id', to: 'subjects#delete'
     post 'left', to: 'subjects#left'
-    resources :sessions
+    resources :sessions do
+      get 'online', to: 'sessions#online'
+    end
   end
   resource :profile, only: [:show, :create, :update]
 

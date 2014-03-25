@@ -3,6 +3,10 @@ class SessionsController < InheritedResources::Base
   respond_to :js, :only => :destroy
   actions :index, :edit, :show, :update, :create, :new, :destroy
 
+  def online
+    @subjects = Session.find(params[:session_id]).subjects
+    render 'online'
+  end
   def update
     update! { experiment_path @session.experiment }
   end

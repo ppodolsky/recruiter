@@ -1,0 +1,38 @@
+.page-header
+  .pull-right
+    = link_to 'New subject', '/huita', method: :post, :class => 'pull-right'
+  h1
+    | Session
+    |  subjects
+.table-responsive
+  table.table.table-condensed.table-borderless.table-hover
+    thead
+      tr
+        th
+          | ID
+        th
+          | G#
+        th
+          | First name
+        th
+          | Last name
+        th
+          | Shown up
+        th
+          | Participated
+    tbody
+      - @subjects.each do | subject |
+        tr
+          td
+            = subject.id
+          td
+            = subject.profile.gsharp
+          td
+            = subject.profile.first_name
+          td
+            = subject.profile.last_name
+          td
+            = check_box_tag 'shown_up', nil, false, class: 'checkbox'
+          td
+            = check_box_tag 'participated', nil, false, class: 'checkbox'
+= link_to 'Finish session', '/huita', method: :post, :class => 'pull-right btn btn-xs btn-primary', data: { confirm: 'Are you sure?' }

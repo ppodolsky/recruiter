@@ -14,6 +14,7 @@
           | Age
         th
           | Email
+        th
     tbody
       - @subjects.each do | subject |
         tr class = (@experiment.sessions.any? { |o| o.registrations.where(subject: subject, shown_up: true).count > 0 } ? 'success' : '')
@@ -25,4 +26,7 @@
             = Time.now.year - subject.profile.birth_year
           td
             = subject.email
+          td
+            = link_to 'Remove', experiment_path(@experiment) + '/subjects/' + subject.id, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+
 = link_to 'Remove all', experiment_path(@experiment) + '/subjects', method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }

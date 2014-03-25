@@ -8,10 +8,15 @@ class SubjectsController < ApplicationController
   end
   def delete
     @experiment = Experiment.find(params[:experiment_id])
-    @experiment.subjects.delete_all
+    if(params[:subject_id])
+      @experiment.subjects.delete params[:subject_id]
+    else
+      @experiment.subjects.delete_all
+    end
     redirect_to experiment_path @experiment
   end
   def assign
+    @experiment = Experiment.find(search_params[:experiment_id])
     processed_params = Hash.new
     %w[gender class_year profession major ethnicity].each do |f|
       processed_params[f] = search_params[f]
@@ -32,10 +37,10 @@ class SubjectsController < ApplicationController
                                      attendance.min,
                                      attendance.max,
                                      search_params[:never_been].nil?]
+    @subjects.shuffle!(random: Random.new(1))
     if @subjects.count >= search_params[:required_subjects].to_i
-      @subjects.shuffle!(random: Random.new(1))
       @assigned_count = search_params[:required_subjects].to_i
-      @experiment = Experiment.find(search_params[:experiment_id])
+      @assigned_left = @subjects.count - search_params[:required_subjects].to_i
       @experiment.subjects << @subjects[1..@assigned_count]
       Rails.cache.write('left_subjects', @subjects[@assigned_count..-1])
       render 'assigned'
@@ -44,10 +49,11 @@ class SubjectsController < ApplicationController
     end
   end
   def left
-    @subjects = Rails.cache.read('left_subjects')
-    @assigned_count = @subjects.count
     @experiment = Experiment.find(search_params[:experiment_id])
+    @subjects = Rails.cache.read('left_subjects')
     @experiment.subjects << @subjects
+    @assigned_count = @subjects.count
+    @assigned_left = 0
     render 'assigned'
   end
   private

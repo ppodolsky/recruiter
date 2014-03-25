@@ -27,6 +27,8 @@
       = f.label 'Laboratory', :class => "control-label"
       div
         = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id), prompt: '-', class: 'form-control'
+  .pull-left
+    = link_to 'Start session', experiment_session_path(@session.experiment_id, @session) + '/online', :class => "btn btn-success"
   .form-group.pull-right
     = link_to 'Back without save', experiment_path(@session.experiment_id), :class => "btn", data: { confirm: 'Are you sure?' }
     = f.submit 'Save', :class => "btn btn-primary"
