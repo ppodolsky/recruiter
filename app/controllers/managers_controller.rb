@@ -15,8 +15,12 @@ class ManagersController < ApplicationController
       @manager = @managers.first
       @manager.type = permitted_params[:type]
       @manager.save!
-      index
-    else @managers.count != 1
+      render 'add_success'
+    elsif @managers.count == 0
+      @error_msg = 'This user cannot be found'
+      render 'add_fail'
+    else
+      @error_msg = 'Too many found were found'
       render 'add_fail'
     end
   end

@@ -26,7 +26,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :async
-
+  [:first_name, :last_name].each do |attribute|
+    normalize_attribute attribute do |value|
+      value.is_a?(String) ? value.titleize.strip : value
+    end
+  end
 private
   def set_canonical_name
     self.username = self.email.split(/@/).first

@@ -4,7 +4,7 @@ class Profile < ActiveRecord::Base
   belongs_to :user, :class_name => 'Subject', inverse_of: :profile
 
 
-  validates_presence_of :first_name, :last_name, :gender, :birth_year,
+  validates_presence_of :gender, :birth_year,
     :ethnicity, :years_resident, :class_year, :year_started,
     :current_gpa, :phone, :major, :profession, presence: true
 
@@ -12,10 +12,4 @@ class Profile < ActiveRecord::Base
   validates :secondary_email, uniqueness: true, allow_blank: true
 
   normalize_attributes :secondary_email
-
-  [:first_name, :last_name].each do |attribute|
-    normalize_attribute attribute do |value|
-      value.is_a?(String) ? value.titleize.strip : value
-    end
-  end
 end
