@@ -12,7 +12,7 @@ class Session < ActiveRecord::Base
       errors.add(:end_time, "cannot be lesser than start time with duration")
     end
     if registration_deadline > start_time
-      errors.add(:registration_deadline, "cannot be lesser than start time")
+      errors.add(:registration_deadline, "cannot be later than start time")
     end
   end
 end

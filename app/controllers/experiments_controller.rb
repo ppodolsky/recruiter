@@ -4,13 +4,14 @@ class ExperimentsController < InheritedResources::Base
   respond_to :js, :only => :destroy
 
   def create
-    @experiment = Experiment.new(creator_id: current_user.id)
+    @experiment = Experiment.new(permitted_params[:experiment])
+    @experiment.experimenter = current_user
     create!
   end
   def index
-    @experiments = Experiment.where(creator_id: current_user.id)
+    @experiments = Experiment.where(experimenter: current_user)
     @filter_title = 'show all'
-    @filter_url = experiments_path + '/all'
+    @filter_url = experiments_all_path
     index!
   end
   def all

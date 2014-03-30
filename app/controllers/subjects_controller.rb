@@ -40,20 +40,20 @@ class SubjectsController < ApplicationController
     @subjects.shuffle!(random: Random.new(1))
     if @subjects.count >= search_params[:required_subjects].to_i
       @assigned_count = search_params[:required_subjects].to_i
-      @assigned_left = @subjects.count - search_params[:required_subjects].to_i
+      @remained_subjects_count = @subjects.count - search_params[:required_subjects].to_i
       @experiment.subjects << @subjects[1..@assigned_count]
-      Rails.cache.write('left_subjects', @subjects[@assigned_count..-1])
+      Rails.cache.write('remained_subjects', @subjects[@assigned_count..-1])
       render 'assigned'
     else
       render 'fault'
     end
   end
-  def left
+  def remained
     @experiment = Experiment.find(search_params[:experiment_id])
-    @subjects = Rails.cache.read('left_subjects')
+    @subjects = Rails.cache.read('remained_subjects')
     @experiment.subjects << @subjects
     @assigned_count = @subjects.count
-    @assigned_left = 0
+    @remained_subjects_count = 0
     render 'assigned'
   end
   private

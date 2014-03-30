@@ -9,13 +9,13 @@ Recruiter::Application.routes.draw do
 
   resources :sessions
 
-  get 'experiments/all', to: 'experiments#all'
+  get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
   resources :experiments do
     post 'subjects', to: 'subjects#assign'
     get 'subjects', to: 'subjects#index'
     delete 'subjects', to: 'subjects#delete'
-    delete 'subjects/:subject_id', to: 'subjects#delete'
-    post 'left', to: 'subjects#left'
+    delete 'subjects/:subject', to: 'subjects#delete', as: 'subject'
+    post 'remained', to: 'subjects#remained'
     resources :sessions do
       get 'online', to: 'sessions#online'
     end

@@ -27,6 +27,6 @@
           td
             = subject.email
           td
-            = link_to 'Remove', experiment_path(@experiment) + '/subjects/' + subject.id, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+            = link_to 'Remove', experiment_subject(@experiment, subject), method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
 
-= link_to 'Remove all', experiment_path(@experiment) + '/subjects', method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+= link_to 'Remove all', experiment_subjects, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }

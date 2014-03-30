@@ -1,7 +1,4 @@
 .page-header
-  = link_to new_experiment_path, :class => 'btn btn-primary' do
-    span.glyphicon.glyphicon-plus
-    |  New Experiment
   h1
     | Listing experiments
 
@@ -17,7 +14,7 @@
           | Assigned
         th
           small.pull-right
-            = link_to @filter_title, @filter_url
+            = link_to @filter_title, @filter_url, class: 'lead'
     tbody
       - @experiments.each do | experiment |
         tr id="experiment_#{experiment.id}"
@@ -30,3 +27,6 @@
           td
             .btn-group.pull-right
               = link_to 'Remove', experiment.becomes(Experiment), remote: true, method: :delete, :class => 'btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+= link_to new_experiment_path, :class => 'btn btn-primary pull-right' do
+  span.glyphicon.glyphicon-plus
+  |  New Experiment

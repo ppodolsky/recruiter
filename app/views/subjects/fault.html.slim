@@ -3,4 +3,4 @@
     | Failed assignment
 .alert.alert-danger
   | <b>Gone bad.</b> There are only #{pluralize(@subjects.count, 'subject')}.
-  |  You can #{link_to 'assign them', experiment_path(@experiment) + '/left', :method => 'post', :class=>'alert-link'} or #{link_to 'go back', experiment_path(@experiment), :class=>'alert-link'}
+  |  You can #{link_to 'assign them', experiment_path(@experiment) + '/remained', :method => 'post', :class=>'alert-link'} or #{link_to 'go back', experiment_path(@experiment), :class=>'alert-link'}
