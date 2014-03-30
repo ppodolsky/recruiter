@@ -12,4 +12,20 @@
  *= require_self
  *= require jquery.ui.all
  */
-
+.danger{
+    color: darkred;
+}
+.green{
+    color: darkgreen;
+}
+.classic{
+    color: darkgoldenrod;
+}
+.spacer-right10{
+    margin-right: 10px;
+}
+.vbottom {
+    display: inline-block;
+    vertical-align: bottom;
+    float: none;
+}

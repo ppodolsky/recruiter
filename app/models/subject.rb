@@ -9,7 +9,7 @@ class Subject < User
 
   attr_reader :attendance, :never_been
   def attendance
-    registrations.count != 0 ? registrations.where(shown_up: true).count / registrations.count : "Hasn't reigistred yet"
+    registrations.count != 0 ? registrations.where(shown_up: true).count / registrations.count : 100
   end
   def never_been
     registrations.where(shown_up: true).count == 0

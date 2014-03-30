@@ -61,7 +61,7 @@
         = number_field_tag 'attendance_to', nil, in: custom_range["attendance"], step: 5, class: 'form-control', placeholder: 'to'
       = label_tag :required_number, 'Required', class: 'control-label col-sm-2'
       .col-sm-2
-        = number_field_tag 'required_subjects', nil, step: 5, class: 'form-control', placeholder: 'subjects'
+        = number_field_tag 'required_subjects', 1, min: 1, class: 'form-control', placeholder: 'subjects'
 
   .clearfix
     .pull-right

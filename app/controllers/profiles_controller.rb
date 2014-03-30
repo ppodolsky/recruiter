@@ -20,8 +20,6 @@ class ProfilesController < InheritedResources::Base
     def permitted_params
       params.permit(:profile => [
         :secondary_email,
-        :first_name,
-        :last_name,
         :phone,
         :gender,
         :ethnicity,

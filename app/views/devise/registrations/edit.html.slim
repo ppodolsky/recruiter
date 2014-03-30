@@ -5,6 +5,25 @@ div.row
     = render "shared/errors"
     div.form-horizontal role='form'
       div.form-group
+        = f.label :first_name, class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.text_field :first_name,
+            class: 'form-control',
+            maxlength: 30
+            autofocus: true
+      div.form-group
+        = f.label :last_name, class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.text_field :last_name,
+            class: 'form-control',
+            maxlength: 30
+      div.form-group
+        = f.label 'G#', class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.text_field :gsharp,
+            class: 'form-control',
+            maxlength: 9
+      div.form-group
         = f.label :email, class: 'control-label col-sm-2'
         div.col-sm-8
           = f.email_field :email, :autofocus => true, class: 'form-control'
@@ -16,16 +35,16 @@ div.row
       div.form-group
         = f.label :password, class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.password_field :password, :autocomplete => "off", class: 'form-control'
+          = f.password_field :password, autocomplete: :off, class: 'form-control'
           span.help-block Leave blank if you don't want to change it.
       div.form-group
         = f.label :password_confirmation, class: 'control-label col-sm-2'
         div.col-sm-8
           = f.password_field :password_confirmation, class: 'form-control'
       div.form-group
-        = f.label :current_password, class: 'control-label col-sm-2'
+        = f.label :current_password,  class: 'control-label col-sm-2'
         div.col-sm-8
-          = f.password_field :current_password, class: 'form-control'
+          = f.password_field :current_password, autocomplete: :off, class: 'form-control'
           span.help-block Leave blank if you don't want to change it.
       div.form-group
         div= f.submit "Update", class: 'btn btn-large btn-primary col-sm-offset-2'

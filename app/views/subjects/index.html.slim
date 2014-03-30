@@ -3,7 +3,7 @@
     | Assigned
     |  subjects
 .table-responsive
-  table.table.table-condensed.table-borderless.table-hover
+  table.table.table-condensed.table-borderless
     thead
       tr
         th
@@ -17,7 +17,7 @@
         th
     tbody
       - @subjects.each do | subject |
-        tr class = (@experiment.sessions.any? { |o| o.registrations.where(subject: subject, shown_up: true).count > 0 } ? 'success' : '')
+        tr id="subject_#{subject.id}" class = (@experiment.sessions.any? { |o| o.registrations.where(subject: subject, shown_up: true).count > 0 } ? 'success' : '')
           td
             = subject.profile.first_name
           td
@@ -27,6 +27,6 @@
           td
             = subject.email
           td
-            = link_to 'Remove', experiment_subject(@experiment, subject), method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+            = link_to 'Remove', experiment_subject_path(@experiment, subject), method: :delete, remote: true, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
 
-= link_to 'Remove all', experiment_subjects, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }
+= link_to 'Remove all', experiment_subjects_path, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'Are you sure?' }

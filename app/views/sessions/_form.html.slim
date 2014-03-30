@@ -28,5 +28,5 @@
       div
         = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id), prompt: '-', class: 'form-control'
   .form-group.pull-right
-    = link_to 'Back without save', experiment_path(@session.experiment_id), :class => "btn", data: { confirm: 'Are you sure?' }
+    = link_to 'Back without save', experiment_path(@session.experiment_id) + '#sessions', :class => "btn", data: { confirm: 'Are you sure?' }
     = f.submit 'Save', :class => "btn btn-primary"

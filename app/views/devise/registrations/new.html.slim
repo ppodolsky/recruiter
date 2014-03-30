@@ -4,6 +4,25 @@ div.row
     = render "shared/errors"
     div.form-horizontal role='form'
       div.form-group
+        = f.label :first_name, class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.text_field :first_name,
+            class: 'form-control',
+            maxlength: 30
+            autofocus: true
+      div.form-group
+        = f.label :last_name, class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.text_field :last_name,
+            class: 'form-control',
+            maxlength: 30
+      div.form-group
+        = f.label 'G#', class: 'control-label col-sm-2'
+        div.col-sm-8
+          = f.text_field :gsharp,
+            class: 'form-control',
+            maxlength: 9
+      div.form-group
         = f.label :email, class: 'control-label col-sm-2'
         div.col-sm-8
           = f.email_field :email, :autofocus => true, class: 'form-control'

@@ -1,11 +1,13 @@
 .page-header
   .pull-right
-    = link_to 'New subject', '/huita', method: :post, :class => 'pull-right'
   h1
     | Session
     |  subjects
+.btn-toolbar role="toolbar"
+  .btn-group
+    = link_to 'New subject', '/huita', method: :post, class: 'btn btn-xs btn-default'
 .table-responsive
-  table.table.table-condensed.table-borderless.table-hover
+  table.table.table-borderless
     thead
       tr
         th
@@ -13,26 +15,29 @@
         th
           | G#
         th
-          | First name
-        th
-          | Last name
+          | Name
         th
           | Shown up
         th
           | Participated
+        th
+          | $
     tbody
-      - @subjects.each do | subject |
+      - @session.subjects.each do | subject |
         tr
           td
             = subject.id
           td
             = subject.profile.gsharp
           td
-            = subject.profile.first_name
-          td
-            = subject.profile.last_name
+            = subject.name
           td
             = check_box_tag 'shown_up', nil, false, class: 'checkbox'
           td
             = check_box_tag 'participated', nil, false, class: 'checkbox'
-= link_to 'Finish session', '/huita', method: :post, :class => 'pull-right btn btn-xs btn-primary', data: { confirm: 'Are you sure?' }
+          td
+            = number_field_tag 'paid', 0, min: 0, class: 'form-control', placeholder: 'paid'
+= link_to 'Save state', session_finish_path(@session), method: :post, :class => 'pull-right btn btn-primary', data: { confirm: 'Are you sure?' }
+.clearfix
+.text-center
+  = link_to 'Finish session', session_finish_path(@session), method: :post, :class => 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }

@@ -4,14 +4,14 @@ class SessionsController < InheritedResources::Base
   actions :index, :edit, :show, :update, :create, :new, :destroy
 
   def online
-    @subjects = Session.find(params[:session_id]).subjects
+    @session = Session.find(params[:session_id])
     render 'online'
   end
   def update
-    update! { experiment_path @session.experiment }
+    update! { experiment_path(@session.experiment) + '#sessions' }
   end
   def create
-    create! { experiment_path @session.experiment }
+    create! { experiment_path(@session.experiment) + '#sessions'  }
   end
   def destroy
     @session_id = params[:id]

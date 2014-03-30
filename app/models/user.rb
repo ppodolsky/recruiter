@@ -4,13 +4,13 @@ class User < ActiveRecord::Base
   before_validation :set_canonical_name
   before_save :default_values
 
-  validates_presence_of   :email
+  validates_presence_of   :email, :first_name, :last_name, :gsharp
   validates_uniqueness_of :email, :case_sensitive => false
 
   validates_uniqueness_of :username, :case_sensitive => false
 
   def name
-    "#{self.profile.first_name} #{self.profile.last_name}"
+    "#{self.first_name} #{self.last_name}"
   end
 
   def is_experimenter?

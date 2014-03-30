@@ -4,18 +4,18 @@
   .tabbable
     ul.nav.nav-tabs
       li.active
-        a href="#s1" data-toggle="tab"
+        a href="#general" data-toggle="tab"
           |  General
       li
-        a href="#s2" data-toggle="tab"
+        a href="#sessions" data-toggle="tab"
           |  Sessions
       li
-        a href="#s3" data-toggle="tab"
+        a href="#sp" data-toggle="tab"
           |  Subject pool
     .tab-content
-      #s1.tab-pane.active
+      #general.tab-pane.active
         = render 'general'
-      #s2.tab-pane
+      #sessions.tab-pane
         = render 'sessions'
-      #s3.tab-pane
+      #sp.tab-pane
         = render 'subject_pool'

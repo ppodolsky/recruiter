@@ -1,18 +1,20 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
+  before_action :check_permissions
 
   def index
     @experiment = Experiment.find(params[:experiment_id])
     @subjects = @experiment.subjects
     render 'index'
   end
-  def delete
+  def destroy
     @experiment = Experiment.find(params[:experiment_id])
-    if(params[:subject_id])
-      @experiment.subjects.delete params[:subject_id]
-    else
-      @experiment.subjects.delete_all
-    end
+    @subject_id = params[:subject]
+    @experiment.subjects.delete params[:subject]
+  end
+  def destroy_all
+    @experiment = Experiment.find(params[:experiment_id])
+    @experiment.subjects.delete_all
     redirect_to experiment_path @experiment
   end
   def assign
@@ -33,10 +35,15 @@ class SubjectsController < ApplicationController
       LEFT OUTER JOIN (select subject_id, count(*) as registrations_count from registrations group by subject_id) r1 on (r1.subject_id = u.id)
       LEFT OUTER JOIN (select subject_id, count(*) as shown_up_count from registrations where registrations.participated = true group by subject_id) r2 on (r2.subject_id = u.id)
       WHERE u.id in (?) and COALESCE((r2.shown_up_count / r1.registrations_count),100) between ? and ? and (? or r1.registrations_count > 0)',
-                                     Profile.where(processed_params).pluck(:user_id),
+                                     Profile
+                                     .where(processed_params)
+                                     .where.not(user_id:
+                                                    Assignment.where(experiment_id: @experiment.id).pluck(:subject_id))
+                                     .pluck(:user_id),
                                      attendance.min,
                                      attendance.max,
                                      search_params[:never_been].nil?]
+    puts @subjects.count
     @subjects.shuffle!(random: Random.new(1))
     if @subjects.count >= search_params[:required_subjects].to_i
       @assigned_count = search_params[:required_subjects].to_i
@@ -57,6 +64,9 @@ class SubjectsController < ApplicationController
     render 'assigned'
   end
   private
+  def check_permissions
+    raise Exceptions::Permission.new "Only administrators can manage assigned subjects" if not current_user.is_administrator?
+  end
   def search_params
     params.permit(
       :birth_year_from,
