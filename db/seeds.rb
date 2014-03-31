@@ -20,3 +20,4 @@ end
 (['White', 'Black', 'Asian', 'Hispanic', 'Other']).each do |feature|
   Ethnicity.create({ name: feature })
 end
+

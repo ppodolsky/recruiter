@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_paper_trail
 
+  has_many :experiments
+
   before_validation :set_canonical_name
   before_save :default_values
 

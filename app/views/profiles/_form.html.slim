@@ -3,6 +3,27 @@
   div
     fieldset
       legend Personal information
+      /*= f.fields_for :user do |u|
+        div.form-group
+          = u.label :first_name, class: 'control-label col-sm-2'
+          div.col-sm-8
+            = u.text_field :first_name,
+              class: 'form-control',
+              maxlength: 30
+              autofocus: true
+        div.form-group
+          = u.label :last_name, class: 'control-label col-sm-2'
+          div.col-sm-8
+            = u.text_field :last_name,
+              class: 'form-control',
+              maxlength: 30
+        div.form-group
+          = u.label 'G#', class: 'control-label col-sm-2'
+          div.col-sm-8
+            = u.text_field :gsharp,
+              class: 'form-control',
+              maxlength: 9,
+              minlength: 9*/
       div.form-group
         = f.label :gender, class: 'control-label col-sm-2'
         div.col-sm-8

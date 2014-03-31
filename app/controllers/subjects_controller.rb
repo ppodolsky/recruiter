@@ -44,15 +44,15 @@ class SubjectsController < ApplicationController
                                      attendance.min,
                                      attendance.max,
                                      search_params[:never_been].nil?]
-    puts @subjects.count
     @subjects.shuffle!(random: Random.new(1))
     if @subjects.count >= search_params[:required_subjects].to_i
       @assigned_count = search_params[:required_subjects].to_i
       @remained_subjects_count = @subjects.count - search_params[:required_subjects].to_i
-      @experiment.subjects << @subjects[1..@assigned_count]
+      @experiment.subjects << (@subjects.count != 1 ? @subjects[0...@assigned_count] : @subjects)
       Rails.cache.write('remained_subjects', @subjects[@assigned_count..-1])
       render 'assigned'
     else
+      Rails.cache.write('remained_subjects', @subjects)
       render 'fault'
     end
   end

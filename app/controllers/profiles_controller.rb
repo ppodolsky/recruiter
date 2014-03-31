@@ -26,7 +26,12 @@ class ProfilesController < InheritedResources::Base
         :current_gpa,
         :years_resident,
         :profession,
-        :major
+        :major,
+        :user_attributes => [
+            :first_name,
+            :last_name,
+            :gsharp
+        ],
       ])
     end
   private

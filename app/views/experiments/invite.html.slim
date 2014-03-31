@@ -1,0 +1,28 @@
+.page-header
+  h1
+    | Send invitations
+= form_tag('/hurma', method: :post, class: 'form-horizontal') do
+  .row
+    textarea.col-sm-10.form-control
+  .row
+    = link_to 'Save', :back, class: "btn btn-default pull-right"
+  .row.spacer-top20
+    fieldset
+      .form-group
+        = label_tag :assigned, 'Assigned', class: "col-sm-2 control-label"
+        .col-sm-8
+          = @experiment.subjects.count
+      .form-group
+        = label_tag :participated, 'Participated', class: "col-sm-2 control-label"
+        .col-sm-10
+          = Registration.where({session_id: @experiment.sessions, participated: true}).count
+      .form-group
+        = label_tag :invited, 'Invited', class: "col-sm-2 control-label"
+        .col-sm-10
+          | Poka nihuya net
+      .form-group
+        = label_tag :amount, 'Invited', class: "col-sm-2 control-label"
+        .col-sm-2
+          = number_field_tag :amount, 1, min: 1, class: 'form-control'
+    = link_to 'Send!', experiment_invite_path(@experiment), class: "pull-right btn btn-primary"
+    = link_to 'Back', :back, class: "pull-left btn btn-default"

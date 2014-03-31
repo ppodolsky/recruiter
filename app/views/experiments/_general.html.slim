@@ -27,7 +27,7 @@
       = f.label 'Subjects Assigned', class: 'control-label col-sm-2'
       .col-sm-8.spacer5
         - if current_user.is_administrator?
-          = link_to @experiment.assignments.count, experiment_path(@experiment) + '/subjects', :class => 'lead'
+          = link_to @experiment.assignments.count, experiment_subjects_path(@experiment), :class => 'lead'
         - else
           .lead
             = @experiment.assignments.count
@@ -37,6 +37,5 @@
         .lead
           = Registration.where({session_id: @experiment.sessions, participated: true}).count
   .clearfix
-    .form-group.pull-right
-      = f.button 'Send invitations', :type => "hz", :class => "btn btn-default"
-      = f.button 'Save', :type => "submit", :class => "btn btn-primary"
+      = link_to 'Send invitations', experiment_invite_path(@experiment), class: "pull-left btn btn-default"
+      = f.button 'Save', :type => "submit", :class => "btn btn-primary pull-right"

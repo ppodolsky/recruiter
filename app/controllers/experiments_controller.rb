@@ -1,15 +1,15 @@
 class ExperimentsController < InheritedResources::Base
   actions :new, :create, :index, :show, :update, :destroy
-  custom_actions :collection => :all
+  custom_actions :collection => :all, :resource => [:invite]
   respond_to :js, :only => :destroy
 
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
-    @experiment.experimenter = current_user
+    @experiment.user = current_user
     create!
   end
   def index
-    @experiments = Experiment.where(experimenter: current_user)
+    @experiments = Experiment.where(user: current_user)
     @filter_title = 'show all'
     @filter_url = experiments_all_path
     index!
@@ -23,6 +23,9 @@ class ExperimentsController < InheritedResources::Base
   def destroy
     @experiment_id = params[:id]
     destroy!
+  end
+  def invite
+    @experiment = Experiment.find(params[:experiment_id])
   end
   private
   def permitted_params

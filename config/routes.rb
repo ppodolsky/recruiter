@@ -21,6 +21,7 @@ Recruiter::Application.routes.draw do
   resources :experiments do
     post 'subjects', to: 'subjects#assign'
     get 'subjects', to: 'subjects#index'
+    get 'invite', to: 'experiments#invite'
     delete 'subjects', to: 'subjects#destroy_all'
     delete 'subjects/:subject', to: 'subjects#destroy', as: 'subject'
     post 'remained', to: 'subjects#remained'
