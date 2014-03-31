@@ -1,6 +1,7 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_permissions
+  before_action :raise_if_not_admin, only: [:destroy, :destroy_all, :index]
+  before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
   def index
     @experiment = Experiment.find(params[:experiment_id])
@@ -34,7 +35,7 @@ class SubjectsController < ApplicationController
       FROM users u
       LEFT OUTER JOIN (select subject_id, count(*) as registrations_count from registrations group by subject_id) r1 on (r1.subject_id = u.id)
       LEFT OUTER JOIN (select subject_id, count(*) as shown_up_count from registrations where registrations.participated = true group by subject_id) r2 on (r2.subject_id = u.id)
-      WHERE u.id in (?) and COALESCE((r2.shown_up_count / r1.registrations_count),100) between ? and ? and (? or r1.registrations_count > 0)',
+      WHERE u.id in (?) and u.type = \'Subject\' and COALESCE((r2.shown_up_count / r1.registrations_count),100) between ? and ? and (? or r1.registrations_count > 0)',
                                      Profile
                                      .where(processed_params)
                                      .where.not(user_id:
@@ -64,9 +65,6 @@ class SubjectsController < ApplicationController
     render 'assigned'
   end
   private
-  def check_permissions
-    raise Exceptions::Permission.new "Only administrators can manage assigned subjects" if not current_user.is_administrator?
-  end
   def search_params
     params.permit(
       :birth_year_from,

@@ -37,7 +37,7 @@
             = check_box_tag 'participated', nil, false, class: 'checkbox'
           td
             = number_field_tag 'paid', 0, min: 0, class: 'form-control', placeholder: 'paid'
-= link_to 'Save state', session_finish_path(@session), method: :post, :class => 'pull-right btn btn-primary', data: { confirm: 'Are you sure?' }
+= link_to 'Save state', session_path(@session), method: :post, :class => 'pull-right btn btn-primary'
 .clearfix
 .text-center
   = link_to 'Finish session', session_finish_path(@session), method: :post, :class => 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }

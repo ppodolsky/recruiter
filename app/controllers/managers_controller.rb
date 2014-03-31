@@ -1,6 +1,6 @@
 class ManagersController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_permissions
+  before_action :raise_if_not_admin
 
   def index
     @managers = User.where(type: %w[Administrator Experimenter])
@@ -23,9 +23,6 @@ class ManagersController < ApplicationController
       @error_msg = 'Too many found were found'
       render 'add_fail'
     end
-  end
-  def check_permissions
-    raise Exceptions::Permission.new "Only administrators can manage this list" if not current_user.is_administrator?
   end
   private
   def permitted_params

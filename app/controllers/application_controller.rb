@@ -17,7 +17,15 @@ class ApplicationController < ActionController::Base
   end
 
   protected
-
+  def raise_if_not_admin
+    raise Exceptions::Permission.new "Only administrators can access this action" if not current_user.is_administrator?
+  end
+  def raise_if_not_experimenter
+    raise Exceptions::Permission.new "Only experimenters can access this action" if not current_user.is_experimenter?
+  end
+  def raise_if_not_subject
+    raise Exceptions::Permission.new "Only subjects can access this action" if not current_user.is_subject?
+  end
   def configure_devise_permitted_parameters
     registration_params = [:first_name, :last_name, :gsharp, :second_name, :email, :password, :password_confirmation]
 
