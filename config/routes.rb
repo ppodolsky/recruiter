@@ -5,7 +5,7 @@ Recruiter::Application.routes.draw do
   end
 
   # user accounts and profiles
-  devise_for :users
+  devise_for :users, :controllers => { :registrations => :registrations }
 
   resources :sessions do
     get 'online', to: 'sessions#online'
@@ -15,6 +15,8 @@ Recruiter::Application.routes.draw do
   get 'managers', to: 'managers#index'
   get 'managers/find', to: 'managers#find'
   post 'managers', to: 'managers#add'
+  delete 'managers/:manager', to: 'managers#destroy', as: 'manager'
+
 
   get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
 
@@ -27,9 +29,6 @@ Recruiter::Application.routes.draw do
     post 'remained', to: 'subjects#remained'
     resources :sessions
   end
-
-  resource :profile, only: [:show, :create, :update]
-
 
   # static page overrides for CMS
   get 'help',      to: 'pages#help'

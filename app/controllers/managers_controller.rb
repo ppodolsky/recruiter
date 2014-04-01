@@ -9,6 +9,12 @@ class ManagersController < ApplicationController
   def find
     @managers = User.where("email LIKE '%#{permitted_params[:cred]}%' or gsharp LIKE '%#{permitted_params[:cred]}%'")
   end
+  def destroy
+    @manager = User.find(params[:manager])
+    @manager_id = params[:manager]
+    @manager.type = 'Subject'
+    @manager.save!
+  end
   def add
     @managers = User.where("email = '#{permitted_params[:cred]}' or gsharp = '#{permitted_params[:cred]}'")
     if @managers.count == 1

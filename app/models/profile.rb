@@ -3,9 +3,6 @@ class Profile < ActiveRecord::Base
 
   belongs_to :user, :class_name => 'Subject', inverse_of: :profile
 
-  accepts_nested_attributes_for :user
-
-
   validates_presence_of :gender, :birth_year,
     :ethnicity, :years_resident, :class_year, :year_started,
     :current_gpa, :phone, :major, :profession, presence: true

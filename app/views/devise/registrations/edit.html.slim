@@ -1,55 +1,146 @@
-div.row
-  h2
-    | Edit #{resource_name.to_s.humanize}
-  = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
-    = render "shared/errors"
-    div.form-horizontal role='form'
-      div.form-group
-        = f.label :first_name, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.text_field :first_name,
-            class: 'form-control',
-            maxlength: 30
-            autofocus: true
-      div.form-group
-        = f.label :last_name, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.text_field :last_name,
-            class: 'form-control',
-            maxlength: 30
-      div.form-group
-        = f.label 'G#', class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.text_field :gsharp,
-            class: 'form-control',
-            maxlength: 9
-      div.form-group
-        = f.label :email, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.email_field :email, :autofocus => true, class: 'form-control'
-          span.help-block
-            | You must use your ACME e-mail address.
-      - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-        div
-          | Currently waiting confirmation for: #{resource.unconfirmed_email}
-      div.form-group
-        = f.label :password, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.password_field :password, autocomplete: :off, class: 'form-control'
-          span.help-block Leave blank if you don't want to change it.
-      div.form-group
-        = f.label :password_confirmation, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.password_field :password_confirmation, class: 'form-control'
-      div.form-group
-        = f.label :current_password,  class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.password_field :current_password, autocomplete: :off, class: 'form-control'
-          span.help-block Leave blank if you don't want to change it.
-      div.form-group
-        div= f.submit "Update", class: 'btn btn-large btn-primary col-sm-offset-2'
-div.row
-  h3 Unsubscribe
-  p This will prevent you from receiving future invitations.
-  / TODO: Implement unsubscribe functionality. Important: users should not be able to delete their accounts. Disable controller action.
-  button type='submit' class='btn btn-small btn-danger' Cancel subscription
+.page-header
+  h1
+    | My Account
+= render "shared/errors"
+.tabbable
+  ul.nav.nav-tabs
+    li.active
+      a href="#account" data-toggle="tab"
+        |  Account
+    - if resource.is_subject?
+      li
+        a href="#personal" data-toggle="tab"
+          |  Personal
+  .tab-content.spacer-top10
+    #account.tab-pane.active
+      = form_for(resource, as: resource_name, url: registration_path(resource) + '#account', html: { method: :put, class: 'form-horizontal' }) do |u|
+        .form-group
+          = u.label :first_name, class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.text_field :first_name,
+              class: 'form-control',
+              maxlength: 30
+              autofocus: true
+        .form-group
+          = u.label :last_name, class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.text_field :last_name,
+              class: 'form-control',
+              maxlength: 30
+        .form-group
+          = u.label 'G#', class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.text_field :gsharp,
+              class: 'form-control',
+              maxlength: 9,
+              minlength: 9
+        .form-group
+          = u.label :email, class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.email_field :email, :autofocus => true, class: 'form-control'
+            span.help-block
+              | You must use your ACME e-mail address.
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          div
+            | Currently waiting confirmation for: #{resource.unconfirmed_email}
+        .form-group
+          = u.label :password, class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.password_field :password, autocomplete: :off, class: 'form-control'
+            span.help-block Leave blank if you don't want to change it.
+        .form-group
+          = u.label :password_confirmation, class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.password_field :password_confirmation, class: 'form-control'
+        .form-group
+          = u.label :current_password,  class: 'control-label col-sm-2'
+          .col-sm-8
+            = u.password_field :current_password, autocomplete: :off, class: 'form-control'
+            span.help-block Leave blank if you don't want to change it.
+        .form-group
+          button type='submit' class='pull-left btn btn-small btn-danger' Unsubscribe
+          = u.submit "Update", class: 'pull-right btn btn-large btn-primary col-sm-offset-2'
+    - if resource.is_subject?
+      #personal.tab-pane
+        = form_for(resource, as: resource_name, url: registration_path(resource) + '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
+          = fields_for :profile, resource.profile do |f|
+            fieldset
+              legend Personal information
+              div.form-group
+                = f.label :gender, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :gender, options_for_select(['M','F'], resource.profile.gender),
+                    prompt: '-',
+                    class: 'form-control'
+              div.form-group
+                = f.label :birth_year, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, resource.profile.birth_year),
+                    prompt: '--',
+                    class: 'form-control'
+              div.form-group
+                = f.label :ethnicity, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :ethnicity, options_for_select(Ethnicity.all.pluck(:name), resource.profile.ethnicity),
+                    prompt: 'Choose...',
+                    class: 'form-control'
+              div.form-group
+                = f.label :profession, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :profession, options_for_select(Profession.all.pluck(:name), resource.profile.profession),
+                    prompt: 'Choose...',
+                    class: 'form-control'
+              div.form-group
+                = f.label :years_resident, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :years_resident, options_for_select((1..10).to_a, resource.profile.years_resident)
+                  span.help-block
+                    | How many years have you lived in the area? Please select "1" for
+                    |  one or less, and "10" for ten or more.
+            fieldset
+              legend Education information
+              div.form-group
+                = f.label :class_year, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.profile.class_year),
+                    prompt: 'Choose...',
+                    class: 'form-control'
+                  span.help-block Your class year, according to your transcript.
+              div.form-group
+                = f.label :year_started, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.profile.year_started),
+                    prompt: '----',
+                    class: 'form-control'
+              div.form-group
+                = f.label :current_gpa, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.text_field :current_gpa,
+                    class: 'form-control',
+                    value: number_with_precision(f.object.current_gpa, :precision => 2) || 0
+              div.form-group
+                = f.label :major, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.select :major, options_for_select(Major.all.pluck(:name), resource.profile.major),
+                    prompt: 'Choose...',
+                    class: 'form-control'
+            fieldset
+              legend Contact information
+              div.form-group
+                = f.label :secondary_email, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.email_field :secondary_email,
+                    class: 'form-control',
+                    placeholder: 'user@example.com'
+                  span.help-block
+                    | If you've previously signed up to participate in experiments and
+                    |  used a different e-mail address, please enter it here.
+              div.form-group
+                = f.label :phone, class: 'control-label col-sm-2'
+                div.col-sm-8
+                  = f.phone_field :phone,
+                    class: 'form-control',
+                    maxlength: 14,
+                    data: { mask: '(999) 999-9999' }
+            .pull-right
+              = f.button 'Save', :type => 'submit', :class => 'btn btn-small btn-primary'

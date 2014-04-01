@@ -1,8 +1,6 @@
-require "application_responder"
-
+require 'exceptions'
+require 'application_responder'
 class ApplicationController < ActionController::Base
-  before_action :configure_devise_permitted_parameters, if: :devise_controller?
-
   self.responder = ActionController::Responder
   respond_to :html
 
@@ -13,9 +11,8 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(user)
     return dashboard_path if user.is_administrator?
     return experiments_path if user.is_experimenter?
-    return profile_path
+    return edit_user_registration_path
   end
-
   protected
   def raise_if_not_admin
     raise Exceptions::Permission.new "Only administrators can access this action" if not current_user.is_administrator?
@@ -25,18 +22,5 @@ class ApplicationController < ActionController::Base
   end
   def raise_if_not_subject
     raise Exceptions::Permission.new "Only subjects can access this action" if not current_user.is_subject?
-  end
-  def configure_devise_permitted_parameters
-    registration_params = [:first_name, :last_name, :gsharp, :second_name, :email, :password, :password_confirmation]
-
-    if params[:action] == 'update'
-      devise_parameter_sanitizer.for(:account_update) {
-          |u| u.permit(registration_params << :current_password)
-      }
-    elsif params[:action] == 'create'
-      devise_parameter_sanitizer.for(:sign_up) {
-          |u| u.permit(registration_params)
-      }
-    end
   end
 end

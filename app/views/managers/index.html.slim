@@ -12,13 +12,19 @@
           | Name
         th
           | Type
+        th
+
     tbody
       - @managers.each do | manager |
-        tr
+        tr id="manager_#{manager.id}"
           td
             = manager.email
           td
             = manager.name
           td
             = manager.type
+          td
+            .pull-right
+              = link_to '', manager_path(manager), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
+
 = link_to "Add new one", "#add-new-modal", class: 'btn btn-primary pull-right', "data-toggle" => "modal"

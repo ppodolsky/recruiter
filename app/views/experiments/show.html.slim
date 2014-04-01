@@ -1,21 +1,21 @@
 .page-header
   h1
     | Experiment
-  .tabbable
-    ul.nav.nav-tabs
-      li.active
-        a href="#general" data-toggle="tab"
-          |  General
-      li
-        a href="#sessions" data-toggle="tab"
-          |  Sessions
-      li
-        a href="#sp" data-toggle="tab"
-          |  Subject pool
-    .tab-content
-      #general.tab-pane.active
-        = render 'general'
-      #sessions.tab-pane
-        = render 'sessions'
-      #sp.tab-pane
-        = render 'subject_pool'
+.tabbable
+  ul.nav.nav-tabs
+    li.active
+      a href="#general" data-toggle="tab"
+        |  General
+    li
+      a href="#sessions" data-toggle="tab"
+        |  Sessions
+    li
+      a href="#sp" data-toggle="tab"
+        |  Subject pool
+  .tab-content
+    #general.tab-pane.active
+      = render 'general'
+    #sessions.tab-pane
+      = render 'sessions'
+    #sp.tab-pane
+      = render 'subject_pool'

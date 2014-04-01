@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   has_paper_trail
 
   has_many :experiments
+  has_one :profile, inverse_of: :user
+
+  accepts_nested_attributes_for :profile
 
   before_validation :set_canonical_name
   before_save :default_values

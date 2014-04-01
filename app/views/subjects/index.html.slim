@@ -28,5 +28,5 @@
             = subject.email
           td
             = link_to '', experiment_subject_path(@experiment, subject), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
-
+= link_to '< Back', :back, :class => 'pull-left btn btn-xs btn-default'
 = link_to 'Remove all', experiment_subjects_path, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'U mad?' }
