@@ -1,0 +1,16 @@
+#add-new-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag(session_add_path(@session), method: :post, remote: true, class: "form-horizontal") do
+        .modal-header
+          button.close aria-hidden="true" data-dismiss="modal" type="button"
+            | &times;
+          h4.modal-title Find & Add New Subject
+        .modal-body
+          #cred.form-group
+            .col-sm-12
+              = text_field_tag :cred, nil, class: 'form-control', placeholder: 'G# or Email'
+              small id="cred-error" class="help-block invisible"
+        .modal-footer
+          button type='submit' class='btn btn-small btn-primary' Add
+

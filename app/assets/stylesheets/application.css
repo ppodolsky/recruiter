@@ -21,6 +21,9 @@
 .classic{
     color: darkgoldenrod;
 }
+.width100{
+    width: 100%;
+}
 .spacer-right10{
     margin-right: 10px;
 }
@@ -29,6 +32,9 @@
 }
 .spacer-top20{
     margin-top: 20px;
+}
+.spacer-top100{
+    margin-top: 100px;
 }
 .vbottom {
     display: inline-block;

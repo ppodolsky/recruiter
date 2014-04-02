@@ -10,6 +10,7 @@ Recruiter::Application.routes.draw do
   resources :sessions do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
+    post 'add', to: 'sessions#add'
   end
 
   get 'managers', to: 'managers#index'
@@ -39,5 +40,5 @@ Recruiter::Application.routes.draw do
   # WARNING: order is crucial, do not rearrange #
   get ':id', to: 'pages#show', as: :page        #
   resources :pages, except: [:index, :show]     #
-  root to: 'pages#index'                        #
+  root to: 'pages#login'                        #
 end

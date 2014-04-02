@@ -25,7 +25,7 @@
         = select_tag :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), prompt: '-', class: 'selectpicker form-control'
     .form-group
       = f.label 'Subjects Assigned', class: 'control-label col-sm-2'
-      .col-sm-8.spacer5
+      .col-sm-8.spacer-top10
         - if current_user.is_administrator?
           = link_to @experiment.assignments.count, experiment_subjects_path(@experiment), :class => 'lead'
         - else
@@ -33,7 +33,7 @@
             = @experiment.assignments.count
     .form-group
       = f.label 'Subjects Participated', class: 'control-label col-sm-2'
-      .col-sm-8.spacer5
+      .col-sm-8.spacer-top10
         .lead
           = Registration.where({session_id: @experiment.sessions, participated: true}).count
   .clearfix

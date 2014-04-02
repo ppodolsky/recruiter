@@ -8,7 +8,7 @@ class Session < ActiveRecord::Base
   validates :required_subjects, numericality: { only_integer: true, greater_than: 0 }
 
   def check_time_range
-    if (end_time - duration).to_i < start_time.to_i
+    if (start_time.advance(:hours => duration.hour, :minutes => duration.min) > end_time)
       errors.add(:end_time, "cannot be lesser than start time with duration")
     end
     if registration_deadline > start_time

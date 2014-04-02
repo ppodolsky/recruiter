@@ -7,9 +7,7 @@
     thead
       tr
         th
-          | First name
-        th
-          | Last name
+          | Name
         th
           | Age
         th
@@ -19,9 +17,7 @@
       - @subjects.each do | subject |
         tr id="subject_#{subject.id}" class = (@experiment.sessions.any? { |o| o.registrations.where(subject: subject, shown_up: true).count > 0 } ? 'success' : '')
           td
-            = subject.first_name
-          td
-            = subject.last_name
+            = subject.name
           td
             = Time.now.year - subject.profile.birth_year
           td

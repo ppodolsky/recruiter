@@ -3,9 +3,7 @@
     | Send invitations
 = form_tag('/hurma', method: :post, class: 'form-horizontal') do
   .row
-    textarea.col-sm-10.form-control
-  .row
-    = link_to 'Save', :back, class: "btn btn-default pull-right"
+    textarea.col-sm-10.form-control rows=10
   .row.spacer-top20
     fieldset
       .form-group

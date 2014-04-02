@@ -1,3 +1,4 @@
+= render 'add_new_modal'
 .page-header
   .pull-right
   h1
@@ -5,7 +6,7 @@
     |  subjects
 .btn-toolbar role="toolbar"
   .btn-group
-    = link_to 'New subject', '/huita', method: :post, class: 'btn btn-xs btn-default'
+    = link_to 'New subject', '#add-new-modal', class: 'btn btn-xs btn-default', 'data-toggle' => 'modal'
 .table-responsive
   table.table.table-borderless
     thead
@@ -23,20 +24,20 @@
         th
           | $
     tbody
-      - @session.subjects.each do | subject |
+      - @session.registrations.each do | registration |
         tr
           td
-            = subject.id
+            = registration.subject.id
           td
-            = subject.profile.gsharp
+            = registration.subject.gsharp
           td
-            = subject.name
+            = registration.subject.name
           td
-            = check_box_tag 'shown_up', nil, false, class: 'checkbox'
+            = check_box_tag 'shown_up', nil, registration.shown_up, class: 'checkbox'
           td
-            = check_box_tag 'participated', nil, false, class: 'checkbox'
+            = check_box_tag 'participated', nil, registration.participated, class: 'checkbox'
           td
-            = number_field_tag 'paid', 0, min: 0, class: 'form-control', placeholder: 'paid'
+            = number_field_tag 'paid', registration.paid, min: 0, class: 'form-control', placeholder: 'paid'
 = link_to 'Save state', session_path(@session), method: :post, :class => 'pull-right btn btn-primary'
 .clearfix
 .text-center
