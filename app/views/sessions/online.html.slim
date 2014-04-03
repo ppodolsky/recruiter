@@ -37,7 +37,7 @@
           td
             = check_box_tag 'participated', nil, registration.participated, class: 'checkbox'
           td
-            = number_field_tag 'paid', registration.paid, min: 0, class: 'form-control', placeholder: 'paid'
+            = number_field_tag 'paid', registration, min: 0, class: 'form-control', placeholder: 'paid'
 = link_to 'Save state', session_path(@session), method: :post, :class => 'pull-right btn btn-primary'
 .clearfix
 .text-center

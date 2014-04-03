@@ -2,17 +2,23 @@ class User < ActiveRecord::Base
   has_paper_trail
 
   has_many :experiments
-  has_one :profile, inverse_of: :user
-
-  accepts_nested_attributes_for :profile
 
   before_validation :set_canonical_name
   before_save :default_values
 
-  validates_presence_of   :email, :first_name, :last_name, :gsharp
   validates_uniqueness_of :email, :case_sensitive => false
-
   validates_uniqueness_of :username, :case_sensitive => false
+  validates_presence_of :email, :first_name, :last_name, :gsharp
+
+  validates :secondary_email, format: {
+      with: /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i,
+      multiline: true,
+      message: 'Not a valid e-mail address.'
+  }
+  validates :secondary_email, uniqueness: true, allow_blank: true
+
+  normalize_attributes :secondary_email
+
 
   def name
     "#{self.first_name} #{self.last_name}"
@@ -36,7 +42,7 @@ class User < ActiveRecord::Base
       value.is_a?(String) ? value.titleize.strip : value
     end
   end
-private
+  private
   def set_canonical_name
     self.username = self.email.split(/@/).first
   end

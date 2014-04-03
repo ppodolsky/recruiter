@@ -63,84 +63,83 @@
     - if resource.is_subject?
       #personal.tab-pane
         = form_for(resource, as: resource_name, url: registration_path(resource) + '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
-          = fields_for :profile, resource.profile do |f|
-            fieldset
-              legend Personal information
-              div.form-group
-                = f.label :gender, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :gender, options_for_select(['M','F'], resource.profile.gender),
-                    prompt: '-',
-                    class: 'form-control'
-              div.form-group
-                = f.label :birth_year, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, resource.profile.birth_year),
-                    prompt: '--',
-                    class: 'form-control'
-              div.form-group
-                = f.label :ethnicity, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :ethnicity, options_for_select(Ethnicity.all.pluck(:name), resource.profile.ethnicity),
-                    prompt: 'Choose...',
-                    class: 'form-control'
-              div.form-group
-                = f.label :profession, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :profession, options_for_select(Profession.all.pluck(:name), resource.profile.profession),
-                    prompt: 'Choose...',
-                    class: 'form-control'
-              div.form-group
-                = f.label :years_resident, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :years_resident, options_for_select((1..10).to_a, resource.profile.years_resident)
-                  span.help-block
-                    | How many years have you lived in the area? Please select "1" for
-                    |  one or less, and "10" for ten or more.
-            fieldset
-              legend Education information
-              div.form-group
-                = f.label :class_year, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.profile.class_year),
-                    prompt: 'Choose...',
-                    class: 'form-control'
-                  span.help-block Your class year, according to your transcript.
-              div.form-group
-                = f.label :year_started, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.profile.year_started),
-                    prompt: '----',
-                    class: 'form-control'
-              div.form-group
-                = f.label :current_gpa, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.text_field :current_gpa,
-                    class: 'form-control',
-                    value: number_with_precision(f.object.current_gpa, :precision => 2) || 0
-              div.form-group
-                = f.label :major, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.select :major, options_for_select(Major.all.pluck(:name), resource.profile.major),
-                    prompt: 'Choose...',
-                    class: 'form-control'
-            fieldset
-              legend Contact information
-              div.form-group
-                = f.label :secondary_email, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.email_field :secondary_email,
-                    class: 'form-control',
-                    placeholder: 'user@example.com'
-                  span.help-block
-                    | If you've previously signed up to participate in experiments and
-                    |  used a different e-mail address, please enter it here.
-              div.form-group
-                = f.label :phone, class: 'control-label col-sm-2'
-                div.col-sm-8
-                  = f.phone_field :phone,
-                    class: 'form-control',
-                    maxlength: 14,
-                    data: { mask: '(999) 999-9999' }
-            .pull-right
-              = f.button 'Save', :type => 'submit', :class => 'btn btn-small btn-primary'
+          fieldset
+            legend Personal information
+            div.form-group
+              = u.label :gender, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :gender, options_for_select(['M','F'], resource.gender),
+                  prompt: '-',
+                  class: 'form-control'
+            div.form-group
+              = u.label :birth_year, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, resource.birth_year),
+                  prompt: '--',
+                  class: 'form-control'
+            div.form-group
+              = u.label :ethnicity, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :ethnicity, options_for_select(Ethnicity.all.pluck(:name), resource.ethnicity),
+                  prompt: 'Choose...',
+                  class: 'form-control'
+            div.form-group
+              = u.label :profession, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :profession, options_for_select(Profession.all.pluck(:name), resource.profession),
+                  prompt: 'Choose...',
+                  class: 'form-control'
+            div.form-group
+              = u.label :years_resident, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :years_resident, options_for_select((1..10).to_a, resource.years_resident)
+                span.help-block
+                  | How many years have you lived in the area? Please select "1" for
+                  |  one or less, and "10" for ten or more.
+          fieldset
+            legend Education information
+            div.form-group
+              = u.label :class_year, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.class_year),
+                  prompt: 'Choose...',
+                  class: 'form-control'
+                span.help-block Your class year, according to your transcript.
+            div.form-group
+              = u.label :year_started, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.year_started),
+                  prompt: '----',
+                  class: 'form-control'
+            div.form-group
+              = u.label :current_gpa, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.text_field :current_gpa,
+                  class: 'form-control',
+                  value: number_with_precision(u.object.current_gpa, :precision => 2) || 0
+            div.form-group
+              = u.label :major, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.select :major, options_for_select(Major.all.pluck(:name), resource.major),
+                  prompt: 'Choose...',
+                  class: 'form-control'
+          fieldset
+            legend Contact information
+            div.form-group
+              = u.label :secondary_email, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.email_field :secondary_email,
+                  class: 'form-control',
+                  placeholder: 'user@example.com'
+                span.help-block
+                  | If you've previously signed up to participate in experiments and
+                  |  used a different e-mail address, please enter it here.
+            div.form-group
+              = u.label :phone, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = u.phone_field :phone,
+                  class: 'form-control',
+                  maxlength: 14,
+                  data: { mask: '(999) 999-9999' }
+          .pull-right
+            = u.button 'Save', :type => 'submit', :class => 'btn btn-small btn-primary'
