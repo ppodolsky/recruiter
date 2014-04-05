@@ -1,7 +1,7 @@
 class SessionsController < InheritedResources::Base
   belongs_to :experiment
-  respond_to :js, :only => [:destroy, :add]
-  actions :index, :edit, :show, :update, :create, :new, :destroy, :add
+  respond_to :js, :only => [:destroy]
+  actions :index, :edit, :show, :update, :create, :new, :destroy
 
   def finish
     @session = Session.find(params[:session_id])
@@ -23,7 +23,14 @@ class SessionsController < InheritedResources::Base
     @session_id = params[:id]
     destroy!
   end
-  def add
+  def edit_subject
+    @session = Session.find(params[:session_id])
+    @subject = Subject.find(params[:subject_id])
+    @registration =  Registration.find(session: @session, subject: @subject)
+    @registration.update(permitted_edit_subject_params)
+    @registration.save!
+  end
+  def add_subject
     @session = Session.find(params[:session_id])
     @subjects = Subject.where("email = '#{permitted_add_params[:cred]}' or gsharp = '#{permitted_add_params[:cred]}'")
     if @subjects.count == 1
@@ -40,9 +47,6 @@ class SessionsController < InheritedResources::Base
     end
   end
   private
-  def permitted_add_params
-    params.permit(:cred)
-  end
   def permitted_params
     params.permit(session: [
         :start_time,

@@ -1,7 +1,7 @@
 #add-new-modal.modal.fade
   .modal-dialog
     .modal-content
-      = form_tag(session_add_path(@session), method: :post, remote: true, class: "form-horizontal") do
+      = form_tag(session_registrations_path(@session), method: :post, remote: true, class: "form-horizontal") do
         .modal-header
           button.close aria-hidden="true" data-dismiss="modal" type="button"
             | &times;

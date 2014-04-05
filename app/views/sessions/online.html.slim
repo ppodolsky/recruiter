@@ -24,21 +24,22 @@
         th
           | $
     tbody
-      - @session.registrations.each do | registration |
-        tr
-          td
-            = registration.subject.id
-          td
-            = registration.subject.gsharp
-          td
-            = registration.subject.name
-          td
-            = check_box_tag 'shown_up', nil, registration.shown_up, class: 'checkbox'
-          td
-            = check_box_tag 'participated', nil, registration.participated, class: 'checkbox'
-          td
-            = number_field_tag 'paid', registration, min: 0, class: 'form-control', placeholder: 'paid'
-= link_to 'Save state', session_path(@session), method: :post, :class => 'pull-right btn btn-primary'
+      - @session.registrations.each_with_index do | registration, index |
+        = form_for(registration, html: {method: :put, class: "save-row"}, url: session_registration_path(@session, "#{registration.subject_id},#{registration.session_id}"), remote: true) do |f|
+          tr
+            td
+              = index + 1
+            td
+              = registration.subject.gsharp
+            td
+              = registration.subject.name
+            td
+              = f.check_box :shown_up, {class: 'checkbox'}
+            td
+              = f.check_box :participated, {class: 'checkbox'}
+            td
+              = f.number_field :paid, min: 0, class: 'form-control', placeholder: 'paid'
+= link_to 'Save state', '#', remote: true, class: 'pull-right btn save btn-primary'
 .clearfix
 .text-center
-  = link_to 'Finish session', session_finish_path(@session), method: :post, :class => 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }
+  = link_to 'Finish session', session_finish_path(@session), method: :post, class: 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }

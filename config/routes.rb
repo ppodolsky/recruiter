@@ -5,12 +5,13 @@ Recruiter::Application.routes.draw do
   end
 
   # user accounts and profiles
-  devise_for :users, :controllers => { :registrations => :registrations }
+  devise_for :users, :controllers => { :devise_registrations => :devise_registrations }
 
   resources :sessions do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
-    post 'add', to: 'sessions#add'
+    resources :subjects
+    resources :registrations
   end
 
   get 'managers', to: 'managers#index'

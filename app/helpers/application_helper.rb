@@ -4,6 +4,9 @@ module ApplicationHelper
   def markdown_to_html(text)
     Kramdown::Document.new(text).to_html.html_safe
   end
+  def javascript(*files)
+    content_for(:head) { javascript_include_tag(*files) }
+  end
 
   def field_class(resource, field_name)
     if resource.errors[field_name]

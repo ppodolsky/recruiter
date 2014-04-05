@@ -22,7 +22,7 @@
           td
             = manager.name
           td
-            = manager.type
+            = select_tag nil, options_for_select(%w[Administrator Experimenter], manager.type), {'data-id' => "#{manager.id}", 'class' => 'manager-type'}
           td
             .pull-right
               = link_to '', manager_path(manager), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }

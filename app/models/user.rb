@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :experiments
 
   before_validation :set_canonical_name
-  before_save :default_values
 
   validates_uniqueness_of :email, :case_sensitive => false
   validates_uniqueness_of :username, :case_sensitive => false
@@ -45,8 +44,5 @@ class User < ActiveRecord::Base
   private
   def set_canonical_name
     self.username = self.email.split(/@/).first
-  end
-  def default_values
-    self.type ||= 'Subject'
   end
 end
