@@ -62,29 +62,29 @@
           = u.submit "Update", class: 'pull-right btn btn-large btn-primary col-sm-offset-2'
     - if resource.is_subject?
       #personal.tab-pane
-        = form_for(resource, as: resource_name, url: registration_path(resource) + '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
+        = form_for(resource, as: resource_name, url: registration_path(resource)+ '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
           fieldset
             legend Personal information
             div.form-group
               = u.label :gender, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :gender, options_for_select(['M','F'], resource.gender), {}, {prompt: '-', class: 'form-control selectpicker'}
+                = u.select :gender, options_for_select(['M','F'], resource.gender), {prompt: '-'}, {class: 'form-control selectpicker'}
             div.form-group
               = u.label :birth_year, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, resource.birth_year),{}, prompt: '--', class: 'form-control selectpicker'
+                = u.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, resource.birth_year),{prompt: '--'}, {class: 'form-control selectpicker'}
             div.form-group
               = u.label :ethnicity, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :ethnicity, options_for_select(Ethnicity.all.pluck(:name), resource.ethnicity),{}, prompt: 'Choose...', class: 'form-control selectpicker'
+                = u.select :ethnicity, options_for_select(Ethnicity.all.pluck(:name), resource.ethnicity),{prompt: 'Choose...'}, {class: 'form-control selectpicker'}
             div.form-group
               = u.label :profession, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :profession, options_for_select(Profession.all.pluck(:name), resource.profession),{}, prompt: 'Choose...', class: 'form-control selectpicker'
+                = u.select :profession, options_for_select(Profession.all.pluck(:name), resource.profession),{prompt: 'Choose...'}, {class: 'form-control selectpicker'}
             div.form-group
               = u.label :years_resident, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :years_resident, options_for_select((1..10).to_a, resource.years_resident),{}, class: 'form-control selectpicker'
+                = u.select :years_resident, options_for_select((1..10).to_a, resource.years_resident), {prompt: '-'}, {class: 'form-control selectpicker'}
                 span.help-block
                   | How many years have you lived in the area? Please select "1" for
                   |  one or less, and "10" for ten or more.
@@ -93,12 +93,12 @@
             div.form-group
               = u.label :class_year, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.class_year),{}, prompt: 'Choose...', class: 'form-control selectpicler'
+                = u.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.class_year),{prompt: 'Choose...'}, {class: 'form-control selectpicler'}
                 span.help-block Your class year, according to your transcript.
             div.form-group
               = u.label :year_started, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.year_started),{}, prompt: '----', class: 'form-control selectpicker'
+                = u.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.year_started),{prompt: '----'}, {class: 'form-control selectpicker'}
             div.form-group
               = u.label :current_gpa, class: 'control-label col-sm-2'
               div.col-sm-8
@@ -107,7 +107,7 @@
             div.form-group
               = u.label :major, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :major, options_for_select(Major.all.pluck(:name), resource.major), {}, prompt: 'Choose...', class: 'form-control selectpicker'
+                = u.select :major, options_for_select(Major.all.pluck(:name), resource.major), {prompt: 'Choose...'}, {class: 'form-control selectpicker'}
           fieldset
             legend Contact information
             div.form-group

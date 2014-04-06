@@ -21,5 +21,7 @@
                 = link_to '', experiment_session_path(@experiment, session), class: 'glyphicon glyphicon-pencil spacer-right10 classic'
                 = link_to '', experiment_session_path(@experiment, session), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
 .pull-right
-  = link_to 'New session', new_experiment_session_path(@experiment), class: 'btn btn-default btn-xs btn-success'
+  = link_to new_experiment_session_path(@experiment), :class => 'btn btn-primary pull-right' do
+    span.glyphicon.glyphicon-plus
+    |  New Session
 .clearfix

@@ -26,7 +26,7 @@ class SessionsController < InheritedResources::Base
   def edit_subject
     @session = Session.find(params[:session_id])
     @subject = Subject.find(params[:subject_id])
-    @registration =  Registration.find(session: @session, subject: @subject)
+    @registration =  Registration.find(session: @session, user: @subject)
     @registration.update(permitted_edit_subject_params)
     @registration.save!
   end

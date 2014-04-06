@@ -28,6 +28,6 @@
       .col-sm-8
         = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
           prompt: '-',
-          class: 'form-control'
+          class: 'form-control selectpicker'
   .form-group.pull-right
     = f.button 'Save', :type => "submit", :class => "btn btn-primary"

@@ -18,6 +18,5 @@ ul.nav.navbar-nav.navbar-right
           li= link_to 'Sign out', destroy_user_session_path, method: :delete
 
   - else
-      li= link_to "Sign in", "#sign_in", "data-toggle" => "modal"
       li= link_to "Register", "#sign_up", "data-toggle" => "modal"
       li= nav_link 'Help', page_path('help')

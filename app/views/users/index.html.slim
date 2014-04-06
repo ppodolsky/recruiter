@@ -1,0 +1,29 @@
+= render 'add_new_modal'
+.page-header
+  h1
+    | Listing managers
+- @users.each_with_index do | user, i |
+  = form_for(user.becomes(User), html: {method: :put, class: "save-row"}, url: user_path(user), remote: true, namespace: "m_#{user.id}") do |f|
+    .row class = "#{i != 0 ? 'spacer-top10' : ''}"
+      .col-sm-6
+        = user.name
+        br
+        small
+          = user.email
+      .col-sm-6
+        .pull-right
+          span
+            = f.radio_button :type, 'Administrator'
+            = f.label :type, nil, :value => 'Administrator', class: "spacer-bot-neg-5"
+              = 'Administrator'
+            br
+            = f.radio_button :type, 'Experimenter'
+            = f.label :type, nil, :value => 'Experimenter', class: "spacer-bot-neg-5"
+              = 'Experimenter'
+            br
+              = f.radio_button :type, 'Subject'
+              = f.label :type, nil, :value => 'Subject', class: 'danger'
+                = 'Subject'
+= link_to "Add new one", "#add-new-modal", class: 'btn btn-default spacer-top10', "data-toggle" => "modal"
+.pull-right
+  = link_to "Save", "#", remote: true,  class: 'btn btn-primary spacer-top10 save'

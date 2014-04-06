@@ -5,8 +5,8 @@ Recruiter::Application.routes.draw do
   end
 
   # user accounts and profiles
-  devise_for :users, :controllers => { :devise_registrations => :devise_registrations }
-
+  devise_for :users, :controllers => { :registrations => "custom_registrations" },
+             :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register"}
   resources :sessions do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
@@ -14,12 +14,12 @@ Recruiter::Application.routes.draw do
     resources :registrations
   end
 
-  get 'managers', to: 'managers#index'
-  get 'managers/find', to: 'managers#find'
-  post 'managers', to: 'managers#add'
-  delete 'managers/:manager', to: 'managers#destroy', as: 'manager'
+  get 'managers', to: 'users#index_managers'
 
-
+  resources :users, except:[:edit]
+  get 'users/find', to: 'users#find'
+  post 'users/add', to: 'users#add'
+  put 'users/:id', to: 'users#update'
   get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
 
   resources :experiments do

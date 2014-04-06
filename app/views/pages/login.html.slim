@@ -19,8 +19,8 @@
               = check_box_tag 'user[remember_me]', :remember_me, false, class: 'checkbox'
               | Remember password?
         div.form-group
-          button type='submit' class='btn btn-small btn-default width100' Sign in
+          button type='submit' class='btn btn-small btn-primary width100' Sign in
         div.form-group
-          = link_to " Join us!", new_user_registration_path, class: 'btn btn-small btn-primary width100'
+          = link_to " Join us!", new_user_registration_path, class: 'btn btn-small btn-default width100'
     .col-sm-4
       = markdown_to_html(Page.content_by_slug('feature-right'))

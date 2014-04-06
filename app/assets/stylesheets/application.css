@@ -30,6 +30,9 @@
 .spacer-top10{
     margin-top: 10px;
 }
+.spacer-bot-neg-5{
+    margin-bottom: -5px;
+}
 .spacer-top20{
     margin-top: 20px;
 }
@@ -40,4 +43,26 @@
     display: inline-block;
     vertical-align: bottom;
     float: none;
+}
+input[type=radio] {
+    display: none;
+}
+input[type=radio] + label:before {
+    content: "";
+    display: inline-block;
+
+    width:14px;
+    height:14px;
+
+    margin-top: 2px;
+    margin-right: 4px;
+
+    line-height: 14px;
+
+    vertical-align: text-top;
+    background:url(icons-rb.png) left top no-repeat;
+    cursor:pointer;
+}
+input[type=radio]:checked + label:before {
+    background:url(icons-rb.png) -24px top no-repeat;
 }

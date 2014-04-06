@@ -20,6 +20,7 @@
 
 jQuery('.checkbox').checkbox();
 jQuery('.selectpicker').selectpicker();
+
 jQuery(document).ready(function() {
     if (location.hash !== '') $('a[href="' + location.hash + '"]').tab('show');
     return $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -30,4 +31,8 @@ jQuery(document).ready(function($) {
     $("[data-href]").click(function() {
         window.document.location = $(this).data("href");
     });
+    $('.save').click(function(event){
+        event.preventDefault();
+        $('.save-row').submit();
+    })
 });

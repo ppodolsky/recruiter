@@ -5,11 +5,11 @@ class ExperimentsController < InheritedResources::Base
 
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
-    @experiment.user = current_user
+    @experiment.creator = current_user
     create!
   end
   def index
-    @experiments = Experiment.where(user: current_user)
+    @experiments = Experiment.where(creator: current_user)
     @filter_title = 'show all'
     @filter_url = experiments_all_path
     index!

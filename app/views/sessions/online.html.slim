@@ -25,7 +25,7 @@
           | $
     tbody
       - @session.registrations.each_with_index do | registration, index |
-        = form_for(registration, html: {method: :put, class: "save-row"}, url: session_registration_path(@session, "#{registration.subject_id},#{registration.session_id}"), remote: true) do |f|
+        = form_for(registration, html: {method: :put, class: "save-row"}, namespace: "r_#{index}", url: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), remote: true) do |f|
           tr
             td
               = index + 1

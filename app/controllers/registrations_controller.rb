@@ -15,7 +15,7 @@ class RegistrationsController < InheritedResources::Base
         @error_msg = "Already added"
         render 'create_fail'
       else
-        @registration = Registration.new(subject_id: @subject.id, session_id: @session.id)
+        @registration = Registration.new(user_id: @subject.id, session_id: @session.id)
         create!
       end
     end

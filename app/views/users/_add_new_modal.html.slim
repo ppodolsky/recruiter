@@ -1,0 +1,19 @@
+#add-new-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag(users_add_path, method: :post, remote: true, class: "form-horizontal") do
+        .modal-header
+          button.close aria-hidden="true" data-dismiss="modal" type="button"
+            | &times;
+          h4.modal-title Find & Add New Manager
+        .modal-body
+          #cred.form-group
+            .col-sm-12
+              = text_field_tag 'user[cred]', nil, class: 'form-control', placeholder: 'G# or Email'
+              #cred-error.small.help-block.invisible
+          .form-group
+            .col-sm-12
+              = select_tag 'user[type]', options_for_select(%w[Administrator Experimenter], 'Experimenter'), class: 'form-control selectpicker'
+        .modal-footer
+          button.btn.btn-small.btn-primary type='submit' Add
+
