@@ -93,7 +93,7 @@
             div.form-group
               = u.label :class_year, class: 'control-label col-sm-2'
               div.col-sm-8
-                = u.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.class_year),{prompt: 'Choose...'}, {class: 'form-control selectpicler'}
+                = u.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.class_year),{prompt: 'Choose...'}, {class: 'form-control selectpicker'}
                 span.help-block Your class year, according to your transcript.
             div.form-group
               = u.label :year_started, class: 'control-label col-sm-2'

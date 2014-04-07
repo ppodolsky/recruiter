@@ -16,7 +16,6 @@ ul.nav.navbar-nav.navbar-right
           li= link_to 'My Account',edit_user_registration_path
           li.divider
           li= link_to 'Sign out', destroy_user_session_path, method: :delete
-
   - else
-      li= link_to "Register", "#sign_up", "data-toggle" => "modal"
-      li= nav_link 'Help', page_path('help')
+    li= link_to "Sign up", new_user_registration_path
+    li= nav_link 'Help', page_path('help')

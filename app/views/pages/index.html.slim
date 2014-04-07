@@ -1,9 +1,2 @@
-- content_for :jumbotron do
-  = render 'shared/jumbotron'
-.row
-  .col-sm-4
-    = markdown_to_html(Page.content_by_slug('feature-left'))
-  .col-sm-4
-    = markdown_to_html(Page.content_by_slug('feature-middle'))
-  .col-sm-4
-    = markdown_to_html(Page.content_by_slug('feature-right'))
+javascript:
+  window.location.href="/users/login"

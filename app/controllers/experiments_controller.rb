@@ -1,7 +1,7 @@
 class ExperimentsController < InheritedResources::Base
   actions :new, :create, :index, :show, :update, :destroy
   custom_actions :collection => :all, :resource => [:invite]
-  respond_to :js, :only => :destroy
+  respond_to :js, :only => [:destroy, :update]
 
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
@@ -33,6 +33,7 @@ class ExperimentsController < InheritedResources::Base
         :name,
         :description,
         :type,
+        :default_invitation,
         :finished
     ])
   end

@@ -10,7 +10,12 @@ class UsersController < ApplicationController
   def find
     @users = User.where("email LIKE '%#{permitted_params[:user][:cred]}%' or gsharp LIKE '%#{permitted_params[:user][:cred]}%'")
   end
-
+  def update
+    @user = User.find(params[:id])
+    @generic_user = @user.becomes(User)
+    @generic_user.update(permitted_params[:user])
+    @generic_user.save!
+  end
   def add
     find
     if @users.count == 1

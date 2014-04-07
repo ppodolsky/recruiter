@@ -6,7 +6,7 @@ Recruiter::Application.routes.draw do
 
   # user accounts and profiles
   devise_for :users, :controllers => { :registrations => "custom_registrations" },
-             :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register"}
+             :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
   resources :sessions do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
@@ -16,7 +16,7 @@ Recruiter::Application.routes.draw do
 
   get 'managers', to: 'users#index_managers'
 
-  resources :users, except:[:edit]
+  resources :users, only:[:update, :add, :find]
   get 'users/find', to: 'users#find'
   post 'users/add', to: 'users#add'
   put 'users/:id', to: 'users#update'
@@ -41,5 +41,5 @@ Recruiter::Application.routes.draw do
   # WARNING: order is crucial, do not rearrange #
   get ':id', to: 'pages#show', as: :page        #
   resources :pages, except: [:index, :show]     #
-  root to: 'pages#login'                        #
+  root to: 'pages#index'                        #
 end

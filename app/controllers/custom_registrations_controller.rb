@@ -7,6 +7,7 @@ class CustomRegistrationsController < Devise::RegistrationsController
     @user = resource
     user_params = devise_parameter_sanitizer.sanitize(:account_update)
     if needs_password?(@user, user_params)
+      @user = @user.becomes(User)
       @user.update_with_password(user_params)
     else
       user_params.delete :current_password
@@ -16,10 +17,12 @@ class CustomRegistrationsController < Devise::RegistrationsController
   end
   def needs_password?(user, params)
     (params[:email].present? and user.email != params[:email]) or
+    (params[:first_name].present? and user.first_name != params[:first_name]) or
+    (params[:last_name].present? and user.last_name != params[:last_name]) or
+    (params[:gsharp].present? and user.gsharp != params[:gsharp]) or
     params[:password].present?
   end
   def configure_permitted_parameters
-    puts 'KUTAK SUKA'
     registration_params = [:first_name,
                            :last_name,
                            :gsharp,

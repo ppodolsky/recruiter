@@ -1,24 +1,22 @@
-div.row
-  h2 Sign in
-  = form_tag user_session_path do |f|
-    = render "shared/errors"
-    div.form-horizontal role='form'
-      div.form-group
-        = f.label :email, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.email_field :email, :autofocus => true, class: 'form-control'
-      div.form-group
-        = f.label :password, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = f.password_field :password, class: 'form-control'
-      - if devise_mapping.rememberable?
-        div.form-group
-          div.checkbox.col-sm-offset-2
+.row style="height: 100%"
+  .col-sm-4
+  .col-sm-4.spacer-top100
+    = form_for(resource, :as => resource_name, :url => user_session_path) do |f|
+      div role='form'
+        div.input-group.width100
+          = f.email_field :email, :placeholder => 'Email', :class => 'form-control', :autofocus => true
+        div.input-group.spacer-top20.width100
+          = f.password_field :password, :placeholder => 'Password', :class => 'form-control'
+        - if flash[:alert]
+          .small.help-block.danger.width100
+            = flash[:alert]
+        - if devise_mapping.rememberable?
+          div.form-group.spacer-top10
             label
-              = f.check_box :remember_me
-              = f.label :remember_me
-      div.form-group
-        = f.submit "Sign in", class: 'btn btn-large btn-primary col-sm-offset-2'
-      hr
-div.row
-  = render "devise/shared/links"
+              = f.check_box :remember_me, class: 'checkbox'
+              | Remember password?
+        div.form-group
+          = f.submit 'Sign in', class: 'btn btn-small btn-primary width100'
+        div.form-group
+          = link_to " Join us!", new_user_registration_path, class: 'btn btn-small btn-default width100'
+    .col-sm-4
