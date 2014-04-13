@@ -18,6 +18,7 @@ Recruiter::Application.routes.draw do
   get 'managers', to: 'users#index_managers'
 
   get 'timeline', to: 'timeline#index'
+  get 'calendar', to: 'timeline#calendar'
 
   resources :users, only:[:update, :add, :find]
   get 'users/find', to: 'users#find'

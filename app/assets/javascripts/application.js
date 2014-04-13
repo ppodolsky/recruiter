@@ -27,6 +27,34 @@ jQuery(document).ready(function() {
         return location.hash = $(e.target).attr('href').substr(1);
     });
 });
+jQuery(document).ready(function() {
+    $('#calendar').fullCalendar({
+        events: function(start, end, callback) {
+            $.ajax({
+                url: 'calendar',
+                dataType: 'json',
+                data: {
+                    // our hypothetical feed requires UNIX timestamps
+                    start: Math.round(start.getTime() / 1000),
+                    end: Math.round(end.getTime() / 1000)
+                },
+                success: function(doc) {
+                    var events = [];
+                    $(doc).each(function() {
+                        events.push({
+                            title: this['experiment']['name'] + ' by '
+                                + this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'],
+                            start: this['start_time'],
+                            end: this['end_time']
+                        });
+                    });
+                    callback(events);
+                }
+            });
+        }
+    })
+
+});
 jQuery(document).ready(function($) {
     $("[data-href]").click(function() {
         window.document.location = $(this).data("href");

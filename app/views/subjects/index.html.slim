@@ -31,6 +31,9 @@
           td
             - if not subject.visited_session_id.nil? then
               = "Shown up at #{l Session.find(subject.visited_session_id).start_time}"
+            - else
+              = select_tag 'session', options_for_select(@experiment.sessions.pluck(:start_time).map{|x| l x}), prompt: 'Register to...(NOT WORKING NOW)', class: 'selectpicker'
           td
-            = link_to '', experiment_subject_path(@experiment, subject), remote: true, method: :delete, class: 'pull-right glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
+            - if subject.visited_session_id.nil? then
+              = link_to '', experiment_subject_path(@experiment, subject), remote: true, method: :delete, class: 'pull-right glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
 = link_to '< Back', :back, :class => 'pull-left btn btn-xs btn-default spacer-top10'
