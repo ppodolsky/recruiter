@@ -31,7 +31,7 @@ jQuery(document).ready(function() {
     $('#calendar').fullCalendar({
         events: function(start, end, callback) {
             $.ajax({
-                url: 'calendar',
+                url: '/calendar',
                 dataType: 'json',
                 data: {
                     // our hypothetical feed requires UNIX timestamps

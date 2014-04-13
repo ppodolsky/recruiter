@@ -1,34 +1,34 @@
-#calendar
-.page-header
-  h1
-    | Listing experiments
-.table-responsive
-  table.table.table-condensed.table-borderless
-    thead
-      tr
-        th
-          | Name
-        th
-          | Type
-        th
-          | Assigned
-        th
-          small.pull-right
-            = link_to @filter_title, @filter_url, class: 'lead'
-    tbody
-      - @experiments.each do | experiment |
-        tr id="experiment_#{experiment.id}"
-          td
-            = experiment.name
-          td
-            = experiment.type
-          td
-            = experiment.subjects.count
-          td
-            .pull-right
-              = link_to '', experiment_path(experiment), class: 'glyphicon glyphicon-pencil spacer-right10 classic'
-              = link_to '', experiment.becomes(Experiment), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
-= link_to new_experiment_path, :class => 'btn btn-primary pull-right' do
-  span.glyphicon.glyphicon-plus
-  |  New Experiment
-.clearfix
+.row
+  .col-sm-5
+    #calendar
+  .col-sm-7
+    .table-responsive
+      table.table.table-condensed.table-borderless
+        thead
+          tr
+            th
+              | Name
+            th
+              | Type
+            th
+              | Assigned
+            th
+              small.pull-right
+                = link_to @filter_title, @filter_url, class: 'lead'
+        tbody
+          - @experiments.each do | experiment |
+            tr id="experiment_#{experiment.id}"
+              td
+                = experiment.name
+              td
+                = experiment.type
+              td
+                = experiment.subjects.count
+              td
+                .pull-right
+                  = link_to '', experiment_path(experiment), class: 'glyphicon glyphicon-pencil spacer-right10 classic'
+                  = link_to '', experiment.becomes(Experiment), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
+    = link_to new_experiment_path, :class => 'btn btn-primary pull-right' do
+      span.glyphicon.glyphicon-plus
+      |  New Experiment
+    .clearfix
