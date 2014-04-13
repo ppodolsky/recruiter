@@ -1,4 +1,6 @@
 class SessionsController < InheritedResources::Base
+  before_action :authenticate_user!
+  before_action :raise_if_not_experimenter, only: [:online, :finish, :update, :create, :new, :destroy, :show]
   belongs_to :experiment
   respond_to :js, :only => [:destroy]
   actions :index, :edit, :show, :update, :create, :new, :destroy
@@ -7,7 +9,7 @@ class SessionsController < InheritedResources::Base
     @session = Session.find(params[:session_id])
     @session.finished = true
     @session.save!
-    redirect_to :back
+    redirect_to experiment_path(@session.experiment) + '#sessions'
   end
   def online
     @session = Session.find(params[:session_id])

@@ -1,0 +1,8 @@
+a.list-group-item href=""
+  p.list-group-item-heading
+    = item.experiment.name
+  p.list-group-item-text
+    small.pull-left
+      - ff = '%l hours' + (item.duration.min != 0 ? '%M minutes' : '')
+      = "#{l item.start_time} lasts #{item.duration.strftime(ff)}"
+      .clearfix

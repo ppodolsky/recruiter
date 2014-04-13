@@ -27,7 +27,7 @@ class UsersController < ApplicationController
       @error_msg = 'This user cannot be found'
       render 'add_fail'
     else
-      @error_msg = 'Too many found were found'
+      @error_msg = 'Too many were found'
       render 'add_fail'
     end
   end

@@ -1,0 +1,13 @@
+.row
+  - if @incoming.count > 0 then
+    .col-sm-6.list-group
+      h3
+        | Incoming sessions
+      - @incoming.each do |i|
+        = render partial: 'timeline_item', locals: {item: i}
+  - if @opened.count > 0 then
+    .col-sm-6.list-group
+      h3
+        | Opened sessions
+      - @opened.each do |i|
+        = render partial: 'timeline_item', locals: {item: i}

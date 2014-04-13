@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
   def registrations_count
     attributes['registrations_count']
   end
+  def visited_session_id
+    attributes['visited_session_id']
+  end
   def shown_up_count
     attributes['shown_up_count']
   end

@@ -28,7 +28,7 @@ en:
         total_years: 'Total years of study'
   date:
     formats:
-      default: "%m/%d/%Y"
+      default: "%d %B %Y"
   time:
     formats:
-      default: "%m/%d/%Y %H:%M"
+      default: "%d %B %Y at %H:%M"

@@ -6,6 +6,9 @@ class SubjectsController < ApplicationController
   def index
     @experiment = Experiment.find(params[:experiment_id])
     @subjects = @experiment.subjects
+      .select("r1.*, users.*")
+      .joins("LEFT OUTER JOIN (select user_id, session_id as visited_session_id from registrations where shown_up = 't') r1 on (r1.user_id = users.id)")
+    puts @subjects.first.visited_session_id
     render 'index'
   end
   def destroy

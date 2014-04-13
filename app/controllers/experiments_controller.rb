@@ -1,4 +1,5 @@
 class ExperimentsController < InheritedResources::Base
+  before_action :authenticate_user!
   actions :new, :create, :index, :show, :update, :destroy
   custom_actions :collection => :all, :resource => [:invite]
   respond_to :js, :only => [:destroy, :update]

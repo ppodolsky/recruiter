@@ -2,23 +2,35 @@
   h1
     | Assigned
     |  subjects
-.row
-  .col-sm-12
-  = link_to 'Remove all', experiment_subjects_path, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'U mad?' }
-.row
-  b.col-sm-4
-    | User
-  b.col-sm-4
-    | Age
-- @subjects.each do | subject |
-  .row id="subject_#{subject.id}" class = "spacer-top10 #{(@experiment.sessions.any? { |o| o.registrations.where(subject: subject, shown_up: true).count > 0 } ? 'success' : '')}"
-    .col-sm-4
-      = subject.name
-      br
-      small
-        = subject.email
-    .col-sm-4
-      = Time.now.year - subject.birth_year
-    .col-sm-4
-      = link_to '', experiment_subject_path(@experiment, subject), remote: true, method: :delete, class: 'pull-right glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
+
+.table-responsive
+  table.table.table-condensed.table-borderless
+    thead
+      tr
+        th
+        th
+        th
+          = link_to 'Remove all', experiment_subjects_path, method: :delete, :class => 'pull-right btn btn-xs btn-danger remove-link', data: { confirm: 'U mad?' }
+      tr
+        th
+          | User
+        th
+          | Sessions
+        th
+    tbody
+      - @subjects.each do | subject |
+        tr id="subject_#{subject.id}" class = "spacer-top10 #{subject.visited_session_id.nil? ? '' : 'success'}"
+          td
+            = subject.name
+            br
+            small
+              = subject.email
+            br
+            small
+              = "#{Time.now.year - subject.birth_year} #{subject.gender}"
+          td
+            - if not subject.visited_session_id.nil? then
+              = "Shown up at #{l Session.find(subject.visited_session_id).start_time}"
+          td
+            = link_to '', experiment_subject_path(@experiment, subject), remote: true, method: :delete, class: 'pull-right glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
 = link_to '< Back', :back, :class => 'pull-left btn btn-xs btn-default spacer-top10'

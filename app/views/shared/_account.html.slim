@@ -5,9 +5,8 @@ ul.nav.navbar-nav.navbar-right
           = current_user.email
           b.caret
         ul.dropdown-menu
-          li
-            a href="#"
-              | View schedule
+          - if current_user.is_subject?
+            li= link_to 'Timeline', timeline_path
           - if current_user.is_experimenter?
             li= link_to 'Experiments', experiments_path
           - if current_user.is_administrator?
