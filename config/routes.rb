@@ -11,6 +11,7 @@ Recruiter::Application.routes.draw do
   resources :sessions do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
+    delete 'subjects/:subject', to: 'subjects#unregister', as: 'subject'
     resources :subjects
     resources :registrations
   end
@@ -30,8 +31,8 @@ Recruiter::Application.routes.draw do
     post 'subjects', to: 'subjects#assign'
     get 'subjects', to: 'subjects#index'
     get 'invite', to: 'experiments#invite'
-    delete 'subjects', to: 'subjects#destroy_all'
-    delete 'subjects/:subject', to: 'subjects#destroy', as: 'subject'
+    delete 'subjects', to: 'subjects#unassign_all'
+    delete 'subjects/:subject', to: 'subjects#unassign', as: 'subject'
     post 'subjects/remained', to: 'subjects#remained'
     resources :sessions
   end

@@ -37,6 +37,7 @@ class SessionsController < InheritedResources::Base
     @subjects = Subject.where("email = '#{permitted_add_params[:cred]}' or gsharp = '#{permitted_add_params[:cred]}'")
     if @subjects.count == 1
       @subject = @subjects.first
+      @session.experiment.subjects << @subject
       @session.subjects << @subject
       @session.save!
       render 'add_success'

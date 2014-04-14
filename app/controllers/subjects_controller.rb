@@ -1,6 +1,6 @@
 class SubjectsController < ApplicationController
   before_action :authenticate_user!
-  before_action :raise_if_not_admin, only: [:destroy, :destroy_all, :index]
+  before_action :raise_if_not_admin, only: [:unassign, :unassign_all, :index]
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
   def index
@@ -10,15 +10,21 @@ class SubjectsController < ApplicationController
       .joins("LEFT OUTER JOIN (select user_id, session_id as visited_session_id from registrations where shown_up = 't') r1 on (r1.user_id = users.id)")
     render 'index'
   end
-  def destroy
+  def unassign
     @experiment = Experiment.find(params[:experiment_id])
     @subject_id = params[:subject]
     @experiment.subjects.delete params[:subject]
+    Registration.where(session_id: @experiment.sessions, user_id: params[:subject]).delete_all
   end
-  def destroy_all
+  def unassign_all
     @experiment = Experiment.find(params[:experiment_id])
     @experiment.subjects.delete_all
+    Registration.where(session_id: @experiment.sessions, user_id: @experiment.subjects).delete_all
     redirect_to experiment_path @experiment
+  end
+  def unregister
+    @session = Session.find(params[:session_id])
+    @session.subjects.delete params[:subject]
   end
   def assign
     @experiment = Experiment.find(search_params[:experiment_id])
