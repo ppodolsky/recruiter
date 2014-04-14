@@ -39,6 +39,7 @@
               = f.check_box :participated, {class: 'checkbox'}
             td
               = f.number_field :paid, min: 0, class: 'form-control', placeholder: 'paid'
+= link_to '< Back', experiment_path(@session.experiment) + '#sessions', :class=>'btn btn-default'
 = link_to 'Save state', '#', remote: true, class: 'pull-right btn save btn-primary'
 .clearfix
 .text-center

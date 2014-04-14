@@ -32,7 +32,7 @@ Recruiter::Application.routes.draw do
     get 'invite', to: 'experiments#invite'
     delete 'subjects', to: 'subjects#destroy_all'
     delete 'subjects/:subject', to: 'subjects#destroy', as: 'subject'
-    post 'remained', to: 'subjects#remained'
+    post 'subjects/remained', to: 'subjects#remained'
     resources :sessions
   end
 

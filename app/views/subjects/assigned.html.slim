@@ -4,10 +4,10 @@
 .alert.alert-success
   | Successfully assigned #{pluralize(@assigned_count, 'subject')}.
   - if @remained_subjects_count > 0
-    |  You can #{link_to 'assign extra ' + pluralize(@remained_subjects_count, 'subjects'), experiment_remained_path(@experiment), :method => 'post', :class=>'alert-link'}
+    |  You can #{link_to 'assign extra ' + pluralize(@remained_subjects_count, 'subjects'), experiment_subjects_remained_path(@experiment), :method => 'post', :class=>'alert-link'}
     |  or #{link_to 'go back', experiment_path(@experiment), :class=>'alert-link'}
 .pull-left
   = link_to '< Back', experiment_path(@experiment), :class=>'btn btn-default'
 - if @remained_subjects_count > 0
   .pull-right
-    = link_to 'Assign extra subjects >', experiment_remained_path(@experiment), :method => 'post', :class=>'btn btn-primary'
+    = link_to 'Assign extra subjects >', experiment_subjects_remained_path(@experiment), :method => 'post', :class=>'btn btn-primary'

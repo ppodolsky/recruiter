@@ -1,7 +1,7 @@
 class Session < ActiveRecord::Base
   belongs_to :experiment
   belongs_to :lab, inverse_of: :sessions
-  has_many :registrations
+  has_many :registrations, :dependent => :delete_all
   has_many :subjects, class_name: 'User', through: :registrations
 
   validate :check_time_range
