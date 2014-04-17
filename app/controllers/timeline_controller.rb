@@ -8,6 +8,7 @@ class TimelineController < ApplicationController
     @opened = Session
       .where(experiment_id: current_user.experiments)
       .where('registration_deadline > ?', Time.now)
+      .where.not(id: current_user.sessions)
       .order('start_time ASC')
   end
 

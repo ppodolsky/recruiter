@@ -5,6 +5,16 @@ class SessionsController < InheritedResources::Base
   respond_to :js, :only => [:destroy]
   actions :index, :edit, :show, :update, :create, :new, :destroy
 
+
+  def join
+    @session = Session.find(params[:session_id])
+    @experiment = @session.experiment
+    if(current_user.experiments.find_by_id(@experiment.id))
+      current_user.sessions << @session
+    end
+    redirect_to :back
+  end
+
   def finish
     @session = Session.find(params[:session_id])
     @session.finished = true

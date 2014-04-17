@@ -1,0 +1,11 @@
+b
+  = "#{item.experiment.name} at #{item.lab.location}"
+.clearfix
+p
+  small
+    - ff = '%l hours' + (item.duration.min != 0 ? '%M minutes' : '')
+    span.underline
+      = "#{l item.start_time}"
+    span
+      = " lasts #{item.duration.strftime(ff)}"
+.line-separator

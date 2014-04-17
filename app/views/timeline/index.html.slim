@@ -1,13 +1,17 @@
 .row
-  - if @incoming.count > 0 then
-    .col-sm-6.list-group
-      h3
-        | Incoming sessions
-      - @incoming.each do |i|
-        = render partial: 'timeline_item', locals: {item: i}
-  - if @opened.count > 0 then
-    .col-sm-6.list-group
-      h3
-        | Opened sessions
-      - @opened.each do |i|
-        = render partial: 'timeline_item', locals: {item: i}
+  .col-sm-6.list-group
+    h3
+      | Your sessions
+    - if @incoming.count == 0 then
+      .lead
+        | You haven't joined any session yet
+    - @incoming.each do |i|
+      = render partial: 'timeline_incoming_item', locals: {item: i}
+  .col-sm-6.list-group
+    h3
+      | Sessions you can join
+    - if @opened.count == 0 then
+      .lead
+        | There is no opened session now
+    - @opened.each do |i|
+      = render partial: 'timeline_opened_item', locals: {item: i}

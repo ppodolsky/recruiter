@@ -41,9 +41,17 @@ jQuery(document).ready(function() {
                 success: function(doc) {
                     var events = [];
                     $(doc).each(function() {
+                        st = new Date(this['start_time']);
+                        et = new Date(this['end_time']);
                         events.push({
                             title: this['experiment']['name'] + ' by '
-                                + this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'],
+                                + this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'] +
+                                ' from '
+                                + (st.getHours() < 10 ? '0' + st.getHours() : st.getHours()) + ':'
+                                + (st.getMinutes() < 10 ? '0' + st.getMinutes() : st.getMinutes()) +
+                                ' to '
+                                + (et.getHours() < 10 ? '0' + et.getHours() : et.getHours()) + ':'
+                                + (et.getMinutes() < 10 ? '0' + et.getMinutes() : et.getMinutes()),
                             start: this['start_time'],
                             end: this['end_time']
                         });
@@ -51,7 +59,8 @@ jQuery(document).ready(function() {
                     callback(events);
                 }
             });
-        }
+        },
+        timeFormat: 'H(:mm)' // uppercase H for 24-hour clock
     })
 
 });

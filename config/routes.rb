@@ -12,6 +12,7 @@ Recruiter::Application.routes.draw do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
     delete 'subjects/:subject', to: 'subjects#unregister', as: 'subject'
+    post 'join', to: 'sessions#join'
     resources :subjects
     resources :registrations
   end
