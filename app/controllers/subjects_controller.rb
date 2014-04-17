@@ -13,13 +13,13 @@ class SubjectsController < ApplicationController
   def unassign
     @experiment = Experiment.find(params[:experiment_id])
     @subject_id = params[:subject]
-    @experiment.subjects.delete params[:subject]
-    Registration.where(session_id: @experiment.sessions, user_id: params[:subject]).delete_all
+    Registration.where(session_id: @experiment.sessions, user_id: @subject_id).delete_all
+    @experiment.subjects.delete @subject_id
   end
   def unassign_all
     @experiment = Experiment.find(params[:experiment_id])
-    @experiment.subjects.delete_all
     Registration.where(session_id: @experiment.sessions, user_id: @experiment.subjects).delete_all
+    @experiment.subjects.delete_all
     redirect_to experiment_path @experiment
   end
   def unregister

@@ -9,6 +9,7 @@ class TimelineController < ApplicationController
       .where(experiment_id: current_user.experiments)
       .where('registration_deadline > ?', Time.now)
       .where.not(id: current_user.sessions)
+      .where.not(experiment_id: current_user.sessions.pluck(:experiment_id))
       .order('start_time ASC')
   end
 

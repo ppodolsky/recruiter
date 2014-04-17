@@ -7,10 +7,14 @@ class SessionsController < InheritedResources::Base
 
 
   def join
-    @session = Session.find(params[:session_id])
-    @experiment = @session.experiment
-    if(current_user.experiments.find_by_id(@experiment.id))
-      current_user.sessions << @session
+    @opened = Session
+    .where(id: params[:session_id])
+    .where(experiment_id: current_user.experiments)
+    .where('registration_deadline > ?', Time.now)
+    .where.not(id: current_user.sessions)
+    .where.not(experiment_id: current_user.sessions.pluck(:experiment_id))
+    if(@opened.count == 1)
+      current_user.sessions << @opened.first
     end
     redirect_to :back
   end
