@@ -15,7 +15,9 @@ class Session < ActiveRecord::Base
     if registration_deadline > start_time
       errors.add(:registration_deadline, "cannot be later than start time")
     end
-    t = Session.where('start_time <= ? and ? <= end_time and lab_id = ?', self.end_time, self.start_time, self.lab_id)
+    t = Session
+      .where.not(id: self.id)
+      .where('start_time <= ? and ? <= end_time and lab_id = ?', self.end_time, self.start_time, self.lab_id)
     t.each do |f|
       errors.add(:selected_time, "is overlapping with the session of #{f.experiment.name} (from #{f.start_time.strftime("%d %B %Y at %H:%M")} to #{f.end_time.strftime("%d %B %Y at %H:%M")})")
     end
