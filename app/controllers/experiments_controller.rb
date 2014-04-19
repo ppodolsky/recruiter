@@ -38,6 +38,9 @@ class ExperimentsController < InheritedResources::Base
   def invite
     @experiment = Experiment.find(params[:experiment_id])
   end
+  def send_invite
+
+  end
   def calendar
     events = Session
     .includes(:experiment => :creator)
@@ -54,6 +57,9 @@ class ExperimentsController < InheritedResources::Base
                             :only => [:first_name, :last_name]
                         }
                     },
+                },
+                :lab => {
+                    :only => [:location]
                 }
             }
         )

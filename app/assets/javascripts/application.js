@@ -48,12 +48,13 @@ jQuery(document).ready(function() {
                     var events = [];
                     $(doc).each(function() {
                         events.push({
-                            title: this['experiment']['name'] + ' by '
-                                + this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'],
+                            title: this['experiment']['name'] + ' by ' +
+                                this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'] +
+                                ' in ' + this['lab']['location'],
                             start: this['start_time'],
                             end: this['end_time'],
                             allDay: false,
-                            color: this['finished'] ? 'green' : 'red'
+                            color: this['finished'] ? '' : 'green'
                         });
                     });
                     callback(events);

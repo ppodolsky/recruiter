@@ -33,6 +33,7 @@ Recruiter::Application.routes.draw do
     delete 'users/:user_id', to: 'users#unassign', as: 'user'
     get 'users', to: 'users#assigned'
     get 'invite', to: 'experiments#invite'
+    get 'send_invite', to: 'experiments#send_invite'
     delete 'users', to: 'users#unassign_all'
     post 'users/remained', to: 'users#remained'
     resources :sessions do
