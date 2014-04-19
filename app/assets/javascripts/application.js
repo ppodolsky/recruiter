@@ -29,9 +29,15 @@ jQuery(document).ready(function() {
 });
 jQuery(document).ready(function() {
     $('#calendar').fullCalendar({
+        header:{
+            left:   'title',
+            center: 'month,agendaWeek',
+            right:  'today prev,next'
+        },
+        height: 400,
         events: function(start, end, callback) {
             $.ajax({
-                url: '/calendar',
+                url: '/experiments/calendar',
                 dataType: 'json',
                 data: {
                     // our hypothetical feed requires UNIX timestamps
@@ -41,26 +47,25 @@ jQuery(document).ready(function() {
                 success: function(doc) {
                     var events = [];
                     $(doc).each(function() {
-                        st = new Date(this['start_time']);
-                        et = new Date(this['end_time']);
                         events.push({
                             title: this['experiment']['name'] + ' by '
-                                + this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'] +
-                                ' from '
-                                + (st.getHours() < 10 ? '0' + st.getHours() : st.getHours()) + ':'
-                                + (st.getMinutes() < 10 ? '0' + st.getMinutes() : st.getMinutes()) +
-                                ' to '
-                                + (et.getHours() < 10 ? '0' + et.getHours() : et.getHours()) + ':'
-                                + (et.getMinutes() < 10 ? '0' + et.getMinutes() : et.getMinutes()),
+                                + this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'],
                             start: this['start_time'],
-                            end: this['end_time']
+                            end: this['end_time'],
+                            allDay: false,
+                            color: this['finished'] ? 'green' : 'red'
                         });
                     });
                     callback(events);
                 }
             });
         },
-        timeFormat: 'H(:mm)' // uppercase H for 24-hour clock
+        timeFormat: {
+            agenda: 'H:mm{ - H:mm}',
+            '': 'H:mm'
+        },
+        minTime: '5',
+        maxTime: '22'
     })
 
 });
@@ -71,5 +76,13 @@ jQuery(document).ready(function($) {
     $('.save').click(function(event){
         event.preventDefault();
         $('.save-row').submit();
+    })
+    $('.registration-selector').change(function(event){
+        var user = $(event.target).data('user');
+        var session = $(event.target).find('option:selected').val();
+        if(session && session.length != 0) {
+            $.post('/sessions/' + session + '/users/' + user)
+            window.location.reload()
+        }
     })
 });

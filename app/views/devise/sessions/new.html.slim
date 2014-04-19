@@ -1,22 +1,22 @@
 .row style="height: 100%"
   .col-sm-4
-  .col-sm-4.spacer-top100
+  .col-sm-4.spacer-top-100
     = form_for(resource, :as => resource_name, :url => user_session_path) do |f|
       div role='form'
-        div.input-group.width100
+        div.input-group.width-100
           = f.email_field :email, :placeholder => 'Email', :class => 'form-control', :autofocus => true
-        div.input-group.spacer-top20.width100
+        div.input-group.spacer-top-20.width-100
           = f.password_field :password, :placeholder => 'Password', :class => 'form-control'
         - if flash[:alert]
-          .small.help-block.danger.width100
+          .small.help-block.danger.width-100
             = flash[:alert]
         - if devise_mapping.rememberable?
-          div.form-group.spacer-top10
+          div.form-group.spacer-top-10
             label
               = f.check_box :remember_me, class: 'checkbox'
               | Remember password?
         div.form-group
-          = f.submit 'Sign in', class: 'btn btn-small btn-primary width100'
+          = f.submit 'Sign in', class: 'btn btn-small btn-primary width-100'
         div.form-group
-          = link_to " Join us!", new_user_registration_path, class: 'btn btn-small btn-default width100'
+          = link_to " Join us!", new_user_registration_path, class: 'btn btn-small btn-default width-100'
     .col-sm-4

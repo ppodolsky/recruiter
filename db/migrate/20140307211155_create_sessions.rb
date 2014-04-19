@@ -6,7 +6,7 @@ class CreateSessions < ActiveRecord::Migration
       t.integer :duration, null: false
       t.integer :registered_subjects
       t.integer :required_subjects
-      t.references :lab, index: true
+      t.references :lab, assigned: true
       t.boolean :finished, default: false, null: false
       t.datetime :registration_deadline, null: false
 

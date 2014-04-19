@@ -23,7 +23,7 @@ class MergeProfileToUser < ActiveRecord::Migration
 
   def self.down
     create_table :profiles do |t|
-      t.references :user, index: true
+      t.references :user, assigned: true
       t.string :secondary_email
       t.string :major, limit: 30
       t.string :phone, limit: 14

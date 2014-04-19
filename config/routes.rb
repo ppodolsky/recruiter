@@ -8,34 +8,36 @@ Recruiter::Application.routes.draw do
   devise_for :users, :controllers => { :registrations => "custom_registrations" },
              :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 
+  get 'dictionaries/:id', to: 'dictionaries#show', as: :dictionary
+  get 'dictionaries', to: 'dictionaries#index'
+
+
   resources :sessions do
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
-    delete 'subjects/:subject', to: 'subjects#unregister', as: 'subject'
+    delete 'users/:user_id', to: 'users#unregister', as: 'user'
+    post 'users/:user_id', to: 'users#register'
     post 'join', to: 'sessions#join'
-    resources :subjects
     resources :registrations
   end
 
-  get 'managers', to: 'users#index_managers'
-
   get 'timeline', to: 'timeline#index'
-  get 'calendar', to: 'timeline#calendar'
 
-  resources :users, only:[:update, :add, :find]
-  get 'users/find', to: 'users#find'
-  post 'users/add', to: 'users#add'
-  put 'users/:id', to: 'users#update'
+  resources :users, only: [:index, :update, :search, :show]
 
   get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
+  get 'experiments/calendar', to: 'experiments#calendar'
+
   resources :experiments do
-    post 'subjects', to: 'subjects#assign'
-    get 'subjects', to: 'subjects#index'
+    post 'users', to: 'users#assign'
+    delete 'users/:user_id', to: 'users#unassign', as: 'user'
+    get 'users', to: 'users#assigned'
     get 'invite', to: 'experiments#invite'
-    delete 'subjects', to: 'subjects#unassign_all'
-    delete 'subjects/:subject', to: 'subjects#unassign', as: 'subject'
-    post 'subjects/remained', to: 'subjects#remained'
-    resources :sessions
+    delete 'users', to: 'users#unassign_all'
+    post 'users/remained', to: 'users#remained'
+    resources :sessions do
+      post 'users', to: 'users#register'
+    end
   end
 
   # static page overrides for CMS

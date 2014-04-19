@@ -1,7 +1,7 @@
 class CreateProfiles < ActiveRecord::Migration
   def change
     create_table :profiles do |t|
-      t.references :user, index: true
+      t.references :user, assigned: true
       t.string :secondary_email
       t.string :first_name, limit: 30
       t.string :last_name, limit: 30

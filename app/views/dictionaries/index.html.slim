@@ -1,0 +1,12 @@
+.row
+  .col-sm-3
+    .list-group
+      = link_to 'Laboratories', dictionary_path(:lab), class: 'list-group-item'
+      = link_to 'Categories', dictionary_path(:category), class: 'list-group-item'
+  .col-sm-9
+    - if @dictionary
+      - @dictionary.each do |f|
+        .row
+          .col-sm-6
+            = text_field_tag 'value', f.name, class: 'form-control spacer-bot-10'
+= link_to 'Save', '#', remote: true, class: 'pull-right btn save btn-primary'

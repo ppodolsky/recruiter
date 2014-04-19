@@ -1,6 +1,3 @@
-.page-header
-  h1
-    | My Account
 = render "shared/errors"
 .tabbable
   ul.nav.nav-tabs
@@ -11,7 +8,7 @@
       li
         a href="#personal" data-toggle="tab"
           |  Personal
-  .tab-content.spacer-top10
+  .tab-content.spacer-top-10
     #account.tab-pane.active
       = form_for(resource, as: resource_name, url: registration_path(resource) + '#account', html: { method: :put, class: 'form-horizontal' }) do |u|
         .form-group

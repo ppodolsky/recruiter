@@ -4,7 +4,7 @@
 - if @subjects.count > 0
   .alert.alert-danger
     | <b>Gone bad.</b> There are only #{pluralize(@subjects.count, 'subject')}.
-    |  You can #{link_to 'assign them', experiment_remained_path(@experiment), :method => 'post', :class=>'alert-link'} or #{link_to 'go back', experiment_path(@experiment), :class=>'alert-link'}
+    |  You can #{link_to 'assign them', experiment_users_remained_path(@experiment), :method => 'post', :class=>'alert-link'} or #{link_to 'go back', experiment_path(@experiment), :class=>'alert-link'}
 - else
   .alert.alert-danger
     | <b>Gone bad.</b> There are no subjects you can assign. Change filtering parameters and try again.
@@ -12,4 +12,4 @@
   = link_to '< Back', 'javascript:history.go(-1)', onclick:'javascript:history.go(-1)', class: 'btn btn-default'
 - if @subjects.count > 0
   .pull-right
-    = link_to 'Assign found subjects >', experiment_remained_path(@experiment), method: 'post', class: 'btn btn-primary'
+    = link_to 'Assign found subjects >', experiment_users_remained_path(@experiment), method: 'post', class: 'btn btn-primary'

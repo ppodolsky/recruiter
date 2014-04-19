@@ -27,7 +27,7 @@
       = f.label 'Subjects Assigned', class: 'control-label col-sm-2'
       .col-sm-8.spacer-top10
         - if current_user.is_administrator?
-          = link_to @experiment.assignments.count, experiment_subjects_path(@experiment), :class => 'lead'
+          = link_to @experiment.assignments.count, experiment_users_path(@experiment), :class => 'lead'
         - else
           .lead
             = @experiment.assignments.count

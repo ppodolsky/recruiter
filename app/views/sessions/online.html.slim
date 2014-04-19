@@ -30,9 +30,9 @@
             td
               = index + 1
             td
-              = registration.subject.gsharp
+              = registration.user.gsharp
             td
-              = registration.subject.name
+              = registration.user.name
             td
               = f.check_box :shown_up, {class: 'checkbox'}
             td
@@ -40,7 +40,7 @@
             td
               = f.number_field :paid, min: 0, class: 'form-control', placeholder: 'paid'
 = link_to '< Back', experiment_path(@session.experiment) + '#sessions', :class=>'btn btn-default'
-= link_to 'Save state', '#', remote: true, class: 'pull-right btn save btn-primary'
+= link_to 'Save', '#', remote: true, class: 'pull-right btn save btn-primary'
 .clearfix
 .text-center
   = link_to 'Finish session', session_finish_path(@session), method: :post, class: 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }

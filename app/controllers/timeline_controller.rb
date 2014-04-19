@@ -13,26 +13,4 @@ class TimelineController < ApplicationController
       .order('start_time ASC')
   end
 
-  def calendar
-    events = Session
-      .includes(:experiment => :creator)
-      .where(start_time: DateTime.strptime(params[:start],'%s')..DateTime.strptime(params[:end],'%s'))
-    respond_to do |format|
-      format.json {
-        render :json => events.to_json(
-            :only => [:start_time, :end_time, :duration],
-            :include => {
-              :experiment => {
-                  :only => [:name],
-                  :include => {
-                      :creator => {
-                          :only => [:first_name, :last_name]
-                      }
-                  },
-              }
-          }
-        )
-      }
-    end
-  end
 end

@@ -3,27 +3,19 @@ class SessionsController < InheritedResources::Base
   before_action :raise_if_not_experimenter, only: [:online, :finish, :update, :create, :new, :destroy, :show]
   belongs_to :experiment
   respond_to :js, :only => [:destroy]
-  actions :index, :edit, :show, :update, :create, :new, :destroy
+  actions :assigned, :edit, :show, :update, :create, :new, :destroy
 
 
   def join
-    @opened = Session
-    .where(id: params[:session_id])
-    .where(experiment_id: current_user.experiments)
-    .where('registration_deadline > ?', Time.now)
-    .where.not(id: current_user.sessions)
-    .where.not(experiment_id: current_user.sessions.pluck(:experiment_id))
-    if(@opened.count == 1)
-      current_user.sessions << @opened.first
-    end
+    current_user.sessions << Session.find(params[:session_id])
     redirect_to :back
   end
 
   def finish
-    @session = Session.find(params[:session_id])
-    @session.finished = true
-    @session.save!
-    redirect_to experiment_path(@session.experiment) + '#sessions'
+    session = Session.find(params[:session_id])
+    session.finished = true
+    session.save!
+    redirect_to experiment_path(session.experiment) + '#sessions'
   end
   def online
     @session = Session.find(params[:session_id])
@@ -39,23 +31,23 @@ class SessionsController < InheritedResources::Base
     @session_id = params[:id]
     destroy!
   end
-  def edit_subject
+  def edit_user
     @session = Session.find(params[:session_id])
-    @subject = Subject.find(params[:subject_id])
-    @registration =  Registration.find(session: @session, user: @subject)
-    @registration.update(permitted_edit_subject_params)
+    @user = Subject.find(params[:user_id])
+    @registration = Registration.find(session: @session, user: @user)
+    @registration.update(permitted_edit_user_params)
     @registration.save!
   end
-  def add_subject
+  def add_user
     @session = Session.find(params[:session_id])
-    @subjects = Subject.where("email = '#{permitted_add_params[:cred]}' or gsharp = '#{permitted_add_params[:cred]}'")
-    if @subjects.count == 1
-      @subject = @subjects.first
-      @session.experiment.subjects << @subject
-      @session.subjects << @subject
+    @users = Subject.where("email = '#{permitted_add_params[:cred]}' or gsharp = '#{permitted_add_params[:cred]}'")
+    if @users.count == 1
+      @user = @users.first
+      @session.experiment.users << @user
+      @session.users << @user
       @session.save!
       render 'add_success'
-    elsif @subjects.count == 0
+    elsif @users.count == 0
       @error_msg = 'This user cannot be found'
       render 'add_fail'
     else

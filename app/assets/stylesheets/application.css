@@ -13,9 +13,12 @@
  *= require_tree .
  */
 .danger{
-    color: darkred;
+    color: darkred !important;
 }
-.green{
+div.success{
+    color: darkgreen;
+}
+div.green{
     color: darkgreen;
 }
 .classic{
@@ -30,22 +33,34 @@
     border-bottom:1px solid #313030;
 }
 
-.width100{
+.width-100{
     width: 100%;
 }
-.spacer-right10{
+.spacer-right-10{
     margin-right: 10px;
 }
-.spacer-top10{
+.spacer-left-10{
+    margin-left: 10px;
+}
+.spacer-top-5{
+    margin-top: 10px;
+}
+.spacer-top-10{
     margin-top: 10px;
 }
 .spacer-bot-neg-5{
     margin-bottom: -5px;
 }
-.spacer-top20{
+.spacer-bot-10{
+    margin-bottom: 10px;
+}
+.spacer-bot-15{
+    margin-bottom: 15px;
+}
+.spacer-top-20{
     margin-top: 20px;
 }
-.spacer-top100{
+.spacer-top-100{
     margin-top: 100px;
 }
 .vbottom {

@@ -3,7 +3,7 @@ class Experiment < ActiveRecord::Base
   has_paper_trail
   has_many :sessions, :dependent => :delete_all
   has_many :assignments, :dependent => :delete_all
-  has_many :subjects, class_name: 'User', through: :assignments
+  has_many :users, through: :assignments
   belongs_to :creator, class_name: 'User', foreign_key: 'creator_id', inverse_of: :experiments
   has_and_belongs_to_many :categories
 

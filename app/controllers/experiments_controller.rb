@@ -1,8 +1,18 @@
 class ExperimentsController < InheritedResources::Base
   before_action :authenticate_user!
-  actions :new, :create, :index, :show, :update, :destroy
-  custom_actions :collection => :all, :resource => [:invite]
-  respond_to :js, :only => [:destroy, :update]
+  actions :all
+  custom_actions :collection => [:assigned, :calendar], :resource => [:invite]
+  respond_to :js, :only => [:destroy, :update, :calendar]
+
+  def permitted_params
+    params.permit(experiment: [
+        :name,
+        :description,
+        :type,
+        :default_invitation,
+        :finished
+    ])
+  end
 
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
@@ -10,13 +20,13 @@ class ExperimentsController < InheritedResources::Base
     create!
   end
   def index
-    @experiments = Experiment.where(creator: current_user)
+    @experiments = Experiment.where(creator: current_user, finished: false).order("created_at DESC")
     @filter_title = 'show all'
     @filter_url = experiments_all_path
     index!
   end
   def all
-    @experiments = Experiment.all
+    @experiments = Experiment.all.where(finished: false).order("created_at DESC")
     @filter_title = 'show only my'
     @filter_url = experiments_path
     render 'index'
@@ -28,14 +38,26 @@ class ExperimentsController < InheritedResources::Base
   def invite
     @experiment = Experiment.find(params[:experiment_id])
   end
-  private
-  def permitted_params
-    params.permit(experiment: [
-        :name,
-        :description,
-        :type,
-        :default_invitation,
-        :finished
-    ])
+  def calendar
+    events = Session
+    .includes(:experiment => :creator)
+    .where(start_time: DateTime.strptime(params[:start],'%s')..DateTime.strptime(params[:end],'%s'))
+    respond_to do |format|
+      format.json {
+        render :json => events.to_json(
+            :only => [:start_time, :end_time, :duration, :finished],
+            :include => {
+                :experiment => {
+                    :only => [:name],
+                    :include => {
+                        :creator => {
+                            :only => [:first_name, :last_name]
+                        }
+                    },
+                }
+            }
+        )
+      }
+    end
   end
 end

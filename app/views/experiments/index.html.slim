@@ -1,34 +1,21 @@
 .row
-  .col-sm-5
+  .col-sm-9
     #calendar
-  .col-sm-7
-    .table-responsive
-      table.table.table-condensed.table-borderless
-        thead
-          tr
-            th
-              | Name
-            th
-              | Type
-            th
-              | Assigned
-            th
-              small.pull-right
-                = link_to @filter_title, @filter_url, class: 'lead'
-        tbody
-          - @experiments.each do | experiment |
-            tr id="experiment_#{experiment.id}"
-              td
-                = experiment.name
-              td
-                = experiment.type
-              td
-                = experiment.subjects.count
-              td
-                .pull-right
-                  = link_to '', experiment_path(experiment), class: 'glyphicon glyphicon-pencil spacer-right10 classic'
-                  = link_to '', experiment.becomes(Experiment), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
-    = link_to new_experiment_path, :class => 'btn btn-primary pull-right' do
-      span.glyphicon.glyphicon-plus
-      |  New Experiment
+  .col-sm-3
+    = link_to @filter_title, @filter_url, class: 'pull-right'
     .clearfix
+    - @experiments.each do | experiment |
+      .row id="experiment_#{experiment.id}"
+        - if experiment.creator == current_user
+          .pull-right
+            = link_to '', experiment.becomes(Experiment), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
+        div
+          = link_to experiment.name, experiment.becomes(Experiment), class: 'lead'
+        div
+          = "Assigned: "
+          = link_to "#{pluralize(experiment.users.count,'subject')}", experiment_users_path(experiment)
+        .line-separator.spacer-top-5
+= link_to new_experiment_path, :class => 'btn btn-primary pull-right spacer-top-10' do
+  span.glyphicon.glyphicon-plus
+  |  New Experiment
+.clearfix

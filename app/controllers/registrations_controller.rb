@@ -3,19 +3,19 @@ class RegistrationsController < InheritedResources::Base
   actions :create, :update
   def create
     @session = Session.find(params[:session_id])
-    @subjects = Subject.where("(
+    @users = Subject.where("(
       email = '#{permitted_params[:cred]}' or
       gsharp = '#{permitted_params[:cred]}')")
-    if @subjects.count == 0
+    if @users.count == 0
       @error_msg = "Subject not found"
       render 'create_fail'
     else
-      @subject = @subjects.first
-      if @session.subjects.exists?(id: @subject.id) then
+      @user = @users.first
+      if @session.users.exists?(id: @user.id) then
         @error_msg = "Already added"
         render 'create_fail'
       else
-        @registration = Registration.new(user_id: @subject.id, session_id: @session.id)
+        @registration = Registration.new(user_id: @user.id, session_id: @session.id)
         create!
       end
     end
