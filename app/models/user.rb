@@ -75,9 +75,9 @@ class User < ActiveRecord::Base
     self.username = self.email.split(/@/).first
   end
   def change_type_service
-    if self.type_was == 'Subject' then
-      self.sessions.where(finished: false).delete_all
-      self.experiments.where(finished: false).delete_all
+    if self.type_changed? and self.type_was == 'Subject' then
+      self.sessions.delete (self.sessions.where(finished: false))
+      self.experiments.delete (self.experiments.where(finished: false))
     end
   end
 end
