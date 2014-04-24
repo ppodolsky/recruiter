@@ -8,8 +8,6 @@ nav.navbar.navbar-default.navbar-static-top role="navigation"
       = link_to 'ACME Recruiter', root_path, class: 'navbar-brand'
     .navbar-collapse.collapse
       ul.nav.navbar-nav
-        - if user_signed_in? and current_user.is_administrator?
-          li= nav_link 'Dictionaries', dictionaries_path
         li= nav_link 'Rules', page_path('rules')
         li= nav_link 'Privacy', page_path('privacy')
         li= nav_link 'FAQs', page_path('faqs')

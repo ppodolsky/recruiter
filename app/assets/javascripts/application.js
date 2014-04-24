@@ -31,7 +31,7 @@ jQuery(document).ready(function() {
     $('#calendar').fullCalendar({
         header:{
             left:   'title',
-            center: 'month,agendaWeek',
+            center: 'month,basicWeek',
             right:  'today prev,next'
         },
         height: 400,

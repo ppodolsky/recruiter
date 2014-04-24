@@ -9,6 +9,9 @@ class Experiment < ActiveRecord::Base
 
   validates_presence_of :name, :type, presence: true
 
+  def type_name
+    self.type.gsub("Experiment", "")
+  end
   def default_values
     self.default_invitation ||=
 "Hello #fname#!

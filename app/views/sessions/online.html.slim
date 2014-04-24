@@ -23,6 +23,7 @@
           | Participated
         th
           | $
+        th
     tbody
       - @session.registrations.each_with_index do | registration, index |
         = form_for(registration, html: {method: :put, class: "save-row"}, namespace: "r_#{index}", url: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), remote: true) do |f|
@@ -32,13 +33,15 @@
             td
               = registration.user.gsharp
             td
-              = registration.user.name
+              = link_to registration.user.name, registration.user.becomes(User)
             td
               = f.check_box :shown_up, {class: 'checkbox'}
             td
               = f.check_box :participated, {class: 'checkbox'}
             td
               = f.number_field :paid, min: 0, class: 'form-control', placeholder: 'paid'
+            td
+              = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-10 glyphicon glyphicon-remove danger'
 = link_to '< Back', experiment_path(@session.experiment) + '#sessions', :class=>'btn btn-default'
 = link_to 'Save', '#', remote: true, class: 'pull-right btn save btn-primary'
 .clearfix

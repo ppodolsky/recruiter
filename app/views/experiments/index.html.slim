@@ -12,6 +12,12 @@
         div
           = link_to experiment.name, experiment.becomes(Experiment), class: 'lead'
         div
+          = "Experimenter: "
+          = experiment.creator.name
+        div
+          = "Type: "
+          = experiment.type_name
+        div
           = "Assigned: "
           = link_to "#{pluralize(experiment.users.count,'subject')}", experiment_users_path(experiment)
         .line-separator.spacer-top-5
