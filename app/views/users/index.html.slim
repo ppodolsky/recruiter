@@ -1,23 +1,36 @@
-- @users.each_with_index do | user, i |
-  = form_for(user.becomes(User), html: {method: :put, class: "save-row"}, url: user_path(user), remote: true, namespace: "m_#{user.id}") do |f|
-    .row class = "#{i != 0 ? 'spacer-top-10' : ''}"
-      .col-sm-2
-        = link_to user.name, user_path(user)
-        br
-        small
-          = user.email
-      .col-sm-3
-          span
-            = f.radio_button :type, 'Administrator'
-            = f.label :type, nil, :value => 'Administrator', class: "spacer-bot-neg-5"
-              = 'Administrator'
+.row
+  .col-sm-8
+    - @users.each_with_index do | user, i |
+      = form_for(user.becomes(User), html: {method: :put, class: "save-row"}, url: user_path(user), remote: true, namespace: "m_#{user.id}") do |f|
+        .row class = "#{i != 0 ? 'spacer-top-10' : ''}"
+          .col-sm-3
+            = link_to user.name, user.becomes(User)
             br
-            = f.radio_button :type, 'Experimenter'
-            = f.label :type, nil, :value => 'Experimenter', class: "spacer-bot-neg-5"
-              = 'Experimenter'
-            br
-            = f.radio_button :type, 'Subject'
-            = f.label :type, nil, :value => 'Subject', class: 'danger'
-              = 'Subject'
+            small
+              = user.email
+          .col-sm-3
+              span
+                = f.radio_button :type, 'Administrator'
+                = f.label :type, nil, :value => 'Administrator', class: "spacer-bot-neg-5"
+                  = 'Administrator'
+                br
+                = f.radio_button :type, 'Experimenter'
+                = f.label :type, nil, :value => 'Experimenter', class: "spacer-bot-neg-5"
+                  = 'Experimenter'
+                br
+                = f.radio_button :type, 'Subject'
+                = f.label :type, nil, :value => 'Subject', class: 'danger'
+                  = 'Subject'
+  .col-sm-4.well
+    b
+      | Statistics
+    br
+      - participated_number = Registration.select(:user_id).distinct.where(participated: true).count
+      div
+        = "Subjects: #{Subject.count}"
+      div
+        = "Participated subjects: #{participated_number}"
+      div
+        = "Average participation: #{Registration.where(participated: true).count / participated_number}"
 .pull-right
   = link_to "Save", "#", remote: true,  class: 'btn btn-primary spacer-top-10 save'

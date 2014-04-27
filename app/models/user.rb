@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
 
   normalize_attributes :secondary_email
 
+  def self.find_by_cred(cred)
+    where("email = ? or gsharp = ?", cred, cred)
+  end
 
   def name
     "#{self.first_name} #{self.last_name}"
@@ -70,7 +73,6 @@ class User < ActiveRecord::Base
   def age
     (Time.now.year - self.birth_year)
   end
-  private
   def set_canonical_name
     self.username = self.email.split(/@/).first
   end

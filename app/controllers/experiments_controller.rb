@@ -10,7 +10,8 @@ class ExperimentsController < InheritedResources::Base
         :description,
         :type,
         :default_invitation,
-        :finished
+        :finished,
+        {category_ids: []}
     ])
   end
 

@@ -80,10 +80,8 @@ jQuery(document).ready(function($) {
     })
     $('.registration-selector').change(function(event){
         var user = $(event.target).data('user');
+        var experiment = $(event.target).data('experiment');
         var session = $(event.target).find('option:selected').val();
-        if(session && session.length != 0) {
-            $.post('/sessions/' + session + '/users/' + user)
-            window.location.reload()
-        }
+        $.post('/assignments/' + user + ',' + experiment, {current_session: session})
     })
 });

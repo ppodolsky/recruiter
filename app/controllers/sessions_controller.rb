@@ -31,30 +31,6 @@ class SessionsController < InheritedResources::Base
     @session_id = params[:id]
     destroy!
   end
-  def edit_user
-    @session = Session.find(params[:session_id])
-    @user = Subject.find(params[:user_id])
-    @registration = Registration.find(session: @session, user: @user)
-    @registration.update(permitted_edit_user_params)
-    @registration.save!
-  end
-  def add_user
-    @session = Session.find(params[:session_id])
-    @users = Subject.where("email = '#{permitted_add_params[:cred]}' or gsharp = '#{permitted_add_params[:cred]}'")
-    if @users.count == 1
-      @user = @users.first
-      @session.experiment.users << @user
-      @session.users << @user
-      @session.save!
-      render 'add_success'
-    elsif @users.count == 0
-      @error_msg = 'This user cannot be found'
-      render 'add_fail'
-    else
-      @error_msg = 'Too many found were found'
-      render 'add_fail'
-    end
-  end
   private
   def permitted_params
     params.permit(session: [

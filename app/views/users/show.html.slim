@@ -1,50 +1,83 @@
 h3
   = "#{@user.first_name} #{@user.last_name}, G\#: #{@user.gsharp}"
-= form_for(@user.becomes(User), html: { method: :put, class: 'form-horizontal' }) do |u|
-  fieldset
-    legend Personal information
-    div.form-group
-      = u.label :gender, class: 'control-label col-sm-2'
-      div.col-sm-8
-        = @user.gender
-    div.form-group
-      = u.label :birth_year, class: 'control-label col-sm-2'
-      div.col-sm-8
-        = @user.birth_year
-    div.form-group
-      = u.label :ethnicity, class: 'control-label col-sm-2'
-      div.col-sm-8
-        = @user.ethnicity
-    div.form-group
-      = u.label :profession, class: 'control-label col-sm-2'
-      div.col-sm-8
-        = @user.profession
-    div.form-group
-      = u.label :years_resident, class: 'control-label col-sm-2'
-      div.col-sm-8
-        = @user.years_resident
-    fieldset
-      legend Education information
-      div.form-group
-        = u.label :class_year, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = @user.class_year
-      div.form-group
-        = u.label :year_started, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = @user.year_started
-      div.form-group
-        = u.label :current_gpa, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = number_with_precision(@user.current_gpa, :precision => 2) || 0
-      div.form-group
-        = u.label :major, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = @user.major
-    fieldset
-      legend Contact information
-      div.form-group
-        = u.label :phone, class: 'control-label col-sm-2'
-        div.col-sm-8
-          = @user.phone
+.tabbable
+  ul.nav.nav-tabs
+    li.active
+      a href="#general" data-toggle="tab"
+        |  General
+    li
+      a href="#sessions" data-toggle="tab"
+        |  Sessions
+  .tab-content
+    #general.tab-pane.active
+      = form_for(@user.becomes(User), html: { method: :put, class: 'form-horizontal' }) do |u|
+        fieldset
+          legend Personal information
+          div.form-group
+            = u.label :gender, class: 'control-label col-sm-2'
+            div.col-sm-8
+              = @user.gender
+          div.form-group
+            = u.label :birth_year, class: 'control-label col-sm-2'
+            div.col-sm-8
+              = @user.birth_year
+          div.form-group
+            = u.label :ethnicity, class: 'control-label col-sm-2'
+            div.col-sm-8
+              = @user.ethnicity
+          div.form-group
+            = u.label :profession, class: 'control-label col-sm-2'
+            div.col-sm-8
+              = @user.profession
+          div.form-group
+            = u.label :years_resident, class: 'control-label col-sm-2'
+            div.col-sm-8
+              = @user.years_resident
+          fieldset
+            legend Education information
+            div.form-group
+              = u.label :class_year, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = @user.class_year
+            div.form-group
+              = u.label :year_started, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = @user.year_started
+            div.form-group
+              = u.label :current_gpa, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = number_with_precision(@user.current_gpa, :precision => 2) || 0
+            div.form-group
+              = u.label :major, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = @user.major
+          fieldset
+            legend Contact information
+            div.form-group
+              = u.label :phone, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = @user.phone
+    #sessions.tab-pane
+      .table-responsive
+        table.table.table-condensed.table-borderless
+          thead
+            tr
+              th
+                | Experiment
+              th
+                | Category
+              th
+                | Date
+              th
+                | Experimenter
+          tbody
+            - @user.registrations.where(shown_up: true).each do | registration |
+              tr
+                td
+                  = registration.session.experiment.name
+                td
+                td
+                  = registration.session.start_time_display
+                td
+                  = registration.session.experiment.creator.name
 =link_to '< Back', :back, class: 'btn btn-default'

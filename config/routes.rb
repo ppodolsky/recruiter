@@ -28,6 +28,7 @@ Recruiter::Application.routes.draw do
   get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
   get 'experiments/calendar', to: 'experiments#calendar'
 
+  post 'assignments/:user_id,:experiment_id', to: 'assignments#update'
   resources :experiments do
     post 'users', to: 'users#assign'
     delete 'users/:user_id', to: 'users#unassign', as: 'user'

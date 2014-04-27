@@ -33,9 +33,13 @@
           = check_box_tag('gender[]', feature, true, class: 'checkbox')
           = feature
           br
+    .form-group
       = label_tag :never_been, 'Did not participated before', class: 'control-label col-sm-2'
       .col-sm-4
         = check_box_tag 'never_been', :never_been, false, class: 'checkbox'
+      = label_tag :never_been_similar, 'Did not participated in similar', class: 'control-label col-sm-2'
+      .col-sm-4
+        = check_box_tag 'never_been_similar', :never_similar, false, class: 'checkbox'
   .well
     .form-group
       = label_tag :birth_year, 'Birth year', class: 'control-label col-sm-2'
