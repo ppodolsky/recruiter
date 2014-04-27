@@ -14,20 +14,21 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require best_in_place
 //= require bootstrap
 //= require bootstrap-inputmask
 //= require_tree .
 
-jQuery('.checkbox').checkbox();
-jQuery('.selectpicker').selectpicker();
-
-jQuery(document).ready(function() {
+$(document).ready(function() {
     if (location.hash !== '') $('a[href="' + location.hash + '"]').tab('show');
     return $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
         return location.hash = $(e.target).attr('href').substr(1);
     });
 });
-jQuery(document).ready(function() {
+$(document).ready(function() {
+    $(".best_in_place").best_in_place();
+    $('.checkbox').checkbox();
+    $('.selectpicker').selectpicker();
     $('#calendar').fullCalendar({
         header:{
             left:   'title',
@@ -70,7 +71,7 @@ jQuery(document).ready(function() {
     })
 
 });
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
     $("[data-href]").click(function() {
         window.document.location = $(this).data("href");
     });

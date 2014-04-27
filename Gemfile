@@ -16,6 +16,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # Backend
 ##
 
+# https://github.com/bernat/best_in_place
+gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
+
 # http://unicorn.bogomips.org/
 gem 'unicorn', require: false, group: :production # server
 

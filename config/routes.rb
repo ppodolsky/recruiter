@@ -9,7 +9,11 @@ Recruiter::Application.routes.draw do
              :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 
   get 'dictionaries/:id', to: 'dictionaries#show', as: :dictionary
+  post 'dictionaries/:dictionary_id/:item_id', to: 'dictionaries#update', as: :dictionary_item
   get 'dictionaries', to: 'dictionaries#index'
+  resources :labs, only: [:create, :update]
+  resources :categories, only: [:create, :update]
+
 
 
   resources :sessions do

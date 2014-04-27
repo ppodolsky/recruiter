@@ -8,5 +8,5 @@
       - @dictionary.each do |f|
         .row
           .col-sm-6
-            = text_field_tag 'value', f.name, class: 'form-control spacer-bot-10'
+            = best_in_place f, :name, :type => :input
 = link_to 'Save', '#', remote: true, class: 'pull-right btn save btn-primary'

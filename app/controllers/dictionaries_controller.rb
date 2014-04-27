@@ -10,4 +10,7 @@ class DictionariesController < ApplicationController
     @dictionary = Object.const_get(@name).all
     render 'index'
   end
+  def update
+
+  end
 end
