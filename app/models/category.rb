@@ -5,4 +5,7 @@ class Category < ActiveRecord::Base
 
   alias_attribute :name, :tag
 
+  def self.creatable?
+    true
+  end
 end

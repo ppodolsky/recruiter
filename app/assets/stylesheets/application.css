@@ -114,3 +114,9 @@ input[type=radio]:checked + label:before {
     background:url(icons.png) -24px top no-repeat;
     cursor:pointer;
 }
+.best_in_place:hover{
+    background-color: #cecece;
+    padding-right: 1.5em;
+    padding-left: 0.3em;
+    border-radius: 5px;
+}

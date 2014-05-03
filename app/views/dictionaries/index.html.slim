@@ -3,13 +3,17 @@
     .list-group
       = link_to 'Laboratories', dictionary_path(:lab), class: 'list-group-item'
       = link_to 'Categories', dictionary_path(:category), class: 'list-group-item'
+      = link_to 'Pages', dictionary_path(:page), class: 'list-group-item'
   .col-sm-9
-    - if @dictionary
-      - @dictionary.each do |f|
+    - if @dictionary.all
+      - @dictionary.all.each do |f|
         .row
           .col-sm-6
             = best_in_place f, :name, :type => :input
-      .row
-        .col-sm-6
-          = best_in_place @new_one, :name, :type => :input
-= link_to 'Add', '#', remote: true, class: 'pull-right btn btn-primary'
+          - if @dictionary.method_defined? 'value'
+            .col-sm-6
+              = best_in_place f, :value, :type => :textarea
+      - if @dictionary.creatable?
+        .row
+          .col-sm-6
+            = best_in_place @dictionary.new, :name, :type => :input, :nil => 'add new...', :classes => 'add-new-record'

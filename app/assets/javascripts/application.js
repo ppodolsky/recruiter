@@ -77,6 +77,10 @@ $(document).ready(function($) {
     $("[data-href]").click(function() {
         window.document.location = $(this).data("href");
     });
+    $('.add-new-record').bind('ajax:success', function(){
+        window.document.location.reload();
+    });
+
     $('.registration-selector').change(function(event){
         var user = $(event.target).data('user');
         var experiment = $(event.target).data('experiment');

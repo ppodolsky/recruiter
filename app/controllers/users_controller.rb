@@ -19,7 +19,6 @@ class UsersController < InheritedResources::Base
 
   def assigned
     @experiment = Experiment.find(params[:experiment_id])
-    render 'assigned'
   end
 
   def unassign

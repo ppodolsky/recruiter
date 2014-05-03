@@ -3,6 +3,7 @@ class Page < ActiveRecord::Base
 
   extend FriendlyId
   friendly_id :name, use: :slugged
+  alias_attribute :value, :content
 
   validates_presence_of :name, :slug, :content
   validates_uniqueness_of :slug
@@ -16,5 +17,9 @@ class Page < ActiveRecord::Base
 
     p = Page.find_by_slug(slug)
     p.nil? ? "" : p.content
+  end
+
+  def self.creatable?
+    false
   end
 end

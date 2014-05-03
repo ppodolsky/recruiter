@@ -11,10 +11,11 @@ Recruiter::Application.routes.draw do
   get 'dictionaries/:id', to: 'dictionaries#show', as: :dictionary
   post 'dictionaries/:dictionary_id/:item_id', to: 'dictionaries#update', as: :dictionary_item
   get 'dictionaries', to: 'dictionaries#index'
-  resources :labs, only: [:create, :update]
-  resources :categories, only: [:create, :update]
 
-
+  put 'labs/:id', to: 'labs#update', as: 'lab'
+  put 'labs', to: 'labs#create', as: 'labs'
+  put 'categories/:id', to: 'categories#update', as: 'category'
+  put 'categories', to: 'categories#create', as: 'categories'
 
   resources :sessions do
     get 'online', to: 'sessions#online'
