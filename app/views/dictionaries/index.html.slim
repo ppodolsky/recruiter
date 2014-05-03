@@ -5,7 +5,7 @@
       = link_to 'Categories', dictionary_path(:category), class: 'list-group-item'
       = link_to 'Pages', dictionary_path(:page), class: 'list-group-item'
   .col-sm-9
-    - if @dictionary.all
+    - if @dictionary
       - @dictionary.all.each do |f|
         .row
           .col-sm-6
