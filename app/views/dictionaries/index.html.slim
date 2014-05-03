@@ -9,4 +9,7 @@
         .row
           .col-sm-6
             = best_in_place f, :name, :type => :input
-= link_to 'Save', '#', remote: true, class: 'pull-right btn save btn-primary'
+      .row
+        .col-sm-6
+          = best_in_place @new_one, :name, :type => :input
+= link_to 'Add', '#', remote: true, class: 'pull-right btn btn-primary'

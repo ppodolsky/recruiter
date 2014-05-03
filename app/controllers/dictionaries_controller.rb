@@ -8,6 +8,7 @@ class DictionariesController < ApplicationController
   def show
     @name = params[:id].capitalize
     @dictionary = Object.const_get(@name).all
+    @new_one = Object.const_get(@name).new
     render 'index'
   end
   def update

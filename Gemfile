@@ -22,6 +22,9 @@ gem 'best_in_place', :git => 'https://github.com/aaronchi/best_in_place.git'
 # http://unicorn.bogomips.org/
 gem 'unicorn', require: false, group: :production # server
 
+# heroku dependencies
+gem 'rails_12factor', group: :production
+
 # https://bitbucket.org/ged/ruby-pg/wiki/Home
 gem 'pg' # datastore
 
@@ -146,6 +149,7 @@ group :development do
   # https://github.com/preston/railroady
   gem 'railroady' # erd generator
 end
+
 
 group :development, :test do
   # https://github.com/bkeepers/dotenv

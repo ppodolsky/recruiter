@@ -1,5 +1,6 @@
 class RegistrationsController < InheritedResources::Base
-  respond_to :js, :only => [:create, :update]
+  respond_to :js, :only => [:create]
+  respond_to :json, :only => [:update]
   actions :create, :update
   def create
     @session = Session.find(params[:session_id])

@@ -25,12 +25,6 @@
     b
       | Statistics
     br
-      - participated_number = Registration.select(:user_id).distinct.where(participated: true).count
-      div
-        = "Subjects: #{Subject.count}"
-      div
-        = "Participated subjects: #{participated_number}"
-      div
-        = "Average participation: #{Registration.where(participated: true).count / participated_number}"
+      = render 'statistics/common'
 .pull-right
   = link_to "Save", "#", remote: true,  class: 'btn btn-primary spacer-top-10 save'

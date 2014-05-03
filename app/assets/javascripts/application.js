@@ -14,7 +14,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery.ui.all
+//= require jquery.purr
 //= require best_in_place
+//= require best_in_place.purr
 //= require bootstrap
 //= require bootstrap-inputmask
 //= require_tree .
@@ -75,10 +77,6 @@ $(document).ready(function($) {
     $("[data-href]").click(function() {
         window.document.location = $(this).data("href");
     });
-    $('.save').click(function(event){
-        event.preventDefault();
-        $('.save-row').submit();
-    })
     $('.registration-selector').change(function(event){
         var user = $(event.target).data('user');
         var experiment = $(event.target).data('experiment');

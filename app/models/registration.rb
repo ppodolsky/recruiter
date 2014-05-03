@@ -13,7 +13,7 @@ class Registration < ActiveRecord::Base
     if not self.user.experiments.exists?(id: self.session.experiment.id)
       errors.add(:user, "isn't assigned to the corresponding experiment")
     end
-    if Registration.exists?(session_id: self.session.experiment.sessions, user_id: self.user.id, participated: true)
+    if Registration.where.not(session_id: self.session).exists?(session_id: self.session.experiment.sessions, user_id: self.user.id, participated: true)
       errors.add(:session, "already participated")
     end
   end

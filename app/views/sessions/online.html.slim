@@ -26,24 +26,22 @@
         th
     tbody
       - @session.registrations.each_with_index do | registration, index |
-        = form_for(registration, html: {method: :put, class: "save-row"}, namespace: "r_#{index}", url: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), remote: true) do |f|
-          tr
-            td
-              = index + 1
-            td
-              = registration.user.gsharp
-            td
-              = link_to registration.user.name, registration.user.becomes(User)
-            td
-              = f.check_box :shown_up, {class: 'checkbox'}
-            td
-              = f.check_box :participated, {class: 'checkbox'}
-            td
-              = f.number_field :paid, min: 0, class: 'form-control', placeholder: 'paid'
-            td
-              = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-10 glyphicon glyphicon-remove danger'
+        tr
+          td
+            = index + 1
+          td
+            = registration.user.gsharp
+          td
+            = link_to registration.user.name, registration.user.becomes(User)
+          td
+            = best_in_place registration, :shown_up, type: :checkbox, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
+          td
+            = best_in_place registration, :participated, type: :checkbox, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
+          td
+            = best_in_place registration, :paid, type: :input, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), html_attrs: {min: 0}, inner_class: 'form-control', placeholder: 'paid'
+          td
+            = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-10 glyphicon glyphicon-remove danger'
 = link_to '< Back', experiment_path(@session.experiment) + '#sessions', :class=>'btn btn-default'
-= link_to 'Save', '#', remote: true, class: 'pull-right btn save btn-primary'
 .clearfix
 .text-center
   = link_to 'Finish session', session_finish_path(@session), method: :post, class: 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }
