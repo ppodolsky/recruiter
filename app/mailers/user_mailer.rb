@@ -18,6 +18,6 @@ class UserMailer < Devise::Mailer
     template.gsub!('@reward', "#{experiment.reward}$")
     template.gsub!('@timeline_url', timeline_url)
     template.gsub!('@session_list', "\n" + experiment.sessions.map {|x| "* #{x.start_time_display}"}.join("\n") + "\n")
-    mail(:to => user.email, :subject => 'ICES Experiment Invitation', :body => Kramdown::Document.new(template).to_html)
+    mail(:to => user.email, :subject => 'ICES Experiment Invitation', :body => Kramdown::Document.new(template).to_html.html_safe)
   end
 end
