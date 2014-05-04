@@ -8,7 +8,7 @@ class PagesController < InheritedResources::Base
     if not user_signed_in?
       redirect_to '/users/login'
     else
-      self.after_sign_in_path_for(current_user)
+      redirect_to self.after_sign_in_path_for(current_user)
     end
   end
   def show
