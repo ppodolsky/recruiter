@@ -1,7 +1,7 @@
 Recruiter::Application.routes.draw do
 
   # user accounts and profiles
-  devise_for :users, :controllers => { :registrations => "custom_registrations" },
+  devise_for :users, :controllers => { :registrations => 'custom_registrations' , :confirmations => 'confirmations'},
              :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 
   get 'dictionaries/:id', to: 'dictionaries#show', as: :dictionary
