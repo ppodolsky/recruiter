@@ -20,6 +20,10 @@
         rows: '5',
         class: 'form-control'
     .form-group
+      = f.label :reward, :class => "col-lg-2 control-label"
+      .col-lg-10
+        = f.number_field :reward, :class => 'form-control'
+    .form-group
       = f.label :categories, class: 'control-label col-sm-2'
       .col-sm-2
         = f.select :category_ids, options_from_collection_for_select(Category.all, 'id', 'tag', @experiment.categories.pluck(:id)), {prompt: '-'}, { multiple: true, class: 'selectpicker form-control'}

@@ -3,27 +3,31 @@
     | Send invitations
   .row
     .col-sm-12
-      = form_for(@experiment.becomes(Experiment), method: :put, remote: true, class: 'form-horizontal') do |f|
-        = f.text_area :default_invitation, rows: 15, class: 'col-sm-10 form-control'
-        = f.submit 'Save', class: "btn btn-primary width100 spacer-top10"
-  div.form-horizontal
-    .row.spacer-top-20
-      fieldset
-        .form-group
-          = label_tag :assigned, 'Assigned', class: "col-sm-2 control-label"
-          .col-sm-8
-            = @experiment.users.count
-        .form-group
-          = label_tag :participated, 'Participated', class: "col-sm-2 control-label"
-          .col-sm-10
-            = Registration.where({session_id: @experiment.sessions, participated: true}).count
-        .form-group
-          = label_tag :invited, 'Invited', class: "col-sm-2 control-label"
-          .col-sm-10
-            | None
-        .form-group
-          = label_tag :amount, 'To be invited', class: "col-sm-2 control-label"
-          .col-sm-2
-            = number_field_tag :amount, 1, min: 1, class: 'form-control'
-      = link_to 'Send!', experiment_send_invite_path(@experiment), method: :post, class: "pull-right btn btn-success"
-      = link_to 'Back', experiment_path(@experiment), class: "pull-left btn btn-default"
+      = best_in_place @experiment.becomes(Experiment), :default_invitation, :type => :textarea
+  = form_tag(experiment_invite_path(@experiment), method: :post)
+    - invited = @experiment.assignments.where(invited: true).count
+    - assigned = @experiment.users.count
+    - participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
+    div.form-horizontal
+      .row.spacer-top-20
+        fieldset
+          .form-group
+            = label_tag :assigned, 'Assigned', class: "col-sm-2 control-label"
+            .col-sm-8
+              = assigned
+          .form-group
+            = label_tag :participated, 'Participated', class: "col-sm-2 control-label"
+            .col-sm-10
+              = participated
+          .form-group
+            = label_tag :invited, 'Invited', class: "col-sm-2 control-label"
+            .col-sm-10
+              = invited
+          .form-group
+            = label_tag :amount, 'To be invited', class: "col-sm-2 control-label"
+            .col-sm-2
+              - if invited < assigned
+                = number_field_tag :amount, 1, min: 1, max: assigned - invited,  class: 'form-control'
+        - if invited < assigned
+          = submit_tag 'Send!', class: "pull-right btn btn-success"
+    = link_to 'Back', experiment_path(@experiment), class: "pull-left btn btn-default"
