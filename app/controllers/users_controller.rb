@@ -67,7 +67,6 @@ class UsersController < InheritedResources::Base
     .where(processed_params)
     .where.not(id: Assignment.where(experiment_id: @experiment.id).pluck(:user_id))
     .where("(#{search_params[:never_been].nil?} or r1.registrations_count = 0)")
-    .where("(#{search_params[:never_been_similar].nil?} or 't'")
     .where("COALESCE((r2.shown_up_count / r1.registrations_count),100) BETWEEN #{attendance.min} and #{attendance.max}").to_a
     @subjects.shuffle!(random: Random.new(1))
     if @subjects.count >= search_params[:required_subjects].to_i

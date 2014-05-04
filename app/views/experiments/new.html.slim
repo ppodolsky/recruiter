@@ -24,10 +24,17 @@
         rows: '5',
         class: 'form-control'
     .form-group
+      = f.label :reward, :class => "col-lg-2 control-label"
+      .col-lg-10
+        = f.number_field :reward, :class => 'form-control'
+    .form-group
+      = f.label :categories, class: 'control-label col-sm-2'
+      .col-sm-2
+        = f.select :category_ids, options_from_collection_for_select(Category.all, 'id', 'tag', @experiment.categories.pluck(:id)), {prompt: '-'}, { multiple: true, class: 'selectpicker form-control'}
+
+    .form-group
       = f.label :type, class: 'control-label col-sm-2'
       .col-sm-8
-        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type),
-          prompt: '-',
-          class: 'form-control selectpicker'
+        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), {prompt: '-'}, { class: 'selectpicker form-control'}
   .form-group.pull-right
     = f.button 'Save', :type => "submit", :class => "btn btn-primary"
