@@ -1,12 +1,9 @@
 shared_path = "/u/apps/recruiter/shared"
-current_path = "/u/apps/recruiter/current"
 
 worker_processes 4
 timeout 60
 
 pid "#{shared_path}/pids/unicorn.pid"
-
-working_directory "#{current_path}"
 
 # listen on both a Unix domain socket and a TCP port,
 # we use a shorter backlog for quicker failover when busy
