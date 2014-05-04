@@ -1,8 +1,6 @@
 class CustomRegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters
 
-  def after_update_path_for(resource)
-  end
   def update
     @user = resource
     user_params = devise_parameter_sanitizer.sanitize(:account_update)
@@ -15,6 +13,7 @@ class CustomRegistrationsController < Devise::RegistrationsController
     end
     render "edit"
   end
+
   def needs_password?(user, params)
     (params[:email].present? and user.email != params[:email]) or
     (params[:first_name].present? and user.first_name != params[:first_name]) or
@@ -22,6 +21,7 @@ class CustomRegistrationsController < Devise::RegistrationsController
     (params[:gsharp].present? and user.gsharp != params[:gsharp]) or
     params[:password].present?
   end
+
   def configure_permitted_parameters
     registration_params = [:first_name,
                            :last_name,

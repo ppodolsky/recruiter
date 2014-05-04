@@ -27,6 +27,7 @@ html
           = yield :jumbotron
           .row
             .col-sm-12
+              = render 'shared/flash'
               = yield
       .footer
         = render 'shared/footer'

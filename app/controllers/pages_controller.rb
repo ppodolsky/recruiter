@@ -4,6 +4,13 @@ class PagesController < InheritedResources::Base
   # need access to @user.
   before_action :load_user_resource
 
+  def index
+    if not user_signed_in?
+      redirect_to '/users/login'
+    else
+      self.after_sign_in_path_for(current_user)
+    end
+  end
   def show
     @page = Page.friendly.find(params[:id])
     show!

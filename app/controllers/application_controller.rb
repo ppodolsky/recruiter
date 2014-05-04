@@ -12,6 +12,10 @@ class ApplicationController < ActionController::Base
     return experiments_path if user.is_experimenter?
     return edit_user_registration_path
   end
+
+  def after_inactive_sign_up_path_for(resource)
+    redirect_to root_path, :notice =>"Confirmation e-mail has been sent. Check your mail box."
+  end
   protected
   def raise_if_not_admin
     raise Exceptions::Permission.new "Only administrators can access this action" if not current_user.is_administrator?
