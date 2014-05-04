@@ -17,7 +17,7 @@ class Experiment < ActiveRecord::Base
 'Hello, @name!
 ------------
 You are being invited to participate in an experiment in which you will make economic decisions.
-In addition to your cash earnings from the experiment, you will be paid a on-time bonus of ##@reward# for showing up on time.
+In addition to your cash earnings from the experiment, you will be paid a on-time bonus of ##@reward## for showing up on time.
 The session(s) is scheduled for the following time(s):
 @session_list
 If you want to participate in one of the sessions, you can register [here](@timeline_url)
