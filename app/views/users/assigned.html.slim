@@ -20,11 +20,15 @@
             small
               = "#{user.age} #{user.gender}"
           td
+            - participated = false
             - regs.each do |registration|
+              - participated = participated | registration.participated
               - if not registration.shown_up.nil? then
-                - session_result = if registration.shown_up.nil? then '' else registration.shown_up ? 'success' : 'danger' end
+                - session_result = if registration.shown_up then 'success' else 'danger' end
+                - session_result << ' participated' if registration.participated
                 div id="registration_#{registration.session_id}_#{registration.user_id}" class = "#{session_result}"
                   = "#{l registration.session.start_time}"
             = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'spacer-left-10 glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
-            = select_tag :register, options_from_collection_for_select(@experiment.sessions.where(finished: false), 'id', 'start_time_display', reg_current ? reg_current.session_id : nil), prompt: 'not registred yet', class: 'registration-selector selectpicker', data: {user: user.id, experiment: @experiment.id}
+            - if not participated then
+              = select_tag :register, options_from_collection_for_select(@experiment.sessions.where(finished: false), 'id', 'start_time_display', reg_current ? reg_current.session_id : nil), prompt: 'not registred yet', class: 'registration-selector selectpicker', data: {user: user.id, experiment: @experiment.id}
   = link_to '< Back', :back, :class => 'pull-left btn btn-default spacer-top-10'

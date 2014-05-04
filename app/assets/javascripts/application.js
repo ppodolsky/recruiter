@@ -80,7 +80,16 @@ $(document).ready(function($) {
     $('.add-new-record').bind('ajax:success', function(){
         window.document.location.reload();
     });
-
+    $('.rb-autosubmit').change(function(){
+        var form = $(this).closest('form');
+        var valuesToSubmit = $(form).serialize();
+        $.ajax({
+            method: 'post',
+            url: $(form).attr('action'), //sumbits it to the given url of the form
+            data: valuesToSubmit,
+            dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
+        })
+    })
     $('.registration-selector').change(function(event){
         var user = $(event.target).data('user');
         var experiment = $(event.target).data('experiment');

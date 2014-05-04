@@ -15,6 +15,9 @@
 .danger{
     color: darkred !important;
 }
+.participated{
+    font-weight: bold;
+}
 div.success{
     color: darkgreen;
 }
