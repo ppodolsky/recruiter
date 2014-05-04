@@ -1,9 +1,5 @@
 Recruiter::Application.routes.draw do
 
-  if Rails.env.development?
-    mount MailPreview => 'mail_view'
-  end
-
   # user accounts and profiles
   devise_for :users, :controllers => { :registrations => "custom_registrations" },
              :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
