@@ -3,10 +3,11 @@ class UsersController < InheritedResources::Base
   before_action :raise_if_not_admin, only: [:unassign, :unassign_all, :assigned, :register, :unregister]
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
-  respond_to :js, :only => [:add, :update, :search, :unregister, :unassign]
-
   actions :all
   custom_actions :resource => [:search, :assigned, :unassign, :unassign_all, :register, :unregister]
+
+  respond_to :js, :only => [:add, :search, :unregister, :unassign]
+  respond_to :json, :only => [:update]
 
   def index
     @users = User.where.not(id: current_user.id).order("type ASC")
@@ -91,10 +92,8 @@ class UsersController < InheritedResources::Base
   end
 
   def update
-    @user = User.find(params[:id])
-    @generic_user = @user.becomes(User)
-    @generic_user.update(permitted_params[:user])
-    @generic_user.save!
+    update!
+    @user.save :validate => false
   end
 
   def permitted_params

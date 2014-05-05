@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery.ui.all
+ *= require bootstrap-markdown
  *= require_tree .
  */
 .danger{
@@ -39,38 +39,12 @@ div.green{
 .width-100{
     width: 100%;
 }
-.spacer-right-10{
-    margin-right: 10px;
-}
-.spacer-left-10{
-    margin-left: 10px;
-}
-.spacer-top-5{
-    margin-top: 10px;
-}
-.spacer-top-10{
-    margin-top: 10px;
-}
-.spacer-bot-neg-5{
-    margin-bottom: -5px;
-}
-.spacer-bot-10{
-    margin-bottom: 10px;
-}
-.spacer-bot-15{
-    margin-bottom: 15px;
-}
-.spacer-top-20{
-    margin-top: 20px;
-}
-.spacer-top-100{
-    margin-top: 100px;
-}
 .vbottom {
     display: inline-block;
     vertical-align: bottom;
     float: none;
 }
+
 input[type=radio] {
     display: none;
 }
@@ -118,8 +92,20 @@ input[type=radio]:checked + label:before {
     cursor:pointer;
 }
 .best_in_place:hover{
-    background-color: #cecece;
-    padding-right: 1.5em;
-    padding-left: 0.3em;
-    border-radius: 5px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+@-webkit-keyframes success-animation
+{
+    from {background-color: lightgreen;}
+    to {background-color: inherit;}
+}
+@keyframes success-animation
+{
+    from {background-color: lightgreen;}
+    to {background-color: inherit;}
+}
+.success-animation{
+   animation:success-animation 3s;
+   -webkit-animation:success-animation 3s;
 }

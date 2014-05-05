@@ -40,8 +40,7 @@ class CustomRegistrationsController < Devise::RegistrationsController
                            :current_gpa,
                            :years_resident,
                            :profession,
-                           :major,
-                           :type]
+                           :major]
     devise_parameter_sanitizer.for(:account_update) {
         |u| u.permit(registration_params << :current_password)
     }

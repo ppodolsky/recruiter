@@ -8,6 +8,10 @@ module ApplicationHelper
     content_for(:head) { javascript_include_tag(*files) }
   end
 
+  def markdown_editor(object, field)
+    text_area_tag nil, object.send(field).to_s, class: 'markdown',
+                  data: {object: object.class.name.downcase, field: field, url: url_for(object)}
+  end
   def field_class(resource, field_name)
     if resource.errors[field_name]
       return "error".html_safe

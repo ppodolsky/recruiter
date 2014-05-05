@@ -13,15 +13,14 @@
           = link_to experiment.name, experiment.becomes(Experiment), class: 'lead'
         div
           = "Experimenter: "
-          = experiment.creator.name
+          = link_to experiment.creator.name, experiment.creator.becomes(User)
         div
           = "Type: "
           = experiment.type_name
         div
-          = "Assigned: "
-          = link_to "#{pluralize(experiment.users.count,'subject')}", experiment_users_path(experiment)
-        .line-separator.spacer-top-5
-= link_to new_experiment_path, :class => 'btn btn-primary pull-right spacer-top-10' do
+          = "Assigned #{pluralize(experiment.users.count,'subject')}"
+        .line-separator.spacer-top-1
+= link_to new_experiment_path, :class => 'btn btn-primary pull-right spacer-top-1' do
   span.glyphicon.glyphicon-plus
   |  New Experiment
 .clearfix

@@ -10,7 +10,7 @@
       - @experiment.users.each do | user |
         - regs = user.registrations.where(session_id: @experiment.sessions)
         - reg_current = regs.where(shown_up: nil).first
-        tr id="user_#{user.id}" class = "spacer-top-10"
+        tr id="user_#{user.id}" class = "spacer-top-1"
           td
             = link_to user.name, user.becomes(User)
             br
@@ -28,7 +28,9 @@
                 - session_result << ' participated' if registration.participated
                 div id="registration_#{registration.session_id}_#{registration.user_id}" class = "#{session_result}"
                   = "#{l registration.session.start_time}"
-            = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'spacer-left-10 glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
-            - if not participated then
-              = select_tag :register, options_from_collection_for_select(@experiment.sessions.where(finished: false), 'id', 'start_time_display', reg_current ? reg_current.session_id : nil), prompt: 'not registred yet', class: 'registration-selector selectpicker', data: {user: user.id, experiment: @experiment.id}
-  = link_to '< Back', :back, :class => 'pull-left btn btn-default spacer-top-10'
+            = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'spacer-left-1 glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
+            - if not participated and not @experiment.opened_sessions.empty? then
+              .spacer-top-2
+                span.spacer-right-1
+                  | Current session:
+                = select_tag :register, options_from_collection_for_select(@experiment.opened_sessions, 'id', 'start_time_display', reg_current ? reg_current.session_id : nil), prompt: 'not registred yet', class: 'registration-selector styled-select', data: {user: user.id, experiment: @experiment.id}

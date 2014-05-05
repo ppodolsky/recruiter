@@ -11,14 +11,13 @@
 // about supported directives.
 //
 //= require modernizr/modernizr
+//= require maelstorm
 //= require jquery
 //= require jquery_ujs
-//= require jquery.ui.all
-//= require jquery.purr
 //= require best_in_place
-//= require best_in_place.purr
 //= require bootstrap
 //= require bootstrap-inputmask
+//= require bootstrap-markdown
 //= require_tree .
 
 $(document).ready(function() {
@@ -28,9 +27,48 @@ $(document).ready(function() {
     });
 });
 $(document).ready(function() {
+    $("[data-href]").click(function() {
+        window.document.location = $(this).data("href");
+    });
     $(".best_in_place").best_in_place();
     $('.checkbox').checkbox();
     $('.selectpicker').selectpicker();
+    $("textarea.markdown").markdown({
+        savable:true,
+        onSave: function(e) {
+            var url = e.$textarea.data('url');
+            var object = e.$textarea.data('object');
+            var field = e.$textarea.data('field');
+            $.ajax({
+                method: 'post',
+                url: url,
+                data: Maelstorm.prepareParam(object, field, e.getContent()),
+                dataType: 'json'
+            });
+        }
+    })
+    $(".add-new-record").bind('ajax:success', function(){window.document.location.reload();});
+    $('.registration-selector').on(
+        "webkitAnimationEnd oanimationend msAnimationEnd animationend",
+        function() {
+            $(this).removeClass("success-animation");
+        }
+    );
+    $('.registration-selector').change(function(event){
+        var user = $(event.target).data('user');
+        var experiment = $(event.target).data('experiment');
+        var session = $(event.target).find('option:selected').val();
+        var that = this;
+        $.ajax({
+            method: 'POST',
+            url: '/assignments/' + user + ',' + experiment,
+            data: {assignment: {current_session: session}},
+            dataType: 'json'
+        })
+            .done(function(){
+                $(that).addClass('success-animation');
+            });
+    })
     $('#calendar').fullCalendar({
         header:{
             left:   'title',
@@ -73,27 +111,4 @@ $(document).ready(function() {
     })
 
 });
-$(document).ready(function($) {
-    $("[data-href]").click(function() {
-        window.document.location = $(this).data("href");
-    });
-    $('.add-new-record').bind('ajax:success', function(){
-        window.document.location.reload();
-    });
-    $('.rb-autosubmit').change(function(){
-        var form = $(this).closest('form');
-        var valuesToSubmit = $(form).serialize();
-        $.ajax({
-            method: 'post',
-            url: $(form).attr('action'), //sumbits it to the given url of the form
-            data: valuesToSubmit,
-            dataType: "JSON" // you want a difference between normal and ajax-calls, and json is standard
-        })
-    })
-    $('.registration-selector').change(function(event){
-        var user = $(event.target).data('user');
-        var experiment = $(event.target).data('experiment');
-        var session = $(event.target).find('option:selected').val();
-        $.post('/assignments/' + user + ',' + experiment, {current_session: session})
-    })
-});
+

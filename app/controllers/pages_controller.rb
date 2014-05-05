@@ -1,8 +1,8 @@
 class PagesController < InheritedResources::Base
-  # Unfortunately, we need to load two objects for most of these actions. The
-  # one CRUD cares about is @page, but our site-wide modal sign-up and sign-in
-  # need access to @user.
+
   before_action :load_user_resource
+  respond_to :json, :only => [:create, :update]
+  actions :create, :update, :index, :show
 
   def index
     if not user_signed_in?
@@ -15,19 +15,15 @@ class PagesController < InheritedResources::Base
     @page = Page.friendly.find(params[:id])
     show!
   end
-
-  def edit
+  def update
     @page = Page.friendly.find(params[:id])
-    edit!
-  end
-
-  def dashboard
+    update!
   end
 
   private
 
   def permitted_params
-    defaults :resource_class => User, :collection_name => 'users', :instance_name => 'user'
+    params.permit(:page => [:name, :value])
   end
 
   def load_user_resource

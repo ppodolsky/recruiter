@@ -1,9 +1,4 @@
 = render 'add_new_modal'
-.page-header
-  .pull-right
-  h1
-    | Session
-    |  subjects
 .btn-toolbar role="toolbar"
   .btn-group
     = link_to 'New subject', '#add-new-modal', class: 'btn btn-xs btn-default', 'data-toggle' => 'modal'
@@ -40,7 +35,7 @@
           td
             = best_in_place registration, :paid, type: :input, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), html_attrs: {min: 0}, inner_class: 'form-control', placeholder: 'paid'
           td
-            = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-10 glyphicon glyphicon-remove danger'
+            = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-1 glyphicon glyphicon-remove danger'
 = link_to '< Back', experiment_path(@session.experiment) + '#sessions', :class=>'btn btn-default'
 .clearfix
 .text-center

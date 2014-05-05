@@ -3,6 +3,8 @@ class Assignment < ActiveRecord::Base
   belongs_to :user
   belongs_to :experiment
 
+  attr_writer :current_session
+
   def current_session
     registration = Registration.where(user_id: user, session_id: experiment.sessions, shown_up: nil)
     registration.first ? registration.first.session : nil
@@ -13,4 +15,10 @@ class Assignment < ActiveRecord::Base
   end
 
   self.primary_keys = :user_id, :experiment_id
+
+  def as_json(options = { })
+    super((options || { }).merge({
+      :methods => [:current_session]
+    }))
+  end
 end

@@ -1,5 +1,14 @@
-.btn-xl {
-  padding: 18px 28px;
-  font-size: 22px;
-  border-radius: 8px;
+@import "bootstrap-variables";
+@import "bootstrap.scss";
+select.styled-select{
+  border: 0 !important;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  text-indent: 0.01px; /* Removes default arrow from firefox*/
+  text-overflow: "";  /*Removes default arrow from firefox*/
+  color: $link-color !important;
+}
+select.styled-select:focus{
+  outline: 0;
 }

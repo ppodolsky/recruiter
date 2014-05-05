@@ -1,0 +1,11 @@
+@mixin offset-margin($margin, $value){
+  margin-#{$margin}: $value;
+}
+
+@for $i from 1 through 20 {
+  @each $margin in top, left, bottom, right {
+    .spacer-#{$margin}-#{$i}{
+      @include offset-margin($margin, 1rem * $i)
+    }
+  }
+}

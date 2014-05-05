@@ -9,21 +9,24 @@ class Experiment < ActiveRecord::Base
 
   validates_presence_of :name, :type, presence: true
 
+  def opened_sessions
+    sessions.where("registration_deadline > ?", Time.now)
+  end
   def type_name
     self.type.gsub("Experiment", "")
   end
   def default_values
     self.default_invitation ||=
-'Hello, @name!
-------------
+'#### Hello, @name!
 You are being invited to participate in an experiment in which you will make economic decisions.
-In addition to your cash earnings from the experiment, you will be paid a on-time bonus of ##@reward## for showing up on time.
+In addition to your cash earnings from the experiment, you will be paid a on-time bonus of **@reward** for showing up on time.
 The session(s) is scheduled for the following time(s):
 @session_list
-If you want to participate in one of the sessions, you can register [here](@timeline_url)
+If you want to participate in one of the sessions, you can register [here](@timeline_url).
 Thank you for signing up to receive information about our experiments.
 If you have any questions about this experiment, please reply directly to this invitation.
 We hope to see you soon!
+
 Sincerely, ICES Experimenters'
   end
 end

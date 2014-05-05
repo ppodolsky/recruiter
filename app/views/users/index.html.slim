@@ -1,30 +1,16 @@
 .row
   .col-sm-8
     - @users.each_with_index do | user, i |
-      = form_for(user.becomes(User), html: {method: :put}, url: user_path(user), remote: true, namespace: "m_#{user.id}") do |f|
-        .row class = "#{i != 0 ? 'spacer-top-10' : ''}"
-          .col-sm-3
-            = link_to user.name, user.becomes(User)
-            br
-            small
-              = user.email
-          .col-sm-3
-              span
-                = f.radio_button :type, 'Administrator', class: 'rb-autosubmit'
-                = f.label :type, nil, :value => 'Administrator', class: 'rb-autosubmit spacer-bot-neg-5'
-                  = 'Administrator'
-                br
-                = f.radio_button :type, 'Experimenter', class: 'rb-autosubmit'
-                = f.label :type, nil, :value => 'Experimenter', class: 'spacer-bot-neg-5'
-                  = 'Experimenter'
-                br
-                = f.radio_button :type, 'Subject', class: 'rb-autosubmit'
-                = f.label :type, nil, :value => 'Subject', class: 'rb-autosubmit danger'
-                  = 'Subject'
+      .row class = "#{i != 0 ? 'spacer-top-1' : ''}"
+        .col-sm-3
+          = link_to user.name, user.becomes(User)
+          br
+          small
+            = user.email
   .col-sm-4.well
     b
       | Statistics
     br
       = render 'statistics/common'
 .pull-right
-  = link_to "Save", "#", remote: true,  class: 'btn btn-primary spacer-top-10 save'
+  = link_to "Save", "#", remote: true,  class: 'btn btn-primary spacer-top-1 save'

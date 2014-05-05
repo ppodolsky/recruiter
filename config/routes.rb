@@ -12,6 +12,12 @@ Recruiter::Application.routes.draw do
   put 'labs', to: 'labs#create', as: 'labs'
   put 'categories/:id', to: 'categories#update', as: 'category'
   put 'categories', to: 'categories#create', as: 'categories'
+  put 'majors/:id', to: 'majors#update', as: 'major'
+  put 'majors', to: 'majors#create', as: 'majors'
+  put 'professions/:id', to: 'professions#update', as: 'profession'
+  put 'professions', to: 'professions#create', as: 'professions'
+  put 'pages/:id', to: 'pages#update', as: 'page'
+  put 'pages', to: 'pages#create', as: 'pages'
 
   resources :sessions do
     get 'online', to: 'sessions#online'
@@ -51,7 +57,6 @@ Recruiter::Application.routes.draw do
   # light CMS
   # http://railscasts.com/episodes/117-semi-static-pages-revised
   # WARNING: order is crucial, do not rearrange #
-  get ':id', to: 'pages#show', as: :page        #
-  resources :pages, except: [:index, :show]     #
+  get ':id', to: 'pages#show', as: 'show_page'   #
   root to: 'pages#index'                        #
 end

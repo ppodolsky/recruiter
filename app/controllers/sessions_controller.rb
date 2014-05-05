@@ -1,7 +1,9 @@
 class SessionsController < InheritedResources::Base
   before_action :authenticate_user!
   before_action :raise_if_not_experimenter, only: [:online, :finish, :update, :create, :new, :destroy, :show]
+
   belongs_to :experiment
+
   respond_to :js, :only => [:destroy]
   actions :assigned, :edit, :show, :update, :create, :new, :destroy
 

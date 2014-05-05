@@ -5,7 +5,7 @@ class Page < ActiveRecord::Base
   friendly_id :name, use: :slugged
   alias_attribute :value, :content
 
-  validates_presence_of :name, :slug, :content
+  validates_presence_of :name
   validates_uniqueness_of :slug
 
   def self.content_by_slug(slug)
@@ -20,6 +20,6 @@ class Page < ActiveRecord::Base
   end
 
   def self.creatable?
-    false
+    true
   end
 end

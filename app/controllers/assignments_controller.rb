@@ -1,15 +1,12 @@
 class AssignmentsController < InheritedResources::Base
-  respond_to :js, :only => [:update]
+  respond_to :json, :only => [:update]
   actions :update
 
   def update
-    assignment = Assignment.find([params[:user_id], params[:experiment_id]])
-    assignment.update!(permitted_params)
+    @assignment = Assignment.find([params[:user_id], params[:experiment_id]])
+    update!
   end
-
   def permitted_params
-    params.permit(
-        :current_session
-    )
+    params.permit(:assignment => [:current_session])
   end
 end
