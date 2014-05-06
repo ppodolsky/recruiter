@@ -7,7 +7,6 @@
         th
           | Sessions
         th
-          = link_to 'Send invitations', experiment_invite_path(@experiment), class: "pull-right btn"
     tbody
       - @experiment.users.each do | user |
         - regs = user.registrations.where(session_id: @experiment.sessions)

@@ -28,6 +28,8 @@ Recruiter::Application.routes.draw do
 
   get 'timeline', to: 'timeline#index'
 
+
+  post '/invite', to: 'users#invite_users', as: 'invite'
   get '/users/deactivate', to: 'users#deactivate', as: 'users_deactivate'
   resources :users, only: [:index, :update, :search, :show]
 

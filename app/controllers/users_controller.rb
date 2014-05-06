@@ -1,19 +1,27 @@
 class UsersController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action :raise_if_not_admin, only: [:deactivate, :unassign, :unassign_all, :assigned, :register, :unregister]
+  before_action :raise_if_not_admin, only: [:invite_users, :deactivate, :unassign, :unassign_all, :assigned, :register, :unregister]
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
   actions :all
-  custom_actions :resource => [:search, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate]
+  custom_actions :resource => [:search, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
 
   respond_to :js, :only => [:add, :search, :unregister, :unassign]
-  respond_to :json, :only => [:update]
+  respond_to :json, :only => [:update, :inviter_users]
 
   def index
     @users = User.where.not(id: current_user.id).order("type ASC")
     index!
   end
 
+  def invite_users
+    emails = params[:emails].strip.split(/\s+/)
+    emails = emails - Subject.all.pluck(:email)
+    emails.each do |email|
+      UserMailer.delay.invite_to_register(email)
+    end
+    redirect_to users_path
+  end
   def deactivate
     Subject.update_all(active: false)
     Subject.all.each do |user|

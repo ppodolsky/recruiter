@@ -15,6 +15,9 @@ class UserMailer < Devise::Mailer
   def deactivation(user)
     mail(:to => user.email, :subject => 'ICES Account Deactivation')
   end
+  def invite_to_register(email)
+    mail(:to => email, :subject => 'ICES Recruiter')
+  end
   def invitation(user, experiment)
     template = experiment.default_invitation
     template.gsub!('@name', user.name)

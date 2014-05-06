@@ -1,3 +1,4 @@
+= render 'invitation_modal'
 .row
   .col-sm-8
     - @users.each_with_index do | user, i |
@@ -16,5 +17,7 @@
         .spacer-left-1
           = render 'statistics/common'
       .panel-footer
-        = link_to 'Drop database', users_deactivate_path, class: 'btn btn-danger pull-right', data: {confirm: 'Are you sure?'}
+        .pull-right
+          = button_tag 'Send invitations', class: 'btn btn-primary spacer-right-1', data: {toggle: 'modal', target: '#invitation-modal'}
+          = link_to 'Drop database', users_deactivate_path, class: 'btn btn-danger', data: {confirm: 'Are you sure?'}
         .clearfix

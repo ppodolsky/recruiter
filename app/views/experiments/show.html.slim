@@ -12,12 +12,12 @@
     li
       a href="#settings" data-toggle="tab"
         |  Settings
-  .tab-content
+  .tab-content.spacer-top-1
     #sessions.tab-pane.active
       = render 'sessions'
     #pool.tab-pane
       = render 'pool'
-    #statistics.tab-pane.spacer-top-1
+    #statistics.tab-pane
       = render 'statistics/experiment'
-    #settings.tab-pane.spacer-top-1
+    #settings.tab-pane
       = render 'settings'
