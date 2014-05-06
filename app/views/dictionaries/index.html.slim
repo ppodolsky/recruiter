@@ -9,8 +9,8 @@
     - if @dictionary
       - @dictionary.all.each do |f|
         .row
-          .col-sm-6
+          strong.col-sm-6
             = best_in_place f, :name, :type => :input
-      .row
+      .row.spacer-top-3
         .col-sm-6
-          = best_in_place @dictionary.new, :name, :type => :input, :nil => 'add new...', :classes => 'add-new-record'
+          = best_in_place @dictionary.new, :name, :type => :input, :nil => 'add new...', :classes => 'add-new-record btn btn-xs btn-default'
