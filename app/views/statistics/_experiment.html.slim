@@ -1,6 +1,6 @@
 - invited = @experiment.assignments.where(invited: true).count
 - assigned = @experiment.assignments.count
-- active = Subject.active.where(id: @experiment.assignments.pluck(:user_id))
+- active = Subject.active.where(id: @experiment.assignments.pluck(:user_id)).count
 - participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
 .row
   strong
