@@ -1,4 +1,4 @@
-- if current_user.is_administrator?
+- if current_user and current_user.is_administrator?
   .pull-right
     = '['
     = link_to 'Edit', edit_page_path(@page)
