@@ -7,38 +7,32 @@
       ul
         - @experiment.errors.full_messages.each do |msg|
           li= msg
-  fieldset
-    legend Common information
-    .form-group
-      = f.label :name, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.text_field :name, :class => "form-control"
-    .form-group
-      = f.label :description, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.text_area :description,
-        rows: '5',
-        class: 'form-control'
-    .form-group
-      = f.label :reward, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.number_field :reward, :class => 'form-control'
-    .form-group
-      = f.label :categories, class: 'control-label col-sm-2'
-      .col-sm-2
-        = f.select :category_ids, options_from_collection_for_select(Category.all, 'id', 'tag', @experiment.categories.pluck(:id)), {prompt: '-'}, { multiple: true, class: 'selectpicker form-control'}
-    .form-group
-      = f.label :type, class: 'control-label col-sm-2'
-      .col-sm-2
-        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), {prompt: '-'}, {class: 'selectpicker form-control'}
-    .form-group
-      = f.label 'Subjects Assigned', class: 'control-label col-sm-2'
-      .col-sm-8.spacer-top-1.lead
-        = @experiment.assignments.count
-    .form-group
-      = f.label 'Subjects Participated', class: 'control-label col-sm-2'
-      .col-sm-8.spacer-top-1.lead
-        = Registration.where({session_id: @experiment.sessions, participated: true}).count
+  .panel.panel-default
+    .panel-body
+      .form-group
+        = f.label :name, :class => "col-sm-2 control-label"
+        .col-sm-4
+          = f.text_field :name, :class => "form-control"
+      .form-group
+        = f.label :description, :class => "col-sm-2 control-label"
+        .col-sm-8
+          = f.text_area :description,
+          rows: '5',
+          class: 'form-control'
+      .form-group
+        = f.label :reward, :class => "col-sm-2 control-label"
+        .col-sm-2
+          .input-group
+            span.input-group-addon
+              | $
+            = f.number_field :reward, :class => 'form-control'
+      .form-group
+        = f.label :categories, class: 'control-label col-sm-2'
+        .col-sm-8
+          = f.select :category_ids, options_from_collection_for_select(Category.all, 'id', 'tag', @experiment.categories.pluck(:id)), {prompt: '-'}, { multiple: true, class: 'selectpicker form-control'}
+      .form-group
+        = f.label :type, class: 'control-label col-sm-2'
+        .col-sm-4
+          = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), {prompt: '-'}, {class: 'selectpicker form-control'}
   .clearfix
-      = link_to 'Send invitations', experiment_invite_path(@experiment), class: "pull-left btn btn-default"
-      = f.button 'Save', :type => "submit", :class => "btn btn-primary pull-right"
+  = f.button 'Save', :type => "submit", :class => "btn btn-primary pull-right"

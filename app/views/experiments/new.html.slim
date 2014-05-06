@@ -1,7 +1,3 @@
-.page-header
-  h1
-    | New 
-    |  experiment
 = form_for(@experiment, :html => { :class => "form-horizontal" }) do |f|
   - if @experiment.errors.any?
     .alert.alert-danger.alert-dismissable
@@ -11,30 +7,31 @@
       ul
         - @experiment.errors.full_messages.each do |msg|
           li= msg
-  fieldset
-    legend Common information
-    .form-group
-      = f.label :name, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.text_field :name, :class => "form-control"
-    .form-group
-      = f.label :description, :class => "col-lg-2 control-label"
-      .col-lg-10
-        = f.text_area :description,
-        rows: '5',
-        class: 'form-control'
-    .form-group
-      = f.label :reward, :class => "col-lg-2 control-label"
-      .col-lg-10
+  .form-group
+    = f.label :name, :class => "col-sm-2 control-label"
+    .col-sm-4
+      = f.text_field :name, :class => "form-control"
+  .form-group
+    = f.label :description, :class => "col-sm-2 control-label"
+    .col-sm-8
+      = f.text_area :description,
+            rows: '5',
+            class: 'form-control'
+  .form-group
+    = f.label :reward, :class => "col-sm-2 control-label"
+    .col-sm-2
+      .input-group
+        span.input-group-addon
+          | $
         = f.number_field :reward, :class => 'form-control'
-    .form-group
-      = f.label :categories, class: 'control-label col-sm-2'
-      .col-sm-2
-        = f.select :category_ids, options_from_collection_for_select(Category.all, 'id', 'tag', @experiment.categories.pluck(:id)), {prompt: '-'}, { multiple: true, class: 'selectpicker form-control'}
-
-    .form-group
-      = f.label :type, class: 'control-label col-sm-2'
-      .col-sm-8
-        = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), {prompt: '-'}, { class: 'selectpicker form-control'}
-  .form-group.pull-right
-    = f.button 'Save', :type => "submit", :class => "btn btn-primary"
+  .form-group
+    = f.label :categories, class: 'control-label col-sm-2'
+    .col-sm-8
+      = f.select :category_ids, options_from_collection_for_select(Category.all, 'id', 'tag', @experiment.categories.pluck(:id)), {prompt: '-'}, { multiple: true, class: 'selectpicker form-control'}
+  .form-group
+    = f.label :type, class: 'control-label col-sm-2'
+    .col-sm-4
+      = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), {prompt: '-'}, {class: 'selectpicker form-control'}
+  .pull-right
+    = f.button 'Create!', :type => "submit", :class => "btn btn-primary"
+    = link_to 'Back', :back, :class=>'btn'

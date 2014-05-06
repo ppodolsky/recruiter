@@ -1,10 +1,10 @@
 class UsersController < InheritedResources::Base
   before_action :authenticate_user!
-  before_action :raise_if_not_admin, only: [:unassign, :unassign_all, :assigned, :register, :unregister]
+  before_action :raise_if_not_admin, only: [:deactivate, :unassign, :unassign_all, :assigned, :register, :unregister]
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
   actions :all
-  custom_actions :resource => [:search, :assigned, :unassign, :unassign_all, :register, :unregister]
+  custom_actions :resource => [:search, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate]
 
   respond_to :js, :only => [:add, :search, :unregister, :unassign]
   respond_to :json, :only => [:update]
@@ -12,6 +12,14 @@ class UsersController < InheritedResources::Base
   def index
     @users = User.where.not(id: current_user.id).order("type ASC")
     index!
+  end
+
+  def deactivate
+    Subject.update_all(active: false)
+    Subject.all.each do |user|
+      UserMailer.delay.deactivation(user)
+    end
+    redirect_to users_path
   end
 
   def search
@@ -62,13 +70,26 @@ class UsersController < InheritedResources::Base
     end
     attendance = processed_params["attendance"]
     processed_params.delete "attendance"
+
+    restricted_subjects = Assignment.where(experiment_id: @experiment.id).pluck(:user_id)
+    restricted_subjects |= Subject.inactive.pluck(:user_id)
+
+    if params[:never_been]
+      restricted_subjects |= Registration.all.pluck(:user_id)
+    elsif params[:never_been_similar]
+      same = []
+      @experiment.categories.each do |f|
+        same |= f.experiments.pluck(:id)
+      end
+      sessions_with_same_categories = Session.where(experiment_id: same)
+      restricted_subjects |= Registration.where(session_id: sessions_with_same_categories).pluck(:user_id)
+    end
     @subjects = Subject
     .joins("LEFT OUTER JOIN (select user_id, count(*) as registrations_count from registrations group by user_id) r1 on (r1.user_id = users.id)")
     .joins("LEFT OUTER JOIN (select user_id, count(*) as shown_up_count from registrations where registrations.shown_up = true group by user_id) r2 on (r2.user_id = users.id)")
+    .where("COALESCE((r2.shown_up_count / r1.registrations_count),100) BETWEEN #{attendance.min} and #{attendance.max}")
     .where(processed_params)
-    .where.not(id: Assignment.where(experiment_id: @experiment.id).pluck(:user_id))
-    .where("(#{search_params[:never_been].nil?} or r1.registrations_count = 0)")
-    .where("COALESCE((r2.shown_up_count / r1.registrations_count),100) BETWEEN #{attendance.min} and #{attendance.max}").to_a
+    .where.not(id: restricted_subjects).to_a
     @subjects.shuffle!(random: Random.new(1))
     if @subjects.count >= search_params[:required_subjects].to_i
       @assigned_count = search_params[:required_subjects].to_i

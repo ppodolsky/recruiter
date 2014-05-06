@@ -16,8 +16,6 @@ Recruiter::Application.routes.draw do
   put 'majors', to: 'majors#create', as: 'majors'
   put 'professions/:id', to: 'professions#update', as: 'profession'
   put 'professions', to: 'professions#create', as: 'professions'
-  put 'pages/:id', to: 'pages#update', as: 'page'
-  put 'pages', to: 'pages#create', as: 'pages'
 
   resources :sessions do
     get 'online', to: 'sessions#online'
@@ -30,6 +28,7 @@ Recruiter::Application.routes.draw do
 
   get 'timeline', to: 'timeline#index'
 
+  get '/users/deactivate', to: 'users#deactivate', as: 'users_deactivate'
   resources :users, only: [:index, :update, :search, :show]
 
   get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
@@ -57,6 +56,6 @@ Recruiter::Application.routes.draw do
   # light CMS
   # http://railscasts.com/episodes/117-semi-static-pages-revised
   # WARNING: order is crucial, do not rearrange #
-  get ':id', to: 'pages#show', as: 'show_page'   #
+  resources :pages, path: ''                    #
   root to: 'pages#index'                        #
 end

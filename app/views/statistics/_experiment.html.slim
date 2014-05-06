@@ -1,0 +1,28 @@
+- invited = @experiment.assignments.where(invited: true).count
+- assigned = @experiment.assignments.count
+- active = Subject.active.where(id: @experiment.assignments.pluck(:user_id))
+- participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
+.row
+  strong
+    = 'Assigned'
+  br
+  .small
+    = pluralize(assigned, 'subject')
+.row
+  strong
+    = 'Assigned and active'
+  br
+  .small
+    = pluralize(active, 'subject')
+.row
+  strong
+    = 'Participated'
+  br
+  .small
+    = pluralize(participated, 'subject')
+.row
+  strong
+    = 'Invited'
+  br
+  .small
+    = pluralize(invited, 'subject')

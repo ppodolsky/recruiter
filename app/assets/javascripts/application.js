@@ -33,20 +33,25 @@ $(document).ready(function() {
     $(".best_in_place").best_in_place();
     $('.checkbox').checkbox();
     $('.selectpicker').selectpicker();
-    $("textarea.markdown").markdown({
-        savable:true,
-        onSave: function(e) {
-            var url = e.$textarea.data('url');
-            var object = e.$textarea.data('object');
-            var field = e.$textarea.data('field');
-            $.ajax({
-                method: 'post',
-                url: url,
-                data: Maelstorm.prepareParam(object, field, e.getContent()),
-                dataType: 'json'
-            });
+    $("textarea.markdown").each(function(i,el){
+        $(el).markdown({
+            savable: $(el).data('savable'),
+            onSave: function(e) {
+                var url = e.$textarea.data('url');
+                var name = e.$textarea.attr('name');
+                var field = e.$textarea.data('field');
+                $.ajax({
+                    method: 'post',
+                    url: url,
+                    data: Maelstorm.prepareParam(name, e.getContent()),
+                    dataType: 'json'
+                });
+            }
+        })
+        if($(el).closest('form').length > 0){
+            $(el).attr('form', $(el).closest('form').attr('id'));
         }
-    })
+    });
     $(".add-new-record").bind('ajax:success', function(){window.document.location.reload();});
     $('.registration-selector').on(
         "webkitAnimationEnd oanimationend msAnimationEnd animationend",
@@ -95,7 +100,8 @@ $(document).ready(function() {
                             start: this['start_time'],
                             end: this['end_time'],
                             allDay: false,
-                            color: this['finished'] ? '' : 'green'
+                            color: this['finished'] ? '' : 'green',
+                            url: '/sessions/' + this['id'] + '/online'
                         });
                     });
                     callback(events);

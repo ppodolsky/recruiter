@@ -1,2 +1,8 @@
-h2= @page.name
+- if current_user.is_administrator?
+  .pull-right
+    = '['
+    = link_to 'Edit', edit_page_path(@page)
+    = ']'
+h2
+  = @page.name
 = markdown_to_html(@page.content)

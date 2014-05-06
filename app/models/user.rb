@@ -12,9 +12,13 @@ class User < ActiveRecord::Base
 
   attr_reader :attendance, :never_been
 
+  scope :active, -> { where(active: true) }
+  scope :inactive, -> { where(active: false) }
+
 
   before_validation :set_canonical_name
   before_update :change_type_service
+  before_update :activate_on_login
 
   validates_uniqueness_of :email, :case_sensitive => false
   validates_uniqueness_of :username, :case_sensitive => false
@@ -80,6 +84,11 @@ class User < ActiveRecord::Base
     if self.type_changed? and self.type_was == 'Subject' then
       self.sessions.delete (self.sessions.where(finished: false))
       self.experiments.delete (self.experiments.where(finished: false))
+    end
+  end
+  def activate_on_login
+    if self.last_sign_in_at_changed? then
+      self.active = true
     end
   end
 end

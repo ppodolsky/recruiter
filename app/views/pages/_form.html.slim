@@ -1,8 +1,0 @@
-= twitter_bootstrap_form_for @page do |f|
-  = f.inputs do
-    = f.text_field :name
-    = f.text_area :content, rows: 15 do
-      | Foobarbaz
-  = f.actions do
-    = f.submit 'Create new page'
-    = button_tag  'Cancel', type: 'reset', class: 'btn'

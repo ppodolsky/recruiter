@@ -1,7 +1,8 @@
 = render 'add_new_modal'
 .btn-toolbar role="toolbar"
   .btn-group
-    = link_to 'New subject', '#add-new-modal', class: 'btn btn-xs btn-default', 'data-toggle' => 'modal'
+    - if not @session.finished then
+      = link_to 'New subject', '#add-new-modal', class: 'btn btn-xs btn-default', 'data-toggle' => 'modal'
 .table-responsive
   table.table.table-borderless
     thead
@@ -29,14 +30,15 @@
           td
             = link_to registration.user.name, registration.user.becomes(User)
           td
-            = best_in_place registration, :shown_up, type: :checkbox, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
+            = best_in_place_if !@session.finished, registration, :shown_up, type: :checkbox, display_with: lambda { |v| v ? 'yes' : 'no' }, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
           td
-            = best_in_place registration, :participated, type: :checkbox, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
+            = best_in_place_if !@session.finished, registration, :participated, type: :checkbox, display_with: lambda { |v| v ? 'yes' : 'no' }, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
           td
-            = best_in_place registration, :paid, type: :input, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), html_attrs: {min: 0}, inner_class: 'form-control', placeholder: 'paid'
+            = best_in_place_if !@session.finished, registration, :paid, type: :input, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), html_attrs: {min: 0}, inner_class: 'form-control', placeholder: 'paid'
           td
-            = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-1 glyphicon glyphicon-remove danger'
-= link_to '< Back', experiment_path(@session.experiment) + '#sessions', :class=>'btn btn-default'
-.clearfix
-.text-center
-  = link_to 'Finish session', session_finish_path(@session), method: :post, class: 'text-center btn-xl btn-primary', data: { confirm: 'Are you sure?' }
+            - if not @session.finished then
+              = link_to '', session_user_path(@session, registration.user), remote: true, method: :delete, class: 'spacer-left-1 glyphicon glyphicon-remove danger'
+.pull-right
+  - if not @session.finished then
+    = link_to 'Finish session', session_finish_path(@session), method: :post, class: 'btn btn-primary', data: { confirm: 'Are you sure?' }
+  = link_to 'Back to experiment', experiment_path(@session.experiment), :class=>'btn'

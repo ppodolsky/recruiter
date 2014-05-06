@@ -1,5 +1,6 @@
 class ExperimentsController < InheritedResources::Base
   before_action :authenticate_user!
+  before_action :raise_if_not_experimenter
   actions :all
   custom_actions :collection => [:assigned, :calendar], :resource => [:invite]
   respond_to :json, :only => [:destroy, :update]
@@ -42,7 +43,7 @@ class ExperimentsController < InheritedResources::Base
   end
   def send_invite
     experiment = Experiment.find(params[:experiment_id])
-    stack = experiment.assignments.where(invited: false).take(params[:amount])
+    stack = Subject.active.where(id: experiment.assignments.where(invited: false)).take(params[:amount])
     stack.each do |assignment|
       UserMailer.delay.invitation(assignment.user, experiment)
     end
@@ -57,7 +58,7 @@ class ExperimentsController < InheritedResources::Base
     respond_to do |format|
       format.json {
         render :json => events.to_json(
-            :only => [:start_time, :end_time, :duration, :finished],
+            :only => [:start_time, :end_time, :duration, :finished, :id],
             :include => {
                 :experiment => {
                     :only => [:name],

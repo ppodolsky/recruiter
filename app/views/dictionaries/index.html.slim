@@ -5,17 +5,12 @@
       = link_to 'Categories', dictionary_path(:category), class: 'list-group-item'
       = link_to 'Majors', dictionary_path(:major), class: 'list-group-item'
       = link_to 'Professions', dictionary_path(:profession), class: 'list-group-item'
-      = link_to 'Pages', dictionary_path(:page), class: 'list-group-item'
   .col-sm-9
     - if @dictionary
       - @dictionary.all.each do |f|
         .row
-          .col-sm-4
-            = best_in_place f, :name, :type => :input
-          - if @dictionary.method_defined? 'value'
-            .col-sm-8
-              = markdown_editor f, :value
-      - if @dictionary.creatable?
-        .row
           .col-sm-6
-            = best_in_place @dictionary.new, :name, :type => :input, :nil => 'add new...', :classes => 'add-new-record'
+            = best_in_place f, :name, :type => :input
+      .row
+        .col-sm-6
+          = best_in_place @dictionary.new, :name, :type => :input, :nil => 'add new...', :classes => 'add-new-record'

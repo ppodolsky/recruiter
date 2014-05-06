@@ -17,7 +17,7 @@ class SessionsController < InheritedResources::Base
     session = Session.find(params[:session_id])
     session.finished = true
     session.save!
-    redirect_to experiment_path(session.experiment) + '#sessions'
+    redirect_to session_online_path(session)
   end
   def online
     @session = Session.find(params[:session_id])

@@ -18,8 +18,4 @@ class Page < ActiveRecord::Base
     p = Page.find_by_slug(slug)
     p.nil? ? "" : p.content
   end
-
-  def self.creatable?
-    true
-  end
 end

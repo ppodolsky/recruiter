@@ -1,8 +1,8 @@
 class PagesController < InheritedResources::Base
 
   before_action :load_user_resource
-  respond_to :json, :only => [:create, :update]
-  actions :create, :update, :index, :show
+  before_action :raise_if_not_admin, only: [:create, :update, :assigned, :edit, :new]
+  actions :create, :update, :index, :show, :edit, :new
 
   def index
     if not user_signed_in?
@@ -14,6 +14,17 @@ class PagesController < InheritedResources::Base
   def show
     @page = Page.friendly.find(params[:id])
     show!
+  rescue ActiveRecord::RecordNotFound => e
+    if @user.is_administrator? then
+      @page = Page.new(name: params[:id].to_s.capitalize)
+      render 'new'
+    else
+      raise e
+    end
+  end
+  def edit
+    @page = Page.friendly.find(params[:id])
+    edit!
   end
   def update
     @page = Page.friendly.find(params[:id])
@@ -23,7 +34,7 @@ class PagesController < InheritedResources::Base
   private
 
   def permitted_params
-    params.permit(:page => [:name, :value])
+    params.permit(:page => [:name, :content])
   end
 
   def load_user_resource

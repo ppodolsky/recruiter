@@ -7,10 +7,14 @@
           br
           small
             = user.email
-  .col-sm-4.well
-    b
-      | Statistics
-    br
-      = render 'statistics/common'
-.pull-right
-  = link_to "Save", "#", remote: true,  class: 'btn btn-primary spacer-top-1 save'
+  .col-sm-4
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title
+          | Stats
+      .panel-body
+        .spacer-left-1
+          = render 'statistics/common'
+      .panel-footer
+        = link_to 'Drop database', users_deactivate_path, class: 'btn btn-danger pull-right', data: {confirm: 'Are you sure?'}
+        .clearfix

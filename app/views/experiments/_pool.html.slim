@@ -70,13 +70,15 @@
           = label_tag :required_number, 'Required', class: 'control-label col-sm-2'
           .col-sm-2
             = number_field_tag 'required_subjects', 1, min: 1, max: Subject.count - Assignment.where(experiment: @experiment).count, class: 'form-control', placeholder: 'subjects'
-            small class="help-block" #{pluralize(Subject.count - Assignment.where(experiment: @experiment).count, 'subject')} maximum
+            small class="help-block" #{pluralize(Subject.active.where.not(id: @experiment.users).count, 'subject')} maximum
         .clearfix
           .pull-right
             = button_tag 'Assign subjects', :type => 'submit', :class => 'btn btn-small btn-primary', :id => 'subjects-button'
-.panel.panel-default
-  .panel-heading
-    h3.panel-title
-      | Assigned
+- if @experiment.assignments.count > 0
+  .panel.panel-default
+    .panel-heading
+      h3.panel-title
+        | Assigned
     .panel-body
-      = render 'assigned'
+      .spacer-left-1
+        = render 'assigned'

@@ -12,6 +12,9 @@ class UserMailer < Devise::Mailer
   def unlock_instructions(record, token, opts={})
     super
   end
+  def deactivation(user)
+    mail(:to => user.email, :subject => 'ICES Account Deactivation')
+  end
   def invitation(user, experiment)
     template = experiment.default_invitation
     template.gsub!('@name', user.name)

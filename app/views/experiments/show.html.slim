@@ -7,6 +7,9 @@
       a href="#pool" data-toggle="tab"
         |  Pool
     li
+      a href="#statistics" data-toggle="tab"
+        |  Statistics
+    li
       a href="#settings" data-toggle="tab"
         |  Settings
   .tab-content
@@ -14,5 +17,7 @@
       = render 'sessions'
     #pool.tab-pane
       = render 'pool'
-    #settings.tab-pane
+    #statistics.tab-pane.spacer-top-1
+      = render 'statistics/experiment'
+    #settings.tab-pane.spacer-top-1
       = render 'settings'

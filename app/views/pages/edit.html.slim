@@ -1,2 +1,4 @@
-h2 Edit page
-= render 'form'
+= form_for @page, method: :put do |f|
+  = f.text_field :name, class: 'form-control'
+  = markdown_editor @page, :content, {savable: false}
+  = f.submit 'Save', class: 'btn btn-primary pull-right spacer-top-1'
