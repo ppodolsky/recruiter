@@ -1,6 +1,7 @@
 h3
   = "#{@user.first_name} #{@user.last_name}, G\#: #{@user.gsharp}"
 = best_in_place @user.becomes(User), :type, :type => :select, :collection => [['Administrator', 'Administrator'],['Experimenter','Experimenter'],['Subject','Subject']]
+span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
 .tabbable.spacer-top-1
   ul.nav.nav-tabs
     li.active

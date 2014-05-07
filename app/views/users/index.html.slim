@@ -1,6 +1,19 @@
 = render 'invitation_modal'
 .row
-  .col-sm-8
+  .col-sm-6
+    = form_tag users_path, method: :get, class: "navbar-form", role: "search"
+      .input-group
+        = text_field_tag :q, nil, class: "form-control", placeholder: "Search"
+        .input-group-btn
+          button class="btn btn-default" type="submit"
+            span class="glyphicon glyphicon-search"
+  .col-sm-6
+    .pull-right
+      = button_tag 'Send invitations', class: 'btn btn-primary spacer-right-1', data: {toggle: 'modal', target: '#invitation-modal'}
+      = link_to 'Deactivate users', users_deactivate_path, class: 'btn btn-danger', data: {confirm: 'Are you sure?'}
+    .clearfix
+.row.spacer-top-2
+  .col-sm-9
     - @users.each_with_index do | user, i |
       .row class = "#{i != 0 ? 'spacer-top-1' : ''}"
         .col-sm-3
@@ -8,7 +21,7 @@
           br
           small
             = user.email
-  .col-sm-4
+  .col-sm-3
     .panel.panel-default
       .panel-heading
         h3.panel-title
@@ -16,8 +29,3 @@
       .panel-body
         .spacer-left-1
           = render 'statistics/common'
-      .panel-footer
-        .pull-right
-          = button_tag 'Send invitations', class: 'btn btn-primary spacer-right-1', data: {toggle: 'modal', target: '#invitation-modal'}
-          = link_to 'Drop database', users_deactivate_path, class: 'btn btn-danger', data: {confirm: 'Are you sure?'}
-        .clearfix

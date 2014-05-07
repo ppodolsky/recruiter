@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
     where("email = ? or gsharp = ?", cred, cred)
   end
 
+  def self.find_by_query(query)
+    where("email ilike '%'||?||'%' or gsharp ilike '%'||?||'%' or (first_name||' '||last_name) ilike '%'||?||'%' or (last_name ||' '||first_name) ilike '%'||?||'%'",
+    query,query,query,query)
+  end
+
   def name
     "#{self.first_name} #{self.last_name}"
   end

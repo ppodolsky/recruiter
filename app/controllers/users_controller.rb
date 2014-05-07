@@ -4,13 +4,16 @@ class UsersController < InheritedResources::Base
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
   actions :all
-  custom_actions :resource => [:search, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
+  custom_actions :resource => [:assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
 
-  respond_to :js, :only => [:add, :search, :unregister, :unassign]
-  respond_to :json, :only => [:update, :inviter_users]
+  respond_to :js, :only => [:add, :unregister, :unassign]
+  respond_to :json, :only => [:update, :invite_users]
 
   def index
     @users = User.where.not(id: current_user.id).order("type ASC")
+    if not params[:q].nil?
+      @users = @users.find_by_query(params[:q])
+    end
     index!
   end
 
@@ -28,10 +31,6 @@ class UsersController < InheritedResources::Base
       UserMailer.delay.deactivation(user)
     end
     redirect_to users_path
-  end
-
-  def search
-    @users = User.find_by_cred(params[:user][:cred])
   end
 
   def assigned

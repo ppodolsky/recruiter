@@ -9,6 +9,7 @@ class Experiment < ActiveRecord::Base
   has_and_belongs_to_many :categories
 
   validates_presence_of :name, :type, presence: true
+  validates :reward, :numericality => { :greater_than_or_equal_to => 0 }
 
   def opened_sessions
     sessions.where("registration_deadline > ?", Time.now)
