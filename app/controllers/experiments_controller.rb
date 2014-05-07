@@ -43,7 +43,7 @@ class ExperimentsController < InheritedResources::Base
   end
   def send_invite
     experiment = Experiment.find(params[:experiment_id])
-    stack = Subject.active.where(id: experiment.assignments.where(invited: false).pluck(:user_id)).take(params[:amount])
+    stack = experiment.assignments.where(invited: false).take(params[:amount])
     stack.each do |assignment|
       UserMailer.delay.invitation(assignment.user, experiment)
     end
