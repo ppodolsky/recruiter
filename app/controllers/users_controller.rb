@@ -79,7 +79,7 @@ class UsersController < InheritedResources::Base
     processed_params.delete "attendance"
 
     restricted_subjects = Assignment.where(experiment_id: @experiment.id).pluck(:user_id)
-    restricted_subjects |= Subject.inactive.pluck(:user_id)
+    restricted_subjects |= Subject.inactive.pluck(:id)
 
     if params[:never_been]
       restricted_subjects |= Registration.all.pluck(:user_id)

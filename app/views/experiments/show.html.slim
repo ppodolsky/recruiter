@@ -19,5 +19,6 @@
       = render 'pool'
     #statistics.tab-pane
       = render 'statistics/experiment'
+      = link_to 'Send invitations', experiment_invite_path(@experiment), class: "btn btn-primary pull-right"
     #settings.tab-pane
       = render 'settings'
