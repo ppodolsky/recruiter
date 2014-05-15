@@ -1,7 +1,7 @@
 - invited = @experiment.assignments.where(invited: true).count
 - assigned = @experiment.users.count
 - participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
-- registred_on_active = Registration.where({session_id: Session.where("experiment_id in (?), registration_deadline > ?", @experiment.id, Time.now), participated: false}).count
+- registred_on_active = Registration.where({session_id: Session.where("experiment_id = ? and registration_deadline > ?", @experiment.id, Time.now), participated: false}).count
 = form_tag(experiment_invite_path(@experiment), method: :post)
   .row
     .col-sm-12

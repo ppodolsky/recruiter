@@ -16,8 +16,10 @@
   .col-sm-9
     - @users.each_with_index do | user, i |
       .row class = "#{i != 0 ? 'spacer-top-1' : ''}"
-        .col-sm-3
+        .col-sm-4
           = link_to user.name, user.becomes(User)
+          small.spacer-left-1
+            = "(#{user.type})"
           br
           small
             = user.email
