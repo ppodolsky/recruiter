@@ -1,6 +1,7 @@
 - invited = @experiment.assignments.where(invited: true).count
 - assigned = @experiment.users.count
 - participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
+- registred_on_active = Registration.where({session_id: Session.where("experiment_id in (?), registration_deadline > ?", @experiment.id, Time.now), participated: false}).count
 = form_tag(experiment_invite_path(@experiment), method: :post)
   .row
     .col-sm-12
@@ -15,10 +16,10 @@
           .spacer-left-1
             = render 'statistics/experiment'
     .col-sm-9
-      - if invited < assigned
+      - if assigned > (participated + registred_on_active)
         .well
           strong
             = 'To be invited'
-          = number_field_tag :amount, 1, min: 1, max: assigned - invited,  class: 'form-control'
+          = number_field_tag :amount, 1, min: 1, max: assigned - (participated + registred_on_active),  class: 'form-control'
           = submit_tag 'Send!', class: "btn btn-success spacer-top-2 width-100"
 = link_to 'Back', experiment_path(@experiment), class: "pull-left btn btn-default"

@@ -25,7 +25,7 @@
             - regs.each do |registration|
               - participated = participated | registration.participated
               - if not registration.shown_up.nil? then
-                - session_result = if registration.shown_up then 'success' else 'danger' end
+                - session_result = if registration.shown_up then 'success' else 'missed' end
                 - session_result << ' participated' if registration.participated
                 div id="registration_#{registration.session_id}_#{registration.user_id}" class = "#{session_result}"
                   = "#{l registration.session.start_time}"

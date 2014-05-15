@@ -73,8 +73,10 @@ span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
               th
                 | Experimenter
           tbody
-            - @user.registrations.where(shown_up: true).each do | registration |
-              tr
+            - @user.registrations.order("shown_up").each do | registration |
+              - session_result = if registration.shown_up then 'success' else 'missed' end
+              - session_result << ' participated' if registration.participated
+              tr class = "#{session_result}"
                 td
                   = registration.session.experiment.name
                 td

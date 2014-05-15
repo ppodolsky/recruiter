@@ -15,6 +15,9 @@
 .danger{
     color: darkred !important;
 }
+.missed{
+    color: darkred !important;
+}
 .participated{
     font-weight: bold;
 }
