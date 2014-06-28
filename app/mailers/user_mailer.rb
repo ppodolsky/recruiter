@@ -1,6 +1,6 @@
 require 'kramdown'
 class UserMailer < Devise::Mailer
-  @@host = 'ices-recruiter-staging.com'
+  @@host = 'ices-recruiter-staging.herokuapp.com'
   default from: 'noreply@' + @@host
 
   def confirmation_instructions(user, token, opts={})
@@ -26,10 +26,10 @@ class UserMailer < Devise::Mailer
     mail headers
   end
   def deactivation(user)
-    send_from_db(user.email, nil, 'unlock')
+    send_from_db(user.email, 'http://' + @@host, 'unlock')
   end
   def invite_to_register(email)
-    send_from_db(email, nil, 'invite')
+    send_from_db(email, 'http://' + @@host, 'invite')
   end
   def invitation(user, experiment)
     template = experiment.default_invitation
