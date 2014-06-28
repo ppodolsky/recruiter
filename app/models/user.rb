@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   before_update :change_type_service
   before_update :activate_on_login
 
-  validates_uniqueness_of :email, :case_sensitive => false
   validates_uniqueness_of :username, :case_sensitive => false
   validates_uniqueness_of :gsharp
   validates_presence_of :email, :first_name, :last_name, :gsharp

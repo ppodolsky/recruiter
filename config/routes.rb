@@ -8,6 +8,8 @@ Recruiter::Application.routes.draw do
   post 'dictionaries/:dictionary_id/:item_id', to: 'dictionaries#update', as: :dictionary_item
   get 'dictionaries', to: 'dictionaries#index'
 
+  get 'settings', to: 'settings#index'
+
   put 'labs/:id', to: 'labs#update', as: 'lab'
   put 'labs', to: 'labs#create', as: 'labs'
   put 'categories/:id', to: 'categories#update', as: 'category'
@@ -16,6 +18,8 @@ Recruiter::Application.routes.draw do
   put 'majors', to: 'majors#create', as: 'majors'
   put 'professions/:id', to: 'professions#update', as: 'profession'
   put 'professions', to: 'professions#create', as: 'professions'
+  put 'emails/:id', to: 'emails#update', as: 'email'
+  put 'emails', to: 'emails#create', as: 'emails'
 
   resources :sessions do
     get 'online', to: 'sessions#online'

@@ -1,0 +1,27 @@
+.panel.panel-default
+  .panel-heading
+    | Dictionaries
+  .panel-body
+    - @dictionaries.each do |dictionary|
+      span.col-sm-3
+        table.table.table-striped
+          thead
+            tr
+              th
+                  = dictionary.name
+                  = best_in_place dictionary.new, :name, :type => :input, :nil => 'add new...', :inner_class => 'form-control', :classes => 'add-new-record btn btn-xs btn-default pull-right'
+          tbody
+            - dictionary.all.each do |f|
+              tr
+                td
+                  = best_in_place f, :name, :type => :input, :inner_class => 'form-control'
+.panel.panel-default
+  .panel-heading
+    | Emails
+  .panel-body
+    - Email.all.order('id').each do |email|
+      strong
+        = email.id.capitalize
+      div
+        = best_in_place email, :subject, :type => :input, :inner_class => 'form-control'
+      = markdown_editor email, :value
