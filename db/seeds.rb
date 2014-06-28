@@ -20,4 +20,7 @@ end
 (['White', 'Black', 'Asian', 'Hispanic', 'Other']).each do |feature|
   Ethnicity.create({ name: feature })
 end
+(['confirm', 'deactivation', 'invite', 'reset', 'unlock']).each do |email|
+  Email.create({ id: email })
+end
 
