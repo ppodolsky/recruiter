@@ -4,13 +4,13 @@ class UserMailer < Devise::Mailer
   default from: 'noreply@' + @@host
 
   def confirmation_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_confirmation_url(user, :confirmation_token => token, :host => @@host), 'confirm')
+    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host), 'confirm')
   end
   def reset_password_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_reset_url(user, :reset_token => token, :host => @@host), 'reset')
+    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_reset_url(:reset_token => token, :host => @@host), 'reset')
   end
   def unlock_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_unlock_url(user, :unlock_token => token, :host => @@host), 'unlock')
+    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host), 'unlock')
   end
   def send_from_db(email, url, template_name, opts = {})
     template = Email.find(template_name).value
