@@ -11,9 +11,10 @@ class UsersController < InheritedResources::Base
 
   def index
     @users = User.where.not(id: current_user.id).order("type ASC, last_name ASC, first_name ASC")
-    if not params[:q].nil?
+    if params[:q].present?
       @users = @users.find_by_query(params[:q])
     end
+    @users = @users.paginate(:page => params[:page])
     index!
   end
 

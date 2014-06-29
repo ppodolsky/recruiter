@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_paper_trail
 
+
   has_many :created_experiments, :foreign_key => 'creator_id', :class_name => "Experiment"
 
   has_many :registrations
@@ -42,6 +43,8 @@ class User < ActiveRecord::Base
   end
 
   normalize_attributes :secondary_email
+
+  self.per_page = 10
 
   def self.find_by_cred(cred)
     where("email = ? or gsharp = ?", cred, cred)

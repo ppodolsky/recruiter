@@ -30,9 +30,9 @@
           td
             = link_to registration.user.name, registration.user.becomes(User)
           td
-            = best_in_place_if !@session.finished, registration, :shown_up, type: :checkbox, display_with: lambda { |v| v ? 'yes' : 'no' }, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
+            = best_in_place registration, :shown_up, type: :checkbox, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
           td
-            = best_in_place_if !@session.finished, registration, :participated, type: :checkbox, display_with: lambda { |v| v ? 'yes' : 'no' }, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
+            = best_in_place registration, :participated, type: :checkbox, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), collection: [raw("<div class='icon-checkbox-unchecked'/>"), raw("<div class='icon-checkbox-checked'/>")]
           td
             = best_in_place_if !@session.finished, registration, :paid, type: :input, path: session_registration_path(@session, "#{registration.user_id},#{registration.session_id}"), html_attrs: {min: 0}, inner_class: 'form-control', placeholder: 'paid'
           td

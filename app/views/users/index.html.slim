@@ -14,15 +14,18 @@
     .clearfix
 .row.spacer-top-2
   .col-sm-9
-    - @users.each_with_index do | user, i |
-      .row class = "#{i != 0 ? 'spacer-top-1' : ''}"
-        .col-sm-4
-          = link_to user.name, user.becomes(User)
-          small.spacer-left-1
-            = "(#{user.type})"
-          br
-          small
-            = user.email
+    table.table.table-striped
+      tbody
+        - @users.each do | user |
+          tr
+            td
+              = link_to user.name, user.becomes(User)
+              br
+              small
+                = user.email
+            td
+              .pull-right.lead
+                = "#{user.type}"
   .col-sm-3
     .panel.panel-default
       .panel-heading
@@ -31,3 +34,5 @@
       .panel-body
         .spacer-left-1
           = render 'statistics/common'
+.row.text-center
+  = will_paginate @users

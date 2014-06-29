@@ -46,6 +46,9 @@ gem 'friendly_id', '~> 5.0.0' # slugs
 # https://github.com/PashaPodolsky/rails-bootstrap-markdown
 gem 'rails-bootstrap-markdown', github: 'PashaPodolsky/rails-bootstrap-markdown'
 
+# https://github.com/mislav/will_paginate
+gem 'will_paginate', '~> 3.0'
+
 # https://github.com/airblade/paper_trail
 gem 'paper_trail', '~> 3.0.0'
 ##

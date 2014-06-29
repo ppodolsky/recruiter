@@ -1,5 +1,8 @@
 require 'composite_primary_keys'
 class Assignment < ActiveRecord::Base
+
+  self.primary_keys = :user_id, :experiment_id
+
   belongs_to :user
   belongs_to :experiment
 

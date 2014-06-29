@@ -19,6 +19,10 @@ class RegistrationsController < InheritedResources::Base
       end
     end
   end
+  def update
+    @registration = Registration.find(params[:id].split(','))
+    update!
+  end
 
   def permitted_params
     params.permit(:cred, :session_id, registration: [:shown_up, :participated, :paid])
