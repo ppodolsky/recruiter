@@ -18,6 +18,7 @@
 //= require bootstrap
 //= require bootstrap-inputmask
 //= require bootstrap-markdown
+//= require social-share-button
 //= require_tree .
 
 $(document).ready(function() {
