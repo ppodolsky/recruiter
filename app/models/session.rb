@@ -22,6 +22,10 @@ class Session < ActiveRecord::Base
       errors.add(:selected_time, "is overlapping with the session of #{f.experiment.name} (from #{f.start_time_display} to #{f.end_time_display})")
     end
   end
+
+  def registered_subjects
+    self.registrations.count
+  end
   def start_time_display
     start_time.strftime("%d %B %Y at %H:%M")
   end

@@ -96,7 +96,7 @@ $(document).ready(function() {
                         events.push({
                             title: this['experiment']['name'] + ' by ' +
                                 this['experiment']['creator']['last_name'] + ' ' + this['experiment']['creator']['first_name'] +
-                                ' in ' + this['lab']['location'],
+                                ' in ' + this['lab']['location'] + ', subjects: ' + this['registered_subjects'] + '/' + this['required_subjects'],
                             start: this['start_time'],
                             end: this['end_time'],
                             allDay: false,

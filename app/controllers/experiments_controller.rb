@@ -58,7 +58,7 @@ class ExperimentsController < InheritedResources::Base
     respond_to do |format|
       format.json {
         render :json => events.to_json(
-            :only => [:start_time, :end_time, :duration, :finished, :id],
+            :only => [:start_time, :end_time, :duration, :finished, :id, :required_subjects, :registered_subjects],
             :include => {
                 :experiment => {
                     :only => [:name],
