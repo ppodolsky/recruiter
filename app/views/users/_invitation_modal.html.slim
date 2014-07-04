@@ -5,11 +5,14 @@
         .modal-header
           button.close aria-hidden="true" data-dismiss="modal" type="button"
             | &times;
-          h4.modal-title Find & Add New Manager
+          h4.modal-title Invite new
         .modal-body
           .form-group
             .col-sm-12
-              = text_area_tag 'emails', nil, rows: 20, class: 'form-control', placeholder: 'emails'
+              = text_area_tag 'emails', nil, rows: 7, class: 'form-control', placeholder: 'emails'
+          .form-group
+            .col-sm-12
+              = markdown_editor Email.find('invite'), :value, :savable => false
         .modal-footer
           button.btn.btn-small.btn-primary type='submit' Invite
 

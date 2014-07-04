@@ -13,7 +13,11 @@ class UserMailer < Devise::Mailer
     send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host), 'unlock')
   end
   def send_from_db(email, url, template_name, opts = {})
-    template = Email.find(template_name).value
+    if opts[:immediate].present?
+      template = opts[:immediate]
+    else
+      template = Email.find(template_name).value
+    end
     subject = Email.find(template_name).subject
     template.gsub!('@email', email)
     template.gsub!('@url', url) if url.present?
@@ -28,8 +32,8 @@ class UserMailer < Devise::Mailer
   def deactivation(user)
     send_from_db(user.email, 'http://' + @@host, 'unlock')
   end
-  def invite_to_register(email)
-    send_from_db(email, 'http://' + @@host, 'invite')
+  def invite_to_register(email, email_text)
+    send_from_db(email, 'http://' + @@host, 'invite', immediate: email_text)
   end
   def invitation(user, experiment)
     template = experiment.default_invitation

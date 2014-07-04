@@ -21,8 +21,9 @@ class UsersController < InheritedResources::Base
   def invite_users
     emails = params[:emails].strip.split(/\s+/)
     emails = emails - Subject.all.pluck(:email)
+    email_text = params[:email][:value]
     emails.each do |email|
-      UserMailer.delay.invite_to_register(email)
+      UserMailer.delay.invite_to_register(email, email_text)
     end
     redirect_to users_path
   end
