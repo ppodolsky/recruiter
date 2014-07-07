@@ -95,6 +95,8 @@ class UsersController < InheritedResources::Base
       restricted_subjects |= Registration.where(session_id: sessions_with_same_categories).pluck(:user_id)
     end
     @subjects = Subject
+    .profile_filled
+    .active
     .joins("LEFT OUTER JOIN (select user_id, count(*) as registrations_count from registrations group by user_id) r1 on (r1.user_id = users.id)")
     .joins("LEFT OUTER JOIN (select user_id, count(*) as shown_up_count from registrations where registrations.shown_up = true group by user_id) r2 on (r2.user_id = users.id)")
     .where("COALESCE((r2.shown_up_count / r1.registrations_count),100) BETWEEN #{attendance.min} and #{attendance.max}")
