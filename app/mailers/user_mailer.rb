@@ -29,8 +29,8 @@ class UserMailer < Devise::Mailer
     }.merge(opts)
     mail headers
   end
-  def deactivation(user)
-    send_from_db(user.email, 'http://' + @@host, 'unlock')
+  def deactivation(user, email_text)
+    send_from_db(user.email, 'http://' + @@host, 'unlock', immediate: email_text)
   end
   def invite_to_register(email, email_text)
     send_from_db(email, 'http://' + @@host, 'invite', immediate: email_text)

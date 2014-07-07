@@ -1,0 +1,14 @@
+#deactivate-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag(users_deactivate_path, method: :post, class: "form-horizontal") do
+        .modal-header
+          button.close aria-hidden="true" data-dismiss="modal" type="button"
+            | &times;
+          h4.modal-title Deactivate
+        .modal-body
+          .form-group
+            .col-sm-12
+              = markdown_editor Email.find('deactivation'), :value, :savable => false
+        .modal-footer
+          button.btn.btn-small.btn-primary type='submit' Deactivate

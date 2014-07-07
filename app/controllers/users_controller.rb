@@ -29,8 +29,9 @@ class UsersController < InheritedResources::Base
   end
   def deactivate
     Subject.update_all(active: false)
+    email_text = params[:email][:value]
     Subject.all.each do |user|
-      UserMailer.delay.deactivation(user)
+      UserMailer.delay.deactivation(user, email_text)
     end
     redirect_to users_path
   end
