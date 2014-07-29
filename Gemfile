@@ -52,6 +52,10 @@ gem 'social-share-button'
 # https://github.com/mislav/will_paginate
 gem 'will_paginate', '~> 3.0'
 
+# https://github.com/mileszs/wicked_pdf
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
+
 # https://github.com/airblade/paper_trail
 gem 'paper_trail', '~> 3.0.0'
 ##

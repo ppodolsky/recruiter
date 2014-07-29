@@ -1,0 +1,44 @@
+= wicked_pdf_stylesheet_link_tag 'application'
+.row
+  .col-sm-3
+    = wicked_pdf_image_tag('gmu.png', size: '110x81', class: 'pull-left')
+  .col-sm-5
+    .text-center.lead
+      | Petty Cash Log of Disbursements
+  .col-sm-4
+    .text-right
+      div
+        | Send to Accounts Payable, MS 3C1
+      div
+        | Tel: 703.993.2580
+      div
+        | Fax: 703.993.2589
+.spacer-top-3
+table.table.table-striped.table-bordered
+  thead
+    tr
+      th
+        | Time
+      th
+        | Recipient code
+      th
+        | Method of Payment
+      th
+        | Amount
+      th
+        | Description
+      th
+        | Notes
+  tbody
+    - @session.registrations.each do | registration |
+      tr
+        td
+          = l DateTime.now.to_date
+        td
+          = registration.user.gsharp
+        td
+          = 'Paypal'
+        td
+          = registration.paid
+        td
+        td

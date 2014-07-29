@@ -1,4 +1,5 @@
 = render 'add_new_modal'
+= link_to '', session_report_path(@session.id) + '.pdf', class: 'glyphicon glyphicon-print pull-right'
 .btn-toolbar role="toolbar"
   .btn-group
     - if not @session.finished then

@@ -21,7 +21,19 @@ class SessionsController < InheritedResources::Base
   end
   def online
     @session = Session.find(params[:session_id])
-    render 'online'
+    respond_to do |format|
+      format.html do
+        render 'online'
+      end
+    end
+  end
+  def report
+    @session = Session.find(params[:session_id])
+    respond_to do |format|
+      format.pdf do
+        render :pdf => 'pdf_report', :template => 'sessions/report.pdf.slim'
+      end
+    end
   end
   def update
     update! { experiment_path(@session.experiment) + '#sessions' }

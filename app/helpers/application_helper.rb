@@ -20,7 +20,6 @@ module ApplicationHelper
       return "".html_safe
     end
   end
-
   # Devise isn't quite ready for twitter bootstrap. Here we convert the flash
   # messages keys to the types expected by Bootstrap 3.0.
   def flash_class(level)
