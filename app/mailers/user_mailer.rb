@@ -1,6 +1,6 @@
 require 'kramdown'
 class UserMailer < Devise::Mailer
-  @@host = 'ices-recruiter.com'
+  @@host = 'ices-experiments.org'
   default from: 'noreply@' + @@host
 
   def confirmation_instructions(user, token, opts={})

@@ -66,7 +66,7 @@ Recruiter::Application.configure do
 
   # ActionMailer Config
   # Setup for production - deliveries, no errors raised
-  config.action_mailer.default_url_options = { :host => 'ices-recruiter.com' }
+  config.action_mailer.default_url_options = { :host => 'ices-experiments.org' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.raise_delivery_errors = true
@@ -75,7 +75,7 @@ Recruiter::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.mandrillapp.com",
     port: 587,
-    domain: "ices-recruiter.com",
+    domain: "ices-experiments.org",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV['MANDRILL_USERNAME'],
