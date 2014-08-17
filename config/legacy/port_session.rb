@@ -8,10 +8,14 @@ res.each {|rec|
   s = "model = Session.new({experiment_id: #{rec[2].to_i}"
   s += ", id: #{rec[0].to_i}"
   s += ", start_time: Time.new(#{rec[3].to_i},#{rec[4].to_i},#{rec[5].to_i},#{rec[6].to_i},#{rec[7].to_i})"
-  s += ", end_time: Time.new(#{rec[3].to_i},#{rec[4].to_i},#{rec[5].to_i},#{rec[6].to_i + rec[8].to_i},#{rec[7].to_i + rec[9].to_i})"
+  s += ", registration_deadline: Time.new(#{rec[3].to_i},#{rec[4].to_i},#{rec[5].to_i},#{rec[6].to_i},#{rec[7].to_i})"
+  s += ", end_time: Time.new(#{rec[3].to_i},#{rec[4].to_i},#{rec[5].to_i},#{rec[6].to_i + rec[8].to_i + (rec[7].to_i + rec[9].to_i) / 60},#{(rec[7].to_i + rec[9].to_i) % 60})"
+  s += ", finished: '#{case rec[21][1..-2] when 'y' then 'T' else 'F' end}'"
+  s += ", lab: Lab.find_by_name('#{case rec[20][1..-2] when 'a_fairfax' then 'Fairfax' when 'krasnow' then 'Krasnow' end}')"
+  s += ", required_subjects: #{rec[17].to_i}"
   s += "})\n"
   s += "model.save(:validate => false)"
-  open('db/seeds/production/exps.rb', 'a') { |f|
+  open('db/seeds/production/sess.rb', 'a') { |f|
     f.puts s
   }
 }

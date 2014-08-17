@@ -23,4 +23,7 @@ end
 (['confirm', 'deactivation', 'invite', 'reset', 'unlock']).each do |email|
   Email.create({ id: email })
 end
+%[Fairfax Krasnow].each do |f|
+  Lab.create({name: f})
+end
 
