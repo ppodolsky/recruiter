@@ -33,6 +33,7 @@ res.each {|rec|
   s += case rec[26][1..-2].downcase when 'junior' then ', class_year: 3' when 'sophomore' then ', class_year: 2' when 'freshman' then ', class_year: 1' when 'senior' then ', class_year: 4' when 'graduate' then ', class_year: 5' else '' end
   s += ", current_gpa: #{rec[28]}"
   s += "})\n"
+  s += "model.skip_confirmation!\n"
   s += "model.save(:validate => false)"
   open('db/seeds/production/users.rb', 'a') { |f|
     f.puts s
