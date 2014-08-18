@@ -23,16 +23,12 @@ class User < ActiveRecord::Base
           COALESCE(major,'') <> '' and COALESCE(profession,'') <> ''")
   }
 
-
   before_validation :set_canonical_name
   before_update :change_type_service
   before_update :activate_on_login
 
-
-
   validates_uniqueness_of :username, :case_sensitive => false
-  validates_uniqueness_of :gsharp
-  validates_presence_of :email, :first_name, :last_name, :gsharp
+  validates_presence_of :email, :first_name, :last_name
 
 
   validates :secondary_email, format: {

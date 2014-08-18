@@ -1,5 +1,6 @@
 class UsersController < InheritedResources::Base
-  before_action :authenticate_user!
+
+  before_action :authenticate_user!, :except => ['password_change_action']
   before_action :raise_if_not_admin, only: [:invite_users, :deactivate, :unassign, :unassign_all, :assigned, :register, :unregister]
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
@@ -24,6 +25,18 @@ class UsersController < InheritedResources::Base
     email_text = params[:email][:value]
     emails.each do |email|
       UserMailer.delay.invite_to_register(email, email_text)
+    end
+    redirect_to users_path
+  end
+  def reset_users
+    subjects = Subject.where("encrypted_password = ''")
+
+    subjects.each do |subject|
+      raw, enc = Devise.token_generator.generate(subject.class, :reset_password_token)
+      subject.reset_password_token   = enc
+      subject.reset_password_sent_at = Time.now.utc
+      subject.save(:validate => false)
+      UserMailer.delay.reset_password_instructions(subject, raw)
     end
     redirect_to users_path
   end

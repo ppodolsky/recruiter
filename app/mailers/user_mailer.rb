@@ -1,13 +1,13 @@
 require 'kramdown'
 class UserMailer < Devise::Mailer
-  @@host = 'ices-experiments.org'
+  @@host = 'www.ices-experiments.org'
   default from: 'noreply@' + @@host
 
   def confirmation_instructions(user, token, opts={})
     send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host), 'confirm')
   end
   def reset_password_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_reset_url(:reset_token => token, :host => @@host), 'reset')
+    send_from_db(user.email, Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host), 'reset')
   end
   def unlock_instructions(user, token, opts={})
     send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host), 'unlock')

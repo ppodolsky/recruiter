@@ -35,6 +35,7 @@ Recruiter::Application.routes.draw do
 
 
   post 'invite', to: 'users#invite_users', as: 'invite'
+  post 'reset_users', to: 'users#reset_users', as: 'reset_users'
   post 'users/deactivate', to: 'users#deactivate', as: 'users_deactivate'
   resources :users, only: [:index, :update, :search, :show]
 

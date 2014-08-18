@@ -1,5 +1,6 @@
 = render 'invitation_modal'
 = render 'deactivate_modal'
+= render 'reset_modal'
 .row
   .col-sm-6
     = form_tag users_path, method: :get, class: "navbar-form", role: "search"
@@ -11,6 +12,7 @@
   .col-sm-6
     .pull-right
       = button_tag 'Send invitations', class: 'btn btn-primary spacer-right-1', data: {toggle: 'modal', target: '#invitation-modal'}
+      = button_tag 'Reset passwords', class: 'btn btn-danger spacer-right-1', data: {toggle: 'modal', target: '#reset-modal'}
       = button_tag 'Deactivate users', class: 'btn btn-danger spacer-right-1', data: {toggle: 'modal', target: '#deactivate-modal'}
     .clearfix
 .row.spacer-top-2
