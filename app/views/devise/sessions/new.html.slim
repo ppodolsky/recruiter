@@ -10,11 +10,8 @@
         - if flash[:alert]
           .small.help-block.danger.width-100
             = flash[:alert]
-        - if devise_mapping.rememberable?
-          div.form-group.spacer-top-1
-            label
-              = f.check_box :remember_me, class: 'checkbox'
-              | Remember password?
+        div.small.pull-right.spacer-top-1.spacer-bottom-1
+          = link_to 'Forgot password?', new_user_password_path
         div.form-group
           = f.submit 'Sign in', class: 'btn btn-small btn-primary width-100'
         div.form-group

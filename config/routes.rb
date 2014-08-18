@@ -1,7 +1,7 @@
 Recruiter::Application.routes.draw do
 
   # user accounts and profiles
-  devise_for :users, :controllers => { :registrations => 'custom_registrations' , :confirmations => 'confirmations'},
+  devise_for :users, :controllers => { :passwords => 'passwords', :registrations => 'custom_registrations' , :confirmations => 'confirmations'},
              :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" }
 
   get 'dictionaries/:id', to: 'dictionaries#show', as: :dictionary
@@ -35,7 +35,8 @@ Recruiter::Application.routes.draw do
 
 
   post 'invite', to: 'users#invite_users', as: 'invite'
-  post 'reset_users', to: 'users#reset_users', as: 'reset_users'
+  get 'users/:id/reset', to: 'users#reset_user', as: 'user_reset'
+  post 'users/reset', to: 'users#reset_users', as: 'users_reset'
   post 'users/deactivate', to: 'users#deactivate', as: 'users_deactivate'
   resources :users, only: [:index, :update, :search, :show]
 

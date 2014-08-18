@@ -1,7 +1,7 @@
 #reset-modal.modal.fade
   .modal-dialog
     .modal-content
-      = form_tag(reset_users_path, method: :post, class: "form-horizontal") do
+      = form_tag(users_reset_path, method: :post, class: "form-horizontal") do
         .modal-header
           button.close aria-hidden="true" data-dismiss="modal" type="button"
             | &times;
