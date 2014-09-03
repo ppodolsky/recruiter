@@ -36,12 +36,19 @@ class User < ActiveRecord::Base
   }
   validates :secondary_email, uniqueness: true, allow_blank: true
 
+  validate :corporate_email
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :async
   [:first_name, :last_name].each do |attribute|
     normalize_attribute attribute do |value|
       value.is_a?(String) ? value.titleize.strip : value
+    end
+  end
+
+  def corporate_email
+    if not self.email.include? "@masonlive" and not self.email.include? "@gmu"
+      errors.add(:email, 'Only @masonlive or @gmu emails allowed')
     end
   end
 

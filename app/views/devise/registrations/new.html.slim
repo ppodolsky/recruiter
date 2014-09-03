@@ -17,7 +17,7 @@ div.row
             class: 'form-control',
             maxlength: 30
       div.form-group
-        = f.label :gsharp, class: 'control-label col-sm-2'
+        = f.label 'G#', class: 'control-label col-sm-2'
         div.col-sm-8
           = f.text_field :gsharp,
             class: 'form-control',
@@ -27,7 +27,7 @@ div.row
         div.col-sm-8
           = f.email_field :email, :autofocus => true, class: 'form-control'
           span.help-block
-            | You must use your ACME e-mail address.
+            | You must use your GMU/Masonlive e-mail address.
       div.form-group
         = f.label :password, class: 'control-label col-sm-2'
         div.col-sm-8
