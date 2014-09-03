@@ -1,136 +1,155 @@
-model = User.where(email: 'jrhorn424@gmail.com').first_or_create
-model.update_attributes({email: 'jrhorn424@gmail.com', id: 1358728482, last_name: "Horn", first_name: "Jeffrey", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Asymm info UG', id: 8910424, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmeder%'").first})
 model.save(:validate => false)
-model = User.where(email: 'rrong@gmu.edu').first_or_create
-model.update_attributes({email: 'rrong@gmu.edu', id: 1358728676, last_name: "Rong", first_name: "Rong", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'behar_butera_houser', id: 31578661, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%luigibutera%'").first})
 model.save(:validate => false)
-model = User.where(email: 'kgoodyea@gmail.com').first_or_create
-model.update_attributes({email: 'kgoodyea@gmail.com', id: 1358728778, last_name: "Goodyear", first_name: "Kim", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Searle', id: 36892032, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'ptwieg@gmu.edu').first_or_create
-model.update_attributes({email: 'ptwieg@gmu.edu', id: 1358729333, last_name: "Twieg", first_name: "Peter", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Cyber4', id: 68359385, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'jbuchan4@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'jbuchan4@masonlive.gmu.edu', id: 1358729406, last_name: "Buchanan", first_name: "Joy", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Behavioral_Old', id: 79186517, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%kgoodyea%'").first})
 model.save(:validate => false)
-model = User.where(email: 'daniel.houser@gmail.com').first_or_create
-model.update_attributes({email: 'daniel.houser@gmail.com', id: 1358729889, last_name: "Houser", first_name: "Daniel", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'World Bank', id: 155498283, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%shuwenl%'").first})
 model.save(:validate => false)
-model = User.where(email: 'seung.choi@gmail.com').first_or_create
-model.update_attributes({email: 'seung.choi@gmail.com', id: 1358730139, last_name: "Choi", first_name: "Ginny", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: ' food_temptation_EilPan / WTP', id: 213942110, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
 model.save(:validate => false)
-model = User.where(email: 'lbutera2@gmail.com').first_or_create
-model.update_attributes({email: 'lbutera2@gmail.com', id: 1359007006, last_name: "Butera", first_name: "Luigi", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Color Choices', id: 260251968, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%swang14%'").first})
 model.save(:validate => false)
-model = User.where(email: 'jchenw@gmu.edu').first_or_create
-model.update_attributes({email: 'jchenw@gmu.edu', id: 1359007193, last_name: "Chen", first_name: "Jingnan", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Structure Game', id: 319304136, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%swang14%'").first})
 model.save(:validate => false)
-model = User.where(email: 'xfeipan@gmail.com').first_or_create
-model.update_attributes({email: 'xfeipan@gmail.com', id: 1359007251, last_name: "Pan", first_name: "Xiaofei", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Circadian Mismatch (but no mismatch)', id: 367327993, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ahrash_dianat%'").first})
 model.save(:validate => false)
-model = User.where(email: 'wtasch@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'wtasch@masonlive.gmu.edu', id: 1359007299, last_name: "Tasch", first_name: "Weiwei", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'CHH_Market', id: 384657597, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%n%'").first})
 model.save(:validate => false)
-model = User.where(email: 'dpowers1@gmu.edu').first_or_create
-model.update_attributes({email: 'dpowers1@gmu.edu', id: 1359060342, last_name: "Powers", first_name: "David", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Reserve-Sergey-TI', id: 389850672, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%schernya%'").first})
 model.save(:validate => false)
-model = User.where(email: 'sli13@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'sli13@masonlive.gmu.edu', id: 1359065038, last_name: "Li", first_name: "Shuwen", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'A Study in Decision Making BCCHM', id: 432170834, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'swang14@gmu.edu').first_or_create
-model.update_attributes({email: 'swang14@gmu.edu', id: 1359094010, last_name: "Wang", first_name: "Siyu", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Charity efficiency_Butera Horn', id: 434816585, description: 'Please pull here all sessions present in category" One-sided Auction / Charity"', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'viktor.brech@gmail.com').first_or_create
-model.update_attributes({email: 'viktor.brech@gmail.com', id: 1359094369, last_name: "Brech", first_name: "Viktor", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Exclusion', id: 439004010, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%kgoodyea%'").first})
 model.save(:validate => false)
-model = User.where(email: 'rpetrie1@gmu.edu').first_or_create
-model.update_attributes({email: 'rpetrie1@gmu.edu', id: 1359094453, last_name: "Petrie", first_name: "Ragan", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Cyber5', id: 461227939, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'bgrasmeder@gmail.com').first_or_create
-model.update_attributes({email: 'bgrasmeder@gmail.com', id: 1359094641, last_name: "Grasmeder", first_name: "Billy", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Content analysis', id: 492982904, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
 model.save(:validate => false)
-model = User.where(email: 'love.evans@gmail.com').first_or_create
-model.update_attributes({email: 'love.evans@gmail.com', id: 1359982895, last_name: "Love", first_name: "Evans", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'A Study of Decision Making_SM', id: 510226027, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%sychoi%'").first})
 model.save(:validate => false)
-model = User.where(email: 'oguerrer@gmail.com').first_or_create
-model.update_attributes({email: 'oguerrer@gmail.com', id: 1359997246, last_name: "Guerrero", first_name: "Omar", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Behavioral New_R01_Males', id: 522438083, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%kgoodyea%'").first})
 model.save(:validate => false)
-model = User.where(email: 'chennacotla@gmail.com').first_or_create
-model.update_attributes({email: 'chennacotla@gmail.com', id: 1360077594, last_name: "Cotla", first_name: "Chenna", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'SRC2', id: 546986657, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'adianat@gmu.edu').first_or_create
-model.update_attributes({email: 'adianat@gmu.edu', id: 1360355723, last_name: "Dianat", first_name: "Ahrash", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Castillo/Eil risk', id: 554919065, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ahrash_dianat%'").first})
 model.save(:validate => false)
-model = User.where(email: 'eskil.ullberg@gmail.com').first_or_create
-model.update_attributes({email: 'eskil.ullberg@gmail.com', id: 1361227118, last_name: "Ullberg", first_name: "Eskil", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'temptation_duplicate', id: 581095471, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%vbrech%'").first})
 model.save(:validate => false)
-model = User.where(email: 'sychoi').first_or_create
-model.update_attributes({email: 'sychoi', id: 1361455093, last_name: "Manager", first_name: "Ices", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Asymm info ultimatum', id: 607814080, description: 'This is an ultimatum game in which the DM sends a message about the size of the endowment and does not need to be honest.', type: 'LabExperiment', creator: User.where("email LIKE '%dchavann%'").first})
 model.save(:validate => false)
-model = User.where(email: 'mfreer@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'mfreer@masonlive.gmu.edu', id: 1378584978, last_name: "Freer", first_name: "Mikhail", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'winter_houser_temptation', id: 624663936, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%vbrech%'").first})
 model.save(:validate => false)
-model = User.where(email: 'edemiral@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'edemiral@masonlive.gmu.edu', id: 1378585030, last_name: "Demiral", first_name: "Elif", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Endog. Job Contact Networks', id: 648291674, description: 'We study the formation of networks under various market conditions.', type: 'LabExperiment', creator: User.where("email LIKE '%dpowers1%'").first})
 model.save(:validate => false)
-model = User.where(email: 'ychao3@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'ychao3@masonlive.gmu.edu', id: 1378585072, last_name: "Chao", first_name: "Youcong", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'BuchananHouserDecision2', id: 679800948, description: 'BuchananHouserDecision2', type: 'LabExperiment', creator: User.where("email LIKE '%dhouse%'").first})
 model.save(:validate => false)
-model = User.where(email: 'adexterr@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'adexterr@masonlive.gmu.edu', id: 1378585123, last_name: "Hooker", first_name: "Andrea", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'ultimatum_identity / DEF', id: 707929005, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
 model.save(:validate => false)
-model = User.where(email: 'dkling2@gmu.edu').first_or_create
-model.update_attributes({email: 'dkling2@gmu.edu', id: 1378585169, last_name: "Kling", first_name: "Daniel", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'R&R_Macro', id: 810627181, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'dmarti23@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'dmarti23@masonlive.gmu.edu', id: 1379522857, last_name: "Martinez-villarreal", first_name: "Deborah", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'A Study in Decision Making_Buchanan', id: 866285737, description: 'Wage and price.  Slider task.  ', type: 'LabExperiment', creator: User.where("email LIKE '%dhouse%'").first})
 model.save(:validate => false)
-model = User.where(email: 'hmead@gmu.edu').first_or_create
-model.update_attributes({email: 'hmead@gmu.edu', id: 1391285110, last_name: "Mead", first_name: "Hannah", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'TwiegTest3', id: 882655270, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ptwieg%'").first})
 model.save(:validate => false)
-model = User.where(email: 'ldiaz5@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'ldiaz5@masonlive.gmu.edu', id: 1392150113, last_name: "Diaz", first_name: "Lina", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Hello', id: 889564593, description: 'Hell', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
 model.save(:validate => false)
-model = User.where(email: 'schernya@masonlive.gmu.edu').first_or_create
-model.update_attributes({email: 'schernya@masonlive.gmu.edu', id: 1392829365, last_name: "Chernyak", first_name: "Sergei", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'DEF1', id: 910859324, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
 model.save(:validate => false)
-model = User.where(email: 'ppodolsky@me.com').first_or_create
-model.update_attributes({email: 'ppodolsky@me.com', id: 1393610059, last_name: "Podolsky", first_name: "Pavel", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Competition treatment ', id: 913485497, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
 model.save(:validate => false)
-model = User.where(email: 'dchavann@conncoll.edu').first_or_create
-model.update_attributes({email: 'dchavann@conncoll.edu', id: 402924455, last_name: "Chavanne", first_name: "David", type: 'Administrator'})
-model.skip_confirmation!
+model = Experiment.new({name: 'Cyber8', id: 921551559, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmede%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Cyber7 ', id: 948119474, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmede%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Cyber9', id: 969411448, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmede%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Dynamic Games', id: 1007074991, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%swang14%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Coordinated Shirking', id: 1026763994, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%rrong%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'A Study of Decision-making HKAW', id: 1042986225, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%swang14%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: '(Search 2)', id: 1045902978, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'DEF2', id: 1050033813, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Cyber10', id: 1062416141, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmede%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Behavioral New_R01_Females', id: 1075825424, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%kgoodyea%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Asymm info ultimatum3', id: 1115502141, description: 'Ultimatum game with asymm info', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmeder%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'A Study of Decision Making_SWB', id: 1147612436, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ldiaz5%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'DEF', id: 1206014896, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Sergey-TI-1', id: 1238127280, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%schernya%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Cyber6', id: 1282234983, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'EP game', id: 1304430377, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'NSFI Test Fest', id: 1347362490, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ptwieg%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Cyber3', id: 1401823505, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'A study on individual decision making', id: 1424863185, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Voting_aimone butera stratmann', id: 1459726457, description: '-Unknown / Cumulative voting / Voting_indiff_Pilot_Aim-Strat-But
+-Unknown / Cumulative voting /
+For Jeff: please fetch all sessions in category "Unknown/cumulative voting" that read similar to the following:
+Voting_indiff_Pilot_Aim-Strat-But2
+-U...', type: 'LabExperiment', creator: User.where("email LIKE '%luigibutera%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'VR/E3', id: 1493877639, description: 'Experiment 3 on trade in idea', type: 'LabExperiment', creator: User.where("email LIKE '%eullberg%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Truncation', id: 1569767850, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ahrash_dianat%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Macro_Leverage', id: 1610065682, description: 'Asset Market Experiment with collateral value', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'HH_HA_Females', id: 1620465066, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%kgoodyea%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Gale-Shapley', id: 1662211183, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ahrash_dianat%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'HH_HA', id: 1682248376, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%kgoodyea%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Sergey-TI-2', id: 1682690536, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%schernya%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'A Study of Decision Making SM2', id: 1773604696, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%sychoi%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Test Experiment', id: 1845086488, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%jrhorn424%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Asymm info ultimatum2', id: 1880111138, description: 'Ultimatum game with asymm info', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmeder%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Text experiment for sending e-mail', id: 1884083999, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%jrhorn424%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'petrie test', id: 1931161198, description: 'pg experiment', type: 'LabExperiment', creator: User.where("email LIKE '%rpetrie1%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'SRC_NoShows', id: 1937985802, description: 'Why must I exist', type: 'LabExperiment', creator: User.where("email LIKE '%ptwieg%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Forgiveness', id: 1938692206, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%xfeipan %'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Competitive and Cooperative Search', id: 1939686530, description: 'Subjects engage in sequential search.', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'SW LFNs and Job Search', id: 1951672598, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Centralized Matching', id: 1967951637, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%ahrash_dianat%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Asymm info ultimatum4', id: 1977469646, description: 'Ultimatum game with asymm info', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmeder%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'Authority Aimone Butera', id: 1979734902, description: 'Please insert participants from the following sessions that are under category "Extensive & Normal Form Games / Trust Game & Genes ":
+-Authority base
+-Authority_base2_luigi_jason
+-Authority_base_jason_luigi
+-Authority baseline
+-authority_bis_base_...', type: 'LabExperiment', creator: User.where("email LIKE '%luigibutera%'").first})
+model.save(:validate => false)
+model = Experiment.new({name: 'SRC', id: 96680649, description: '', type: 'LabExperiment', creator: User.where("email LIKE '%bgrasmede%'").first})
 model.save(:validate => false)

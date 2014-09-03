@@ -121,7 +121,10 @@ gem 'maildown'
 # this shouldn't be outside development, but otherwise we get constant errors in
 # production
 gem 'mail_view'
+
 ##
+
+gem 'rack-timeout'
 
 group :development do
   # http://nadarei.co/mina/

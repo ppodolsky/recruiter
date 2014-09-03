@@ -23,13 +23,13 @@ class ExperimentsController < InheritedResources::Base
     create!
   end
   def index
-    @experiments = Experiment.where(creator: current_user, finished: false).order("created_at DESC")
+    @experiments = Experiment.where(creator: current_user).order("created_at DESC")
     @filter_title = 'show all'
     @filter_url = experiments_all_path
     index!
   end
   def all
-    @experiments = Experiment.all.where(finished: false).order("created_at DESC")
+    @experiments = Experiment.all.order("created_at DESC")
     @filter_title = 'show only my'
     @filter_url = experiments_path
     render 'index'
