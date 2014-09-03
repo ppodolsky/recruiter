@@ -11,9 +11,10 @@
             = link_to '', experiment.becomes(Experiment), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
         div
           = link_to experiment.name, experiment.becomes(Experiment), class: 'lead'
-        div
-          = "Experimenter: "
-          = link_to experiment.creator.name, experiment.creator.becomes(User)
+        - if experiment.creator.present?
+          div
+            = "Experimenter: "
+            = link_to experiment.creator.name, experiment.creator.becomes(User)
         div
           = "Type: "
           = experiment.type_name
