@@ -1,6 +1,5 @@
 class Experiment < ActiveRecord::Base
   before_save :default_values
-  has_paper_trail
   has_many :sessions, :dependent => :delete_all
   has_many :assignments, :dependent => :delete_all
   has_many :users, through: :assignments
