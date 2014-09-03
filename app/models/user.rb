@@ -1,6 +1,4 @@
 class User < ActiveRecord::Base
-  has_paper_trail
-
 
   has_many :created_experiments, :foreign_key => 'creator_id', :class_name => "Experiment"
 

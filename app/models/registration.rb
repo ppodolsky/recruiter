@@ -3,7 +3,6 @@ class Registration < ActiveRecord::Base
 
   self.primary_keys = :user_id, :session_id
 
-  has_paper_trail
   belongs_to :user
   belongs_to :session
 
