@@ -99,8 +99,7 @@ class User < ActiveRecord::Base
     attributes['shown_up_count']
   end
   def profile_full?
-    first_name.present? and last_name.present? and gsharp.present? and secondary_email.present? and
-        phone.present? and gender.present? and ethnicity.present? and birth_year.present? and class_year.present? and
+    first_name.present? and last_name.present? and gsharp.present? and gender.present? and ethnicity.present? and birth_year.present? and class_year.present? and
         year_started.present? and years_resident.present? and current_gpa.present? and major.present? and profession.present?
   end
   def age
