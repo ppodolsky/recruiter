@@ -5,6 +5,4 @@ class PasswordsController < Devise::PasswordsController
     flash[:notice] = "Email with instructions has been sent to #{resource_params[:email]}"
     redirect_to root_path
   end
-  def edit
-  end
 end
