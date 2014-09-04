@@ -13,9 +13,9 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
-  scope :profile_filled, -> {
-    where("COALESCE(first_name,'') <> '' and COALESCE(last_name,'') <> '' and COALESCE(gsharp,'') <> '' and
-          COALESCE(secondary_email,'') <> '' and COALESCE(phone,'') <> '' and COALESCE(gender,'') <> '' and
+  scope :profile_full, -> {
+    where("COALESCE(first_name,'') <> '' and COALESCE(last_name,'') <> '' and
+          COALESCE(gsharp,'') <> '' and COALESCE(gender,'') <> '' and
           COALESCE(ethnicity,'') <> '' and birth_year is not null and class_year is not null and
           year_started  is not null and years_resident is not null and current_gpa  is not null and
           COALESCE(major,'') <> '' and COALESCE(profession,'') <> ''")
