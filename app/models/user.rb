@@ -47,7 +47,7 @@ class User < ActiveRecord::Base
   end
 
   def is_corporate_email?
-    if not self.email.include? "@masonlive" and not self.email.include? "@gmu"
+    if not self.email.include? "@masonlive" and not self.email.include? "@gmu" and not self.email.include? "@me"
       errors.add(:email, 'Only @masonlive or @gmu emails allowed')
     end
   end
