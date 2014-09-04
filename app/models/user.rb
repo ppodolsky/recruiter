@@ -54,10 +54,10 @@ class User < ActiveRecord::Base
 
   def reset_password
     raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
-    self.reset_password_token = raw
+    self.reset_password_token = enc
     self.reset_password_sent_at = Time.now.utc
     self.save(:validate => false)
-    UserMailer.delay.reset_password_instructions(self, enc)
+    UserMailer.delay.reset_password_instructions(self, raw)
   end
 
   normalize_attributes :secondary_email
