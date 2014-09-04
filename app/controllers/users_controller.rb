@@ -29,23 +29,13 @@ class UsersController < InheritedResources::Base
     redirect_to users_path
   end
   def reset_user
-    user = User.find(params[:id])
-    raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
-    user.reset_password_token   = enc
-    user.reset_password_sent_at = Time.now.utc
-    user.save(:validate => false)
-    UserMailer.delay.reset_password_instructions(user, raw)
+    User.find(params[:id]).reset_password
     redirect_to users_path
   end
   def reset_users
     users = User.where("encrypted_password = ''")
-
     users.each do |user|
-      raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
-      user.reset_password_token   = enc
-      user.reset_password_sent_at = Time.now.utc
-      user.save(:validate => false)
-      UserMailer.delay.reset_password_instructions(user, raw)
+      user.reset_password
     end
     redirect_to users_path
   end

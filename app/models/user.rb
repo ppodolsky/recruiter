@@ -36,7 +36,7 @@ class User < ActiveRecord::Base
   }
   validates :secondary_email, uniqueness: true, allow_blank: true
 
-  validate :corporate_email
+  validate :is_corporate_email?
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :async
@@ -46,10 +46,18 @@ class User < ActiveRecord::Base
     end
   end
 
-  def corporate_email
+  def is_corporate_email?
     if not self.email.include? "@masonlive" and not self.email.include? "@gmu"
       errors.add(:email, 'Only @masonlive or @gmu emails allowed')
     end
+  end
+
+  def reset_password
+    raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
+    self.reset_password_token = raw
+    self.reset_password_sent_at = Time.now.utc
+    self.save(:validate => false)
+    UserMailer.delay.reset_password_instructions(self, enc)
   end
 
   normalize_attributes :secondary_email
