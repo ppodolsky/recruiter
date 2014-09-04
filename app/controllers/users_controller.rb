@@ -11,7 +11,7 @@ class UsersController < InheritedResources::Base
   respond_to :json, :only => [:update, :invite_users]
 
   def index
-    @users = User.order("type ASC, last_name ASC, first_name ASC")
+    @users = User.where.not(id: current_user.id).order("type ASC, last_name ASC, first_name ASC")
     if params[:q].present?
       @users = @users.find_by_query(params[:q])
     end
@@ -34,7 +34,7 @@ class UsersController < InheritedResources::Base
     user.reset_password_token   = enc
     user.reset_password_sent_at = Time.now.utc
     user.save(:validate => false)
-    UserMailer.delay.reset_password_instructions(user, enc)
+    UserMailer.delay.reset_password_instructions(user, raw)
     redirect_to users_path
   end
   def reset_users
@@ -45,7 +45,7 @@ class UsersController < InheritedResources::Base
       user.reset_password_token   = enc
       user.reset_password_sent_at = Time.now.utc
       user.save(:validate => false)
-      UserMailer.delay.reset_password_instructions(user, enc)
+      UserMailer.delay.reset_password_instructions(user, raw)
     end
     redirect_to users_path
   end
