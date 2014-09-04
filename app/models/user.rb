@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   end
 
   def reset_password
-    raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
+    raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
     self.reset_password_token = raw
     self.reset_password_sent_at = Time.now.utc
     self.save(:validate => false)
