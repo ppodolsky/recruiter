@@ -36,7 +36,6 @@ class User < ActiveRecord::Base
   }
   validates :secondary_email, uniqueness: true, allow_blank: true
 
-  validate :is_corporate_email?
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable, :lockable, :async
