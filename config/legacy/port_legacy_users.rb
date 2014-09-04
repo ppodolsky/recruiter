@@ -9,33 +9,11 @@ res.each {|rec|
   next if rec[4].include? '@masonlive' or rec[4].include? '@gmu'
   next if tester.member? rec[4]
   tester.add(rec[4])
-  s = "model = User.new({email: #{rec[4]}"
+  s = "model = LegacyUser.new({email: #{rec[4]}"
   s += ", id: #{rec[0].to_i}"
-  s += ", phone: '(#{rec[5][1..3]}) #{rec[5][4..6]}-#{rec[5][7..10]}'" if rec[5].length == 12
-  s += ", last_name: \"#{rec[6][1..-2].capitalize}\""
-  s += ", first_name: \"#{rec[7][1..-2].capitalize}\""
-  if rec[10] != '0' or rec[11].downcase.include? "student" then
-    s += ", profession: 'Full time student'"
-  else
-    s += ", profession: '#{case rec[11] when '1030665783' then 'Faculty' when '1043798985' then 'Faculty' when '1043799010' then 'University Staff' else '' end}'" if rec[11] != '0'
-  end
-  s += ", major: '#{case rec[10] when '1026776917','1026777075','1034094144','1034094105','1034094011','1034093998','1034094282','1034094353','1026776859','1026776873','1026776917','1359002598','1359002615','1359002633','1359002436','1359002273','1359002286','1359002203','1359002157','1359001842' then 'Science/Engineering'
-                      when '1026776653' then 'Economics'
-                      when '1034094532','1359002531' then 'Math'
-                      when '1034094834' then 'Sociology'
-                      when '1026777042' then 'Psychology'
-                      else 'Other' end}'" if rec[10] != '0'
-  s += ", gender: #{rec[18].upcase}" if rec[18] != "'?'"
-  s += ", birth_year: #{(Time.now.year - rec[24].to_i)}"
-  s += ", years_resident: #{rec[29].to_i}"
-  s += ", year_started: #{(Time.now.year - rec[27].to_i)}"
-  s += ", ethnicity: '#{case rec[25][1..-2].downcase when 'white','european','caucasian' then 'White' when 'black/african american','black','african american' then 'Black' when 'asian' then 'Asian' when 'hispanic' then 'Hispanic' else 'Other' end}'"
-  s += case rec[26][1..-2].downcase when 'junior' then ', class_year: 3' when 'sophomore' then ', class_year: 2' when 'freshman' then ', class_year: 1' when 'senior' then ', class_year: 4' when 'graduate' then ', class_year: 5' else '' end
-  s += ", current_gpa: #{rec[28]}"
   s += "})\n"
-  s += "model.skip_confirmation!\n"
   s += "model.save(:validate => false)"
-  open('db/seeds/production/users.rb', 'a') { |f|
+  open('db/seeds/production/legacy_users.rb', 'a') { |f|
     f.puts s
   }
 }
