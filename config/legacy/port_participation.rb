@@ -22,4 +22,5 @@ res.each {|rec|
   open('db/seeds/production/partip.rb', 'a') { |f|
     f.puts s
   }
+  puts res.size
 }

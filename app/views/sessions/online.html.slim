@@ -27,7 +27,7 @@
           td
             = index + 1
           td
-            = registration.user.gsharp
+            = registration.user.present? ? registration.user.gsharp : '-'
           td
             = link_to registration.user.name, registration.user.becomes(User)
           td
