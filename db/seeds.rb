@@ -1,18 +1,3 @@
-model = User.new({email: 'smooreh@masonlive.gmu.edu', id: 273961, last_name: "Moore", first_name: "Shannon", profession: 'Full time student', major: 'Science/Engineering', gender: 'F', birth_year: 1992, years_resident: 5, year_started: 2014, ethnicity: 'White', class_year: 4, current_gpa: 0.00})
-model.skip_confirmation!
-model.save(:validate => false)
-model = User.new({email: 'pmittal@gmu.edu', id: 1420797, phone: '(913) 219-2924', last_name: "Mittal", first_name: "Parul", gender: 'F', birth_year: 1994, years_resident: 6, year_started: 2011, ethnicity: 'Other', class_year: 3, current_gpa: 0.00})
-model.skip_confirmation!
-model.save(:validate => false)
-model = User.new({email: 'apimley@masonlive.gmu.edu', id: 1737498, last_name: "Pimley", first_name: "Ann", profession: 'Full time student', major: 'Other', gender: 'F', birth_year: 1951, years_resident: 23, year_started: 2008, ethnicity: 'White', class_year: 4, current_gpa: 3.80})
-model.skip_confirmation!
-model.save(:validate => false)
-model = User.new({email: 'jto@gmu.edu', id: 2909620, phone: '(703) 343-5057', last_name: "To", first_name: "Jennifer", profession: 'Full time student', major: 'Science/Engineering', gender: 'F', birth_year: 1991, years_resident: 23, year_started: 2009, ethnicity: 'Asian', class_year: 4, current_gpa: 3.02})
-model.skip_confirmation!
-model.save(:validate => false)
-model = User.new({email: 'sli13@masonlive.gmu.edu', id: 3791897, phone: '(703) 508-2187', last_name: "Li", first_name: "Shuwen", profession: 'Full time student', major: 'Economics', gender: 'F', birth_year: 1991, years_resident: 1, year_started: 2010, ethnicity: 'Asian', class_year: 5, current_gpa: 4.00})
-model.skip_confirmation!
-model.save(:validate => false)
 model = User.new({email: 'zmiaral@masonlive.gmu.edu', id: 3807514, phone: '(434) 465-4949', last_name: "Miaral", first_name: "Zarah ana mikaela", profession: 'Full time student', major: 'Other', gender: 'F', birth_year: 1994, years_resident: 3, year_started: 2011, ethnicity: 'Other', class_year: 3, current_gpa: 3.51})
 model.skip_confirmation!
 model.save(:validate => false)
