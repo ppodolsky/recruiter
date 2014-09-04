@@ -31,7 +31,7 @@ class UsersController < InheritedResources::Base
   def reset_user
     user = User.find(params[:id])
     raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
-    user.reset_password_token   = raw
+    user.reset_password_token   = enc
     user.reset_password_sent_at = Time.now.utc
     user.save(:validate => false)
     UserMailer.delay.reset_password_instructions(user, raw)
@@ -42,7 +42,7 @@ class UsersController < InheritedResources::Base
 
     users.each do |user|
       raw, enc = Devise.token_generator.generate(user.class, :reset_password_token)
-      user.reset_password_token   = raw
+      user.reset_password_token   = enc
       user.reset_password_sent_at = Time.now.utc
       user.save(:validate => false)
       UserMailer.delay.reset_password_instructions(user, raw)
