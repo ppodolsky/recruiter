@@ -7,7 +7,9 @@ class UserMailer < Devise::Mailer
     send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host), 'confirm')
   end
   def reset_password_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host), 'reset')
+    email = user.email
+    email = user.secondary_email if opts[:secondary_email].present? and opts[:secondary_email]
+    send_from_db(email, Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host), 'reset')
   end
   def unlock_instructions(user, token, opts={})
     send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host), 'unlock')

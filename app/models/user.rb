@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :first_name, :last_name
 
 
+  validate :is_corporate_email?
   validates :secondary_email, format: {
       with: /^(|(([A-Za-z0-9]+_+)|([A-Za-z0-9]+\-+)|([A-Za-z0-9]+\.+)|([A-Za-z0-9]+\++))*[A-Za-z0-9]+@((\w+\-+)|(\w+\.))*\w{1,63}\.[a-zA-Z]{2,6})$/i,
       multiline: true,
@@ -51,12 +52,12 @@ class User < ActiveRecord::Base
     end
   end
 
-  def reset_password
+  def reset_password(opts = [])
     raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
     self.reset_password_token = enc
     self.reset_password_sent_at = Time.now.utc
     self.save(:validate => false)
-    UserMailer.delay.reset_password_instructions(self, raw)
+    UserMailer.delay.reset_password_instructions(self, raw, opts)
   end
 
   normalize_attributes :secondary_email
