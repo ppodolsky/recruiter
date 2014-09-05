@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
     self.username = self.email.split(/@/).first
   end
   def check_legacy
-    if self.secondary_email.present?
+    if self.secondary_email_changed? and self.secondary_email.present?
       legacy_user = LegacyUser.find_by_email(self.secondary_email)
       if legacy_user.present?
         legacy = LegacyParticipation.where(legacy_user_id: legacy_user.id)
