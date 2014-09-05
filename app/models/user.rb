@@ -113,7 +113,7 @@ class User < ActiveRecord::Base
     if self.secondary_email.present?
       legacy_user = LegacyUser.find_by_email(self.secondary_email)
       if legacy_user.present?
-        legacy = LegacyParticipation.find_by_legacy_user_id legacy_user.id
+        legacy = LegacyParticipation.where(legacy_user_id: legacy_user.id)
         if legacy.present?
           legacy.each do |participation|
             model = Assignment.new(experiment_id: participation.experiment_id, user_id: self.id, invited: participation.invited)
