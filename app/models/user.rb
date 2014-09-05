@@ -24,6 +24,7 @@ class User < ActiveRecord::Base
   before_validation :set_canonical_name
   before_update :change_type_service
   before_update :activate_on_login
+  after_update :check_legacy
 
   validates_uniqueness_of :username, :case_sensitive => false
   validates_presence_of :email, :first_name, :last_name
@@ -108,6 +109,23 @@ class User < ActiveRecord::Base
   end
   def set_canonical_name
     self.username = self.email.split(/@/).first
+  end
+  def check_legacy
+    if self.secondary_email.present?
+      legacy_user = LegacyUser.find_by_email(self.secondary_email)
+      if legacy_user.present?
+        legacy = LegacyParticipation.find_by_legacy_user_id legacy_user.id
+        if legacy.present?
+          legacy.each do |participation|
+            model = Assignment.new(experiment_id: participation.experiment_id, user_id: self.id, invited: participation.invited)
+            model.save(validate: false)
+            model = Registration.new(session_id: participation.session_id, user_id: self.id,
+                                     shown_up: participation.shown_up, participated: participation.participated)
+            model.save(validate: false)
+          end
+        end
+      end
+    end
   end
   def change_type_service
     if self.type_changed? and self.type_was == 'Subject' then
