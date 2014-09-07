@@ -27,6 +27,9 @@
       = f.label 'Laboratory', :class => "control-label"
       div
         = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id), prompt: '-', class: 'form-control'
+    .form-group
+      = f.label 'Reservation?', :class => "control-label"
+      = f.check_box :reservation, :class => "checkbox"
   .form-group.pull-right
     = f.submit 'Save', :class => "btn btn-primary"
     = link_to 'Cancel', experiment_path(@session.experiment_id) + '#sessions', :class => "btn", data: { confirm: 'Are you sure?' }

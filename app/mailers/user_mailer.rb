@@ -42,7 +42,7 @@ class UserMailer < Devise::Mailer
     template.gsub!('@name', user.name)
     template.gsub!('@reward', "#{experiment.reward}$")
     template.gsub!('@timeline_url', timeline_url)
-    template.gsub!('@session_list', "\n" + experiment.sessions.where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.start_time_display}"}.join("\n") + "\n")
+    template.gsub!('@session_list', "\n" + experiment.sessions.where(reservation: false).where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.start_time_display}"}.join("\n") + "\n")
     mail(:to => user.email,
          :content_type => 'text/html',
          :subject => 'ICES Experiment Invitation',

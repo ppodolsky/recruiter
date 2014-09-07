@@ -7,7 +7,6 @@ class SessionsController < InheritedResources::Base
   respond_to :js, :only => [:destroy]
   actions :assigned, :edit, :show, :update, :create, :new, :destroy
 
-
   def join
     current_user.sessions << Session.find(params[:session_id])
     redirect_to :back
@@ -54,6 +53,7 @@ class SessionsController < InheritedResources::Base
         :required_subjects,
         :registration_deadline,
         :lab_id,
+        :reservation
     ])
   end
 

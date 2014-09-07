@@ -11,7 +11,7 @@ class UsersController < InheritedResources::Base
   respond_to :json, :only => [:update, :invite_users]
 
   def index
-    @users = User.where.not(id: current_user.id).order("type ASC, last_name ASC, first_name ASC")
+    @users = User.where.not(id: current_user.id).order("type ASC, active ASC, last_name ASC, first_name ASC")
     if params[:q].present?
       @users = @users.find_by_query(params[:q])
     end
