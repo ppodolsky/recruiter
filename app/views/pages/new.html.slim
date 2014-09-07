@@ -1,3 +1,4 @@
+- @title = "Create new page"
 = form_for @page, method: :post do |f|
   = f.text_field :name, class: 'form-control'
   = markdown_editor @page, :content, {savable: false}
