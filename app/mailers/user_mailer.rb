@@ -1,7 +1,7 @@
 require 'kramdown'
 class UserMailer < Devise::Mailer
   @@host = 'ices-experiments.herokuapp.com'
-  default from: 'noreply@gmu.edu'
+  default from: 'ices-experiments@gmu.edu'
 
   def confirmation_instructions(user, token, opts={})
     send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host), 'confirm')
