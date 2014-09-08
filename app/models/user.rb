@@ -48,8 +48,8 @@ class User < ActiveRecord::Base
   end
 
   def is_corporate_email?
-    if not self.email.include? "@masonlive" and not self.email.include? "@gmu" and not self.email.include? "@me"
-      errors.add(:email, 'Only @masonlive or @gmu emails allowed')
+    if not self.email.end_with? "@masonlive.gmu.edu" and not self.email.end_with? "@gmu.edu"
+      errors.add(:email, 'Only @masonlive.gmu.edu or @gmu.edu emails allowed')
     end
   end
 
@@ -105,7 +105,11 @@ class User < ActiveRecord::Base
         year_started.present? and years_resident.present? and current_gpa.present? and major.present? and profession.present?
   end
   def age
-    (Time.now.year - self.birth_year)
+    if self.birth_year.present? then
+      (Time.now.year - self.birth_year)
+    else
+      nil
+    end
   end
   def set_canonical_name
     self.username = self.email.split(/@/).first
