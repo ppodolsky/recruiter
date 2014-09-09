@@ -11,6 +11,9 @@ class Experiment < ActiveRecord::Base
   validates_presence_of :name, :type, presence: true
   validates :reward, :numericality => { :greater_than_or_equal_to => 0 }
 
+  def participated?(user)
+    self.registrations.where(user_id: user.id).where(participated: true).count > 0
+  end
   def opened_sessions
     sessions.where("registration_deadline > ?", Time.now)
   end
