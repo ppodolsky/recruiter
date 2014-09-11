@@ -1,5 +1,11 @@
 .container
-  .pull-right
-    = link_to  'Pasha Podolsky', 'https://www.facebook.com/profile.php?id=100007936246779'
-    span.spacer-left-1
-      | &copy; 2014
+  .row
+    .col-sm-8.col-sm-offset-2
+      div.small.text-center
+        = '3434 Washington Blvd. North, 5th Floor, Arlington VA 22201 | Mailing Address: 4400 University Drive, MSN 1B2, Fairfax, VA 22030'
+      div.small.text-center
+        = 'Phone: 703.993.4719 | Fax: 703.993.4851 | TTY: '
+        = link_to "Skype Chat", "http://info.gmu.edu/skype.html"
+      div.small.text-center
+        = 'General ICES Questions: '
+        = mail_to "icesinfo@gmu.edu"

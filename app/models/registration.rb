@@ -9,9 +9,6 @@ class Registration < ActiveRecord::Base
   validate :validate_allowness
 
   def validate_allowness
-    if Time.now > self.session.registration_deadline
-      errors.add(:session_deadline, "is over")
-    end
     if not self.user.experiments.exists?(id: self.session.experiment.id)
       errors.add(:user, "isn't assigned to the corresponding experiment")
     end

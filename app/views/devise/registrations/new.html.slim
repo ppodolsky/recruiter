@@ -27,7 +27,10 @@ div.row
         div.col-sm-8
           = f.email_field :email, :autofocus => true, class: 'form-control'
           span.help-block
-            | You must use your GMU/Masonlive e-mail address.
+            div
+              | You must use your GMU/Masonlive e-mail address.
+            div
+              | Create your ICES password which is not the same as your PatriotPass.
       div.form-group
         = f.label :password, class: 'control-label col-sm-2'
         div.col-sm-8

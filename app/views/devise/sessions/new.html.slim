@@ -1,3 +1,6 @@
+.row
+  .col-sm-12.text-center
+    = image_tag('banner.jpg')
 .row style="height: 100%"
   .col-sm-4
   .col-sm-4.spacer-top-10
@@ -7,10 +10,13 @@
           = f.email_field :email, :placeholder => 'Email', :class => 'form-control', :autofocus => true
         div.input-group.spacer-top-2.width-100
           = f.password_field :password, :placeholder => 'Password', :class => 'form-control'
+          span.help-block.small.text-right
+            div
+              | Use you ICES password which is not the same as PatriotPass
         - if flash[:alert]
           .small.help-block.danger.width-100
             = flash[:alert]
-        div.small.pull-right.spacer-top-1.spacer-bottom-1
+        div.pull-right.spacer-top-1.spacer-bottom-1
           = link_to 'Forgot password?', new_user_password_path
         div.form-group
           = f.submit 'Sign in', class: 'btn btn-small btn-primary width-100'

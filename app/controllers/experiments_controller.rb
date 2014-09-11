@@ -47,9 +47,9 @@ class ExperimentsController < InheritedResources::Base
     stack.each do |assignment|
       if not experiment.participated? assignment.user then
         UserMailer.delay.invitation(assignment.user, experiment)
+        assignment.invited = true
       end
     end
-    stack.each {|r| r.update_attributes(:invited => true)}
     flash[:success] = 'Mailing has been started'
     redirect_to :back
   end
