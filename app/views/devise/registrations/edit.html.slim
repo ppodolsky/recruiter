@@ -11,27 +11,27 @@
   .tab-content.spacer-top-1
     #account.tab-pane.active
       = form_for(resource, as: resource_name, url: registration_path(resource) + '#account', html: { method: :put, class: 'form-horizontal' }) do |u|
-        .form-group
+        .form-group.required
           = u.label :first_name, class: 'control-label col-sm-2'
           .col-sm-8
             = u.text_field :first_name,
               class: 'form-control',
               maxlength: 30
               autofocus: true
-        .form-group
+        .form-group.required
           = u.label :last_name, class: 'control-label col-sm-2'
           .col-sm-8
             = u.text_field :last_name,
               class: 'form-control',
               maxlength: 30
-        .form-group
+        .form-group.required
           = u.label 'G#', class: 'control-label col-sm-2'
           .col-sm-8
             = u.text_field :gsharp,
               class: 'form-control',
               maxlength: 9,
               minlength: 9
-        .form-group
+        .form-group.required
           = u.label :email, class: 'control-label col-sm-2'
           .col-sm-8
             = u.email_field :email, :autofocus => true, class: 'form-control'
@@ -62,23 +62,23 @@
         = form_for(resource, as: resource_name, url: registration_path(resource)+ '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
           fieldset
             legend Personal information
-            div.form-group
+            .form-group.required
               = u.label :gender, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :gender, options_for_select(['M','F'], resource.gender), {prompt: '-'}, {class: 'form-control selectpicker'}
-            div.form-group
+            .form-group.required
               = u.label :birth_year, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :birth_year, options_for_select((Time.now.year - 80..Time.now.year - 14).to_a, resource.birth_year),{prompt: '--'}, {class: 'form-control selectpicker'}
-            div.form-group
+            .form-group.required
               = u.label :ethnicity, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :ethnicity, options_for_select(Ethnicity.all.pluck(:name), resource.ethnicity),{prompt: 'Choose...'}, {class: 'form-control selectpicker'}
-            div.form-group
+            .form-group.required
               = u.label :profession, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :profession, options_for_select(Profession.all.pluck(:name), resource.profession),{prompt: 'Choose...'}, {class: 'form-control selectpicker'}
-            div.form-group
+            .form-group.required
               = u.label :years_resident, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :years_resident, options_for_select((1..10).to_a, resource.years_resident), {prompt: '-'}, {class: 'form-control selectpicker'}
@@ -87,7 +87,7 @@
                   |  one or less, and "10" for ten or more.
           fieldset
             legend Education information
-            div.form-group
+            .form-group.required
               = u.label :class_year, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :class_year, options_from_collection_for_select(ClassYear.all, 'year', 'name', resource.class_year),{prompt: 'Choose...'}, {class: 'form-control selectpicker'}
@@ -96,12 +96,12 @@
               = u.label :year_started, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :year_started, options_for_select(((Time.now.year.to_i - 10)..(Time.now.year.to_i)).to_a.reverse, resource.year_started),{prompt: '----'}, {class: 'form-control selectpicker'}
-            div.form-group
+            .form-group.required
               = u.label :current_gpa, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.text_field :current_gpa, class: 'form-control',
                   value: number_with_precision(u.object.current_gpa, :precision => 2) || 0
-            div.form-group
+            .form-group.required
               = u.label :major, class: 'control-label col-sm-2'
               div.col-sm-8
                 = u.select :major, options_for_select(Major.all.pluck(:name), resource.major), {prompt: 'Choose...'}, {class: 'form-control selectpicker'}

@@ -1,11 +1,21 @@
 .container
   .row
-    .col-sm-8.col-sm-offset-2
-      div.small.text-center
-        = '3434 Washington Blvd. North, 5th Floor, Arlington VA 22201 | Mailing Address: 4400 University Drive, MSN 1B2, Fairfax, VA 22030'
-      div.small.text-center
-        = 'Phone: 703.993.4719 | Fax: 703.993.4851 | TTY: '
-        = link_to "Skype Chat", "http://info.gmu.edu/skype.html"
-      div.small.text-center
-        = 'General ICES Questions: '
+    .col-sm-8.col-sm-offset-2.small.text-center
+      div
+        b
+          = "ICES Fairfax Lab: "
+        = "Enterprise Building Room 419B | "
+        b
+          = "ICES Arlington Lab: "
+        = "Metropolitan Building Room 5025"
+      div
+        b
+          = " Krasnow Institute Lab: "
+        = "4461 Rockfish Creek Lane (across from Carow Hall on Fairfax Campus) "
+      div
+        b
+          = "General ICES Questions: "
         = mail_to "icesinfo@gmu.edu"
+      div
+        b
+          = link_to "http://ices.gmu.edu   ", "http://ices.gmu.edu"
