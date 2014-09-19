@@ -3,7 +3,7 @@ class ExperimentsController < InheritedResources::Base
   before_action :raise_if_not_experimenter
   actions :all
   custom_actions :collection => [:assigned, :calendar], :resource => [:invite]
-  respond_to :json, :only => [:destroy, :update]
+  respond_to :json, :only => [:update]
 
   def permitted_params
     params.permit(experiment: [
