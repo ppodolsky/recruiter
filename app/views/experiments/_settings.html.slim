@@ -3,7 +3,7 @@
     .alert.alert-danger.alert-dismissable
       button.close type="button" data-dismiss="alert" aria-hidden="true"
         | &times;
-      h4= "#{pluralize(@experiment.errors.count,"error")} prohibited this experiment from being saved:"
+      h4= "#{pluralize(@experiment.becomes(Experiment).errors.count,"error")} prohibited this experiment from being saved:"
       ul
         - @experiment.errors.full_messages.each do |msg|
           li= msg
@@ -34,5 +34,9 @@
         = f.label :type, class: 'control-label col-sm-2'
         .col-sm-4
           = f.select :type, options_for_select([['Lab','LabExperiment'],['Field','FieldExperiment'],['Online','OnlineExperiment']], @experiment.type), {prompt: '-'}, {class: 'selectpicker form-control'}
+      .form-group
+        .col-sm-4.col-sm-offset-2
+          - if @experiment.creator == current_user
+            = link_to 'Delete experiment', @experiment.becomes(Experiment), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
   .clearfix
   = f.button 'Save', :type => "submit", :class => "btn btn-primary pull-right"
