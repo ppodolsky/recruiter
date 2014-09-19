@@ -2,7 +2,6 @@ class Experiment < ActiveRecord::Base
   before_save :default_values
   has_many :sessions, :dependent => :delete_all
   has_many :assignments, :dependent => :delete_all
-  has_many :registrations, :dependent => :delete_all
   has_many :users, through: :assignments
   belongs_to :creator, class_name: 'User', foreign_key: 'creator_id', inverse_of: :experiments
 
@@ -12,7 +11,7 @@ class Experiment < ActiveRecord::Base
   validates :reward, :numericality => { :greater_than_or_equal_to => 0 }
 
   def participated?(user)
-    self.registrations.where(user_id: user.id).where(participated: true).count > 0
+    Registration.where(sessions: self.sessions).where(user_id: user.id).where(participated: true).count > 0
   end
   def opened_sessions
     sessions.where("registration_deadline > ?", Time.now)
