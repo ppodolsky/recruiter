@@ -36,7 +36,7 @@ class ExperimentsController < InheritedResources::Base
   end
   def destroy
     @experiment_id = params[:id]
-    destroy! { :back }
+    destroy! { experiments_path }
   end
   def invite
     @experiment = Experiment.find(params[:experiment_id])
