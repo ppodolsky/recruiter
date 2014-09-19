@@ -8,6 +8,7 @@ class Experiment < ActiveRecord::Base
   has_and_belongs_to_many :categories
 
   validates_presence_of :name, :type, presence: true
+  validates_uniqueness_of :name, :case_sensitive => false
   validates :reward, :numericality => { :greater_than_or_equal_to => 0 }
 
   def participated?(user)
