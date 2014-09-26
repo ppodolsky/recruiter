@@ -23,7 +23,7 @@ html
       /![if lt IE 7]> <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p> <![endif]
       .header
         .spacer-bottom-1
-          = image_tag('logo.png', height: '70')
+          = link_to image_tag('logo.png', height: '70'), 'http://www.gmu.edu'
         = render 'shared/navbar'
       .content
         .container
