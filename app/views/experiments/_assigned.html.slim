@@ -30,7 +30,7 @@
                 - session_result << ' participated' if registration.participated
                 div id="registration_#{registration.session_id}_#{registration.user_id}" class = "#{session_result}"
                   = "#{l registration.session.start_time}"
-            - if not participated and not @experiment.opened_sessions.empty? then
+            - if not participated then
               .spacer-top-2
                 span.spacer-right-1
                   | Current session:
