@@ -5,7 +5,7 @@
   .col-sm-6
     = form_tag users_path, method: :get, class: "navbar-form", role: "search"
       .input-group
-        = text_field_tag :q, nil, class: "form-control", placeholder: "Search"
+        = text_field_tag :q, params[:q], class: "form-control", placeholder: "Search"
         .input-group-btn
           button class="btn btn-default" type="submit"
             span class="glyphicon glyphicon-search"

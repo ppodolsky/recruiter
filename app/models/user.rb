@@ -49,7 +49,7 @@ class User < ActiveRecord::Base
 
   def is_corporate_email?
     if not self.email.end_with? "@masonlive.gmu.edu" and not self.email.end_with? "@gmu.edu"
-      errors.add(:email, 'Only @masonlive.gmu.edu or @gmu.edu emails allowed')
+      errors.add(:email, 'is not allowed. It can be only at masonlive.gmu.edu or gmu.edu')
     end
   end
 
