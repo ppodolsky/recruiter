@@ -29,13 +29,15 @@ div.row
           span.help-block
             div
               | You must use your GMU/Masonlive e-mail address.
-            div
-              | Create a unique ICES password. It must NOT match your Mason password
       div.form-group
         = f.label :password, class: 'control-label col-sm-2'
         div.col-sm-8
           = f.password_field :password, class: 'form-control'
-          span.help-block Passwords must contain at least 8 characters.
+          span.help-block
+            div
+              | Create a unique ICES password. It must NOT match your Mason password
+            div
+              | Password must be no less than 6 and no more than 9 characters.
       div.form-group
         = f.label :password_confirmation, class: 'control-label col-sm-2'
         div.col-sm-8
