@@ -37,9 +37,9 @@ task :environment do
   # Set the basic environment variables based on the server and version
   case server
   when 'staging'
-    set :domain, 'staging.ices-experiments.org'
+    set :domain, 'staging.experiments.gmu.edu'
   when 'production'
-    set :domain, 'ices-experiments.org'
+    set :domain, 'experiments.gmu.edu'
   end
 
   invoke :'chruby[ruby-2.0]'
