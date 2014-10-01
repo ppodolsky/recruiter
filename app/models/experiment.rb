@@ -12,7 +12,7 @@ class Experiment < ActiveRecord::Base
   validates :reward, :numericality => { :greater_than_or_equal_to => 0 }
 
   def participated?(user)
-    Registration.where(sessions: self.sessions).where(user_id: user.id).where(participated: true).count > 0
+    Registration.where(session: self.sessions).where(user_id: user.id).where(participated: true).count > 0
   end
   def opened_sessions
     sessions.where("registration_deadline > ?", Time.now)
