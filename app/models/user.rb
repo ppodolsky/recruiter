@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def reset_password(opts = [])
+  def reset_password(opts = {})
     raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
     self.reset_password_token = enc
     self.reset_password_sent_at = Time.now.utc
