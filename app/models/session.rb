@@ -9,7 +9,7 @@ class Session < ActiveRecord::Base
   validates_presence_of :lab
 
   def validate_time_range
-    if (start_time.advance(hours: duration.hour, minutes: duration.min) > end_time)
+    if start_time.advance(hours: duration.hour, minutes: duration.min) > end_time
       errors.add(:end_time, "cannot be lesser than start time with duration")
     end
     if registration_deadline > start_time
