@@ -48,6 +48,7 @@ class ExperimentsController < InheritedResources::Base
       if not experiment.participated? assignment.user then
         UserMailer.delay.invitation(assignment.user, experiment)
         assignment.invited = true
+        assignment.save!
       end
     end
     flash[:success] = 'Mailing has been started'

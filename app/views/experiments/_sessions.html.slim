@@ -10,7 +10,7 @@
               | Registred subjects
             th
         tbody
-          - @experiment.sessions.each do | session |
+          - @experiment.sessions.order('start_time ASC').each do | session |
             tr id="session_#{session.id}" class="#{session.finished ? '' : 'success'}"
               td
                 = l session.start_time
