@@ -14,8 +14,11 @@ class Experiment < ActiveRecord::Base
   def participated?(user)
     Registration.where(session: self.sessions).where(user_id: user.id).where(participated: true).count > 0
   end
+  def participated_users_ids
+    Registration.select(:user_id).where({session_id: self.sessions, participated: true})
+  end
   def opened_sessions
-    sessions.where("registration_deadline > ?", Time.now)
+    self.sessions.where("registration_deadline > ?", Time.now)
   end
   def type_name
     self.type.gsub("Experiment", "")

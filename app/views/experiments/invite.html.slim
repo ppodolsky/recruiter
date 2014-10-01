@@ -7,15 +7,14 @@
     .col-sm-12
       = markdown_editor @experiment.becomes(Experiment), 'default_invitation'
   .row.spacer-top-1
-    .col-sm-3
+    .col-sm-6
       .panel.panel-default
         .panel-heading
           h3.panel-title
             | Stats
         .panel-body
-          .spacer-left-1
-            = render 'statistics/experiment'
-    .col-sm-9
+          = render 'statistics/experiment'
+    .col-sm-6
       - if assigned > (participated + registred_on_active)
         .well
           strong

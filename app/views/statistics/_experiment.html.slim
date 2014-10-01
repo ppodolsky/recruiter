@@ -2,35 +2,33 @@
 - assigned = @experiment.assignments.count
 - active = Subject.active.where(id: @experiment.assignments.pluck(:user_id)).count
 - participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
-.row
-  .col-sm-offset-4.col-sm-4
-    table.table.table-condensed.table-striped
-      tbody
-        tr
-          td
-            strong
-              = 'Assigned'
-          td
-            small
-              = pluralize(assigned, 'subject')
-        tr
-          td
-            strong
-              = 'Assigned and active'
-          td
-            small
-              = pluralize(active, 'subject')
-        tr
-          td
-            strong
-              = 'Participated'
-          td
-            small
-              = pluralize(participated, 'subject')
-        tr
-          td
-            strong
-              = 'Invited'
-          td
-            small
-              = pluralize(invited, 'subject')
+table.table.table-condensed.table-striped
+  tbody
+    tr
+      td
+        strong
+          = 'Assigned'
+      td
+        small
+          = pluralize(assigned, 'subject')
+    tr
+      td
+        strong
+          = 'Assigned and active'
+      td
+        small
+          = pluralize(active, 'subject')
+    tr
+      td
+        strong
+          = 'Participated'
+      td
+        small
+          = pluralize(participated, 'subject')
+    tr
+      td
+        strong
+          = 'Invited'
+      td
+        small
+          = pluralize(invited, 'subject')
