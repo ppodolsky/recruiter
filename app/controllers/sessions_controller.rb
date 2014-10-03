@@ -52,6 +52,7 @@ class SessionsController < InheritedResources::Base
         :start_time,
         :end_time,
         :duration,
+        :remind_at,
         :required_subjects,
         :registration_deadline,
         :lab_id,

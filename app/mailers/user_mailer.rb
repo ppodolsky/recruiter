@@ -32,6 +32,9 @@ class UserMailer < Devise::Mailer
   def registered_on_session(email, session, opts = {})
     send_from_db(email, 'registered_on_session', 'session' => session.to_s)
   end
+  def remind_about_session(session)
+    send_from_db(session.users.pluck(:email), 'remind', 'session' => session.to_s)
+  end
   def send_from_db(email, template_name, opts = {})
     e = Email.find(template_name)
     send_custom(email, e.subject, e.value, opts)

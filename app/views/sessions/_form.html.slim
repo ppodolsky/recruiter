@@ -1,4 +1,3 @@
-- @session.duration = Time.at(2.hour).utc if @session.duration.nil?
 h3
   = link_to @session.experiment.name, experiment_path(@session.experiment) + '#sessions'
 = form_for(@session, :url => url, :html => { :class => "form-horizontal" }) do |f|
@@ -8,19 +7,23 @@ h3
     .form-group
       = f.label 'From', :class => "control-label col-sm-2"
       .col-sm-6
-        = f.datetime_select :start_time,  :minute_step => 15, :class => "form-control"
+        = f.datetime_select :start_time,  :minute_step => 15, :ampm => true, :class => "form-control"
     .form-group
       = f.label 'To', :class => "control-label col-sm-2"
       .col-sm-6
-        = f.datetime_select :end_time,  :minute_step => 15,:class => "form-control"
+        = f.datetime_select :end_time,  :minute_step => 15,  :ampm => true, :class => "form-control"
     .form-group
       = f.label :duration, :class => "control-label col-sm-2"
       .col-sm-6
-        = f.time_select :duration, :minute_step => 15, :ignore_date => true, :class => "form-control"
+        = f.time_select :duration, :minute_step => 15, :include_blank => true, :ignore_date => true, :class => "form-control"
     .form-group
       = f.label :registration_deadline, :class => "control-label col-sm-2"
       .col-sm-6
-         = f.datetime_select :registration_deadline, :minute_step => 15, :class => "form-control"
+         = f.datetime_select :registration_deadline, :ampm => true, :minute_step => 15, :class => "form-control"
+    .form-group
+      = f.label :remind_at, :class => "control-label col-sm-2"
+      .col-sm-6
+        = f.datetime_select :remind_at, :include_blank => true, :ampm => true, :discard_minute => true, :class => "form-control"
   fieldset
     legend Details
     .form-group
