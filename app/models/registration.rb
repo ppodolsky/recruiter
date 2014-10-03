@@ -11,7 +11,7 @@ class Registration < ActiveRecord::Base
 
 
   def send_email
-    UserMailer.delay.registered_on_session(self.user.email, self.session)
+    UserMailer.delay.registered_on_session(self.user, self.session)
   end
 
   def validate_allowness

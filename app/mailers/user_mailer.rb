@@ -9,15 +9,15 @@ class UserMailer < Devise::Mailer
     template
   end
   def confirmation_instructions(user, token, opts={})
-    send_from_db(user.email, 'confirm', 'url' => Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host))
+    send_from_db(user.email, 'confirm', 'name'=> user.name, 'url' => Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host))
   end
   def reset_password_instructions(user, token, opts={})
     email = user.email
     email = user.secondary_email if opts[:secondary_email].present? and opts[:secondary_email]
-    send_from_db(email, 'reset', 'url' => Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host))
+    send_from_db(email, 'reset', 'name'=> user.name, 'url' => Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host))
   end
   def unlock_instructions(user, token, opts={})
-    send_from_db(user.email, 'unlock', 'url' => Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host))
+    send_from_db(user.email, 'unlock', 'name'=> user.name, 'url' => Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host))
   end
   def send_custom(email, subject, template, opts = {})
     message = templatize(template, opts)
@@ -29,8 +29,8 @@ class UserMailer < Devise::Mailer
     }.merge(opts)
     mail headers
   end
-  def registered_on_session(email, session, opts = {})
-    send_from_db(email, 'registered_on_session', 'session' => session.to_s)
+  def registered_on_session(user, session, opts = {})
+    send_from_db(user.email, 'registered_on_session', 'session' => session.to_s, 'name' => user.name)
   end
   def remind_about_session(session)
     send_from_db(session.users.pluck(:email), 'remind', 'session' => session.to_s)
