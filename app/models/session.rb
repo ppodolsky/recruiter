@@ -14,6 +14,7 @@ class Session < ActiveRecord::Base
     if remind_at_changed?
       self.reminded = false
     end
+    true
   end
   def set_duration_if_nil
     self.duration ||= Time.at(end_time - start_time).utc
