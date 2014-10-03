@@ -7,7 +7,7 @@ class UsersController < InheritedResources::Base
   actions :all
   custom_actions :resource => [:assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
 
-  respond_to :js, :only => [:add, :unregister, :unassign]
+  respond_to :js, :only => [:add, :unregister, :unassign, :reset_user]
   respond_to :json, :only => [:update, :invite_users]
 
   def index
@@ -30,7 +30,6 @@ class UsersController < InheritedResources::Base
   end
   def reset_user
     User.find(params[:id]).reset_password
-    redirect_to users_path
   end
   def reset_users
     users = User.where("encrypted_password = ''")

@@ -27,7 +27,7 @@
               small
                 = user.email
             td
-              = link_to 'Reset password', user_reset_path(user)
+              = link_to 'Reset password', user_reset_path(user), remote: true
               .pull-right.lead
                 = "#{user.type}"
   .col-sm-3
