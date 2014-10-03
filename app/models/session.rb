@@ -27,7 +27,7 @@ class Session < ActiveRecord::Base
     self.registrations.count
   end
   def to_s
-    "#{start_time.strftime("%d %B %Y")} at #{start_time.strftime("%l:%M%P")} -#{end_time.strftime("%l:%M%P")} in #{self.lab.name} Lab"
+    "#{start_time.strftime("%d %B %Y")} at #{start_time.strftime("%l:%M%P")} - #{end_time.strftime("%l:%M%P")} in #{self.lab.name} Lab"
   end
   def start_time_display
     start_time.strftime("%d %B %Y at %l:%M%P")
