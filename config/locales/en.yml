@@ -31,4 +31,4 @@ en:
       default: "%d %B %Y"
   time:
     formats:
-      default: "%d %B %Y at %H:%M"
+      default: "%d %B %Y at %l:%M%P"
