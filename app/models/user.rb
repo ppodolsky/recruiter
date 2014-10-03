@@ -57,7 +57,7 @@ class User < ActiveRecord::Base
     raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
     self.reset_password_token = enc
     self.reset_password_sent_at = Time.now.utc
-    self.save(:validate => false)
+    self.save!(:validate => false)
     UserMailer.delay.reset_password_instructions(self, raw, opts)
   end
 
