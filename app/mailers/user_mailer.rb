@@ -1,7 +1,7 @@
 require 'kramdown'
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
-  default from: 'ices-experiments@gmu.edu'
+  default from: 'no-reply@ices-experiments.org'
   def templatize(template, opts = {})
     template.scan(/(?<!\w)@\w+/).each do |sub|
       template.gsub!(sub, opts[sub[1..-1]]) if opts[sub[1..-1]].present?
