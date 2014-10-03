@@ -1,6 +1,6 @@
+- @session.duration = Time.at(2.hour).utc if @session.duration.nil?
 h3
   = link_to @session.experiment.name, experiment_path(@session.experiment) + '#sessions'
-- if @session.duration.nil? then @session.duration = Time.at(2.hour).utc end
 = form_for(@session, :url => url, :html => { :class => "form-horizontal" }) do |f|
   = render "shared/errors"
   fieldset
@@ -25,7 +25,7 @@ h3
     legend Details
     .form-group
       = f.label 'Number of subjects required', :class => "control-label col-sm-2"
-      .col-sm-2
+      .col-sm-6
         = f.text_field :required_subjects, :class => "form-control"
     .form-group
       = f.label 'Laboratory', :class => "control-label col-sm-2"
