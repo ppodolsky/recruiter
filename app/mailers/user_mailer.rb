@@ -36,8 +36,7 @@ class UserMailer < Devise::Mailer
     e = Email.find(template_name)
     send_custom(email, e.subject, e.value, opts)
   end
-  def invitation(email, experiment, subject_for_mail)
-    template = experiment.default_invitation
+  def invitation(email, experiment, subject_for_mail, template)
     send_custom(email, subject_for_mail, template,
                 'reward' => "#{experiment.reward}$",
                 'timeline_url' => timeline_url,

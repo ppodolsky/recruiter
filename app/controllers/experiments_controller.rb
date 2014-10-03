@@ -43,7 +43,7 @@ class ExperimentsController < InheritedResources::Base
   def send_invite
     experiment = Experiment.find(params[:experiment_id])
     stack = experiment.assignments.where('user_id not in (?)', experiment.participated_users_ids).order('invited').limit(params[:amount])
-    UserMailer.delay.invitation(stack.collect { |x| x.user.email } << experiment.creator.email, experiment, params[:subject])
+    UserMailer.delay.invitation(stack.collect { |x| x.user.email } << experiment.creator.email, experiment, params[:subject], params[:experiment][:default_invitation])
     flash[:success] = 'Mailing has been started'
     stack.each do |a|
       a.update!(invited: true)
