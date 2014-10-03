@@ -2,7 +2,12 @@
 - assigned = @experiment.users.count
 - participated = Registration.where({session_id: @experiment.sessions, participated: true}).count
 - registred_on_active = Registration.where({session_id: Session.where("experiment_id = ? and registration_deadline > ?", @experiment.id, Time.now), participated: false}).count
+h2
+  = link_to @experiment.name, experiment_path(@experiment)
 = form_tag(experiment_invite_path(@experiment), method: :post)
+  .row
+    .col-sm-12
+      = text_field_tag 'subject', 'ICES Experiment Invitation', class: 'form-control', placeholder: 'subject'
   .row
     .col-sm-12
       = markdown_editor @experiment.becomes(Experiment), 'default_invitation'
@@ -20,5 +25,4 @@
           strong
             = 'To be invited'
           = number_field_tag :amount, 1, min: 1, max: assigned - (participated + registred_on_active),  class: 'form-control'
-          = submit_tag 'Send!', class: "btn btn-success spacer-top-2 width-100"
-= link_to 'Back', experiment_path(@experiment), class: "pull-left btn btn-default"
+          = submit_tag 'Send!', class: "btn btn-primary spacer-top-2 width-100"

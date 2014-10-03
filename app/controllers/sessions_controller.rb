@@ -3,15 +3,14 @@ class SessionsController < InheritedResources::Base
   before_action :raise_if_not_experimenter, only: [:online, :finish, :update, :create, :new, :destroy, :show]
 
   belongs_to :experiment
+  respond_to :js, :only => [:send_message]
 
-  respond_to :js, :only => [:destroy]
   actions :assigned, :edit, :show, :update, :create, :new, :destroy
 
   def join
     current_user.sessions << Session.find(params[:session_id])
     redirect_to :back
   end
-
   def finish
     session = Session.find(params[:session_id])
     session.finished = true
@@ -34,15 +33,18 @@ class SessionsController < InheritedResources::Base
       end
     end
   end
-  def update
-    update! { experiment_path(@session.experiment) + '#sessions' }
+  def send_message
+    session = Session.find(params[:session_id])
+    users = session.users
+    users.all.each do |user|
+      UserMailer.delay.send_custom(user.email, params[:subject], params[:email][:value])
+    end
   end
   def create
     create! { experiment_path(@session.experiment) + '#sessions'  }
   end
   def destroy
-    @session_id = params[:id]
-    destroy!
+    destroy! { experiment_path(@session.experiment) + '#sessions'}
   end
   private
   def permitted_params

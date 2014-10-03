@@ -24,7 +24,7 @@ class UsersController < InheritedResources::Base
     emails = emails - Subject.all.pluck(:email)
     email_text = params[:email][:value]
     emails.each do |email|
-      UserMailer.delay.invite_to_register(email, email_text)
+      UserMailer.delay.send_custom(email, 'ICES Invitation', email_text)
     end
     redirect_to users_path
   end
@@ -43,7 +43,7 @@ class UsersController < InheritedResources::Base
     Subject.update_all(active: false)
     email_text = params[:email][:value]
     Subject.all.each do |user|
-      UserMailer.delay.deactivation(user, email_text)
+      UserMailer.delay.send_custom(user.email, 'ICES Deactivation', email_text, 'url' => 'http://' + @@host)
     end
     redirect_to users_path
   end

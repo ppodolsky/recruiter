@@ -39,4 +39,4 @@
             - if current_user.is_administrator?
               = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
 .text-center
-  = will_paginate @paginated_users
+  = will_paginate @paginated_users, :params => { :controller => "experiments", :action => "show", :anchor => 'pool'}

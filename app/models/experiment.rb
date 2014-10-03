@@ -25,7 +25,7 @@ class Experiment < ActiveRecord::Base
   end
   def default_values
     self.default_invitation ||=
-'#### Hello, @name!
+'#### Hello!
 You are being invited to participate in an experiment in which you will make economic decisions.
 In addition to your cash earnings from the experiment, you will be paid a on-time bonus of **@reward** for showing up on time.
 The session(s) is scheduled for the following time(s):

@@ -25,6 +25,7 @@ Recruiter::Application.routes.draw do
     get 'report'
     get 'online', to: 'sessions#online'
     post 'finish', to: 'sessions#finish'
+    post 'send_message', to: 'sessions#send_message'
     delete 'users/:user_id', to: 'users#unregister', as: 'user'
     post 'users/:user_id', to: 'users#register'
     post 'join', to: 'sessions#join'

@@ -16,7 +16,6 @@ class ExperimentsController < InheritedResources::Base
         {category_ids: []}
     ])
   end
-
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
     @experiment.creator = current_user
@@ -43,13 +42,12 @@ class ExperimentsController < InheritedResources::Base
   end
   def send_invite
     experiment = Experiment.find(params[:experiment_id])
-    stack = experiment.assignments.where('user_id not in (?)', experiment.participated_users_ids).order('invited').take(params[:amount])
-    stack.each do |assignment|
-      UserMailer.delay.invitation(assignment.user, experiment)
-      assignment.invited = true
-      assignment.save!
-    end
+    stack = experiment.assignments.where('user_id not in (?)', experiment.participated_users_ids).order('invited').limit(params[:amount])
+    UserMailer.delay.invitation(stack.collect { |x| x.user.email } << experiment.creator.email, experiment, params[:subject])
     flash[:success] = 'Mailing has been started'
+    stack.each do |a|
+      a.update!(invited: true)
+    end
     redirect_to :back
   end
   def calendar

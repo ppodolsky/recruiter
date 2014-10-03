@@ -1,38 +1,30 @@
 #sessions-box
   - if not @experiment.sessions.empty?
     .table-responsive
-      table.table.table-condensed.table-borderless
+      table.table.table-condensed.table-borderless.table-hover
         thead
           tr
             th
-              | Start at
+              | Start
             th
               | Registred subjects
             th
         tbody
-          - @experiment.sessions.order('start_time ASC').each do | session |
+          - @experiment.sessions.order('start_time ASC, end_time ASC').each do | session |
             tr id="session_#{session.id}" class="#{session.finished ? '' : 'success'}"
-              td
-                = l session.start_time
-              td
+              td data-href="#{session_online_path(session)}"
+                = session.to_s
+              td data-href="#{session_online_path(session)}"
                 = "#{session.users.count} / #{session.required_subjects}"
               td
                 .pull-right
                   - if not session.finished
-                    = link_to '', session_online_path(session), class: 'glyphicon glyphicon-play spacer-right-1 classic'
-                    = link_to '', experiment_session_path(@experiment, session), class: 'glyphicon glyphicon-pencil spacer-right-1 classic'
-                    = link_to '', experiment_session_path(@experiment, session), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger', data: { confirm: 'Are you sure?' }
-                  - else
-                    = link_to '', session_online_path(session), class: 'glyphicon glyphicon-search classic'
-
+                    = link_to '', experiment_session_path(@experiment, session), class: 'glyphicon glyphicon-pencil spacer-right-1 classic', 'rel' => 'tooltip', 'title'=>'Edit session parameters'
     .pull-right
       = link_to new_experiment_session_path(@experiment), :class => 'btn btn-primary' do
         span.glyphicon.glyphicon-plus
         |  New Session
-      = link_to 'Back', experiments_path, :class=>'btn'
   - else
     .lead.spacer-top-2
       = "You have not created any session yet. "
       = link_to 'Do it now!', new_experiment_session_path(@experiment)
-    .pull-right
-      = link_to 'Back', experiments_path, :class=>'btn'

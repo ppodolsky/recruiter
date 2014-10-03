@@ -1,0 +1,18 @@
+#mail-modal.modal.fade
+  .modal-dialog
+    .modal-content
+      = form_tag(session_send_message_path(@session), remote: true, method: :post, class: "form-horizontal") do
+        .modal-header
+          button.close aria-hidden="true" data-dismiss="modal" type="button"
+            | &times;
+          h4.modal-title Send message to registred users
+        .modal-body
+          .form-group
+            .col-sm-12
+              = text_field_tag 'subject', nil, class: 'form-control', placeholder: 'subject'
+          .form-group
+            .col-sm-12
+              = markdown_editor Email.new, :value, :savable => false
+        .modal-footer
+          button.btn.btn-small.btn-primary type='submit' Send!
+

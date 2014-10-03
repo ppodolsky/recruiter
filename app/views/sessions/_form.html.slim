@@ -1,35 +1,43 @@
-= form_for(@session, :url => url) do |f|
+h3
+  = link_to @session.experiment.name, experiment_path(@session.experiment) + '#sessions'
+- if @session.duration.nil? then @session.duration = Time.at(2.hour).utc end
+= form_for(@session, :url => url, :html => { :class => "form-horizontal" }) do |f|
   = render "shared/errors"
   fieldset
     legend Session dates
     .form-group
-      = f.label 'From', :class => "control-label"
-      div
+      = f.label 'From', :class => "control-label col-sm-2"
+      .col-sm-6
         = f.datetime_select :start_time,  :minute_step => 15, :class => "form-control"
     .form-group
-      = f.label 'To', :class => "control-label"
-      div
+      = f.label 'To', :class => "control-label col-sm-2"
+      .col-sm-6
         = f.datetime_select :end_time,  :minute_step => 15,:class => "form-control"
     .form-group
-      = f.label :duration, :class => "control-label"
-      div
+      = f.label :duration, :class => "control-label col-sm-2"
+      .col-sm-6
         = f.time_select :duration, :minute_step => 15, :ignore_date => true, :class => "form-control"
     .form-group
-      = f.label :registration_deadline, :class => "control-label"
-      div
+      = f.label :registration_deadline, :class => "control-label col-sm-2"
+      .col-sm-6
          = f.datetime_select :registration_deadline, :minute_step => 15, :class => "form-control"
   fieldset
     legend Details
     .form-group
-      = f.label 'Number of subjects required', :class => "control-label"
-      = f.text_field :required_subjects, :class => "form-control"
+      = f.label 'Number of subjects required', :class => "control-label col-sm-2"
+      .col-sm-2
+        = f.text_field :required_subjects, :class => "form-control"
     .form-group
-      = f.label 'Laboratory', :class => "control-label"
-      div
+      = f.label 'Laboratory', :class => "control-label col-sm-2"
+      .col-sm-6
         = f.select :lab_id, options_from_collection_for_select(Lab.all, 'id', 'location', @session.lab_id), prompt: '-', class: 'form-control'
     .form-group
-      = f.label 'Reservation?', :class => "control-label"
-      = f.check_box :reservation, :class => "checkbox"
+      = f.label 'Reservation?', :class => "control-label col-sm-2"
+      = f.check_box :reservation, :class => "checkbox col-sm-4"
+    .form-group
+      - if not defined? new_flag or not new_flag
+        .col-sm-offset-2
+          = link_to 'Delete this session', experiment_session_path(@experiment, @session), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure? This action is irreversible.' }
   .form-group.pull-right
     = f.submit 'Save', :class => "btn btn-primary"
     = link_to 'Cancel', experiment_path(@session.experiment_id) + '#sessions', :class => "btn", data: { confirm: 'Are you sure?' }

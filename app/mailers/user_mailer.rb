@@ -2,50 +2,45 @@ require 'kramdown'
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
   default from: 'ices-experiments@gmu.edu'
-
+  def templatize(template, opts = {})
+    template.scan(/(?<!\w)@\w+/).each do |sub|
+      template.gsub!(sub, opts[sub[1..-1]]) if opts[sub[1..-1]].present?
+    end
+    template
+  end
   def confirmation_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host), 'confirm')
+    send_from_db(user.email, 'confirm', 'url' => Recruiter::Application.routes.url_helpers.user_confirmation_url(:confirmation_token => token, :host => @@host))
   end
   def reset_password_instructions(user, token, opts={})
     email = user.email
     email = user.secondary_email if opts[:secondary_email].present? and opts[:secondary_email]
-    send_from_db(email, Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host), 'reset')
+    send_from_db(email, 'reset', 'url' => Recruiter::Application.routes.url_helpers.edit_user_password_url(:reset_password_token => token, :host => @@host))
   end
   def unlock_instructions(user, token, opts={})
-    send_from_db(user.email, Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host), 'unlock')
+    send_from_db(user.email, 'unlock', 'url' => Recruiter::Application.routes.url_helpers.user_unlock_url(:unlock_token => token, :host => @@host))
   end
-  def send_from_db(email, url, template_name, opts = {})
-    if opts[:immediate].present?
-      template = opts[:immediate]
-    else
-      template = Email.find(template_name).value
-    end
-    subject = Email.find(template_name).subject
-    template.gsub!('@email', email)
-    template.gsub!('@url', url) if url.present?
+  def send_custom(email, subject, template, opts = {})
+    message = templatize(template, opts)
     headers = {
         :subject       => subject,
         :content_type => 'text/html',
         :to            => email,
-        :body => Kramdown::Document.new(template).to_html.html_safe
+        :body => Kramdown::Document.new(message).to_html.html_safe
     }.merge(opts)
     mail headers
   end
-  def deactivation(user, email_text)
-    send_from_db(user.email, 'http://' + @@host, 'unlock', immediate: email_text)
+  def registered_on_session(email, session, opts = {})
+    send_from_db(email, 'registered_on_session', 'session' => session.to_s)
   end
-  def invite_to_register(email, email_text)
-    send_from_db(email, 'http://' + @@host, 'invite', immediate: email_text)
+  def send_from_db(email, template_name, opts = {})
+    e = Email.find(template_name)
+    send_custom(email, e.subject, e.value, opts)
   end
-  def invitation(user, experiment)
+  def invitation(email, experiment, subject_for_mail)
     template = experiment.default_invitation
-    template.gsub!('@name', user.name)
-    template.gsub!('@reward', "#{experiment.reward}$")
-    template.gsub!('@timeline_url', timeline_url)
-    template.gsub!('@session_list', "\n" + experiment.sessions.where(reservation: false).where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.start_time_display}-#{x.end_time_display}"}.join("\n") + "\n")
-    mail(:to => user.email,
-         :content_type => 'text/html',
-         :subject => 'ICES Experiment Invitation',
-         :body => Kramdown::Document.new(template).to_html.html_safe)
+    send_custom(email, subject_for_mail, template,
+                'reward' => "#{experiment.reward}$",
+                'timeline_url' => timeline_url,
+                'session_list' => "\n" + experiment.sessions.where(reservation: false).where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.to_s}"}.join("\n") + "\n")
   end
 end

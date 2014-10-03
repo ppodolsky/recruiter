@@ -21,6 +21,7 @@
 //= require social-share-button
 //= require_tree .
 
+
 $(document).ready(function() {
     if (location.hash !== '') $('a[href="' + location.hash + '"]').tab('show');
     return $('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
@@ -28,8 +29,12 @@ $(document).ready(function() {
     });
 });
 $(document).ready(function() {
+    $("[data-href]").css('cursor','pointer');
     $("[data-href]").click(function() {
         window.document.location = $(this).data("href");
+    });
+    $("[rel='tooltip']").tooltip({
+        'delay': { show: 700, hide: 200 }
     });
     $(".best_in_place").best_in_place();
     $('.checkbox').checkbox();
@@ -78,7 +83,7 @@ $(document).ready(function() {
     $('#calendar').fullCalendar({
         header:{
             left:   'title',
-            center: 'month,basicWeek',
+            center: 'month,basicWeek,agendaDay',
             right:  'today prev,next'
         },
         height: 400,
@@ -110,8 +115,8 @@ $(document).ready(function() {
             });
         },
         timeFormat: {
-            agenda: 'H:mm{ - H:mm}',
-            '': 'H:mm'
+            agenda: 'h:mmt{-h:mmt}',
+            '': 'h:mmtt'
         },
         minTime: '5',
         maxTime: '22'
