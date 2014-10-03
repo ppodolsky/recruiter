@@ -14,8 +14,8 @@ class PasswordsController < Devise::PasswordsController
     end
     redirect_to root_path
   end
-  def update
-    puts resource_params
-    super
+  def edit
+    self.resource = User.new
+    resource.reset_password_token = params[:reset_password_token]
   end
 end
