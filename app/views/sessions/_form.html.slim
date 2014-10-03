@@ -1,5 +1,5 @@
 h3
-  = link_to @session.experiment.name, experiment_path(@session.experiment) + '#sessions'
+  = link_to @session.experiment.name, experiment_path(@session.experiment.becomes(Experiment.class)) + '#sessions'
 = form_for(@session, :url => url, :html => { :class => "form-horizontal" }) do |f|
   = render "shared/errors"
   fieldset

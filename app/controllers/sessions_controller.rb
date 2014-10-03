@@ -43,6 +43,9 @@ class SessionsController < InheritedResources::Base
   def create
     create! { experiment_path(@session.experiment) + '#sessions'  }
   end
+  def update
+    update! { experiment_path(@session.experiment) + '#sessions'  }
+  end
   def destroy
     destroy! { experiment_path(@session.experiment) + '#sessions'}
   end
