@@ -1,5 +1,6 @@
 div.row
   h2 Change your password
+  - resource = resource.becomes(User.class)
   = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
     = render "shared/errors"
     = f.hidden_field :reset_password_token
