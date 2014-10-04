@@ -42,12 +42,13 @@ class ExperimentsController < InheritedResources::Base
   end
   def send_invite
     experiment = Experiment.find(params[:experiment_id])
-    stack = experiment.assignments.where('user_id not in (?)', experiment.participated_users_ids).order('invited').limit(params[:amount])
-    UserMailer.delay.invitation(stack.collect { |x| x.user.email } << experiment.creator.email, experiment, params[:subject], params[:experiment][:default_invitation])
-    flash[:success] = 'Mailing has been started'
+    stack = experiment.assignments.where('user_id not in (?) and user_id not in (?)', experiment.participated_users_ids, experiment.current_users_ids).order('invited').limit(params[:amount])
     stack.each do |a|
+      UserMailer.delay.invitation(a.user, experiment, params[:subject], params[:experiment][:default_invitation])
       a.update!(invited: true)
     end
+    UserMailer.delay.experimenter_invitation(experiment, stack.collect{|x| x.user.email}.map {|x| "* #{x.to_s}"}.join("\n") + "\n", params[:subject], params[:experiment][:default_invitation])
+    flash[:success] = 'Mailing has been started'
     redirect_to :back
   end
   def calendar

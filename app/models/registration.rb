@@ -22,5 +22,4 @@ class Registration < ActiveRecord::Base
       errors.add(:session, "already participated")
     end
   end
-  self.primary_keys = :user_id, :session_id
 end

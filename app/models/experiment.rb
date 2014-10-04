@@ -17,6 +17,9 @@ class Experiment < ActiveRecord::Base
   def participated_users_ids
     Registration.select(:user_id).where({session_id: self.sessions, participated: true})
   end
+  def current_users_ids
+    Registration.select(:user_id).where({session_id: self.sessions.where(reservation: false).where(finished: false)})
+  end
   def opened_sessions
     self.sessions.where("registration_deadline > ?", Time.now)
   end

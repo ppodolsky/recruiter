@@ -3,8 +3,8 @@ class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
   default from: 'no-reply@ices-experiments.org'
   def templatize(template, opts = {})
-    template.scan(/(?<!\w)@\w+/).each do |sub|
-      template.gsub!(sub, opts[sub[1..-1]]) if opts[sub[1..-1]].present?
+    opts.each_pair do |e,v|
+      template.gsub!("@#{e}", v)
     end
     template
   end
@@ -33,16 +33,26 @@ class UserMailer < Devise::Mailer
     send_from_db(user.email, 'registered_on_session', 'session' => session.to_s, 'name' => user.name)
   end
   def remind_about_session(session)
-    send_from_db(session.users.pluck(:email), 'remind', 'session' => session.to_s)
+    session.users.pluck(:email).each do |email|
+      send_from_db(email, 'remind', 'session' => session.to_s)
+    end
   end
   def send_from_db(email, template_name, opts = {})
     e = Email.find(template_name)
     send_custom(email, e.subject, e.value, opts)
   end
-  def invitation(email, experiment, subject_for_mail, template)
-    send_custom(email, subject_for_mail, template,
-                'reward' => "#{experiment.reward}$",
+  def experimenter_invitation(experiment, email_list, subject_for_mail, template)
+    send_custom(experiment.creator.email, subject_for_mail, template + "\n\n*Email list:*\n\n" + email_list ,
+                'reward' => "$#{experiment.reward}",
                 'timeline_url' => timeline_url,
+                'name' => experiment.creator.name,
+                'session_list' => "\n" + experiment.sessions.where(reservation: false).where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.to_s}"}.join("\n") + "\n")
+  end
+  def invitation(user, experiment, subject_for_mail, template)
+    send_custom(user.email, subject_for_mail, template,
+                'reward' => "$#{experiment.reward}",
+                'timeline_url' => timeline_url,
+                'name' => user.name,
                 'session_list' => "\n" + experiment.sessions.where(reservation: false).where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.to_s}"}.join("\n") + "\n")
   end
 end

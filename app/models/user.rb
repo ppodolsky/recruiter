@@ -131,6 +131,12 @@ class User < ActiveRecord::Base
       end
     end
   end
+  def current_experiments
+    self.sessions.where(finished: false).pluck(:experiment_id)
+  end
+  def participated_experiments
+    self.sessions.where(finished: true).where(id: self.registrations.where(participated: true).pluck(:session_id)).pluck(:experiment_id)
+  end
   def change_type_service
     if self.type_changed? and self.type_was == 'Subject' then
       self.sessions.delete (self.sessions.where(finished: false))
