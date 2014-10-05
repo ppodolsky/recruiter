@@ -3,7 +3,7 @@ b
 .clearfix
 p
   small
-    - ff = '%l hours' + (item.duration.min != 0 ? '%M minutes' : '')
+    - ff = '%k hours' + (item.duration.min != 0 ? ' %M minutes' : '')
     span.underline
       = "#{l item.start_time}"
     span
