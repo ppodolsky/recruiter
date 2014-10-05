@@ -8,7 +8,7 @@ h4.spacer-bottom-2
 .btn-toolbar.pull-right role="toolbar"
   .btn-group
     - if not @session.finished then
-      /= link_to '', '#add-new-modal', class: 'glyphicon glyphicon-plus', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Add new subject'
+      = link_to '', '#add-new-modal', class: 'glyphicon glyphicon-plus', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Add new subject'
       = link_to '', experiment_session_path(@session.experiment, @session), class: 'glyphicon glyphicon-pencil spacer-left-1', 'rel' => 'tooltip', 'title'=>'Edit session parameters'
     = link_to '', '#mail-modal', class: 'glyphicon glyphicon-envelope spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Send an email to subjects'
     = link_to '', session_report_path(@session.id) + '.pdf', class: 'glyphicon glyphicon-print spacer-left-1', 'rel' => 'tooltip', 'title'=>'Print'
