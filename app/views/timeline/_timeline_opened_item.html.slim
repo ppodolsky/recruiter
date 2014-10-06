@@ -1,6 +1,10 @@
 b
   = "#{item.experiment.name} at #{item.lab.location}"
+- if item.users.size < item.required_subjects
   = link_to 'Join', session_join_path(item), method: :post, :class => 'btn btn-primary btn-xs pull-right spacer-top-1'
+- else
+  .pull-right
+    = 'This session is now full'
 .clearfix
 p
   small

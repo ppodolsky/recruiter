@@ -13,7 +13,7 @@ class TimelineController < ApplicationController
       .where.not(id: current_user.sessions)
       .where.not(experiment_id: current_user.current_experiments)
       .where.not(experiment_id: current_user.participated_experiments)
-      .order('start_time ASC').select { |i| i.users.size < i.required_subjects }
+      .order('start_time ASC')
   end
 
 end
