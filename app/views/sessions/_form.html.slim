@@ -24,6 +24,9 @@ h3
       = f.label :remind_at, :class => "control-label col-sm-2"
       .col-sm-6
         = f.datetime_select :remind_at, :include_blank => true, :ampm => true, :discard_minute => true, :class => "form-control"
+        span.help-block
+          div
+            | Left blank if you don't want to remind
   fieldset
     legend Details
     .form-group
