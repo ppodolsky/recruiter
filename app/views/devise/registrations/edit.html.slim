@@ -60,9 +60,6 @@
           .col-sm-8
             = u.password_field :current_password, autocomplete: :off, class: 'form-control'
             span.help-block Leave blank if you don't want to change it.
-        .form-group
-          button type='submit' class='pull-left btn btn-small btn-danger' Unsubscribe
-          = u.submit "Update", class: 'pull-right btn btn-large btn-primary col-sm-offset-2'
     - if resource.is_subject?
       #personal.tab-pane
         = form_for(resource, as: resource_name, url: registration_path(resource)+ '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
