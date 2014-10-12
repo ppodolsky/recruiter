@@ -8,7 +8,7 @@ class Assignment < ActiveRecord::Base
   attr_writer :current_session
 
   def current_session
-    registration = Registration.where(user_id: user, session_id: experiment.sessions, shown_up: nil)
+    registration = Registration.where(user_id: user, session_id: experiment.sessions.where(finished: false))
     registration.first ? registration.first.session : nil
   end
   def current_session=(session)

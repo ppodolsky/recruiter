@@ -1,4 +1,5 @@
-- @paginated_users = @experiment.users.paginate(:page => params[:page], :per_page => 10)
+h3
+  = link_to @experiment.name, experiment_path(@experiment)
 .table-responsive
   table.table.table-condensed.table-borderless
     thead
@@ -9,9 +10,9 @@
           | Sessions
         th
     tbody
-      - @paginated_users.each do | user |
-        - regs = user.registrations.where(session_id: @experiment.sessions)
-        - reg_current = regs.where(shown_up: nil).first
+      - @experiment.users.each do | user |
+        - regs = user.registrations.joins(:session).where(session_id: @experiment.sessions).order('sessions.start_time')
+        - reg_current = user.registrations.where(session_id: @experiment.sessions.where(finished: false)).first
         tr id="user_#{user.id}" class = "spacer-top-1"
           td
             = link_to user.name, user.becomes(User)
@@ -25,7 +26,7 @@
             - participated = false
             - regs.each do |registration|
               - participated = participated | registration.participated
-              - if not registration.shown_up.nil? then
+              - if registration.session.finished then
                 - session_result = if registration.shown_up then 'success' else 'missed' end
                 - session_result << ' participated' if registration.participated
                 div id="registration_#{registration.session_id}_#{registration.user_id}" class = "#{session_result}"
@@ -34,9 +35,7 @@
               .spacer-top-2
                 span.spacer-right-1
                   | Current session:
-                = select_tag :register, options_from_collection_for_select(@experiment.opened_sessions, 'id', 'start_time_display', reg_current ? reg_current.session_id : nil), prompt: 'not registred yet', class: 'registration-selector styled-select', data: {user: user.id, experiment: @experiment.id}
+                = select_tag :register, options_from_collection_for_select(@experiment.sessions.where(finished: false), 'id', 'start_time_display', reg_current ? reg_current.session_id : nil), prompt: 'not registred yet', class: 'registration-selector styled-select', data: {user: user.id, experiment: @experiment.id}
           td
             - if current_user.is_administrator?
               = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
-.text-center
-  = will_paginate @paginated_users, :params => { :controller => "experiments", :action => "show", :anchor => 'pool'}

@@ -5,10 +5,20 @@ class Session < ActiveRecord::Base
   has_many :users, through: :registrations
 
   before_validation :set_duration_if_nil
+  after_update :check_for_suspend
   before_save :reset_reminder
   validate :validate_time_range
   validates :required_subjects, numericality: { only_integer: true, greater_than: 0 }
   validates_presence_of :lab
+
+
+  def check_for_suspend
+    if self.finished
+      self.registrations.where(shown_up: false).each do |r|
+        r.user.check_and_suspend!
+      end
+    end
+  end
 
   def reset_reminder
     if remind_at_changed?

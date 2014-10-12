@@ -1,11 +1,11 @@
 class UsersController < InheritedResources::Base
 
   before_action :authenticate_user!, :except => ['password_change_action']
-  before_action :raise_if_not_admin, only: [:invite_users, :deactivate, :unassign, :unassign_all, :assigned, :register, :unregister]
+  before_action :raise_if_not_admin, only: [:invite_users, :deactivate, :unassign, :unassign_all, :assigned, :register, :unregister, :suspend_user, :unsuspend_user]
   before_action :raise_if_not_experimenter, only: [:assign, :remained]
 
   actions :all
-  custom_actions :resource => [:assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
+  custom_actions :resource => [:suspend_user, :unsuspend_user, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
 
   respond_to :js, :only => [:add, :unregister, :unassign, :reset_user]
   respond_to :json, :only => [:update, :invite_users]
@@ -18,7 +18,16 @@ class UsersController < InheritedResources::Base
     @users = @users.paginate(:page => params[:page])
     index!
   end
-
+  def suspend_user
+    @user = User.find(params[:id])
+    @user.suspend!
+    redirect_to user_path(@user) + '#settings'
+  end
+  def unsuspend_user
+    @user = User.find(params[:id])
+    @user.unsuspend!
+    redirect_to user_path(@user) + '#settings'
+  end
   def invite_users
     emails = params[:emails].strip.split(/\s+/)
     emails = emails - Subject.all.pluck(:email)
@@ -94,6 +103,7 @@ class UsersController < InheritedResources::Base
 
     restricted_subjects = Assignment.where(experiment_id: @experiment.id).pluck(:user_id)
     restricted_subjects |= Subject.inactive.pluck(:id)
+    restricted_subjects |= Subject.suspended.pluck(:id)
 
     if params[:never_been]
       restricted_subjects |= Registration.all.pluck(:user_id)
@@ -109,7 +119,7 @@ class UsersController < InheritedResources::Base
     .profile_full
     .active
     .joins("LEFT OUTER JOIN (select user_id, count(*) as registrations_count from registrations group by user_id) r1 on (r1.user_id = users.id)")
-    .joins("LEFT OUTER JOIN (select user_id, count(*) as shown_up_count from registrations where registrations.shown_up = true group by user_id) r2 on (r2.user_id = users.id)")
+    .joins("LEFT OUTER JOIN (select user_id, count(*) as shown_up_count from registrations where registrations.shown_up = 't' group by user_id) r2 on (r2.user_id = users.id)")
     .where("COALESCE((r2.shown_up_count / r1.registrations_count),100) BETWEEN #{attendance.min} and #{attendance.max}")
     .where(processed_params)
     .where.not(id: restricted_subjects).to_a

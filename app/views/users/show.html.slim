@@ -1,5 +1,5 @@
-h3
-  = "#{@user.first_name} #{@user.last_name}, G\#: #{@user.gsharp}"
+h3 class="#{@user.suspended ? 'danger' : ''}"
+  = "#{@user.first_name} #{@user.last_name}, G\#: #{@user.gsharp} #{@user.suspended ? '(suspended)' : ''}"
 = best_in_place @user.becomes(User), :type, :type => :select, :collection => [['Administrator', 'Administrator'],['Experimenter','Experimenter'],['Subject','Subject']]
 span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
 .tabbable.spacer-top-1
@@ -10,6 +10,10 @@ span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
     li
       a href="#sessions" data-toggle="tab"
         |  Sessions
+    - if current_user.is_experimenter?
+      li
+        a href="#settings" data-toggle="tab"
+          |  Settings
   .tab-content
     #general.tab-pane.active
       = form_for(@user.becomes(User), html: { method: :put, class: 'form-horizontal' }) do |u|
@@ -59,9 +63,13 @@ span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
               = u.label :phone, class: 'control-label col-sm-2'
               div.col-sm-8
                 = @user.phone
+            div.form-group
+              = u.label :email, class: 'control-label col-sm-2'
+              div.col-sm-8
+                = @user.email
     #sessions.tab-pane
       .table-responsive
-        table.table.table-condensed.table-borderless
+        table.table.table-condensed.table-borderless.table-hover
           thead
             tr
               th
@@ -73,15 +81,30 @@ span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
               th
                 | Experimenter
           tbody
-            - @user.registrations.order("shown_up").each do | registration |
-              - session_result = if registration.shown_up then 'success' else 'missed' end
-              - session_result << ' participated' if registration.participated
-              tr class = "#{session_result}"
+            - @user.registrations.joins(:session).order("sessions.start_time").each do | registration |
+              - session_result = ''
+              - if registration.session.finished then
+                - session_result << if registration.shown_up then 'success' else 'missed' end
+                - session_result << ' participated' if registration.participated
+              tr class = "#{session_result}" data-href="#{session_online_path(registration.session)}"
                 td
-                  = registration.session.experiment.name
+                  = link_to registration.session.experiment.name, experiment_path(registration.session.experiment)
                 td
                 td
                   = registration.session.start_time_display
                 td
                   = registration.session.experiment.creator.present? ? registration.session.experiment.creator.name : '-'
-=link_to '< Back', :back, class: 'btn btn-default'
+    - if current_user.is_experimenter?
+      #settings.tab-pane
+        .col-sm-offset-3.col-sm-6
+          .panel.panel-default.spacer-top-1
+            .panel-heading
+              | Suspending
+            .panel-body
+              span.help-block.small
+                div
+                  | Suspending prevents user from being invited to experiments
+              - if @user.suspended
+                = link_to 'Unsuspend user', unsuspend_user_path(@user), method: :get, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }
+              - else
+                = link_to 'Suspend user', suspend_user_path(@user), method: :get, class: 'btn btn-danger', data: { confirm: 'Are you sure?' }

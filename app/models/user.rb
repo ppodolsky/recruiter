@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+  scope :suspended, -> { where(suspended: true) }
   scope :profile_full, -> {
     where("COALESCE(first_name,'') <> '' and COALESCE(last_name,'') <> '' and
           COALESCE(gsharp,'') <> '' and COALESCE(gender,'') <> '' and
@@ -46,13 +47,11 @@ class User < ActiveRecord::Base
       value.is_a?(String) ? value.titleize.strip : value
     end
   end
-
   def is_corporate_email?
     if not self.email.end_with? "@masonlive.gmu.edu" and not self.email.end_with? "@gmu.edu"
       errors.add(:email, 'is not allowed. It can be only at masonlive.gmu.edu or gmu.edu')
     end
   end
-
   def reset_password(opts = {})
     raw, enc = Devise.token_generator.generate(self.class, :reset_password_token)
     self.reset_password_token = enc
@@ -130,6 +129,20 @@ class User < ActiveRecord::Base
         end
       end
     end
+  end
+  def check_and_suspend!
+    previous = self.sessions.select('sessions.*,registrations.shown_up').joins(:registrations).order(start_time: :desc).first(3)
+    if self.registrations.where(shown_up: false).count > 3 or (previous.all? {|x| x.present? and not x.shown_up})
+      self.suspend!
+    end
+  end
+  def suspend!
+    self.suspended = true
+    self.save(validate: false)
+  end
+  def unsuspend!
+    self.suspended = false
+    self.save(validate: false)
   end
   def current_experiments
     self.sessions.where(finished: false).pluck(:experiment_id)

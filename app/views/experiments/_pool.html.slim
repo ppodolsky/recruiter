@@ -73,17 +73,7 @@
             small class="help-block" #{pluralize(Subject.profile_full.active.where.not(id: @experiment.users).count, 'subject')} maximum
     .panel-footer
       .pull-right
+        - if @experiment.assignments.count > 0
+          = link_to 'View assigned persons', experiment_assigned_path(@experiment), class: "btn"
         = button_tag 'Assign subjects', :type => 'submit', :class => 'btn btn-primary', :id => 'subjects-button'
-      .clearfix
-- if @experiment.assignments.count > 0
-  .panel.panel-default
-    .panel-heading
-      h3.panel-title
-        | Assigned
-    .panel-body
-      .spacer-left-1
-        = render 'assigned'
-    .panel-footer
-      .pull-right
-        = link_to 'Send invitations', experiment_invite_path(@experiment), class: "btn btn-primary"
       .clearfix

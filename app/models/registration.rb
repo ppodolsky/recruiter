@@ -1,14 +1,12 @@
 require 'composite_primary_keys'
 class Registration < ActiveRecord::Base
   after_create :send_email
-
   self.primary_keys = :user_id, :session_id
 
   belongs_to :user
   belongs_to :session
 
   validate :validate_allowness
-
 
   def send_email
     UserMailer.delay.registered_on_session(self.user, self.session)

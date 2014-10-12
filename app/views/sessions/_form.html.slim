@@ -16,6 +16,9 @@ h3
       = f.label :duration, :class => "control-label col-sm-2"
       .col-sm-6
         = f.time_select :duration, :minute_step => 15, :include_blank => true, :ignore_date => true, :class => "form-control"
+        span.help-block.small
+          div
+            | Left blank if the session will last from 'From' to 'To'
     .form-group
       = f.label :registration_deadline, :class => "control-label col-sm-2"
       .col-sm-6
@@ -24,7 +27,7 @@ h3
       = f.label :remind_at, :class => "control-label col-sm-2"
       .col-sm-6
         = f.datetime_select :remind_at, :include_blank => true, :ampm => true, :discard_minute => true, :class => "form-control"
-        span.help-block
+        span.help-block.small
           div
             | Left blank if you don't want to remind
   fieldset

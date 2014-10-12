@@ -16,6 +16,9 @@ class ExperimentsController < InheritedResources::Base
         {category_ids: []}
     ])
   end
+  def assigned
+    @experiment = Experiment.find(params[:experiment_id])
+  end
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
     @experiment.creator = current_user

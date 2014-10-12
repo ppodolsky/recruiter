@@ -39,6 +39,8 @@ Recruiter::Application.routes.draw do
   get 'users/:id/reset', to: 'users#reset_user', as: 'user_reset'
   post 'users/reset', to: 'users#reset_users', as: 'users_reset'
   post 'users/deactivate', to: 'users#deactivate', as: 'users_deactivate'
+  get 'users/:id/suspend', to: 'users#suspend_user', as: 'suspend_user'
+  get 'users/:id/unsuspend', to: 'users#unsuspend_user', as: 'unsuspend_user'
   resources :users, only: [:index, :update, :search, :show]
 
   get 'experiments/all', to: 'experiments#all', as: 'experiments_all'
@@ -51,6 +53,7 @@ Recruiter::Application.routes.draw do
     get 'users', to: 'users#assigned'
     get 'invite', to: 'experiments#invite'
     post 'invite', to: 'experiments#send_invite'
+    get 'assigned', to: 'experiments#assigned'
     get 'send_invite', to: 'experiments#send_invite'
     delete 'users', to: 'users#unassign_all'
     post 'users/remained', to: 'users#remained'
