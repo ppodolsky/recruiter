@@ -118,8 +118,8 @@ class UsersController < InheritedResources::Base
     @subjects = Subject
     .profile_full
     .active
-    .joins("LEFT OUTER JOIN (select user_id, count(*) as registrations_count from registrations group by user_id) r1 on (r1.user_id = users.id)")
-    .joins("LEFT OUTER JOIN (select user_id, count(*) as shown_up_count from registrations where registrations.shown_up = 't' group by user_id) r2 on (r2.user_id = users.id)")
+    .joins("LEFT OUTER JOIN (select user_id, count(*) as registrations_count from registrations left outer join sessions on (sessions.id = registrations.session_id) where registrations.finished = 't') r1 on (r1.user_id = users.id) group by user_id")
+    .joins("LEFT OUTER JOIN (select user_id, count(*) as shown_up_count from registrations left outer join sessions on (sessions.id = registrations.session_id) where registrations.finished = 't' and registrations.shown_up = 't' group by user_id) r2 on (r2.user_id = users.id)")
     .where("COALESCE((r2.shown_up_count / r1.registrations_count),100) BETWEEN #{attendance.min} and #{attendance.max}")
     .where(processed_params)
     .where.not(id: restricted_subjects).to_a

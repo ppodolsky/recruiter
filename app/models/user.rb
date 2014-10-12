@@ -88,10 +88,10 @@ class User < ActiveRecord::Base
   end
 
   def attendance
-    registrations.count != 0 ? registrations.where(shown_up: true).count / registrations.count : 100
+    registrations.count != 0 ? registrations.finished.where(shown_up: true).count / registrations.count : 100
   end
   def never_been
-    registrations.where(shown_up: true).count == 0
+    registrations.finished.where(shown_up: true).count == 0
   end
   def registrations_count
     attributes['registrations_count']
@@ -132,7 +132,8 @@ class User < ActiveRecord::Base
   end
   def check_and_suspend!
     previous = self.sessions.select('sessions.*,registrations.shown_up').joins(:registrations).order(start_time: :desc).first(3)
-    if self.registrations.where(shown_up: false).count > 3 or (previous.all? {|x| x.present? and not x.shown_up})
+    if self.registrations.finished.where(shown_up: false).count > 3 or
+        (previous.all? {|x| x.present? and not x.shown_up})
       self.suspend!
     end
   end

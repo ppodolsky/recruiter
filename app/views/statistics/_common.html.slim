@@ -1,4 +1,4 @@
-- participated = Registration.select(:user_id).distinct.where(participated: true).count
+- participated = Registration.select(:user_id).distinct.where(participated: true).finished.count
 .row
   strong
     = 'Subjects'
@@ -22,4 +22,4 @@
     = 'Average participation'
   br
   .small
-    = pluralize((Registration.where(participated: true).count / participated if participated != 0), 'subject')
+    = pluralize((Registration.where(participated: true).finished.count / participated if participated != 0), 'subject')

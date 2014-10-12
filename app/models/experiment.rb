@@ -12,10 +12,10 @@ class Experiment < ActiveRecord::Base
   validates :reward, :numericality => { :greater_than_or_equal_to => 0 }
 
   def participated?(user)
-    Registration.where(session: self.sessions).where(user_id: user.id).where(participated: true).count > 0
+    Registration.where(session: self.sessions.where(finished: true)).where(user_id: user.id).where(participated: true).count > 0
   end
   def participated_users_ids
-    Registration.select(:user_id).where({session_id: self.sessions, participated: true})
+    Registration.select(:user_id).where({session_id: self.sessions.where(finished: true), participated: true})
   end
   def current_users_ids
     Registration.select(:user_id).where({session_id: self.sessions.where(reservation: false).where(finished: false)})

@@ -8,6 +8,8 @@ class Registration < ActiveRecord::Base
 
   validate :validate_allowness
 
+  scope :finished, -> { joins(:session).where('sessions.finished = ?', true) }
+
   def send_email
     UserMailer.delay.registered_on_session(self.user, self.session)
   end
@@ -17,7 +19,7 @@ class Registration < ActiveRecord::Base
       errors.add(:user, "isn't assigned to the corresponding experiment")
     end
     if Registration.where.not(session_id: self.session).exists?(session_id: self.session.experiment.sessions, user_id: self.user.id, participated: true)
-      errors.add(:session, "already participated")
+      errors.add(:session, "already registered/participated")
     end
   end
 end
