@@ -10,6 +10,7 @@ class RegistrationsController < InheritedResources::Base
       render 'create_fail'
     else
       @user = @users.first
+
       @registration = Registration.new(user_id: @user.id, session_id: @session.id)
       if not @registration.valid?
         @error_msg = @registration.errors.messages[:session].first

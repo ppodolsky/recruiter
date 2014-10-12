@@ -13,6 +13,9 @@ class User < ActiveRecord::Base
 
   scope :active, -> { where(active: true) }
   scope :inactive, -> { where(active: false) }
+  scope :not_locked, -> { where(locked_at: nil) }
+  scope :locked, -> { where.not(locked_at: nil) }
+  scope :not_suspended, -> { where(suspended: false) }
   scope :suspended, -> { where(suspended: true) }
   scope :profile_full, -> {
     where("COALESCE(first_name,'') <> '' and COALESCE(last_name,'') <> '' and
@@ -132,17 +135,19 @@ class User < ActiveRecord::Base
   end
   def check_and_suspend!
     previous = self.sessions.select('sessions.*,registrations.shown_up').joins(:registrations).order(start_time: :desc).first(3)
-    if self.registrations.finished.where(shown_up: false).count > 3 or
+    if self.registrations.finished.where(shown_up: false).where(session_id: self.sessions.where('start_time > ?', self.suspended_at).pluck(:id)).count > 3 or
         (previous.all? {|x| x.present? and not x.shown_up})
       self.suspend!
     end
   end
   def suspend!
     self.suspended = true
+    self.suspended_at = Time.now
     self.save(validate: false)
   end
   def unsuspend!
     self.suspended = false
+    self.suspended_at = Time.now
     self.save(validate: false)
   end
   def current_experiments

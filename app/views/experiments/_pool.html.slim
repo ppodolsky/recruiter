@@ -70,7 +70,7 @@
           = label_tag :required_number, 'Required', class: 'control-label col-sm-2'
           .col-sm-2
             = number_field_tag 'required_subjects', 1, min: 1, max: Subject.count - Assignment.where(experiment: @experiment).count, class: 'form-control', placeholder: 'subjects'
-            small class="help-block" #{pluralize(Subject.profile_full.active.where.not(id: @experiment.users).count, 'subject')} maximum
+            small class="help-block" #{pluralize(Subject.profile_full.active.not_suspended.not_locked.where.not(id: @experiment.users).count, 'subject')} maximum
     .panel-footer
       .pull-right
         - if @experiment.assignments.count > 0

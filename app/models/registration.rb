@@ -16,10 +16,14 @@ class Registration < ActiveRecord::Base
 
   def validate_allowness
     if not self.user.experiments.exists?(id: self.session.experiment.id)
-      errors.add(:user, "isn't assigned to the corresponding experiment")
+      errors.add(:session, "User have not been assigned to #{self.session.experiment.name}")
     end
-    if Registration.where.not(session_id: self.session).exists?(session_id: self.session.experiment.sessions, user_id: self.user.id, participated: true)
-      errors.add(:session, "already registered/participated")
+    if Registration.where.not(session_id: self.session).exists?(session_id: self.session.experiment.sessions.where(finished: true), user_id: self.user.id, participated: true)
+      errors.add(:session, "User is already participated")
+    end
+    reg = Registration.where.not(session_id: self.session).where(session_id: self.session.experiment.sessions.where(finished: false), user_id: self.user.id)
+    if reg.count > 0
+      errors.add(:session, "User is already registered for #{reg.first.session.start_time_display}")
     end
   end
 end
