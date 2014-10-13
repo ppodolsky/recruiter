@@ -3,6 +3,8 @@ class TimelineController < ApplicationController
 
   before_action :authenticate_user!
 
+  before_action :raise_if_suspended
+
   def index
     @incoming = current_user.sessions.where(finished: false).order('start_time ASC')
     @opened = Session

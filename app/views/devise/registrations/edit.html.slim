@@ -36,10 +36,11 @@
           .col-sm-8
             = u.email_field :email, :autofocus => true, class: 'form-control'
             span.help-block
-              | You must use your GMU/Masonlive e-mail address.
-        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-          div
-            | Currently waiting confirmation for: #{resource.unconfirmed_email}
+              div
+                | You must use your GMU/Masonlive e-mail address.
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                div
+                  | Currently waiting confirmation for: #{resource.unconfirmed_email}
         .form-group
           = u.label :password, class: 'control-label col-sm-2'
           .col-sm-8

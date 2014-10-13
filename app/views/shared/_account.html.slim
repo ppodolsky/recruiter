@@ -1,6 +1,6 @@
 ul.nav.navbar-nav.navbar-right
   - if user_signed_in?
-    - if current_user.is_subject?
+    - if current_user.is_subject? and not current_user.suspended
       li= link_to 'Timeline', timeline_path
     - if current_user.is_experimenter?
       li= link_to 'Experiments', experiments_path

@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def after_sign_in_path_for(user)
+    if user.suspended
+      flash[:error] = 'Your account has been suspended. Contact to administrator to deal with it.'
+      return edit_user_registration_path
+    end
     return experiments_path if user.is_experimenter?
     return timeline_path
   end
@@ -17,6 +21,9 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, :notice =>"Confirmation e-mail has been sent. Check your mail box."
   end
   protected
+  def raise_if_suspended
+    raise Exceptions::Permission.new "Only administrators can access this action" if current_user.suspended
+  end
   def raise_if_not_admin
     raise Exceptions::Permission.new "Only administrators can access this action" if not current_user.is_administrator?
   end
