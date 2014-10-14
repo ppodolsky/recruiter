@@ -134,9 +134,9 @@ class User < ActiveRecord::Base
     end
   end
   def check_and_suspend!
-    previous = self.sessions.select('sessions.*, registrations.shown_up').joins(:registrations).where(finished: true).where('start_time > ?', self.suspended_at).order(start_time: :desc).first(3)
+    previous = self.sessions.select('sessions.*, registrations.shown_up').joins(:registrations).where(finished: true).where('start_time > ?', self.suspended_at).order(start_time: :desc)
     if self.registrations.finished.where(shown_up: false).where(session_id: self.sessions.where('start_time > ?', self.suspended_at).pluck(:id)).count > 3 or
-        (previous.size == 3 and previous.all? {|x| x.present? and not x.shown_up})
+        (previous.size >= 3 and previous[0,3].all? {|x| x.present? and not x.shown_up})
       self.suspend!
     end
   end
