@@ -1,4 +1,4 @@
-- participated = Registration.select(:user_id).distinct.where(participated: true).finished.count
+- participated = Registration.select(:user_id).distinct.where(participated: true).where(user_id: Subject.active.pluck(:id)).finished.count
 .row
   strong
     = 'Subjects'
@@ -17,6 +17,12 @@
   br
   .small
     = pluralize(participated, 'subject')
+.row
+  strong
+    = 'Suspended'
+  br
+  .small
+    = pluralize(Subject.where(suspended: true).count, 'subject')
 .row
   strong
     = 'Average participation'
