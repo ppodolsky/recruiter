@@ -81,7 +81,7 @@ span.glyphicon.glyphicon-pencil.spacer-left-1 style="font-size:0.8em"
               th
                 | Experimenter
           tbody
-            - @user.registrations.includes(:session).order("sessions.start_time").each do | registration |
+            - @user.registrations.joins(:session).order("sessions.start_time").each do | registration |
               - session_result = ''
               - if registration.session.finished then
                 - session_result << if registration.shown_up then 'success' else 'missed' end
