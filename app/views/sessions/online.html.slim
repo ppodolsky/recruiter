@@ -30,7 +30,7 @@ h4.spacer-bottom-2
           | $
         th
     tbody
-      - @session.registrations.joins(:user).reorder('users.last_name, users.first_name').each_with_index do | registration, index |
+      - @session.registrations.includes(:user).reorder('users.last_name, users.first_name').each_with_index do | registration, index |
         tr
           td
             = index + 1
