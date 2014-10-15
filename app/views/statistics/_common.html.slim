@@ -13,6 +13,12 @@
     = pluralize(Subject.active.count, 'subject')
 .row
   strong
+    = 'Full&Active'
+  br
+  .small
+    = pluralize(Subject.profile_full.active.count, 'subject')
+.row
+  strong
     = 'Participated'
   br
   .small
