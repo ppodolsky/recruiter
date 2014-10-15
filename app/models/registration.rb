@@ -8,7 +8,7 @@ class Registration < ActiveRecord::Base
 
   validate :validate_allowness
 
-  scope :finished, -> { includes(:session).where('sessions.finished = ?', true) }
+  scope :finished, -> { includes(:session).where('session.finished = ?', true) }
 
   def send_email
     UserMailer.delay.registered_on_session(self.user, self.session)
