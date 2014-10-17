@@ -1,8 +1,8 @@
 class UsersController < InheritedResources::Base
 
   before_action :authenticate_user!, :except => ['password_change_action']
-  before_action :raise_if_not_admin, only: [:invite_users, :deactivate, :unassign, :unassign_all, :assigned, :register, :unregister, :suspend_user, :unsuspend_user]
-  before_action :raise_if_not_experimenter, only: [:assign, :remained]
+  before_action :raise_if_not_admin, only: [:invite_users, :deactivate, :unassign, :unassign_all, :assigned, :suspend_user, :unsuspend_user]
+  before_action :raise_if_not_experimenter, only: [:assign, :register, :unregister, :remained]
 
   actions :all
   custom_actions :resource => [:suspend_user, :unsuspend_user, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
