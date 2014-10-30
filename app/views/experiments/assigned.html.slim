@@ -10,7 +10,7 @@ h3
           | Sessions
         th
     tbody
-      - @experiment.users.each do | user |
+      - @users.each do | user |
         - regs = user.registrations.joins(:session).where(session_id: @experiment.sessions).order('sessions.start_time')
         - reg_current = user.registrations.where(session_id: @experiment.sessions.where(finished: false)).first
         tr id="user_#{user.id}" class = "spacer-top-1"
@@ -19,7 +19,7 @@ h3
             br
             small
               = user.email
-            br
+            brgit
             small
               = "#{user.age} #{user.gender}"
           td
@@ -40,3 +40,4 @@ h3
           td
             - if current_user.is_administrator?
               = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
+    = will_paginate @users
