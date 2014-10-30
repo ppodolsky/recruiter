@@ -40,4 +40,7 @@ h3
           td
             - if current_user.is_administrator?
               = link_to '', experiment_user_path(@experiment, user), remote: true, method: :delete, class: 'glyphicon glyphicon-remove danger pull-right', data: { confirm: 'Are you sure?' }
-    = will_paginate @users
+    .text-center
+      = will_paginate @users
+.text-center
+  = will_paginate @users
