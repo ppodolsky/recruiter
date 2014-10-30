@@ -18,7 +18,7 @@ class ExperimentsController < InheritedResources::Base
   end
   def assigned
     @experiment = Experiment.find(params[:experiment_id])
-    @users = User.where(id: @experiment.users.pluck(:id)).paginate(:page => params[:page], :per_page => 200)
+    @users = @experiment.users.paginate(:page => params[:page], :per_page => 200)
   end
   def create
     @experiment = Experiment.new(permitted_params[:experiment])
