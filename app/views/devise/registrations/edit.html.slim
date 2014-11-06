@@ -61,6 +61,8 @@
           .col-sm-8
             = u.password_field :current_password, autocomplete: :off, class: 'form-control'
             span.help-block Leave blank if you don't want to change it.
+        .pull-right
+          = u.button 'Save', :type => 'submit', :class => 'btn btn-small btn-primary'
     - if resource.is_subject?
       #personal.tab-pane
         = form_for(resource, as: resource_name, url: registration_path(resource)+ '#personal', html: { method: :put, class: 'form-horizontal' }) do |u|
