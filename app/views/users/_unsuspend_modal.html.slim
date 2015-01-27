@@ -1,4 +1,4 @@
-#reset-modal.modal.fade
+#unsuspend-modal.modal.fade
   .modal-dialog
     .modal-content
       = form_tag(users_unsuspend_path, method: :post, class: "form-horizontal") do
@@ -8,8 +8,7 @@
           h4.modal-title Unsuspend users
         .modal-body
           .form-group
-            .col-sm-12
-              = markdown_editor Email.find('reset'), :value, :savable => false
+            .col-sm-12.text-center Are you sure?
         .modal-footer
-          button.btn.btn-small.btn-primary type='submit' Reset
+          button.btn.btn-small.btn-primary type='submit' Unsuspend!
 

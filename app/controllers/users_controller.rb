@@ -47,12 +47,16 @@ class UsersController < InheritedResources::Base
     end
     redirect_to users_path
   end
-  def deactivate
+  def deactivate_users
     Subject.update_all(active: false)
     email_text = params[:email][:value]
     Subject.all.each do |user|
-      UserMailer.delay.send_custom(user.email, 'ICES Deactivation', email_text, 'url' => 'http://' + @@host)
+      UserMailer.delay.send_custom(user.email, 'ICES Deactivation', email_text)
     end
+    redirect_to users_path
+  end
+  def unsuspend_users
+    Subject.where(suspended: true).update_all(suspended: false, suspended_at: Time.now)
     redirect_to users_path
   end
 

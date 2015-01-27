@@ -1,19 +1,21 @@
 = render 'invitation_modal'
 = render 'deactivate_modal'
 = render 'reset_modal'
+= render 'unsuspend_modal'
 .row
-  .col-sm-6
+  .col-sm-9
     = form_tag users_path, method: :get, class: "navbar-form", role: "search"
       .input-group
         = text_field_tag :q, params[:q], class: "form-control", placeholder: "Search"
         .input-group-btn
           button class="btn btn-default" type="submit"
             span class="glyphicon glyphicon-search"
-  .col-sm-6
+  .col-sm-3
     .pull-right
-      = button_tag 'Send invitations', class: 'btn btn-primary spacer-right-1', data: {toggle: 'modal', target: '#invitation-modal'}
-      = button_tag 'Reset passwords', class: 'btn btn-danger spacer-right-1', data: {toggle: 'modal', target: '#reset-modal'}
-      = button_tag 'Deactivate users', class: 'btn btn-danger spacer-right-1', data: {toggle: 'modal', target: '#deactivate-modal'}
+      = link_to '', '#invitation-modal', class: 'glyphicon glyphicon-envelope spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Send invitation'
+      = link_to '', '#reset-modal', class: 'glyphicon glyphicon-refresh spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Reset all subjects'
+      = link_to '', '#unsuspend-modal', class: 'glyphicon glyphicon-repeat spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Unsuspend all suspended subjects'
+      = link_to '', '#deactivate-modal', class: 'glyphicon glyphicon-off spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Deactivate all subjects'
     .clearfix
 .row.spacer-top-2
   .col-sm-9
@@ -26,10 +28,6 @@
               br
               small
                 = user.email
-            td
-              = link_to 'Reset password', user_reset_path(user), remote: true
-              .pull-right.lead
-                = "#{user.type}"
   .col-sm-3
     .panel.panel-default
       .panel-heading
