@@ -5,7 +5,7 @@ class UsersController < InheritedResources::Base
   before_action :raise_if_not_experimenter, only: [:assign, :register, :unregister, :remained]
 
   actions :all
-  custom_actions :resource => [:suspend_user, :unsuspend_user, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :invite_users]
+  custom_actions :resource => [:suspend_user, :unsuspend_user, :assigned, :unassign, :unassign_all, :register, :unregister], :collection => [:deactivate, :suspended, :invite_users]
 
   respond_to :js, :only => [:add, :unregister, :unassign, :reset_user]
   respond_to :json, :only => [:update, :invite_users]
@@ -17,6 +17,14 @@ class UsersController < InheritedResources::Base
     end
     @users = @users.paginate(:page => params[:page])
     index!
+  end
+  def suspended
+    @users = User.where.not(id: current_user.id).where(suspended: true).order("type ASC, active ASC, last_name ASC, first_name ASC")
+    if params[:q].present?
+      @users = @users.find_by_query(params[:q])
+    end
+    @users = @users.paginate(:page => params[:page])
+    render 'index'
   end
   def suspend_user
     @user = User.find(params[:id])

@@ -4,7 +4,8 @@
     = 'Subjects'
   br
   .small
-    = pluralize(Subject.count, 'subject')
+    = link_to pluralize(Subject.count, 'subject'), users_path
+    =
 .row
   strong
     = 'Active'
@@ -28,10 +29,10 @@
     = 'Suspended'
   br
   .small
-    = pluralize(Subject.where(suspended: true).count, 'subject')
+    = link_to pluralize(Subject.where(suspended: true).count, 'subject'), users_suspended_path
 .row
   strong
-    = 'Average participation'
+    = 'Shown up rate'
   br
   .small
-    = pluralize((Registration.where(participated: true).finished.count / participated if participated != 0), 'subject')
+    = Registration.where(shown_up: true).finished.count.to_f / Registration.finished.count

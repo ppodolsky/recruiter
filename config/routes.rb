@@ -38,6 +38,7 @@ Recruiter::Application.routes.draw do
   post 'invite', to: 'users#invite_users', as: 'invite'
   get 'users/:id/reset', to: 'users#reset_user', as: 'user_reset'
   post 'users/reset', to: 'users#reset_users', as: 'users_reset'
+  get 'users/suspended', to: 'users#suspended', as: 'users_suspended'
   post 'users/deactivate', to: 'users#deactivate_users', as: 'users_deactivate'
   post 'users/unsuspend', to: 'users#unsuspend_users', as: 'users_unsuspend'
   get 'users/:id/suspend', to: 'users#suspend_user', as: 'suspend_user'
