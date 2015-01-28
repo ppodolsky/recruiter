@@ -2,6 +2,7 @@
 = render 'deactivate_modal'
 = render 'reset_modal'
 = render 'unsuspend_modal'
+= render 'remind_to_fill_modal'
 .row
   .col-sm-9
     = form_tag users_path, method: :get, class: "navbar-form", role: "search"
@@ -13,6 +14,7 @@
   .col-sm-3
     .pull-right
       = link_to '', '#invitation-modal', class: 'glyphicon glyphicon-envelope spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Send invitation'
+      = link_to '', '#remind-to-fill-modal', class: 'glyphicon glyphicon-tasks spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Remind users to fill their profiles'
       = link_to '', '#reset-modal', class: 'glyphicon glyphicon-refresh spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Reset all subjects'
       = link_to '', '#unsuspend-modal', class: 'glyphicon glyphicon-repeat spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Unsuspend all suspended subjects'
       = link_to '', '#deactivate-modal', class: 'glyphicon glyphicon-off spacer-left-1', 'data-toggle' => 'modal', 'rel' => 'tooltip', 'title'=>'Deactivate all subjects'

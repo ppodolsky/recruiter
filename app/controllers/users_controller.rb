@@ -57,14 +57,25 @@ class UsersController < InheritedResources::Base
   end
   def deactivate_users
     Subject.update_all(active: false)
-    email_text = params[:email][:value]
     Subject.all.each do |user|
-      UserMailer.delay.send_custom(user.email, 'ICES Deactivation', email_text)
+      UserMailer.delay.deactivation(user)
+    end
+    redirect_to users_path
+  end
+  def remind_to_fill_users
+    users = Subject.all - Subject.profile_full
+    email_text = params[:email][:value]
+    users.each do |user|
+      UserMailer.delay.send_custom(user.email, 'ICES Reminder', email_text)
     end
     redirect_to users_path
   end
   def unsuspend_users
-    Subject.where(suspended: true).update_all(suspended: false, suspended_at: Time.now)
+    users = Subject.suspended
+    users.update_all(suspended: false, suspended_at: Time.now)
+    users.each do |user|
+      UserMailer.delay.unsuspend(user)
+    end
     redirect_to users_path
   end
 

@@ -36,6 +36,7 @@ Recruiter::Application.routes.draw do
 
 
   post 'invite', to: 'users#invite_users', as: 'invite'
+  post 'remind_to_fill', to: 'users#remind_to_fill_users', as: 'remind_to_fill'
   get 'users/:id/reset', to: 'users#reset_user', as: 'user_reset'
   post 'users/reset', to: 'users#reset_users', as: 'users_reset'
   get 'users/suspended', to: 'users#suspended', as: 'users_suspended'
