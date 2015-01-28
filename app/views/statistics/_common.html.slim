@@ -35,4 +35,4 @@
     = 'Shown up rate'
   br
   .small
-    = Registration.where(shown_up: true).finished.count.to_f / Registration.finished.count
+    = number_to_percentage((Registration.where(shown_up: true).finished.count.to_f / Registration.finished.count)*100, precision: 1)
