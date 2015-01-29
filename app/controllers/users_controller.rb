@@ -72,9 +72,8 @@ class UsersController < InheritedResources::Base
   end
   def unsuspend_users
     users = Subject.suspended
-    users.update_all(suspended: false, suspended_at: Time.now)
     users.each do |user|
-      UserMailer.delay.unsuspend(user)
+      user.unsuspend!
     end
     redirect_to users_path
   end

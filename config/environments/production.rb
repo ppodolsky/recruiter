@@ -75,7 +75,7 @@ Recruiter::Application.configure do
   config.action_mailer.smtp_settings = {
     address: "smtp.mandrillapp.com",
     port: 587,
-    domain: "experiments.gmu.edu",
+    domain: "ices-experiments.org",
     authentication: "plain",
     enable_starttls_auto: true,
     user_name: ENV['MANDRILL_USERNAME'],

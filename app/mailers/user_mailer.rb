@@ -49,10 +49,13 @@ class UserMailer < Devise::Mailer
                 'session_list' => "\n" + experiment.sessions.where(reservation: false).where(finished: false).where('registration_deadline > ?', Time.now).map {|x| "* #{x.to_s}"}.join("\n") + "\n")
   end
   def unsuspend(user)
-    send_from_db(user.email, 'unsuspend', 'name'=> user.name)
+    send_from_db(user.email, 'unsuspend', 'name'=> user.name, 'url'=>'http://' + @@host)
+  end
+  def suspend(user)
+    send_from_db(user.email, 'unsuspend', 'name'=> user.name, 'url'=>'http://' + @@host)
   end
   def deactivation(user)
-    send_from_db(user.email, 'deactivation', 'name'=> user.name)
+    send_from_db(user.email, 'deactivation', 'name'=> user.name, 'url'=>'http://' + @@host)
   end
   def invitation(user, experiment, subject_for_mail, template)
     send_custom(user.email, subject_for_mail, template,

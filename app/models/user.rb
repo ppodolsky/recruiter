@@ -145,11 +145,13 @@ class User < ActiveRecord::Base
     self.suspended = true
     self.suspended_at = Time.now
     self.save(validate: false)
+    UserMailer.delay.suspend(self)
   end
   def unsuspend!
     self.suspended = false
     self.suspended_at = Time.now
     self.save(validate: false)
+    UserMailer.delay.unsuspend(self)
   end
   def current_experiments
     self.sessions.where(finished: false).pluck(:experiment_id)
