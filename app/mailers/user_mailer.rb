@@ -52,7 +52,7 @@ class UserMailer < Devise::Mailer
     send_from_db(user.email, 'unsuspend', 'name'=> user.name, 'url'=>'http://' + @@host)
   end
   def suspend(user)
-    send_from_db(user.email, 'unsuspend', 'name'=> user.name, 'url'=>'http://' + @@host)
+    send_from_db(user.email, 'suspend', 'name'=> user.name, 'url'=>'http://' + @@host)
   end
   def deactivation(user)
     send_from_db(user.email, 'deactivation', 'name'=> user.name, 'url'=>'http://' + @@host)

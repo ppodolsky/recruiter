@@ -1,3 +1,4 @@
+gem 'delayed_job_active_record'
 class UsersController < InheritedResources::Base
 
   before_action :authenticate_user!, :except => ['password_change_action']
@@ -36,13 +37,16 @@ class UsersController < InheritedResources::Base
     @user.unsuspend!
     redirect_to user_path(@user) + '#settings'
   end
+  def self.delayed_invite_users(emails, email_text)
+    emails.each do |email|
+      UserMailer.delay.send_custom(email, 'ICES Invitation', email_text)
+    end
+  end
   def invite_users
     emails = params[:emails].strip.split(/\s+/)
     emails = emails - Subject.all.pluck(:email)
     email_text = params[:email][:value]
-    emails.each do |email|
-      UserMailer.delay.send_custom(email, 'ICES Invitation', email_text)
-    end
+    UsersController.delay.delayed_invite_users(emails, email_text)
     redirect_to users_path
   end
   def reset_user
@@ -62,12 +66,15 @@ class UsersController < InheritedResources::Base
     end
     redirect_to users_path
   end
-  def remind_to_fill_users
+  def self.delayed_remind_to_fill_users(email_text)
     users = Subject.all - Subject.profile_full
-    email_text = params[:email][:value]
     users.each do |user|
       UserMailer.delay.send_custom(user.email, 'ICES Reminder', email_text)
     end
+  end
+  def remind_to_fill_users
+    email_text = params[:email][:value]
+    UsersController.delay.delayed_remind_to_fill_users(email_text)
     redirect_to users_path
   end
   def unsuspend_users
