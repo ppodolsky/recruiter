@@ -29,15 +29,18 @@ class Experiment < ActiveRecord::Base
   def default_values
     self.default_invitation ||=
 '#### Hello, @name!
+
 You are being invited to participate in an experiment in which you will make economic decisions.
 In addition to your cash earnings from the experiment, you will be paid a on-time bonus of **@reward** for showing up on time.
 The session(s) is scheduled for the following time(s):
-@session_list
-If you want to participate in one of the sessions, you can register [here](@timeline_url).
-Thank you for signing up to receive information about our experiments.
-If you have any questions about this experiment, please reply directly to this invitation.
-We hope to see you soon!
 
-Sincerely, ICES Experimenters'
+@session_list
+
+If you want to participate in one of the sessions, you can register [here](@timeline_url). Thank you for signing up to receive information about our experiments.
+
+If you have any questions about this experiment, please contact <INSERT_NAME> at <INSERT_EMAIL>.
+
+Thank you, and we look forward to seeing you at the ICES Laboratory!'
+
   end
 end
