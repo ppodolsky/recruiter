@@ -46,7 +46,7 @@ class ExperimentsController < InheritedResources::Base
   end
   def send_invite
     experiment = Experiment.find(params[:experiment_id])
-    stack = experiment.assignments.where('user_id not in (?) and user_id not in (?) and user_id not in(?)', experiment.participated_users_ids, experiment.current_users_ids, Subject.where(suspended: true).pluck(:id)).order('random(), invited').limit(params[:amount])
+    stack = experiment.assignments.where.not(user_id: experiment.participated_users_ids).where.not(user_id: experiment.current_users_ids).where.not(user_id: Subject.where(suspended: true).pluck(:id)).order('random(), invited').limit(params[:amount])
     stack.each do |a|
       UserMailer.delay.invitation(a.user, experiment, params[:subject], params[:experiment][:default_invitation])
       a.update!(invited: true)
