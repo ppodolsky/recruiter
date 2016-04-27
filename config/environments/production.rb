@@ -76,7 +76,7 @@ Recruiter::Application.configure do
     address: ENV['MAILGUN_SMTP_SERVER'],
     port: ENV['MAILGUN_SMTP_PORT'],
     #domain: "ices-experiments.org",
-    domain: app59a12c501cc4453e8d7adb6e429c6f3c.mailgun.org,
+    domain: ices-experiments.herokuapp.com,
     authentication: :plain,
     enable_starttls_auto: true,
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
