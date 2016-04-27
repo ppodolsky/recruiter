@@ -75,7 +75,8 @@ Recruiter::Application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV['MAILGUN_SMTP_SERVER'],
     port: ENV['MAILGUN_SMTP_PORT'],
-    domain: "ices-experiments.org",
+    #domain: "ices-experiments.org",
+    domain: app59a12c501cc4453e8d7adb6e429c6f3c.mailgun.org,
     authentication: :plain,
     enable_starttls_auto: true,
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
