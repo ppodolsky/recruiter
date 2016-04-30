@@ -1,7 +1,7 @@
 require 'kramdown'
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
-  default from: 'no-reply@ices-experiments.org'
+  default from: 'no-reply@ices-experiments.herokuapp.com'
   def templatize(template, opts = {})
     opts.each_pair do |e,v|
       template.gsub!("@#{e}", v)
