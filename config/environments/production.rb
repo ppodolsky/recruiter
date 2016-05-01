@@ -79,8 +79,8 @@ Recruiter::Application.configure do
     #domain: "ices-experiments.herokuapp.com",
     authentication: :plain,
     enable_starttls_auto: true,
-    user_name: ENV['MAILGUN_SMTP_LOGIN'],
-    password: ENV['MAILGUN_SMTP_PASSWORD']
+    user_name: "postmaster@ices-experiments.com",
+    password: "2c20731c2d4afaa0f0e41fc2e19a3c52"
 
     #:user_name => first_inbox['username'],
     #:password => first_inbox['password'],

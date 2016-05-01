@@ -3,7 +3,7 @@ require 'mail'
 
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
-  default from: 'no-reply@ices-experiments.com'
+  default from: 'postmaster@ices-experiments.com'
   def templatize(template, opts = {})
     RestClient.post "https://api:key-fed7ecf70b27cb44ca211a50139b4f98"\
     "@api.mailgun.net/v3/ices-experiments.com/messages",
