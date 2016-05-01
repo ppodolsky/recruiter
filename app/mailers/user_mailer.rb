@@ -1,5 +1,4 @@
 require 'kramdown'
-require 'mail'
 
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
