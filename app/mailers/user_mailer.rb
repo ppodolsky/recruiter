@@ -44,6 +44,8 @@ class UserMailer < Devise::Mailer
     send_custom(email, e.subject, e.value, opts)
   end
   def experimenter_invitation(experiment, email_list, subject_for_mail, template)
+    RestClient.post "https://api:key-fed7ecf70b27cb44ca211a50139b4f98"\
+  "@api.mailgun.net/v3/ices-experiments.com/messages",
     send_custom(experiment.creator.email, subject_for_mail, template + "\n\n*Email list:*\n\n" + email_list ,
                 'reward' => "$#{experiment.reward}",
                 'timeline_url' => timeline_url,
