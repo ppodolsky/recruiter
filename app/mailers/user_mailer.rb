@@ -1,4 +1,6 @@
 require 'kramdown'
+require 'mail'
+
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
   default from: 'no-reply@ices-experiments.com'
