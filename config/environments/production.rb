@@ -75,27 +75,14 @@ Recruiter::Application.configure do
   config.action_mailer.smtp_settings = {
     address: ENV['MAILGUN_SMTP_SERVER'],
     port: ENV['MAILGUN_SMTP_PORT'],
+#    enable_starttls_auto: true,
+    user_name: ENV['MAILGUN_SMTP_LOGIN'],
+    password: ENV['MAILGUN_SMTP_PASSWORD'],
     domain: "ices-experiments.com",
-    #domain: "ices-experiments.herokuapp.com",
     authentication: :plain,
-    enable_starttls_auto: true,
-    user_name: "postmaster@ices-experiments.com",
-    password: "2c20731c2d4afaa0f0e41fc2e19a3c52"
 
-    #:user_name => first_inbox['username'],
-    #:password => first_inbox['password'],
-    #:address => first_inbox['domain'],
-    #:domain => first_inbox['domain'],
-    #:port => first_inbox['smtp_ports'][0],
-    #:authentication => :plain
 
-    #:port           => '25', # or 2525
-    #:address        => ENV['POSTMARK_SMTP_SERVER'],
-    #:user_name      => ENV['POSTMARK_API_TOKEN'],
-    #:password       => ENV['POSTMARK_API_TOKEN'],
-    #:domain         => 'ices-experiments.heroku.com',
-    #:authentication => :cram_md5, # or :plain for plain-text authentication
-    #:enable_starttls_auto => true, # or false for unencrypted connection
+
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
