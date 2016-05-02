@@ -72,6 +72,7 @@ Recruiter::Application.configure do
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.default :charset => "utf-8"
 
+
   config.action_mailer.smtp_settings = {
 #    address: ENV['MAILGUN_SMTP_SERVER'],
 #    port: ENV['MAILGUN_SMTP_PORT'],
@@ -80,12 +81,12 @@ Recruiter::Application.configure do
 #    password: ENV['MAILGUN_SMTP_PASSWORD'],
 #    domain: "ices-experiments.com",
 #    authentication: :plain,
-  :port           => ENV['MAILGUN_SMTP_PORT'],
-  :address        => ENV['MAILGUN_SMTP_SERVER'],
-  :user_name      => ENV['MAILGUN_SMTP_LOGIN'],
-  :password       => ENV['MAILGUN_SMTP_PASSWORD'],
-  :domain         => 'ices-experiments.com',
-  :authentication => :plain,
+    :port           => ENV['MAILGUN_SMTP_PORT'],
+    :address        => 'smtp.mailgun.org',
+    :user_name      => 'no-reply@ices-experiments.com',
+    :password       => '311337',
+    :domain         => 'ices-experiments.com',
+    :authentication => :plain,
 
   }
 

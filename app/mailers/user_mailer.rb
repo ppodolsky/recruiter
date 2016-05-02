@@ -2,7 +2,7 @@ require 'kramdown'
 
 class UserMailer < Devise::Mailer
   @@host = 'experiments.gmu.edu'
-  default from: 'postmaster@ices-experiments.com'
+  default from: 'no-reply@ices-experiments.com'
   def templatize(template, opts = {})
 
     opts.each_pair do |e,v|
