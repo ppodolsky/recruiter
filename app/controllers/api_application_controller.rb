@@ -1,7 +1,4 @@
 class ApiApplicationController < ActionController::Base
-
-Add a comment to this line
-
 	private
 	
 		def validate_authentication_token
