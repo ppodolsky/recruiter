@@ -2,7 +2,7 @@ class ApiApplicationController < ActionController::Base
 	private
 	
 		def validate_authentication_token
-			@user = User.find_by_email(params[:email])
+			user = User.find_by_email(params[:email])
 			if @user .nil?
 				render :json => '{"error": "invalid email and token combination"}'
 				return
