@@ -69,6 +69,20 @@ Recruiter::Application.routes.draw do
   get 'help',      to: 'pages#help'
   get 'dashboard', to: 'pages#dashboard'
 
+# api
+    namespace :api do
+        namespace :v1 do
+            post 'user/login', to: 'user#login'
+            post 'user/index', to: 'user#index'
+            post 'user/update_account', to: 'user#update_account'
+            post 'user/update_personal', to: 'user#update_personal'
+            post 'user/update_education', to: 'user#update_education'
+            post 'user/registration', to: 'user#registration'
+            post 'calendar/index', to: 'calendar#index'
+            post 'session/join', to: 'session#join'
+        end
+    end
+
   # light CMS
   # http://railscasts.com/episodes/117-semi-static-pages-revised
   # WARNING: order is crucial, do not rearrange #
