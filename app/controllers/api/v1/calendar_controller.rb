@@ -1,4 +1,4 @@
-lass Api::V1::CalendarController < ApiApplicationController
+class Api::V1::CalendarController < ApiApplicationController
 
 	before_filter :validate_authentication_token, only: [:index]
 
@@ -64,5 +64,4 @@ lass Api::V1::CalendarController < ApiApplicationController
 			:opened  		=> arrsessions, 			
 		}
 	end
-	
 end
