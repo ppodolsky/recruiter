@@ -33,6 +33,7 @@ class Api::V1::UserController < ApiApplicationController
 			end
 		end    
 	end
+	
  
 	def index
 		ethnicity = Ethnicity.all

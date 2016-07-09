@@ -24,4 +24,5 @@ class Api::V1::SessionController < ApiApplicationController
 						:join_text  => join_text,					
 					}	
 	end
+	
 end

@@ -177,4 +177,5 @@ class User < ActiveRecord::Base
 	def valid_authentication_token(authentication_token)
 			self.token == authentication_token
 	end
+	
 end

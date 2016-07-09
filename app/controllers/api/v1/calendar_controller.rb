@@ -64,4 +64,5 @@ lass Api::V1::CalendarController < ApiApplicationController
 			:opened  		=> arrsessions, 			
 		}
 	end
+	
 end
