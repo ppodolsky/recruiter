@@ -165,6 +165,8 @@ class User < ActiveRecord::Base
 			self.experiments.delete (self.experiments.where(finished: false))
 		end
 	end
+
+#addition for the app
 	def activate_on_login
 		if self.last_sign_in_at_changed? then
 			self.active = true

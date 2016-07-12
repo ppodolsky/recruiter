@@ -1,5 +1,5 @@
 class Api::V1::UserController < ApiApplicationController
-
+#user controller = reviewed
 	before_filter :validate_authentication_token, only: [:index, :update_account, :update_personal, :update_education]
 	
 	def login
@@ -33,7 +33,6 @@ class Api::V1::UserController < ApiApplicationController
 			end
 		end    
 	end
-	
  
 	def index
 		ethnicity = Ethnicity.all

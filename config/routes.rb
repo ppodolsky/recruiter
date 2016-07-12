@@ -69,7 +69,7 @@ Recruiter::Application.routes.draw do
 	get 'help',      to: 'pages#help'
 	get 'dashboard', to: 'pages#dashboard'
 
-# api
+# additional api for the app
 	namespace :api do
 		namespace :v1 do
 			post 'user/login', to: 'user#login'

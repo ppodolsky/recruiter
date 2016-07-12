@@ -1,4 +1,5 @@
 class ApiApplicationController < ActionController::Base
+#reviewed: done
 	private
 	
 		def validate_authentication_token

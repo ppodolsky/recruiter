@@ -1,5 +1,5 @@
 class Api::V1::SessionController < ApiApplicationController
-
+#session controller = reviewed
 	before_filter :validate_authentication_token, only: [:join] 
 	
 	def join
@@ -24,5 +24,4 @@ class Api::V1::SessionController < ApiApplicationController
 						:join_text  => join_text,					
 					}	
 	end
-	
 end

@@ -1,9 +1,9 @@
 class Api::V1::CalendarController < ApiApplicationController
-
+#calendar controller: reviewed
 	before_filter :validate_authentication_token, only: [:index]
 
 	def index
-		@incoming = @user
+	    @incoming = @user
 			.sessions
 			.includes(:experiment => :creator)
 			.where(start_time: DateTime.strptime(params[:start],'%s')..DateTime.strptime(params[:end],'%s'))
