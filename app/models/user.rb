@@ -166,6 +166,18 @@ class User < ActiveRecord::Base
 		end
 	end
 
-
+#addition for the app
+	def activate_on_login
+		if self.last_sign_in_at_changed? then
+			self.active = true
+		end
+	end
+	def generate_authentication_token
+			self.token = SecureRandom.urlsafe_base64(nil, false)
+			self.save!(:validate => false)
+		end
+	def valid_authentication_token(authentication_token)
+			self.token == authentication_token
+	end
 	
 end
