@@ -7,14 +7,14 @@ class Api::V1::UserController < ApiApplicationController
   		ethnicity = Ethnicity.all
   		profession = Profession.all
   		major = Major.all
-  		if user .nil?
+  		if user.nil?
    			render :json => {
     		:error "invalid email and password combination not user",
     		:email => params[:email],
     		:password => params[:password]
    			}
   		else
-   			if user .valid_password? params[:password]
+   			if user.valid_password? params[:password]
     			if user.suspended      
      				render :json => '{"error": "Your account has been suspended. Contact to administrator to deal with it."}' 
      				return
@@ -71,7 +71,7 @@ class Api::V1::UserController < ApiApplicationController
 			else
 				if(params[:newPassword] == params[:confirmPassword])
 					
-					if @user .valid_password? params[:currentPassword]
+					if @user.valid_password? params[:currentPassword]
 						
 						@user.password = params[:newPassword]
 						@user.save(validate: false)
