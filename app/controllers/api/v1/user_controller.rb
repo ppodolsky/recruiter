@@ -1,46 +1,46 @@
 class Api::V1::UserController < ApiApplicationController
-#user controller = reviewed
+
 	before_filter :validate_authentication_token, only: [:index, :update_account, :update_personal, :update_education]
 	
 	def login
-  		user = User.find_by_email(params[:email])
-  		ethnicity = Ethnicity.all
-  		profession = Profession.all
-  		major = Major.all
-  		if user.nil?
-   			render :json => {
-    		:error "invalid email and password combination not user",
-    		:email => params[:email],
-    		:password => params[:password]
-   			}
-  		else
-   			if user.valid_password? params[:password]
-    			if user.suspended      
-     				render :json => '{"error": "Your account has been suspended. Contact to administrator to deal with it."}' 
-     				return
-    			end
-    			if user.confirmed?
-     				user.generate_authentication_token
-     				render :json=> {
-      				:success    => true, 
-      				:auth_token => user.token, 
-      				:user       => user, 
-      				:ethnicity  => ethnicity, 
-      				:profession => profession,
-      				:major      => major     
-     				}
-    			else
-     				render :json => '{"error": "You have to confirm your account before continuing."}'    
-    			end
-   			else
-    			render :json => {
-    	 		:error "invalid email and password combination not valid pswd",
-     			:email => params[:email],
-     			:password => params[:password]     
-    			}
-   			end
-  		end    
- 	end
+		user = User.find_by_email(params[:email])
+		ethnicity = Ethnicity.all
+		profession = Profession.all
+		major = Major.all
+		if user .nil?
+			render :json => {
+				:error => "invalid email and password combination not user",
+				:email => params[:email],
+				:password => params[:password],
+			}
+		else
+			if user .valid_password? params[:password]
+				if user.suspended      
+					render :json => '{"error": "Your account has been suspended. Contact to administrator to deal with it."}'	
+					return
+				end
+				if user.confirmed?
+					user.generate_authentication_token
+					render :json=> {
+						:success    => true, 
+						:auth_token => user.token, 
+						:user       => user, 
+						:ethnicity  => ethnicity, 
+						:profession => profession,
+						:major      => major					
+					}
+				else
+					render :json => '{"error": "You have to confirm your account before continuing."}'				
+				end
+			else
+				render :json => {
+					:error => "invalid email and password combination not valid pswd",
+					:email => params[:email],
+					:password => params[:password]					
+				}
+			end
+		end    
+	end
  
 	def index
 		ethnicity = Ethnicity.all
@@ -71,7 +71,7 @@ class Api::V1::UserController < ApiApplicationController
 			else
 				if(params[:newPassword] == params[:confirmPassword])
 					
-					if @user.valid_password? params[:currentPassword]
+					if @user .valid_password? params[:currentPassword]
 						
 						@user.password = params[:newPassword]
 						@user.save(validate: false)
